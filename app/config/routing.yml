@@ -1,0 +1,4 @@
+uco_web:
+    resource: "@UcoWebBundle/Resources/config/routing.yml"
+    prefix:   /
+
