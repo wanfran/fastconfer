@@ -1,4 +1,4 @@
-uco_web:
-    resource: "@UcoWebBundle/Resources/config/routing.yml"
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
     prefix:   /
-

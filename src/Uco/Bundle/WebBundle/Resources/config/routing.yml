@@ -1,3 +1,0 @@
-uco_web_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: UcoWebBundle:Default:index }

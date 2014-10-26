@@ -19,7 +19,7 @@ default:
         symfony:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
-                - Uco\Bundle\CoreBundle\Behat\CoreContext
+                - AppBundle\Behat\CoreContext
             filters:
                 tags: "@symfony"
 

@@ -6,7 +6,7 @@
  * Time: 9:57
  */
 
-namespace Uco\Bundle\CoreBundle\Behat;
+namespace AppBundle\Behat;
 
 use Sylius\Bundle\ResourceBundle\Behat\DefaultContext;
 
