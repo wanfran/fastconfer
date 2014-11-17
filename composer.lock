@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "390515219678dd9cf4ed84a611e55672",
+    "hash": "baeca22a6846fabe8b0c552b5c51e281",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1996,12 +1996,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "ad74db991610fb6a43e4058cf80a715aace35144"
+                "reference": "14fbdb8dfffd99fe040191b3c66cf6bd8d266fe8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/ad74db991610fb6a43e4058cf80a715aace35144",
-                "reference": "ad74db991610fb6a43e4058cf80a715aace35144",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/14fbdb8dfffd99fe040191b3c66cf6bd8d266fe8",
+                "reference": "14fbdb8dfffd99fe040191b3c66cf6bd8d266fe8",
                 "shasum": ""
             },
             "require": {
@@ -2104,7 +2104,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-11-09 07:50:20"
+            "time": "2014-11-17 10:01:45"
         },
         {
             "name": "twig/extensions",
@@ -2163,12 +2163,12 @@
             "version": "v1.16.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twigphp/Twig.git",
+                "url": "https://github.com/fabpot/Twig.git",
                 "reference": "42f758d9fe2146d1f0470604fc05ee43580873fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/42f758d9fe2146d1f0470604fc05ee43580873fc",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/42f758d9fe2146d1f0470604fc05ee43580873fc",
                 "reference": "42f758d9fe2146d1f0470604fc05ee43580873fc",
                 "shasum": ""
             },
@@ -4086,9 +4086,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "symfony/symfony": 20,
-        "doctrine/doctrine-bundle": 20,
-        "sylius/resource-bundle": 20,
-        "sylius/resource": 20
+        "doctrine/doctrine-bundle": 20
     },
     "prefer-stable": false,
     "platform": {
