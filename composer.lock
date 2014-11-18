@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "baeca22a6846fabe8b0c552b5c51e281",
+    "hash": "01acde430f44a1ffe2eb5f8f5f0cbaf6",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1996,12 +1996,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "14fbdb8dfffd99fe040191b3c66cf6bd8d266fe8"
+                "reference": "d55abb334bb332ef8a40c7e4a249c93173953f31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/14fbdb8dfffd99fe040191b3c66cf6bd8d266fe8",
-                "reference": "14fbdb8dfffd99fe040191b3c66cf6bd8d266fe8",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/d55abb334bb332ef8a40c7e4a249c93173953f31",
+                "reference": "d55abb334bb332ef8a40c7e4a249c93173953f31",
                 "shasum": ""
             },
             "require": {
@@ -2104,7 +2104,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-11-17 10:01:45"
+            "time": "2014-11-18 11:25:36"
         },
         {
             "name": "twig/extensions",
@@ -3110,6 +3110,60 @@
             "time": "2013-09-05 11:23:37"
         },
         {
+            "name": "elao/web-profiler-extra-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Elao/WebProfilerExtraBundle.git",
+                "reference": "082755c2af114ead713259ec7472782917605aaf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Elao/WebProfilerExtraBundle/zipball/082755c2af114ead713259ec7472782917605aaf",
+                "reference": "082755c2af114ead713259ec7472782917605aaf",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": "~2.1",
+                "symfony/twig-bundle": "~2.0",
+                "twig/twig": "~1.12"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Elao\\WebProfilerExtraBundle\\": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Elao Team",
+                    "homepage": "http://www.elao.com"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "http://github.com/Elao/WebProfilerExtraBundle/contributors"
+                }
+            ],
+            "description": "Add routing, container, assetic & twig information inside the profiler",
+            "homepage": "http://github.com/Elao/WebProfilerExtraBundle",
+            "keywords": [
+                "bundle",
+                "elao",
+                "extra",
+                "profiler"
+            ],
+            "time": "2014-11-06 09:36:21"
+        },
+        {
             "name": "fzaninotto/faker",
             "version": "v1.4.0",
             "source": {
@@ -4086,7 +4140,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "symfony/symfony": 20,
-        "doctrine/doctrine-bundle": 20
+        "doctrine/doctrine-bundle": 20,
+        "elao/web-profiler-extra-bundle": 20
     },
     "prefer-stable": false,
     "platform": {

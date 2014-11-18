@@ -31,6 +31,7 @@
         "behat/mink-selenium2-driver":          "~1.2",
         "behat/mink":                           "~1.6",
         "doctrine/doctrine-fixtures-bundle":    "~2.2",
+        "elao/web-profiler-extra-bundle":       "~2.3@dev",
         "h4cc/alice-fixtures-bundle":           "~0.4",
         "raulfraile/ladybug-bundle":            "~1.0",
         "phpunit/phpunit":                      "~3.7"
