@@ -18,9 +18,10 @@
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
-        
-        "sylius/resource-bundle":               "~0.11",
-        "sylius/resource":                      "~0.11"
+
+        "sylius/resource-bundle":               "~0.12",
+        "sylius/resource":                      "~0.12",
+        "friendsofsymfony/rest-bundle":         "~1.5.0@RC"
     },
     "require-dev": {
         "sensio/generator-bundle":              "~2.4",
@@ -33,7 +34,6 @@
         "doctrine/doctrine-fixtures-bundle":    "~2.2",
         "elao/web-profiler-extra-bundle":       "~2.3@dev",
         "h4cc/alice-fixtures-bundle":           "~0.4",
-        "raulfraile/ladybug-bundle":            "~1.0",
         "phpunit/phpunit":                      "~3.7"
     },
     "scripts": {
