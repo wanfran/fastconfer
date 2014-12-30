@@ -9,7 +9,7 @@ Característica: Investigador
         Dado que estoy dentro del sistema
         Y que estoy autentificado como investigador:
     |archivo|
-    |aux1|
+    |aux1|  
 
     Escenario: Listar Congresos
         Dado que estoy en la página principal de usuario
