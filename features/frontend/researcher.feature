@@ -8,8 +8,8 @@ Característica: Investigador
     Antecedentes:
         Dado que estoy dentro del sistema
         Y que estoy autentificado como investigador:
-    |archivo|
-    |aux1|  
+            |archivo|
+            |aux1|
 
     Escenario: Listar Congresos
         Dado que estoy en la página principal de usuario
@@ -30,9 +30,9 @@ Característica: Investigador
         Dado que tengo listado los congresos
         Cuando tengo seleccionado un congreso “x”
         Y relleno lo siguiente:
-        | Nombre | Pepito |
-        | Apellidos | Perez |
-        | DNI | 1111111X |
+            | Nombre | Pepito |
+            | Apellidos | Perez |
+            | DNI | 1111111X |
         Y adjunto el archivo "aux1"
         Y presiono “ Inscribirse”
         Entonces debería estar en la página princial de usuario
