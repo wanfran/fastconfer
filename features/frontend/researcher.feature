@@ -8,46 +8,72 @@ Característica: Investigador
     Antecedentes:
         Dado que estoy dentro del sistema
         Y que estoy autentificado como investigador:
-            |archivo|
-            |aux1|
-
-    Escenario: Listar Congresos
-        Dado que estoy en la página principal de usuario
-        Y presiono "Mostrar"
+            |archivo|congreso|descripción | fecha   |
+            | aux1  | Ritsi  | muy cool   |10/1/2015|
+            | aux2  | Madlis | bohemio    |10/1/2015|
+            | aux3  | Codoc  | mainstream |10/1/2015|
 
     Escenario: Listar congresos
         Dado que estoy en la página principal de usuario
         Y presiono “Mostrar”
-        Entonces se listan los congresos existentes
+        Entonces debería estar en la página principal de congresos
+        Y debería ver 3 congresos en la lista
+
+    Escenario: Detalles del congreso
+        Dado que estoy en la página principal de congresos
+        Y presiono "Detalles" junto a "Ritsi"
+        Entonces debería estar en la página del congreso con nombre "Ritsi"
+
+    Escenario: Apuntarse al congreso
+        Dado que estoy en la página principal de congresos
+        Y presiono "Inscribirse"
+        Entonces debería estar en la página alta del congreso
 
     Escenario: Enviar formulario vacío
-        Dado que tengo listado los congresos
-        Y presiono “ Inscribirse”
-        Entonces debería estar en la página princial de usuario
-        Y debo ver "Usted NO esta Registrado"
+            Dado que estoy en la página alta del congreso
+            Y presiono “Dar alta”
+            Entonces debería estar en la página princial de congresos
+            Y debo ver "Usted NO esta dado de alta"
 
     Escenario: Rellenar el formulario
-        Dado que tengo listado los congresos
-        Cuando tengo seleccionado un congreso “x”
+        Dado que estoy en la página alta del congreso
         Y relleno lo siguiente:
             | Nombre | Pepito |
             | Apellidos | Perez |
             | DNI | 1111111X |
         Y adjunto el archivo "aux1"
-        Y presiono “ Inscribirse”
+        Y presiono “Dar alta”
         Entonces debería estar en la página princial de usuario
-        Y debo ver "Usted esta Registrado"
+        Y debo ver "Usted esta dado de alta"
 
-    Escenario: Modificar un artículo
+    Escenario: Modificar información
         Dado que estoy en la página princial de usuario
-        Cuando tengo seleccionado el artículo “aux1”
         Y presiono el botón “Modificar”
-        Y debo ver "Modificación Realizada"
+        Entonces debería estar en la página modificación
+
+    Escenario: Actualizar informacion
+        Dado que esto en la página modificación
+        Y relleno lo siguiente:
+            | Nombre | Juan |
+            | Apellidos | Muñoz |
+            | DNI | 0000000X |
+        Y adjunto el archivo "aux2"
+        Y presiono “Actualizar”
+        Y debo ver "Actualización Realizada"
 
     Escenario: Eliminar un artículo
-        Dado que estoy en la página princial de usuario
-        Cuando tengo seleccionado el artículo “aux1”
-        Y presiono el botón “Eliminar”
+        Dado que estoy en la página modificación
+        Cuando presiono "Eliminar" junto a "aux1"
+        Entonces debo ver "¿Está seguro de que quiere borrar el artículo?"
+        Cuando presiono "Sí"
+        Entonces debería estar en la página principal de usuario
         Y debo ver "Artículo Eliminado"
 
-
+    Escenario: Darse de baja en el congreso
+        Dado que estoy en la página principal de congresos
+        Cuando presiono "Borrar" junto a "Ritsi"
+        Entonces debo ver "¿Está seguro de que quiere darse de baja?"
+        Cuando presiono "Sí"
+        Entonces debería estar en la página principal de usuario
+        Y debo ver "Dado de Baja en el congreso"
+        Pero no debo ver "Ritsi"
