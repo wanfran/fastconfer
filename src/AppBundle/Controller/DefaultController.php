@@ -9,12 +9,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
+     * @Route("/")
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-	    return $this->render('Default/index.html.twig', array('name' => $name));
+        $conferences = $this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
 
-	    return array('name' => $name);
+	    return $this->render('Default/index.html.twig', array('conferences' => $conferences));
     }
 }

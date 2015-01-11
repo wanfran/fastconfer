@@ -16,6 +16,14 @@ default:
             files_path: features/images
         Behat\Symfony2Extension: ~
     suites:
+        conference:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - AppBundle\Behat\CoreContext
+                - AppBundle\Behat\ConferenceContext
+            filters:
+                tags: "@conference"
+
         symfony:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext

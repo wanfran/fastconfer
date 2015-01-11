@@ -1,0 +1,4 @@
+\AppBundle\Entity\Conference:
+    conference{1..10}:
+        name: <company()>
+        description: <realText()>
