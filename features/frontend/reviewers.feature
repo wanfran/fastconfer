@@ -18,7 +18,7 @@ Característica: Revisor
         Dado que estoy en la página del revisor
         Y presiono “Mostrar”
         Entonces debería estar en la página principal de congresos
-        y debería ver 3 artículos
+        Y debería ver 3 artículos
 
     Escenario: Seleccionar artículo
         Dado que estoy en la página principal de congresos

@@ -17,7 +17,8 @@ Característica: Organizador
     Escenario: Listar revisores
         Dado que estoy en la página del organizador
         Y presiono el botón “Listar”
-        Entonces debería ver 3 resivores
+        Entonces debería estar en la página principal de revisores
+        Y debería ver 3 resivores
 
     Escenario: Asignar revisores al artículo
         Dado que estoy en la página del organizador
