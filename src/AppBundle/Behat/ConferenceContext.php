@@ -38,7 +38,11 @@ class ConferenceContext extends CoreContext
     {
         $em = $this->getEntityManager();
 
-        $em->getRepository('AppBundle:Conference')->deleteAll();
-    }
+         foreach($em->getRepository('AppBundle:Conference')->findAll() as $conferenceHash){
+             $em->remove($conferenceHash);
+             $em->persist($em);
+         }
 
+        $em->flush();
+    }
 }

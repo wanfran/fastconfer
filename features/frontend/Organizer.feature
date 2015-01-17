@@ -6,8 +6,7 @@ Característica: Organizador
     Quiero poder crear tareas gestoras
 
     Antecedentes
-        Dado que estoy dentro del sistema
-        Y estoy autentificado como organizador:
+        Dado que estoy autentificado como organizador:
             |investigador|artículo|revisor|evaluado|fecha_Fin |
             |    Adamm   |  arti1 | pepe  |   0    | 10/01/15 |
             |    Juanal  |  arti2 | juan  |   0    | 10/01/15 |
@@ -20,12 +19,16 @@ Característica: Organizador
         Entonces debería estar en la página principal de revisores
         Y debería ver 3 resivores
 
+    Escenario: No hay revisores
+
     Escenario: Asignar revisores al artículo
         Dado que estoy en la página del organizador
         Y presiono “Asignar”
         Entonces estoy asignando revisores al artículo “artículo”
 
-    Escenario: Leer revisiones
+    Escenario: No hay evaluación de los revisores
+
+    Escenario: Evaluación de los revisores
         Dado que estoy en la página del organizador
         Cuando "fecha_Fin" es 10/01/15
         Y presiono “Mostrar revisiones”

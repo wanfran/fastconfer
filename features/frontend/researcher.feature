@@ -46,12 +46,12 @@ Característica: Investigador
         Entonces debería estar en la página princial de usuario
         Y debo ver "Usted esta dado de alta"
 
-    Escenario: Modificar información
+    Escenario: Modificar información personal
         Dado que estoy en la página princial de usuario
         Y presiono el botón “Modificar”
         Entonces debería estar en la página modificación
 
-    Escenario: Actualizar informacion
+    Escenario: Actualizar información personal
         Dado que esto en la página modificación
         Y relleno lo siguiente:
             | Nombre | Juan |

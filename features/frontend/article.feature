@@ -20,13 +20,15 @@ Característica: artículo
       Y debo ver "arti3"
       Y debo ver 3 artículos
 
-    Escenario: Cuando no hay artículos
-      Dado estoy en la página de inicio
-      Y no hay ningún artículo activo
-      Entonces debo ver "No hay articulos"
+#    Escenario: Cuando no hay artículos
+#      Dado estoy en la página de inicio
+#      Y no hay ningún artículo activo
+#      Entonces debo ver "No hay articulos"
 
-    Escenario: Seleccionar artículo
-      Dado estoy en la página principal de congresos
-      Y presiono "Detalles" junto a "arti1"
-      Entonces debería estar en la página del artículo con nombre "arti1"
+#    Escenario: Seleccionar artículo
+#      Dado estoy en la página principal de congresos
+#      Y presiono "Detalles" junto a "arti1"
+#      Entonces debería estar en la página del artículo con nombre "arti1"
+
+
 

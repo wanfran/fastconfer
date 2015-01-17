@@ -23,7 +23,13 @@ default:
                 - AppBundle\Behat\ConferenceContext
             filters:
                 tags: "@conference"
-
+        article:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - AppBundle\Behat\CoreContext
+                - AppBundle\Behat\ArticleContext
+            filters:
+                tags: "@article"
         symfony:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext

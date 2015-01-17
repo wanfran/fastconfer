@@ -22,4 +22,32 @@ Característica: Visualizar congresos
   Escenario: Cuanto no hay congresos
     Dado estoy en la página de inicio
     Y no hay ningún congreso activo
-    Entonces no debo ver "RITSI"
+    Entonces debo ver "Ritsi"
+
+  Escenario: Detalles del congreso
+    Dado que estoy en la página de inicio
+    Y presiono "Detalles" junto a "Ritsi"
+    Entonces debería estar en la página del congreso con nombre "Ritsi"
+
+  Escenario: Apuntarse al congreso
+    Dado que estoy en la página de inicio
+    Y presiono "Inscribirse"
+    Entonces debería estar en la página alta del congreso
+
+  Escenario: Enviar formulario vacío
+    Dado que estoy en la página alta del congreso
+    Y presiono “Dar alta”
+    Entonces debería estar en la página de inicio
+    Y debo ver "Usted NO esta dado de alta"
+
+  Escenario: Rellenar el formulario
+    Dado que estoy en la página alta del congreso
+    Y relleno lo siguiente:
+    | Nombre | Pepito |
+    | Apellidos | Perez |
+    | DNI | 1111111X |
+    |Correo|a@uco.es|
+    Y adjunto el archivo "aux1"
+    Y presiono “Dar alta”
+    Entonces debería estar en la página de inicio
+    Y debo ver "Usted esta dado de alta"

@@ -15,7 +15,7 @@ Característica: Revisor
             |  arti3 |    0   |  05/01/15  | 10/01/15 |
 
     Escenario: Listar artículos asignados
-        Dado que estoy en la página del revisor
+        Dado estoy en la página del revisor
         Y presiono “Mostrar”
         Entonces debería estar en la página principal de congresos
         Y debería ver 3 artículos

@@ -40,3 +40,7 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
     prefix:   /
+
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+    prefix:   /hello
