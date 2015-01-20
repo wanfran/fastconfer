@@ -36,13 +36,33 @@ class ConferenceContext extends CoreContext
      */
     public function deleteConferences()
     {
-        $em = $this->getEntityManager();
+        return true;
+    }
 
-         foreach($em->getRepository('AppBundle:Conference')->findAll() as $conferenceHash){
-             $em->remove($conferenceHash);
-             $em->persist($em);
-         }
+    /**
+     * @When presiono :button junto a :value
 
-        $em->flush();
+     */
+
+    public function iClickNear($button, $value)
+    {
+        $tr = $this->assertSession()->elementExists('css', sprintf('table tbody tr:contains("%s")', $value));
+
+        $locator = sprintf('button:contains("%s")', $button);
+
+        if ($tr->has('css', $locator)) {
+            $tr->find('css', $locator)->press();
+        } else {
+            $tr->clickLink($button);
+        }
+
+    }
+
+    /**
+     * @Then /^debería estar en la página de ([^""]*) con ([^""]*) "([^""]*)"$/
+     */
+    public function iShouldBeOnPage($page)
+    {
+        $this->assertSession()->addressEquals($this->generatePageUrl($page));
     }
 }

@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/")
+     * @Route("/")
      */
     public function indexAction()
     {
@@ -19,8 +19,10 @@ class DefaultController extends Controller
     }
 
 
+
+
     /**
-     * @Route("/")
+     * @Route("/article")
      */
     public function listArticle()
     {
@@ -28,6 +30,25 @@ class DefaultController extends Controller
 
         return $this->render('Default/a.html.twig', array('articles' => $articles));
     }
+
+    /**
+     * @Route("/borrar")
+     */
+    public function borrar()
+    {
+        $em=$this->getDoctrine()->getManager();
+
+        foreach ($manager=$em->getRepository('AppBundle:Conference')->findAll() as $resource)
+        {
+            $em->remove($resource);
+        }
+        $em->flush();
+
+        $conferences = $this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
+
+        return $this->render('Default/index.html.twig', array('conferences' => $conferences));
+    }
+
 
 }
 

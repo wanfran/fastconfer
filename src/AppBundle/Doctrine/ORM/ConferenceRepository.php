@@ -15,8 +15,13 @@ class ConferenceRepository extends EntityRepository
 {
     public function deleteAll()
     {
-        $em = $this->getEntityManager();
-        $query = $em->createQuery('delete from AppBundle:Conference c');
-        return $query->execute();
-    }
+
+           $em = $this->getEntityManager();
+           $query = $em->createQuery('delete from AppBundle:Conference c');
+         return $query->execute();
+
+     }
+
+
+
 }

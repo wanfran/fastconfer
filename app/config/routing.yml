@@ -43,4 +43,8 @@ app:
 
     resource: "@AppBundle/Controller/"
     type:     annotation
-    prefix:   /hello
+    prefix:   /article
+
+_paginas_estaticas:
+    resource: routing_paginas.yml
+    prefix:   /pagina
