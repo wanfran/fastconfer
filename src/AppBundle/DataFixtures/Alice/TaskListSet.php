@@ -9,7 +9,9 @@ $set = new FixtureSet(array(
 ));
 
 $set->addFile(__DIR__.'/conferences.yml', 'yaml');
-$set->addFile(__DIR__.'/article.yml', 'yaml');
+$set->addFile(__DIR__.'/articles.yml', 'yaml');
+$set->addFile(__DIR__.'/users.yml', 'yaml');
+
 
 return $set;
 

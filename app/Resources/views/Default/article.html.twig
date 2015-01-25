@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <ul>
+        {% for article in articles %}
+            <ul><b>Titulo</b>-->{{ article.title }}</ul>
+            <br>
+            <ul><b>Description</b>-->{{ article.description }}</ul>
+            <hr>
+        {% else %}
+            No hay datos
+        {% endfor %}
+    </ul>
+
+{% endblock %}

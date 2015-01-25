@@ -45,6 +45,14 @@ app:
     type:     annotation
     prefix:   /article
 
-_paginas_estaticas:
-    resource: routing_paginas.yml
-    prefix:   /pagina
+listArticles:
+    pattern:  /articles
+
+listConferences:
+    pattern:  /conferences
+
+showConference:
+    pattern:  /conference/{slug}
+
+inscription:
+    pattern: /conference/{slug}/inscription

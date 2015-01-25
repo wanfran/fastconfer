@@ -2,15 +2,22 @@
 
 {% block body %}
 
-    <ul>
-    {% for conference in conferences %}
-        <li>{{ conference.name }}</li>
-        
+    {% if usuario %}
 
-    {% else %}
-        No hay datos
-    {% endfor %}
-            </ul>
+        <p>  El usuario {{ usuario.username }} esta conectado a al sistema </p>
+
+    {% endif %}
+
+
+    <ul>
+        <a href="{{ url('listArticles') }}">Listar Artículo</a>
+
+    </ul>
+
+   <ul>
+       <a href="{{ url('listConferences') }}">Listar Conferencias</a>
+
+   </ul>
 
 
 {% endblock %}

@@ -3,15 +3,14 @@
 {% block body %}
 
     <ul>
-        {% for article in articles %}
-            <ul><b>Titulo</b>-->{{ article.title }}</ul>
-            <br>
-            <ul><b>Description</b>-->{{ article.description }}</ul>
-            <hr>
-        {% else %}
-            No hay datos
-        {% endfor %}
+            <li>{{ conference.name }}</li>
+            <li>{{ conference.description }}</li>
+
     </ul>
 
+    <ul>
+        <a href="{{ path('inscription', {'slug':conference.slug}) }}">Apuntarse</a>
+
+    </ul>
 
 {% endblock %}

@@ -13,20 +13,25 @@ Característica: Visualizar congresos
       | Madlis | bohemio    |10/1/2015|
       | Codoc  | mainstream |10/1/2015|
 
-  Escenario: Listar congresos
+
+
+  Escenario: Detalles del congreso
     Dado estoy en la página de inicio
+    Cuando presiono "Listar Conferencias"
+    Entonces debo estar en "/conference"
+
+
+  Escenario: Listar congresos
+    Dado estoy en "/conference"
     Entonces debo ver "RITSI"
     Y debo ver "Madlis"
     Y debo ver "Codoc"
 
   Escenario: Cuanto no hay congresos
-    Dado estoy en la página de inicio
-    Entonces debo no ver "No hay datos"
+    Dado estoy en "/conference"
+    Entonces no debo ver "No hay datos"
 
-  Escenario: Detalles del congreso
-    Dado estoy en la página de inicio
-    Y presiono "Detalles" junto a "Ritsi"
-    Entonces debería estar en la página de congreso con nombre "Ritsi"
+
 
 #  Escenario: Apuntarse al congreso
 #    Dado que estoy en la página de inicio

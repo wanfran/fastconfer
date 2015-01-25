@@ -17,7 +17,7 @@ class ConferenceContext extends CoreContext
     /**
      * @Given que existen los siguientes congresos:
      *
-     *@param TableNode $tableNode
+     * @param TableNode $tableNode
      */
     public function createConferences(TableNode $tableNode)
     {
@@ -37,32 +37,5 @@ class ConferenceContext extends CoreContext
     public function deleteConferences()
     {
         return true;
-    }
-
-    /**
-     * @When presiono :button junto a :value
-
-     */
-
-    public function iClickNear($button, $value)
-    {
-        $tr = $this->assertSession()->elementExists('css', sprintf('table tbody tr:contains("%s")', $value));
-
-        $locator = sprintf('button:contains("%s")', $button);
-
-        if ($tr->has('css', $locator)) {
-            $tr->find('css', $locator)->press();
-        } else {
-            $tr->clickLink($button);
-        }
-
-    }
-
-    /**
-     * @Then /^debería estar en la página de ([^""]*) con ([^""]*) "([^""]*)"$/
-     */
-    public function iShouldBeOnPage($page)
-    {
-        $this->assertSession()->addressEquals($this->generatePageUrl($page));
     }
 }
