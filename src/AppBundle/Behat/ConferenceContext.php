@@ -15,7 +15,7 @@ use Behat\Gherkin\Node\TableNode;
 class ConferenceContext extends CoreContext
 {
     /**
-     * @Given que existen los siguientes congresos:
+     * @Given that existing conferences:
      *
      * @param TableNode $tableNode
      */

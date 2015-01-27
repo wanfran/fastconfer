@@ -1,36 +1,37 @@
-#language: es
-
 @conference @sprint1
-Característica: Visualizar congresos
-  Para poder enviar un artículo a un congreso
-  Como investigador que ha realizado un artículo
-  Quiero poder visualizar los congresos disponibles
 
-  Antecedentes:
-    Dado que existen los siguientes congresos:
-      |name    | description | date   |
-      | Ritsi  | muy cool   |10/1/2015|
-      | Madlis | bohemio    |10/1/2015|
-      | Codoc  | mainstream |10/1/2015|
+Feature: Conference register
+  In order to register at a conference
+  As user the system
+  I want to be register in the system
+
+  Background:
+    Given that existing users:
+      | username |  email   | plainPassword |enabled|
+      |   pepe   | a@uco.es |      hola     |  1    |
+      |   juan   | b@uco.e  |      jola     |  1    |
+
+    And that existing conferences:
+      | name   | description | date    |
+      | Ritsi  | muy cool    |10/1/2015|
+      | Madlis | bohemio     |10/1/2015|
+      | Codoc  | mainstream  |10/1/2015|
 
 
+  Scenario: Details of conferences
+    Given I am on the homepage
+    When I follow "List Conferences"
+    Then I should be on "/conferences"
 
-  Escenario: Detalles del congreso
-    Dado estoy en la página de inicio
-    Cuando presiono "Listar Conferencias"
-    Entonces debo estar en "/conference"
+  Scenario: List conferences
+    Given I am on "/conferences"
+    Then I should see "RITSI"
+    And I should see "Madlis"
+    And I should see "Codoc"
 
-
-  Escenario: Listar congresos
-    Dado estoy en "/conference"
-    Entonces debo ver "RITSI"
-    Y debo ver "Madlis"
-    Y debo ver "Codoc"
-
-  Escenario: Cuanto no hay congresos
-    Dado estoy en "/conference"
-    Entonces no debo ver "No hay datos"
-
+  Scenario: when It not has conferences
+    Given I am on "/conferences"
+    Then I should not see "No hay datos"
 
 
 #  Escenario: Apuntarse al congreso

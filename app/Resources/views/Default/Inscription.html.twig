@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <ul>
+        {% if user is null %}
+
+            <p>  Para poder Apuntarse a un congreso debe estar logueado</p>
+
+             {% else %}
+                <li>El usario: {{ user.username }}</li>
+                <li>Con Correo: {{ user.email }}</li>
+                <li>Se ha dado de alta en la conferencia: {{ conference.name }}</li>
+
+        {% endif %}
+    </ul>
+
+
+
+{% endblock %}

@@ -14,7 +14,7 @@ use Behat\Gherkin\Node\TableNode;
 class ArticleContext extends CoreContext
 {
     /**
-     * @Given que existen los siguientes artículos:
+     * @Given that existing articles:
      *@Then existen los siguientes revisores:
      *
      *@param TableNode $tableNode

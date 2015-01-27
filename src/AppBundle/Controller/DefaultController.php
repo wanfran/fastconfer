@@ -36,7 +36,7 @@ class DefaultController extends Controller
         $conferences = $this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
 
 
-        return $this->render('Default/conference.html.twig', array('conferences' => $conferences));
+        return $this->render('Default/ListConferences.html.twig', array('conferences' => $conferences));
     }
 
     /**
@@ -48,7 +48,7 @@ class DefaultController extends Controller
 
 
 
-        return $this->render('Default/a.html.twig', array('conference'=> $conference));
+        return $this->render('Default/Conference.html.twig', array('conference'=> $conference));
 
     }
 
@@ -67,7 +67,7 @@ class DefaultController extends Controller
             $usuario=null;
 
 
-        return $this->render('Default/inscription.html.twig', array('conference' => $conference, 'user'=>$usuario ));
+        return $this->render('Default/Inscription.html.twig', array('conference' => $conference, 'user'=>$usuario ));
     }
 
 
@@ -86,7 +86,7 @@ class DefaultController extends Controller
     {
         $articles = $this->getDoctrine()->getRepository('AppBundle:Article')->findAll();
 
-        return $this->render('Default/article.html.twig', array('articles' => $articles));
+        return $this->render('Default/ListArticles.html.twig', array('articles' => $articles));
     }
 
     /**
@@ -102,7 +102,7 @@ class DefaultController extends Controller
         }
         $em->flush();
 
-        return $this->render('Default/conference.html.twig', array('conferences' => $manager));
+        return $this->render('Default/ListConferences.html.twig', array('conferences' => $manager));
     }
 
 

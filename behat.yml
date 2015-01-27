@@ -21,6 +21,7 @@ default:
                 - Behat\MinkExtension\Context\MinkContext
                 - AppBundle\Behat\CoreContext
                 - AppBundle\Behat\ConferenceContext
+                - AppBundle\Behat\UserContext
             filters:
                 tags: "@conference"
         article:
@@ -30,12 +31,22 @@ default:
                 - AppBundle\Behat\ArticleContext
             filters:
                 tags: "@article"
+
+        users:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - AppBundle\Behat\CoreContext
+                - AppBundle\Behat\UserContext
+            filters:
+                tags: "@users"
+
         symfony:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
                 - AppBundle\Behat\CoreContext
             filters:
                 tags: "@symfony"
+
 
 javascript:
     gherkin:
