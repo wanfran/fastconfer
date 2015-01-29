@@ -1,0 +1,5 @@
+AppBundle\Entity\Document:
+    properties:
+        file:
+            - File:
+                maxSize: 6000000

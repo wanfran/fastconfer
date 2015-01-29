@@ -56,3 +56,6 @@ showConference:
 
 inscription:
     pattern: /conference/{slug}/inscription
+
+a:
+    pattern: /conference/{slug}/inscription/a

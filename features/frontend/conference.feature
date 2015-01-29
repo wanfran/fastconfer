@@ -29,9 +29,21 @@ Feature: Conference register
     And I should see "Madlis"
     And I should see "Codoc"
 
-  Scenario: when It not has conferences
+  Scenario: when it not has conferences
     Given I am on "/conferences"
     Then I should not see "No hay datos"
+
+  Scenario: Details the conference
+    Given I am on "/conferences"
+    When I follow "Show more details"
+    Then I should be on "/conference/ritsi"
+
+  Scenario: Inscription in the conference
+    Given I am on "/conference/ritsi"
+    And I should see "Ritsi"
+    And I should see "muy cool"
+    When I follow "Sign up"
+    Then I should be on "/conference/ritsi/inscription"
 
 
 #  Escenario: Apuntarse al congreso

@@ -3,11 +3,14 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
+use AppBundle\Entity\Document;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DefaultController extends Controller
 {
@@ -45,8 +48,6 @@ class DefaultController extends Controller
 
     public function showConference (Conference $conference)
     {
-
-
 
         return $this->render('Default/Conference.html.twig', array('conference'=> $conference));
 
@@ -103,6 +104,37 @@ class DefaultController extends Controller
         $em->flush();
 
         return $this->render('Default/ListConferences.html.twig', array('conferences' => $manager));
+    }
+
+    /**
+     *
+     * @Route("/conference/{slug}/inscription/a")
+     *
+     * @Template()
+     */
+    public function uploadAction(Request $request)
+    {
+        $document = new Document();
+        $form = $this->createFormBuilder($document)
+            ->add('name')
+            ->add('file')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+           $document->upload();
+
+
+            $em->persist($document);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('listConferences'));
+        }
+
+        return $this->render('Default/a.html.twig', array('form' => $form->createView()));
     }
 
 
