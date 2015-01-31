@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class DefaultController extends Controller
 {
     /**
+     *
      * @Route("/")
      */
     public function indexAction()
@@ -28,7 +29,8 @@ class DefaultController extends Controller
         else
             $usuario=null;
 
-	    return $this->render('Default/index.html.twig', array('usuario' => $usuario));
+	    return $this->render('Default/index.html.twig', array('usuario' => $usuario,'conferences' => $conferences));
+
     }
 
     /**
@@ -53,31 +55,31 @@ class DefaultController extends Controller
 
     }
 
+//
+//    /**
+//     * @Route("/conference/{slug}/inscription")
+//     */
+//    public function inscription(Conference $conference)
+//    {
+//        $securityContext=$this->container->get('security.context');
+//
+//        if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+//            $usuario= $this->get('security.context')->getToken()->getUser();
+//        }
+//        else
+//            $usuario=null;
+//
+//
+//        return $this->render('Default/Inscription.html.twig', array('conference' => $conference, 'user'=>$usuario ));
+//    }
+
 
     /**
-     * @Route("/conference/{slug}/inscription")
-     */
-    public function inscription(Conference $conference)
-    {
-        $securityContext=$this->container->get('security.context');
-
-        if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $usuario= $this->get('security.context')->getToken()->getUser();
-        }
-        else
-            $usuario=null;
-
-
-        return $this->render('Default/Inscription.html.twig', array('conference' => $conference, 'user'=>$usuario ));
-    }
-
-
-    /**
-     * @Route("/ayuda")
+     * @Route("/a")
      */
     public function ayudaAction()
     {
-        return new Response('Ayuda');
+        return $this->render('Default/a.html.twig');
     }
 
     /**
@@ -108,12 +110,21 @@ class DefaultController extends Controller
 
     /**
      *
-     * @Route("/conference/{slug}/inscription/a")
-     *
+     * @Route("/conference/{slug}/inscription")
+     *@param Request $request,Conference $conference
      * @Template()
      */
-    public function uploadAction(Request $request)
+    public function uploadAction(Request $request,Conference $conference)
     {
+
+        $securityContext=$this->container->get('security.context');
+
+        if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $usuario= $this->get('security.context')->getToken()->getUser();
+        }
+        else
+            $usuario=null;
+
         $document = new Document();
         $form = $this->createFormBuilder($document)
             ->add('name')
@@ -134,7 +145,10 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('listConferences'));
         }
 
-        return $this->render('Default/a.html.twig', array('form' => $form->createView()));
+
+        return $this->render('Default/Inscription.html.twig', array('conference' => $conference,
+            'user'=>$usuario,
+            'form' => $form->createView()));
     }
 
 

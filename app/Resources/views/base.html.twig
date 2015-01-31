@@ -2,12 +2,28 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
         <title>{% block title %}Welcome!{% endblock %}</title>
+
         {% block stylesheets %}{% endblock %}
+
+        <!-- Bootstrap -->
+        <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+            <script src="{{ asset('bundles/app/js/jquery.js') }}"></script>
+            <!-- Include all JavaScripts, compiled by Assetic -->
+            <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+
+        {% endblock %}
     </body>
 </html>
+

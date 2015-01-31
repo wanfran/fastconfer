@@ -1,23 +1,71 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="header" xmlns="http://www.w3.org/1999/html">
+        <div class="container">
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/app_dev.php">FastConfer</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ url('listArticles') }}">List Articles</a></li>
+                            <li><a href="{{ url('listConferences') }}">List Conference</a></li>              </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
 
-    {% if usuario %}
+ <div class="container">
+     <section class=" main row">
+     {% if usuario %}
+        <div class="col-md-6">
+             <h4 class="text-center text-danger">El usuario {{ usuario.username }} esta conectado al sistema</h4>
+        </div>
+         <div class="col-md-6">
+             <p><a class="btn btn-default pull-right" href="/app_dev.php/login"  role="button">Logout</a></p>
+        </div>
+     {% else %}
+         <div class="col-md-6">
+            <h4 class="text-center text-danger">  Esta conectado de forma anonima</h4>
+         </div>
+         <div class="col-md-6">
+             <p><a class="btn btn-default pull-right" href="/app_dev.php/login"  role="button">Login</a></p>
+         </div>
+     {% endif %}
+     </section>
+ </div>
 
-        <p>  El usuario {{ usuario.username }} esta conectado al sistema </p>
 
-    {% endif %}
+    <div class="container">
+        <section class="main row">
+            {% for conference in conferences %}
+                <div class="col-md-6 text-center">
+                    <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+                    <h2>{{ conference.name }}</h2>
+                    <p>{{ conference.description }}</p>
+                    <p><a class="btn btn-default" href="{{ path('showConference', {'slug':conference.slug}) }}"  role="button">View details &raquo;</a></p>
+                </div>
+            {% else %}
+                <h1>No data</h1>
+            {% endfor %}
+
+        </section>
+    </div>
 
 
-    <ul>
-        <a href="{{ url('listArticles') }}">Listar Artículo</a>
-
-    </ul>
-
-   <ul>
-       <a href="{{ url('listConferences') }}">List Conferences</a>
-
-   </ul>
+    <!-- FOOTER -->
+    <footer class="container bg-info">
+        <p class="text-center">&copy; 2015 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
 
 
 {% endblock %}
