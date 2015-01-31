@@ -34,17 +34,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/conferences")
-     */
-    public function listConference()
-    {
-        $conferences = $this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
-
-
-        return $this->render('Default/ListConferences.html.twig', array('conferences' => $conferences));
-    }
-
-    /**
      * @Route ("/conference/{slug}")
      */
 
@@ -54,25 +43,6 @@ class DefaultController extends Controller
         return $this->render('Default/Conference.html.twig', array('conference'=> $conference));
 
     }
-
-//
-//    /**
-//     * @Route("/conference/{slug}/inscription")
-//     */
-//    public function inscription(Conference $conference)
-//    {
-//        $securityContext=$this->container->get('security.context');
-//
-//        if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-//            $usuario= $this->get('security.context')->getToken()->getUser();
-//        }
-//        else
-//            $usuario=null;
-//
-//
-//        return $this->render('Default/Inscription.html.twig', array('conference' => $conference, 'user'=>$usuario ));
-//    }
-
 
     /**
      * @Route("/a")
@@ -144,7 +114,6 @@ class DefaultController extends Controller
 
             return $this->redirect($this->generateUrl('listConferences'));
         }
-
 
         return $this->render('Default/Inscription.html.twig', array('conference' => $conference,
             'user'=>$usuario,
