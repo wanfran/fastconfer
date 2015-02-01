@@ -2,3 +2,5 @@
     conference{1..10}:
         name: <company()>
         description: <realText()>
+        image: <imageUrl(1200, 200,'city')>
+        topics: 5x @topic*

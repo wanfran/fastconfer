@@ -45,7 +45,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/profile")
+     * @Route("/a")
      */
     public function ayudaAction()
     {
@@ -119,7 +119,5 @@ class DefaultController extends Controller
             'user'=>$usuario,
             'form' => $form->createView()));
     }
-
-
 }
 

@@ -1,0 +1,3 @@
+\AppBundle\Entity\Topic:
+  topic{1..100}:
+        name: <word()>

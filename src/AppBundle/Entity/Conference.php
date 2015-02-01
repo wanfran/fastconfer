@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -44,8 +45,28 @@ class Conference
     private $slug;
 
     /**
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Topic", inversedBy="conferences")
+     */
+    private $topics;
+
+
+
+    function __construct()
+    {
+       $this->topics=new ArrayCollection();
+    }
+
+
+    /**
      * @return mixed
      */
+
     public function getSlug()
     {
         return $this->slug;
@@ -114,5 +135,61 @@ class Conference
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Conference
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Add topics
+     *
+     * @param \AppBundle\Entity\Topic $topics
+     * @return Conference
+     */
+    public function addTopic(\AppBundle\Entity\Topic $topics)
+    {
+        $this->topics[] = $topics;
+
+        return $this;
+    }
+
+    /**
+     * Remove topics
+     *
+     * @param \AppBundle\Entity\Topic $topics
+     */
+    public function removeTopic(\AppBundle\Entity\Topic $topics)
+    {
+        $this->topics->removeElement($topics);
+    }
+
+    /**
+     * Get topics
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTopics()
+    {
+        return $this->topics;
     }
 }

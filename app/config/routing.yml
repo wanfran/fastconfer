@@ -57,6 +57,4 @@ showConference:
 inscription:
     pattern: /conference/{slug}/inscription
 
-profile:
-    pattern: /{username}
 
