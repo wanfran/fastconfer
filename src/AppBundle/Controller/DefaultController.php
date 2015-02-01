@@ -45,7 +45,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/a")
+     * @Route("/profile")
      */
     public function ayudaAction()
     {
