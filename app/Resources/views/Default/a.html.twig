@@ -2,8 +2,30 @@
 
 {% block body %}
 
-    <div class="a">
-    {{ render(controller('FOSUserBundle:Security:login')) }}
+    {#<div class="a">#}
+    {#{{ render(controller('FOSUserBundle:Security:login')) }}#}
 
+    {#</div>#}
+
+
+    <div class="container">
+        <section class="main">
+            {% for conference in conferences %}
+                <div class="row conference">
+                    <div class="col-md-12">
+                        <img class="img-thumbnail" src="{{ conference.image }}"
+                             alt="Generic placeholder image" >
+                        <h2>{{ conference.name }}</h2>
+                        <p>{{ conference.description }}</p>
+                        <p><a class="btn btn-default" href="{{ path('showConference', {'slug':conference.slug}) }}"  role="button">View details &raquo;</a></p>
+                    </div>
+                </div>
+            {% else %}
+                <h1>No data</h1>
+            {% endfor %}
+
+        </section>
     </div>
+
+
 {% endblock %}

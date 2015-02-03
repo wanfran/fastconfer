@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 class DefaultController extends Controller
 {
@@ -44,13 +46,6 @@ class DefaultController extends Controller
 
     }
 
-    /**
-     * @Route("/a")
-     */
-    public function ayudaAction()
-    {
-        return $this->render('Default/a.html.twig');
-    }
 
     /**
      * @Route("/articles")
@@ -77,6 +72,21 @@ class DefaultController extends Controller
 
         return $this->render('Default/ListConferences.html.twig', array('conferences' => $manager));
     }
+
+    /**
+     * @Route("/a", name="find")
+     *
+     */
+    public function findConferenceAction(Request $request)
+    {
+
+        $word = $request->get('word');
+        $em=$this->getDoctrine()->getManager();
+        $foundConference= $em->getRepository('AppBundle:Conference')->findConference($word);
+
+        return $this->render('Default/index.html.twig', array('conferences' => $foundConference));
+    }
+
 
     /**
      *

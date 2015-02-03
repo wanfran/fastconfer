@@ -32,7 +32,7 @@ class User extends BaseUser
 
     public function __construct()
     {
-        $this->inscriptions=new ArrayCollection();
+        parent::__construct();
     }
 
 

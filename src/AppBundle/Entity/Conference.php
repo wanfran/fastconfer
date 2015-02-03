@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Conference
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AppBundle\Doctrine\ORM\ConferenceRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\ConferenceRepository")
  */
 class Conference
 {

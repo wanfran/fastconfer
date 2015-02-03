@@ -22,12 +22,14 @@
      {#</section>#}
  {#</div>#}
 
-    <div class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search For">
+    <form name="form" action="{{ path('find') }}" method="get">
+        <div class="navbar-form navbar-right" role="search" >
+            <div class="form-group" >
+                <input type="text" class="form-control" placeholder="Search For" name="word">
+            </div>
+            <button type="submit" class="btn btn-default">Send</button>
         </div>
-        <button type="submit" class="btn btn-default">Send</button>
-    </div>
+    </form>
 
 
     <div class="container">
@@ -35,7 +37,7 @@
             {% for conference in conferences %}
                 <div class="row conference">
                     <div class="col-md-12">
-                        <img class="img-thumbnail" src="{{ conference.image }}"
+                        <img class="img-thumbnail" src="{{ conference.image }}?name={{ conference.name }}"
                              alt="Generic placeholder image" >
                         <h2>{{ conference.name }}</h2>
                         <p>{{ conference.description }}</p>
