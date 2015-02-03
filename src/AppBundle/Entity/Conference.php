@@ -57,10 +57,18 @@ class Conference
 
 
 
+    /**
+     * @ORM\OneToMany(targetEntity="Inscription", mappedBy="conference")
+     */
+    private $inscriptions;
+
+
     function __construct()
     {
        $this->topics=new ArrayCollection();
+       $this->inscriptions=new ArrayCollection();
     }
+
 
 
     /**
@@ -117,6 +125,7 @@ class Conference
     /**
      * Set description
      *
+
      * @param string $description
      * @return Conference
      */

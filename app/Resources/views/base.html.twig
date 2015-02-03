@@ -17,13 +17,15 @@
     </head>
     <body>
 
-        {% block javascripts %}
+    {% block javascripts %}
             <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
             <script src="{{ asset('bundles/app/js/jquery.js') }}"></script>
             <!-- Include all JavaScripts, compiled by Assetic -->
             <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
 
-        {% endblock %}
+    {% endblock %}
+
+    {% block head %}
 
         <div class="header" xmlns="http://www.w3.org/1999/html">
             <div class="container">
@@ -40,54 +42,51 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
 
-                            <li><a href="/app_dev.php/profile">Profile</a></li>
+                            <li><a href="{{ url('fos_user_profile_show') }}">Profile</a></li>
                             <li><a href="{{ url('listArticles') }}">List Articles</a></li>
                             <li><a href="{{ url('listConferences') }}">List Conference</a></li>
                         </ul>
                         {#<p><a class="btn btn-default pull-right" href="/app_dev.php/login"  role="button">Login</a></p>#}
 
-                        <a class="btn btn-primary" data-toggle="modal" href="#myModal" >Login</a>
+                        <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target=".bs-example-modal-sm">Login</button>
 
-                        <div class="modal hide" id="myModal">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">x</button>
-                                <h3>Login to MyWebsite.com</h3>
-                            </div>
-                            <div class="modal-body">
-                                <form method="post" action='' name="login_form">
-                                    <p><input type="text" class="span3" name="eid" id="email" placeholder="Email"></p>
-                                    <p><input type="password" class="span3" name="passwd" placeholder="Password"></p>
-                                    <p><button type="submit" class="btn btn-primary">Sign in</button>
-                                        <a href="#">Forgot Password?</a>
-                                    </p>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                New To MyWebsite.com?
-                                <a href="#" class="btn btn-primary">Register</a>
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+
+                                    <div class="modal-header modal-sm">
+                                        <h4 class="modal-title" id="exampleModalLabel">FastConfer</h4>
+                                    </div>
+
+                                    <div class="modal-body modal-sm">
+                                        <form method="post" action='' name="login_form">
+                                            <p><input type="text" class="span3" name="eid" id="email" placeholder="Email"></p>
+                                            <p><input type="password" class="span3" name="passwd" placeholder="Password"></p>
+                                            <p><button type="submit" class="btn btn-primary" href="#">Sign in</button></p>
+                                        </form>
+                                    </div>
+
+                                    <div class="modal-footer modal-sm">
+                                        <a href="#" class="btn btn-primary">Register</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
 
                     </div>
                 </nav>
 
-                <div class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search For">
-                    </div>
-                    <button type="submit" class="btn btn-default">Send</button>
-                </div>
-
             </div>
         </div>
 
-        {% block head %}
 
 
-        {%  endblock %}
+    {%  endblock %}
 
 
         {% block body %}{% endblock %}
+
         {%  block footer %}
 
         <!-- FOOTER -->

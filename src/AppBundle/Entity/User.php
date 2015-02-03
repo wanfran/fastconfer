@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
 /**
@@ -22,6 +23,18 @@ class User extends BaseUser
 
     /** @ORM\Column(name="google_access_token", type="string", length=255, nullable=true) */
     protected $google_access_token;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Inscription", mappedBy="user")
+     */
+    protected $inscriptions;
+
+    public function __construct()
+    {
+        $this->inscriptions=new ArrayCollection();
+    }
+
 
     /**
      * Get id

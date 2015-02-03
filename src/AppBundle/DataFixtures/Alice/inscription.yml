@@ -1,0 +1,4 @@
+\AppBundle\Entity\Inscription:
+    inscription{1..10}:
+        create_at: 
+        

@@ -2,12 +2,28 @@
 
 {% block body %}
 
-    <ul>
-            <li>{{ conference.name }}</li>
-            <li>{{ conference.description }}</li>
+    <div class="container">
+        <section class="main">
+            <div class="row conference">
+                <div class="col-md-12">
+                    <img class="img-thumbnail" src="{{ conference.image }}"
+                         alt="Generic placeholder image" >
+                </div>
+                <div class="row conference ">
+                    <div class="col-md-9">
+                        <h2 class="text-center">{{ conference.name }}</h2>
+                        <p>{{ conference.description }}</p>
+                        {#<p>{{ conference.topics }}</p>#}
+                    </div>
+                        <div class="col-md-3 bg-danger">
+                            <p><a class="btn btn-default " href="{{ path('inscription', {'slug':conference.slug}) }}"  role="button">Sign up</a></p>
+                        </div>
 
-        <a href="{{ path('inscription', {'slug':conference.slug}) }}">Sign up</a>
 
-    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
 
 {% endblock %}
+

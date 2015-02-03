@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Document;
+use AppBundle\Entity\Topic;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -39,7 +40,6 @@ class DefaultController extends Controller
 
     public function showConference (Conference $conference)
     {
-
         return $this->render('Default/Conference.html.twig', array('conference'=> $conference));
 
     }
@@ -107,7 +107,6 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
 
            $document->upload();
-
 
             $em->persist($document);
             $em->flush();
