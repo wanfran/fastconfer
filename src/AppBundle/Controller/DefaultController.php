@@ -42,7 +42,9 @@ class DefaultController extends Controller
 
     public function showConference (Conference $conference)
     {
-        return $this->render('Default/Conference.html.twig', array('conference'=> $conference));
+        $a=$this->getDoctrine()->getRepository('AppBundle:Topic')->findAll();
+
+        return $this->render('Default/Conference.html.twig', array('conference'=> $conference, 'Topic'=>$a));
 
     }
 
@@ -74,7 +76,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/a", name="find")
+     * @Route("/find", name="find")
      *
      */
     public function findConferenceAction(Request $request)
