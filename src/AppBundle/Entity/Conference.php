@@ -169,36 +169,4 @@ class Conference
         return $this->image;
     }
 
-    /**
-     * Add topics
-     *
-     * @param \AppBundle\Entity\Topic $topics
-     * @return Conference
-     */
-    public function addTopic(\AppBundle\Entity\Topic $topics)
-    {
-        $this->topics[] = $topics;
-
-        return $this;
-    }
-
-    /**
-     * Remove topics
-     *
-     * @param \AppBundle\Entity\Topic $topics
-     */
-    public function removeTopic(\AppBundle\Entity\Topic $topics)
-    {
-        $this->topics->removeElement($topics);
-    }
-
-    /**
-     * Get topics
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getTopics()
-    {
-        return $this->topics;
-    }
 }

@@ -23,16 +23,29 @@
  {#</div>#}
 
     <div class="container">
+        <div class="row">
+             <div class="col-md-4">
+                {% if app.user %}
+                    <div class="alert alert-success">
+                        <a href="{{ url('fos_user_profile_show') }}" class="alert-link">El usuario {{ usuario.username }}
+                            esta conectado al sistema</a>
+                    </div>
+                {% endif %}
+             </div>
+             <div class="col-md-8">
+                <form name="form" action="{{ path('find') }}" method="post">
+                    <div class="navbar-form navbar-right" role="search" >
+                        <div class="form-group" >
+                            <input type="text" class="form-control" placeholder="Search..." name="word">
+                        </div>
+                        <button type="submit" class="btn btn-default botones">Send</button>
+                    </div>
+                </form>
+             </div>
 
-        <form name="form" action="{{ path('find') }}" method="get">
-            <div class="navbar-form navbar-right" role="search" >
-                <div class="form-group" >
-                    <input type="text" class="form-control" placeholder="Search..." name="word">
-                </div>
-                <button type="submit" class="btn btn-default botones">Send</button>
-            </div>
-        </form>
-        
+        </div>
+
+
 
         {% for conference in conferences %}
         <div class="row">

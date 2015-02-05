@@ -52,25 +52,28 @@
 }
 .card .card-action a {
     color: #ffab40;
+    font-weight: bold;
     margin-right: 16px;
     transition: color 0.3s ease;
     text-transform: uppercase;
     background-color: #f3f3ed;
 }
 .card .card-action a:hover {
-    color: #ffd8a6;
+    color: #ffab40;
     text-decoration: none;
+    background-color:#D4D4C8;
 }
 
 .botones{
     color: #ffab40;
     margin-right: 16px;
+    font-weight: bold;
     transition: color 0.3s ease;
     background-color: #f3f3ed;
 }
 
 .botones:hover{
-    color: #ffd8a6;
+    color: #ffab40;
     text-decoration: none;
 }
 .espacio{

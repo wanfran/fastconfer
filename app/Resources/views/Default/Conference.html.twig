@@ -2,29 +2,6 @@
 
 {% block body %}
 
-    {#<div class="container">#}
-        {#<section class="main">#}
-            {#<div class="row conference">#}
-                {#<div class="col-md-12">#}
-                    {#<img class="img-thumbnail" src="{{ conference.image }}"#}
-                         {#alt="Generic placeholder image" >#}
-                {#</div>#}
-                {#<div class="row conference ">#}
-                    {#<div class="col-md-9">#}
-                        {#<h2 class="text-center">{{ conference.name }}</h2>#}
-                        {#<p>{{ conference.description }}</p>#}
-                        {#&#123;&#35;<p>{{ conference.topics }}</p>&#35;&#125;#}
-                    {#</div>#}
-                        {#<div class="col-md-3">#}
-                            {#<p><a class="btn btn-default botones" href="{{ path('inscription', {'slug':conference.slug}) }}"  role="button">Sign up</a></p>#}
-                        {#</div>#}
-
-
-                {#</div>#}
-            {#</div>#}
-        {#</section>#}
-    {#</div>#}
-
  <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -42,7 +19,8 @@
                     </div>
 
                     <div class="card-action">
-                        <a class="btn btn-default center-block"  href="{{ path('inscription',  {'slug':conference.slug}) }}"  role="button">Sign up</a></p>
+                        <a class="btn btn-default center-block"  href="{{ path('inscription',  {'slug':conference.slug}) }}"
+                           role="button">Sign up</a></p>
                     </div>
                 </div>
             </div>

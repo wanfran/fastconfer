@@ -3,26 +3,36 @@
 
 {% block body %}
 
-    <ul>
-        {% if user is null %}
 
-            <p>  Para poder Apuntarse a un congreso debe estar logueado</p>
+    <div class="container">
+         <div class="row">
+                {% if user is null %}
+                    <div class="col-md-5">
+                        <div class="alert alert-danger">
+                            <a href="{{ url('fos_user_security_login') }}" class="alert-link">Para poder Apuntarse
+                                a un congreso debe estar logueado</a>
+                        </div>
+                    </div>
 
-             {% else %}
+                 {% else %}
+
+            <div class="col-md-12">
+
                 <li>El usario: {{ user.username }}</li>
                 <li>Con Correo: {{ user.email }}</li>
                 <li>Se ha dado de alta en la conferencia: {{ conference.name }}</li>
-                 <h1>Upload File</h1>
 
-                 <form action="#" method="post" {{ form_enctype(form) }}>
-                     {{ form_widget(form) }}
+                <h1>Upload File</h1>
 
-                     <input type="submit" value="Upload Document"/>
-                 </form>
+                <form action="#" method="post" {{ form_enctype(form) }}>
+                    {{ form_widget(form) }}
 
-        {% endif %}
-    </ul>
-
+                    <input type="submit" value="Upload Document"/>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
 
 
 

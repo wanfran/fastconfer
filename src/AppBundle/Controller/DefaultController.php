@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Document;
+use AppBundle\Entity\Inscription;
 use AppBundle\Entity\Topic;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -48,6 +49,15 @@ class DefaultController extends Controller
 
     }
 
+    /**
+     * @Route("/a", name="a")
+     */
+    public function a(Request $request)
+    {
+
+        return $this->render('Default/a.html.twig');
+    }
+
 
     /**
      * @Route("/articles")
@@ -86,7 +96,15 @@ class DefaultController extends Controller
         $em=$this->getDoctrine()->getManager();
         $foundConference= $em->getRepository('AppBundle:Conference')->findConference($word);
 
-        return $this->render('Default/index.html.twig', array('conferences' => $foundConference));
+
+        $securityContext=$this->container->get('security.context');
+        if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $usuario= $this->get('security.context')->getToken()->getUser();
+        }
+        else
+            $usuario=null;
+
+        return $this->render('Default/index.html.twig', array('usuario' => $usuario,'conferences' => $foundConference));
     }
 
 
@@ -123,7 +141,7 @@ class DefaultController extends Controller
             $em->persist($document);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('listConferences'));
+            return $this->redirect($this->generateUrl('listArticles'));
         }
 
         return $this->render('Default/Inscription.html.twig', array('conference' => $conference,
