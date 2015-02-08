@@ -43,10 +43,7 @@ class DefaultController extends Controller
 
     public function showConference (Conference $conference)
     {
-        $a=$this->getDoctrine()->getRepository('AppBundle:Topic')->findAll();
-
-        return $this->render('Default/Conference.html.twig', array('conference'=> $conference, 'Topic'=>$a));
-
+        return $this->render('Default/Conference.html.twig', array('conference'=> $conference));
     }
 
     /**

@@ -13,7 +13,7 @@
 
                     <div class="card-content">
                         <p>{{ conference.description }}</p>
-                        {% for aux in Topic %}
+                        {% for aux in conference.topics %}
                             <p>{{ aux.name }}</p>
                         {% endfor %}
                     </div>
