@@ -47,12 +47,37 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/a", name="a")
+     * @Route("/conference/{slug}/a", name="a")
      */
-    public function a(Request $request)
+    public function a(Conference $conference)
     {
 
-        return $this->render('Default/a.html.twig');
+        $inscription=new Inscription();
+        $inscription->setConference($conference);
+
+        $securityContext=$this->container->get('security.context');
+        if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user= $this->get('security.token_storage')->getToken()->getUser();
+            $inscription->setUser($user);
+
+        }
+        else
+            $user=null;
+
+
+
+//       $user = $this->get('security.token_storage')->getToken()->getUser();
+
+
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($inscription);
+        $em->flush();
+
+//        return $this->redirect($this->generateUrl('showConference'));
+
+
+     return $this->render('Default/Conference.html.twig', array('conference'=> $conference));
     }
 
 

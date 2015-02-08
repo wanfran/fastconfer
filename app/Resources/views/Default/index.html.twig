@@ -2,25 +2,6 @@
 
 {% block body %}
 
- {#<div class="container">#}
-     {#<section class=" main row">#}
-        {#{% if app.user %}#}
-            {#<div class="col-md-6">#}
-                 {#<h4 class="text-center text-danger">El usuario {{ usuario.username }} esta conectado al sistema</h4>#}
-            {#</div>#}
-             {#<div class="col-md-6">#}
-                 {#<p><a class="btn btn-default pull-right" href="/app_dev.php/login"  role="button">Logout</a></p>#}
-            {#</div>#}
-         {#{% else %}#}
-             {#<div class="col-md-6">#}
-                {#<h4 class="text-center text-danger">  Esta conectado de forma anónima</h4>#}
-             {#</div>#}
-             {#<div class="col-md-6">#}
-                 {#<p><a class="btn btn-default pull-right" href="/app_dev.php/login"  role="button">Login</a></p>#}
-             {#</div>#}
-        {#{% endif %}#}
-     {#</section>#}
- {#</div>#}
 
     <div class="container">
         <div class="row">
@@ -33,7 +14,7 @@
                 {% endif %}
              </div>
              <div class="col-md-8">
-                <form name="form" action="{{ path('find') }}" method="post">
+                <form name="form" action="{{ path('find') }}" method="get">
                     <div class="navbar-form navbar-right" role="search" >
                         <div class="form-group" >
                             <input type="text" class="form-control" placeholder="Search..." name="word">
@@ -42,10 +23,7 @@
                     </div>
                 </form>
              </div>
-
         </div>
-
-
 
         {% for conference in conferences %}
         <div class="row">
@@ -68,7 +46,7 @@
             </div>
         </div>
         {% else %}
-        <h1>No data</h1>
+            <h1>No data</h1>
         {% endfor %}
 
     </div>
