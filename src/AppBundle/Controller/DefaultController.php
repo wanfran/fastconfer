@@ -52,27 +52,39 @@ class DefaultController extends Controller
     public function a(Conference $conference)
     {
 
-        $inscription=new Inscription();
-        $inscription->setConference($conference);
-
         $securityContext=$this->container->get('security.context');
-        if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+
+        if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+        {
             $user= $this->get('security.token_storage')->getToken()->getUser();
-            $inscription->setUser($user);
+
+
+            $em=$this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('conference'=>$conference->getId()
+            ,'user'=>$user));
+
+
+            if( $em==null)
+            {
+                $inscription = new Inscription();
+                $inscription->setConference($conference);
+                $inscription->setUser($user);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($inscription);
+                $em->flush();
+            }
+            else
+            {
+                return new Response('hola');
+            }
 
         }
-        else
-            $user=null;
+        else{
+                 $user=null;
+            }
 
 
 
-//       $user = $this->get('security.token_storage')->getToken()->getUser();
-
-
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($inscription);
-        $em->flush();
 
 //        return $this->redirect($this->generateUrl('showConference'));
 
