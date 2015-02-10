@@ -73,6 +73,9 @@ class DefaultController extends Controller
         $em=$this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('conference'=>$conference->getId()
         ,'user'=>$user));
 
+        if ($em!=null)
+            return $this->render('Default/ConferenceInscription.html.twig', array('conference'=> $conference, 'user'=>$user));
+
         return $this->render('Default/Conference.html.twig', array('conference'=> $conference,'incription'=>$em));
     }
 
@@ -88,23 +91,32 @@ class DefaultController extends Controller
         {
             $user= $this->get('security.token_storage')->getToken()->getUser();
 
-            $inscription = new Inscription();
-            $inscription->setConference($conference);
-            $inscription->setUser($user);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($inscription);
-            $em->flush();
+            $em=$this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('conference'=>$conference->getId()
+            ,'user'=>$user));
 
+
+            if( $em==null)
+            {
+                $inscription = new Inscription();
+                $inscription->setConference($conference);
+                $inscription->setUser($user);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($inscription);
+                $em->flush();
+            }
+            else
+            {
+                return $this->render('Default/a.html.twig',array('conference'=> $conference));
+            }
 
         }
-        else
-            $user=null;
+        else{
+                 $user=null;
+            }
 
-
-        $confer = $this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
-
-     return $this->render('Default/index.html.twig', array('conferences'=> $confer, 'user'=>$user));
+     return $this->render('Default/ConferenceInscription.html.twig', array('conference'=> $conference, 'user'=>$user));
     }
 
 
