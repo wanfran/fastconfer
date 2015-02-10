@@ -26,6 +26,8 @@ class ConferenceContext extends CoreContext
             $conference = new Conference();
             $conference->setName($conferenceHash['name']);
             $conference->setDescription($conferenceHash['description']);
+            $conference->setSlug($conferenceHash['slug']);
+            $conference->setImage($conferenceHash['image']);
             $em->persist($conference);
         }
         $em->flush();

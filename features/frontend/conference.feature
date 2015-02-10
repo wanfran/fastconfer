@@ -12,38 +12,43 @@ Feature: Conference register
       |   juan   | b@uco.e  |      jola     |  1    |
 
     And that existing conferences:
-      | name   | description | date    |
-      | Ritsi  | muy cool    |10/1/2015|
-      | Madlis | bohemio     |10/1/2015|
-      | Codoc  | mainstream  |10/1/2015|
+      | name   | description |slug|image|
+      | Ritsi  | muy cool    | a  |as   |
+      | Madlis | bohemio     | b  |ass  |
+      | Codoc  | mainstream  | c  |sad  |
 
-
-  Scenario: Details of conferences
-    Given I am on the homepage
-    When I follow "List Conferences"
-    Then I should be on "/conferences"
-
-  Scenario: List conferences
-    Given I am on "/conferences"
-    Then I should see "RITSI"
-    And I should see "Madlis"
-    And I should see "Codoc"
 
   Scenario: when it not has conferences
-    Given I am on "/conferences"
-    Then I should not see "No hay datos"
+    Given I am on the homepage
+    Then I should not see "No data"
+
+  Scenario: List conferences
+    Given I am on the homepage
+    Then I should see "RITSI"
+    And I should see "muy cool"
+    And I should see "Madlis"
+    And I should see "bohemio"
+    And I should see "Codoc"
+    And I should see "mainstream"
+
+  Scenario: Show conference
+    Given I am on the homepage
+    And I should see "VIEW DETAILS"
+    When I press "View details"
+    Then I should be on "/conference/a"
 
   Scenario: Details the conference
-    Given I am on "/conferences"
-    When I follow "Show more details"
-    Then I should be on "/conference/ritsi"
+    Given I am on "/conference/a"
+    Then I should see "RITSI"
+    And I should see "muy cool"
+    And I should see "a"
+    And I should see "as"
 
   Scenario: Inscription in the conference
-    Given I am on "/conference/ritsi"
-    And I should see "Ritsi"
-    And I should see "muy cool"
-    When I follow "Sign up"
-    Then I should be on "/conference/ritsi/inscription"
+    Given I am on "/conference/a"
+    And I should see "Sign up"
+    When I press "Sign up"
+    Then I should be on "/conference/a"
 
 
 #  Escenario: Apuntarse al congreso
