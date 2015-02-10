@@ -50,11 +50,19 @@
                         </ul>
 
                         {% if not app.user %}
-                            <button type="button" class="btn btn-default pull-right botones botona" data-toggle="modal"
-                                    data-target=".bs-example-modal-sm">Login</button>
+                            {#<button type="button" class="btn btn-default pull-right botones botona" data-toggle="modal"#}
+                                    {#data-target=".bs-example-modal-sm">Login</button>#}
+
+                            <a href="{{ url('fos_user_security_login') }}" type="button" class="btn btn-default pull-right botones botona"
+                                    >Login</a>
                             {% else %}
-                            <button type="button" class="btn btn-default pull-right botones botona" data-toggle="modal"
-                                    data-target=".bs-example-modal-sm">Logout</button>
+
+                            {#<button type="button" class="btn btn-default pull-right botones botona" data-toggle="modal"#}
+                                    {#data-target=".bs-example-modal-sm">Logout</button>#}
+
+
+                                <a href="{{ url('fos_user_security_login') }}" type="button" class="btn btn-default pull-right botones botona"
+                                        >Logout</a>
                         {% endif %}
 
                         <!-- Modal -->

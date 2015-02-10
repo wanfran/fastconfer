@@ -43,6 +43,7 @@ class DefaultController extends Controller
 
     public function showConference (Conference $conference)
     {
+
         return $this->render('Default/Conference.html.twig', array('conference'=> $conference));
     }
 
@@ -75,7 +76,7 @@ class DefaultController extends Controller
             }
             else
             {
-                return new Response('hola');
+                return $this->render('Default/a.html.twig',array('conference'=> $conference));
             }
 
         }
@@ -83,13 +84,10 @@ class DefaultController extends Controller
                  $user=null;
             }
 
-
-
-
 //        return $this->redirect($this->generateUrl('showConference'));
+        $confer = $this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
 
-
-     return $this->render('Default/Conference.html.twig', array('conference'=> $conference));
+     return $this->render('Default/index.html.twig', array('conferences'=> $confer, 'usuario'=>$user));
     }
 
 
@@ -177,6 +175,8 @@ class DefaultController extends Controller
 
             return $this->redirect($this->generateUrl('listArticles'));
         }
+
+
 
         return $this->render('Default/Inscription.html.twig', array('conference' => $conference,
             'user'=>$usuario,
