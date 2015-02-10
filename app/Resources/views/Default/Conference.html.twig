@@ -20,25 +20,29 @@
                         {% endfor %}
                     </div>
 
-                    {#<div class="card-action">#}
-                        {#<a class="btn btn-default center-block"  href="{{ path('inscription',  {'slug':conference.slug}) }}"#}
-                           {#role="button">Sign up</a></p>#}
-                    {#</div>#}
+                    {% if not app.user %}
+                    <div class="card-action">
+                        <a class="btn btn-default center-block"  data-toggle="modal" data-target="#Error"
+                           role="button">Sign up</a></p>
+                    </div>
 
-                    {% if app.user %}
+                    {% else %}
 
-                        <div class="card-action">
-                            <a class="btn btn-default center-block"  data-toggle="modal" data-target="#myModal"
-                               role="button">Sign up</a></p>
-                        </div>
-                        {% else %}
+                        {% if incription!=null %}
+
                             <div class="card-action">
-                                <a class="btn btn-default center-block"  data-toggle="modal" data-target="#Error"
+                                <a class="btn btn-default center-block"  data-toggle="modal" data-target="#Error2"
                                    role="button">Sign up</a></p>
                             </div>
 
-                    {% endif %}
+                        {% else %}
 
+                            <div class="card-action">
+                                <a class="btn btn-default center-block"  data-toggle="modal" data-target="#myModal"
+                                   role="button">Sign up</a></p>
+                            </div>
+                         {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -60,17 +64,17 @@
                     </h3>
                 </div>
                 <div class="modal-body">
-                    <p>El usuario con nombre  {{ app.user }} se inscribirá en el
-                    congreso con el nombre {{ conference.name }}</p>
+                    <p>The user with name <strong>{{ app.user }}</strong>, will be enrolled in the conference with
+                        the name <strong>{{ conference.name }}</strong></p>
                     <br>
-                    <strong class="text-danger">¿Esta de acuerdo?</strong>
+                    <strong class="text-danger">Do you agree?</strong>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default"
                             data-dismiss="modal" >No
                     </button>
 
-                    <a role="button" class="btn btn-default" href="{{ path('a', {'slug':conference.slug}) }}">
+                    <a role="button" class="btn btn-default" href="{{ path('inscription', {'slug':conference.slug}) }}">
                         Yes
                     </a>
                 </div>
@@ -81,19 +85,32 @@
 
         <!-- Modal Error -->
 
-        <div class="modal fade" id="Error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog ">
-                    <div class="alert alert-danger">
-                        <button type="button" class="close"
-                                data-dismiss="modal" aria-hidden="true">
+    <div class="modal fade" id="Error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="alert alert-danger text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             &times;
-                        </button>
+                </button>
 
-                        <a href="{{ url('fos_user_security_login') }}" class="alert-link">Para poder Apuntarse
-                                        a un congreso debe estar logueado</a>
-                    </div>
+                <a href="{{ url('fos_user_security_login') }}" class="alert-link">You must be logged in to register for the conference</a>
             </div>
         </div>
+    </div>
+
+
+    <!-- Modal Error2 -->
+
+    <div class="modal fade" id="Error2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="alert alert-danger text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+
+                <a href="{{ url('fos_user_security_login') }}" class="alert-link">The user is already registered this congress</a>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}

@@ -28,14 +28,38 @@ class DefaultController extends Controller
 
         $securityContext=$this->container->get('security.context');
         if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $usuario= $this->get('security.context')->getToken()->getUser();
+            $user= $this->get('security.context')->getToken()->getUser();
         }
         else
-            $usuario=null;
+            $user=null;
 
-	    return $this->render('Default/index.html.twig', array('usuario' => $usuario,'conferences' => $conferences));
+	    return $this->render('Default/index.html.twig', array('user' => $user,'conferences' => $conferences));
 
     }
+
+
+    /**
+     * @Route("/find", name="find")
+     *
+     */
+    public function findConferenceAction(Request $request)
+    {
+
+        $word = $request->get('word');
+        $em=$this->getDoctrine()->getManager();
+        $foundConference= $em->getRepository('AppBundle:Conference')->findConference($word);
+
+
+        $securityContext=$this->container->get('security.context');
+        if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user= $this->get('security.context')->getToken()->getUser();
+        }
+        else
+            $user=null;
+
+        return $this->render('Default/index.html.twig', array('user' => $user,'conferences' => $foundConference));
+    }
+
 
     /**
      * @Route ("/conference/{slug}")
@@ -44,13 +68,18 @@ class DefaultController extends Controller
     public function showConference (Conference $conference)
     {
 
-        return $this->render('Default/Conference.html.twig', array('conference'=> $conference));
+        $user= $this->get('security.token_storage')->getToken()->getUser();
+
+        $em=$this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('conference'=>$conference->getId()
+        ,'user'=>$user));
+
+        return $this->render('Default/Conference.html.twig', array('conference'=> $conference,'incription'=>$em));
     }
 
     /**
-     * @Route("/conference/{slug}/a", name="a")
+     * @Route("/conference/{slug}/inscription", name="inscription")
      */
-    public function a(Conference $conference)
+    public function Inscription(Conference $conference)
     {
 
         $securityContext=$this->container->get('security.context');
@@ -59,35 +88,23 @@ class DefaultController extends Controller
         {
             $user= $this->get('security.token_storage')->getToken()->getUser();
 
+            $inscription = new Inscription();
+            $inscription->setConference($conference);
+            $inscription->setUser($user);
 
-            $em=$this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('conference'=>$conference->getId()
-            ,'user'=>$user));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($inscription);
+            $em->flush();
 
-
-            if( $em==null)
-            {
-                $inscription = new Inscription();
-                $inscription->setConference($conference);
-                $inscription->setUser($user);
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($inscription);
-                $em->flush();
-            }
-            else
-            {
-                return $this->render('Default/a.html.twig',array('conference'=> $conference));
-            }
 
         }
-        else{
-                 $user=null;
-            }
+        else
+            $user=null;
 
-//        return $this->redirect($this->generateUrl('showConference'));
+
         $confer = $this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
 
-     return $this->render('Default/index.html.twig', array('conferences'=> $confer, 'usuario'=>$user));
+     return $this->render('Default/index.html.twig', array('conferences'=> $confer, 'user'=>$user));
     }
 
 
@@ -117,32 +134,11 @@ class DefaultController extends Controller
         return $this->render('Default/ListConferences.html.twig', array('conferences' => $manager));
     }
 
-    /**
-     * @Route("/find", name="find")
-     *
-     */
-    public function findConferenceAction(Request $request)
-    {
-
-        $word = $request->get('word');
-        $em=$this->getDoctrine()->getManager();
-        $foundConference= $em->getRepository('AppBundle:Conference')->findConference($word);
-
-
-        $securityContext=$this->container->get('security.context');
-        if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $usuario= $this->get('security.context')->getToken()->getUser();
-        }
-        else
-            $usuario=null;
-
-        return $this->render('Default/index.html.twig', array('usuario' => $usuario,'conferences' => $foundConference));
-    }
 
 
     /**
      *
-     * @Route("/conference/{slug}/inscription")
+     * @Route("/conference/{slug}/a")
      *@param Request $request,Conference $conference
      * @Template()
      */
@@ -152,10 +148,10 @@ class DefaultController extends Controller
         $securityContext=$this->container->get('security.context');
 
         if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $usuario= $this->get('security.context')->getToken()->getUser();
+            $user= $this->get('security.context')->getToken()->getUser();
         }
         else
-            $usuario=null;
+            $user=null;
 
         $document = new Document();
         $form = $this->createFormBuilder($document)
@@ -176,10 +172,8 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('listArticles'));
         }
 
-
-
         return $this->render('Default/Inscription.html.twig', array('conference' => $conference,
-            'user'=>$usuario,
+            'user'=>$user,
             'form' => $form->createView()));
     }
 }

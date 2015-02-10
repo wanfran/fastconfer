@@ -8,8 +8,8 @@
              <div class="col-md-4">
                 {% if app.user %}
                     <div class="alert alert-success">
-                        <a href="{{ url('fos_user_profile_show') }}" class="alert-link">El usuario {{ usuario.username }}
-                            esta conectado al sistema</a>
+                        <a href="{{ url('fos_user_profile_show') }}" class="alert-link">The User {{ user.username }}
+                            is connected to the system</a>
                     </div>
                 {% endif %}
              </div>
@@ -50,8 +50,5 @@
         {% endfor %}
 
     </div>
-
-
-
 
 {% endblock %}
