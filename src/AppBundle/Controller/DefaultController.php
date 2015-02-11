@@ -76,13 +76,15 @@ class DefaultController extends Controller
         if ($em!=null)
             return $this->render('Default/ConferenceInscription.html.twig', array('conference'=> $conference, 'user'=>$user));
 
-        return $this->render('Default/Conference.html.twig', array('conference'=> $conference,'incription'=>$em));
+        return $this->render('Default/Conference.html.twig', array('conference'=> $conference,'inscription'=>$em));
     }
 
     /**
      * @Route("/conference/{slug}/inscription", name="inscription")
+     * @param Request $request,Conference $conference
+     * @Template()
      */
-    public function Inscription(Conference $conference)
+    public function uploadAction(Request $request,Conference $conference)
     {
 
         $securityContext=$this->container->get('security.context');
@@ -96,6 +98,27 @@ class DefaultController extends Controller
             ,'user'=>$user));
 
 
+
+            $document = new Document();
+            $form = $this->createFormBuilder($document)
+                ->add('name')
+                ->add('file')
+                ->getForm();
+
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+
+                $document->upload();
+
+                $em->persist($document);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('listArticles'));
+            }
+
+
             if( $em==null)
             {
                 $inscription = new Inscription();
@@ -105,18 +128,24 @@ class DefaultController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($inscription);
                 $em->flush();
+
+
             }
+
+
             else
             {
                 return $this->render('Default/a.html.twig',array('conference'=> $conference));
             }
 
         }
-        else{
-                 $user=null;
-            }
+        else
+            $user=null;
 
-     return $this->render('Default/ConferenceInscription.html.twig', array('conference'=> $conference, 'user'=>$user));
+
+     return $this->render('Default/ConferenceInscription.html.twig', array('conference'=> $conference, 'user'=>$user,
+         'form' => $form->createView()));
+
     }
 
 
@@ -154,7 +183,7 @@ class DefaultController extends Controller
      *@param Request $request,Conference $conference
      * @Template()
      */
-    public function uploadAction(Request $request,Conference $conference)
+    public function suploadAction(Request $request,Conference $conference)
     {
 
         $securityContext=$this->container->get('security.context');

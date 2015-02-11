@@ -1,40 +1,45 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body %}
 
-
-    <div class="container">
-         <div class="row">
-                {% if user is null %}
-                    <div class="col-md-5">
-                        <div class="alert alert-danger">
-                            <a href="{{ url('fos_user_security_login') }}" class="alert-link">Para poder Apuntarse
-                                a un congreso debe estar logueado</a>
-                        </div>
+    <div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="alert alert-success">
+                    <strong>The user is already registered this congress</strong>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-image">
+                        <img class="img-responsive" src="{{ conference.image }}?name={{ conference.name }}">
+                        <span class="card-title">{{ conference.name }}</span>
                     </div>
 
-                 {% else %}
+                    <div class="card-content">
+                        <p><strong> Summary: </strong>{{ conference.description }}</p>
+                        <hr>
+                        <strong>Topics: </strong>
+                        {% for aux in conference.topics %}
+                            <span class="label label-danger"> {{ aux.name }}</span>
+                        {% endfor %}
+                    </div>
 
-            <div class="col-md-12">
+                    <hr>
 
-                <li>El usario: {{ user.username }}</li>
-                <li>Con Correo: {{ user.email }}</li>
-                <li>Se ha dado de alta en la conferencia: {{ conference.name }}</li>
+                    <legend><h3>Upload File</h3></legend>
 
-                <h1>Upload File</h1>
+                    <form action="#" method="post" {{ form_enctype(form) }}>
+                        {{ form_widget(form) }}
 
-                <form action="#" method="post" {{ form_enctype(form) }}>
-                    {{ form_widget(form) }}
+                        <input type="submit" value="Upload Document"/>
+                    </form>
 
-                    <input type="submit" value="Upload Document"/>
-                </form>
+                </div>
             </div>
-            {% endif %}
         </div>
     </div>
-
-
-
 
 {% endblock %}
