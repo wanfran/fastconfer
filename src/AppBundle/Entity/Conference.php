@@ -49,6 +49,20 @@ class Conference
      */
     private $image;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateStart", type="datetime")
+     */
+    private $dateStart;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateEnd", type="datetime")
+     */
+    private $dateEnd;
+
 
     /**
      * @ORM\ManyToMany(targetEntity="Topic", inversedBy="conferences")
@@ -68,6 +82,40 @@ class Conference
        $this->topics=new ArrayCollection();
        $this->inscriptions=new ArrayCollection();
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateStart()
+    {
+        return $this->dateStart;
+    }
+
+    /**
+     * @param \DateTime $dateStart
+     */
+    public function setDateStart($dateStart)
+    {
+        $this->dateStart = $dateStart;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateEnd()
+    {
+        return $this->dateEnd;
+    }
+
+    /**
+     * @param \DateTime $dateEnd
+     */
+    public function setDateEnd($dateEnd)
+    {
+        $this->dateEnd = $dateEnd;
+    }
+
+
 
 
 

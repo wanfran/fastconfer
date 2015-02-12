@@ -72,10 +72,7 @@ class DefaultController extends Controller
 
         $em=$this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('conference'=>$conference->getId()
         ,'user'=>$user));
-
-        if ($em!=null)
-            return $this->render('Default/ConferenceInscription.html.twig', array('conference'=> $conference, 'user'=>$user));
-
+        
         return $this->render('Default/Conference.html.twig', array('conference'=> $conference,'inscription'=>$em));
     }
 
