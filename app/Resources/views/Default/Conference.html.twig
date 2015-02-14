@@ -23,8 +23,7 @@
                         {% endfor %}
                     </div>
 
-                    {% if conference.dateEnd|date("d/m/y")>=inscription.getCreatedAt()|date("d/m/y")  %}
-
+                    {% if conference.dateEnd|date("d/m/y")>= "now" |date("d/m/y")  %}
 
                         {% if not app.user %}
                         <div class="card-action">

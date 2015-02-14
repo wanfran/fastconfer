@@ -6,6 +6,7 @@ use AppBundle\Entity\Conference;
 use AppBundle\Entity\Document;
 use AppBundle\Entity\Inscription;
 use AppBundle\Entity\Topic;
+use Faker\Provider\cs_CZ\DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -72,7 +73,8 @@ class DefaultController extends Controller
 
         $em=$this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('conference'=>$conference->getId()
         ,'user'=>$user));
-        
+
+
         return $this->render('Default/Conference.html.twig', array('conference'=> $conference,'inscription'=>$em));
     }
 
@@ -81,6 +83,7 @@ class DefaultController extends Controller
      * @param Request $request,Conference $conference
      * @Template()
      */
+
     public function uploadAction(Request $request,Conference $conference)
     {
 
@@ -144,6 +147,33 @@ class DefaultController extends Controller
          'form' => $form->createView()));
 
     }
+
+
+
+    /**
+     * @Route("/MyConferences")
+     */
+    public function MyConferences()
+    {
+        $securityContext=$this->container->get('security.context');
+
+        if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+
+            $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findBy(array('user'=>$user));
+
+            $conference=$this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
+
+            return $this->render('Default/ListConferences.html.twig', array('inscription' => $inscription,'conference'=>$conference));
+
+        }
+        else {
+            $user = null;
+            return new Response('Error no hay inscriptiones');
+        }
+    }
+
+
 
 
     /**

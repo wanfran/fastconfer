@@ -23,6 +23,9 @@
             <!-- Include all JavaScripts, compiled by Assetic -->
             <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
 
+        {#PARA REALIZAR LAS BUSQUEDAS AUTOMATICAS EN UNA TABLA#}
+        {#<script src="{{ asset('bundles/app/js/jquery.dataTables.min.js') }}"></script>#}
+
     {% endblock %}
 
     {% block head %}
@@ -44,8 +47,9 @@
                         <ul class="nav navbar-nav">
 
                             <li><a href="{{ url('fos_user_profile_show') }}">Profile</a></li>
+                            <li><a href="/app_dev.php/MyConferences">My Conferences</a></li>
                             <li><a href="{{ url('listArticles') }}">List Articles</a></li>
-                            <li><a href="{{ url('listConferences') }}">List Conference</a></li>
+
 
                         </ul>
 

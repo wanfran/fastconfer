@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if inscription!=null %}
+
+
+        <div class="container table-responsive">
+            <table class="table table-bordered table-hover">
+
+                <tr class="success">
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Date Inscription</th>
+                    <th>Send Article</th>
+
+                </tr>
+                    {% for aux in inscription %}
+                    <tr>
+                        <td>{{ aux.id }}</td>
+                        <td>{{ aux.conference }}</td>
+                        <td>{{ aux.createdAt|date("d/m/y") }}</td>
+                    </tr>
+                     {% endfor %}
+            </table>
+        </div>
+
+    {% else %}
+            <p>No hay datos</p>
+    {% endif %}
+
+
+{% endblock %}

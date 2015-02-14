@@ -37,9 +37,38 @@
                     <input type="submit" value="Upload Document"/>
                 </form>
 
+                    <hr>
+
+                    <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+
+                        <tr class="success">
+                            <th>Version</th>
+                            <th>Date</th>
+                            <th>Reviews</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                        </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    {#LLAMA A JS DE LA TABLA#}
+{#<script>#}
+    {#$(document).ready(function() {#}
+    {#$('#example').dataTable();#}
+    {#} );#}
+
+{#</script>#}
 
 {% endblock %}

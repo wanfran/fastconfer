@@ -31,6 +31,7 @@ class Document
      */
     public $path;
 
+
     public function getAbsolutePath()
     {
         return null === $this->path
