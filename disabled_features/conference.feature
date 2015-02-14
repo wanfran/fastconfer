@@ -1,5 +1,4 @@
 @conference @sprint1
-
 Feature: Conference register
   In order to register at a conference
   As user the system
