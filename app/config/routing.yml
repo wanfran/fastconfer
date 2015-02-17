@@ -54,5 +54,3 @@ listConferences:
 showConference:
     pattern:  /conference/{slug}
 
-
-

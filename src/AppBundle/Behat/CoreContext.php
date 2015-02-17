@@ -12,4 +12,5 @@ use Sylius\Bundle\ResourceBundle\Behat\DefaultContext;
 
 class CoreContext extends DefaultContext
 {
+
 }

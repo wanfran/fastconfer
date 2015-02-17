@@ -21,16 +21,18 @@ default:
                 - Behat\MinkExtension\Context\MinkContext
                 - AppBundle\Behat\CoreContext
                 - AppBundle\Behat\ConferenceContext
+                - AppBundle\Behat\TopicContext
                 - AppBundle\Behat\UserContext
+                - AppBundle\Behat\WebContext
             filters:
                 tags: "@conference"
-        article:
+        login:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
                 - AppBundle\Behat\CoreContext
-                - AppBundle\Behat\ArticleContext
+                - AppBundle\Behat\UserContext
             filters:
-                tags: "@article"
+                tags: "@login"
 
         users:
             contexts:

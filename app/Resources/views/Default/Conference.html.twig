@@ -23,39 +23,58 @@
                         {% endfor %}
                     </div>
 
-                    {% if conference.dateEnd|date("d/m/y")>= "now" |date("d/m/y")  %}
 
-                        {% if not app.user %}
-                        <div class="card-action">
-                            <a class="btn btn-default center-block"  data-toggle="modal" data-target="#Error"
-                               role="button">Sign up</a>
-                        </div>
+                    {% block alert %}
+                        {% set flashMessage = app.session.flashbag.get('alert') %}
+                        {% if flashMessage is empty %}
 
-                        {% else %}
+                            {% if conference.dateEnd|date("d/m/y")>= "now" |date("d/m/y")  %}
 
-                            {% if inscription!=null %}
+                                {% if not app.user %}
+                                    <div class="alert alert-danger text-center">
+                                        <a href="{{ url('fos_user_security_login') }}" class="alert-link">You must be logged in to register for the conference</a>
+                                    </div>
 
-                                <div class="card-action">
-                                    <a class="btn btn-default center-block"  data-toggle="modal" data-target="#Error2"
-                                       role="button">Sign up</a>
-                                </div>
+                                {% else %}
+
+                                    {% if inscription!=null %}
+
+                                        <div class="alert alert-danger text-center">
+                                            <strong>You are already registered</strong>
+                                        </div>
+
+                                    {% else %}
+
+                                        <div class="card-action">
+                                            <a class="btn btn-default center-block"  data-toggle="modal" data-target="#myModal"
+                                               role="button">Sign up</a>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
 
                             {% else %}
 
-                                <div class="card-action">
-                                    <a class="btn btn-default center-block"  data-toggle="modal" data-target="#myModal"
-                                       role="button">Sign up</a>
+                                <div class="alert alert-danger text-center">
+                                    <strong>Registration is closed</strong>
                                 </div>
-                             {% endif %}
-                        {% endif %}
+
+                            {% endif %}
+
 
                         {% else %}
+                            {% for  aux in flashMessage %}
+                                <div class="flash-notice alert-danger alert text-center">
+                                    <strong>{{ aux }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endblock %}
 
-                            <div class="alert alert-danger text-center">
-                                <strong>Date for inscription has expired</strong>
-                            </div>
 
-                    {% endif %}
+
+
+
+
 
                 </div>
             </div>
@@ -95,36 +114,5 @@
             </div>
         </div>
         </div>
-
-
-        <!-- Modal Error -->
-
-    <div class="modal fade" id="Error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog ">
-            <div class="alert alert-danger text-center">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;
-                </button>
-
-                <a href="{{ url('fos_user_security_login') }}" class="alert-link">You must be logged in to register for the conference</a>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Modal Error2 -->
-
-    <div class="modal fade" id="Error2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog ">
-            <div class="alert alert-danger text-center">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-
-                <a href="{{ url('fos_user_security_login') }}" class="alert-link">The user is already registered this congress</a>
-            </div>
-        </div>
-    </div>
-
 
 {% endblock %}

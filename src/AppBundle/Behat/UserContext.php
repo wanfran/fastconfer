@@ -15,7 +15,7 @@ use Behat\Gherkin\Node\TableNode;
 class UserContext extends CoreContext
 {
     /**
-     * @Given that existing users:
+     * @Given there are following users:
      *
      * @param TableNode $tableNode
      */
@@ -32,4 +32,16 @@ class UserContext extends CoreContext
         }
         $em->flush();
     }
+
+    /**
+     * @Given I am authenticated as :username with :password
+     */
+    public function iAmAuthenticated($username, $password)
+    {
+        $this->getSession()->visit($this->generatePageUrl('fos_user_security_login'));
+        $this->fillField('_username', $username);
+        $this->fillField('_password', $password);
+        $this->pressButton('_submit');
+    }
+
 }
