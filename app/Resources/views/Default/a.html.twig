@@ -4,6 +4,28 @@
 
     <div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
+
+
+        $document = new Document();
+        $form = $this->createFormBuilder($document)
+        ->add('name')
+        ->add('file')
+        ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+        $em = $this->getDoctrine()->getManager();
+
+        $document->upload();
+
+        $em->persist($document);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('listArticles'));
+        }
+
+
     </div>
 
 {% endblock %}

@@ -36,7 +36,6 @@ class DefaultController extends Controller
             $user=null;
 
 	    return $this->render('Default/index.html.twig', array('user' => $user,'conferences' => $conferences));
-
     }
 
 
@@ -67,11 +66,10 @@ class DefaultController extends Controller
         return $this->render('Default/index.html.twig', array('user' => $user,'conferences' => $foundConference));
     }
 
-
     /**
      * @Route ("/conference/{slug}", name="conference")
      */
-    public function showConference (Conference $conference)
+    public function showConferenceAction (Conference $conference)
     {
 
         $user= $this->get('security.token_storage')->getToken()->getUser();
@@ -84,10 +82,10 @@ class DefaultController extends Controller
 
     /**
      * @Route("/conference/{slug}/inscription", name="inscription")
-     * @param Request $request,Conference $conference
+     * @param Conference $conference
      * @Template()
      */
-    public function uploadAction(Request $request,Conference $conference)
+    public function inscriptionAction(Conference $conference)
     {
 
         $securityContext=$this->container->get('security.context');
@@ -100,30 +98,10 @@ class DefaultController extends Controller
             $em=$this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('conference'=>$conference->getId()
             ,'user'=>$user));
 
-            $document = new Document();
-            $form = $this->createFormBuilder($document)
-                ->add('name')
-                ->add('file')
-                ->getForm();
-
-            $form->handleRequest($request);
-
-            if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-
-                $document->upload();
-
-                $em->persist($document);
-                $em->flush();
-
-                return $this->redirect($this->generateUrl('listArticles'));
-            }
-
             if($conference->getDateEnd()->format('Y-m-d')<date("Y-m-d"))
             {
                 $this->get('session')->getFlashBag()->set('alert', 'You can not register for this conference');
                 return $this->redirectToRoute('conference',array('slug' => $conference->getSlug()));
-
             }
             else
             {
@@ -141,17 +119,26 @@ class DefaultController extends Controller
 
                     $this->get('session')->getFlashBag()->set('success', 'Congratulations, you are already registered');
                 }
-                else {
-                    $this->get('session')->getFlashBag()->set('alert', 'You can not register again in this conference');
-                    return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
-                }
+//                else {
+//                    $this->get('session')->getFlashBag()->set('alert', 'You can not register again in this conference');
+//                    return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
+//                }
             }
         }
         else
             $user=null;
 
-     return $this->render('Default/ConferenceInscription.html.twig', array('conference'=> $conference, 'user'=>$user,
-         'form' => $form->createView()));
+     return $this->render('Default/ConferenceInscription.html.twig', array('conference'=> $conference, 'user'=>$user));
+
+    }
+
+
+    /**
+     * @Route("/upload", name="upload")
+     */
+    public function uploadAction()
+    {
+        return $this->render('Default/Upload.html.twig');
 
     }
 
@@ -159,27 +146,21 @@ class DefaultController extends Controller
     /**
      * @Route("/MyConferences", name="MyConferences")
      */
-    public function MyConferences()
+    public function myConferencesAction()
     {
+        $conference=$this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
+
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findBy(array('user'=>$user));
 
-        $conference=$this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
-
 
         $securityContext=$this->container->get('security.context');
-
         if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
 
-            if($inscription==null)
-                $this->get('session')->getFlashBag()->set('alert', 'There aren\'t inscriptions');
-
         }
-        else {
+        else
             $user = null;
-            $this->get('session')->getFlashBag()->set('alert', 'You must be logged');
-        }
 
         return $this->render('Default/ListConferences.html.twig', array('inscription' => $inscription,'conference'=>$conference));
 

@@ -21,15 +21,8 @@
                     </div>
 
                     <hr>
-
-                <legend><h3>Upload File</h3></legend>
-
-                <form action="#" method="post" {{ form_enctype(form) }}>
-                    {{ form_widget(form) }}
-
-                    <input type="submit" value="Upload Document"/>
-                </form>
-
+                     <a class="btn btn-default" href="{{ path('upload', {'slug':conference.slug}) }}"
+                           role="button">Send new article</a>
                     <hr>
 
                     <div class="table-responsive">

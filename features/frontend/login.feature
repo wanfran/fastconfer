@@ -1,4 +1,4 @@
-@login @sprint1
+@login @sprint11
 Feature: User sign up
   In order to access to Fastconfer
   As an identified user

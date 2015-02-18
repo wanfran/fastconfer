@@ -1,4 +1,4 @@
-@conference @sprint11
+@conference @sprint1
 Feature: Join a conference
   In order to send my articles
   As a researcher
@@ -30,14 +30,14 @@ Feature: Join a conference
     Given I am on the conference page for "II Example Conference"
     Then I should see "Registration is closed"
 
-#  Scenario: Join to a closed conference
-#    Given I am on "/conference/ii-example-conference/inscription"
-#    Then I should be on the conference page for "II Example Conference"
-#    And I should see "Registration is closed"
-#
+  Scenario: Join to a closed conference
+    Given I am on "/conference/ii-example-conference/inscription"
+    Then I should be on the conference page for "II Example Conference"
+    And I should see "You can not register for this conference"
+
 #  Scenario: Try to register to the same conference
 #    Given I am on the conference page for "I Example Conference"
-#    When I press "Sign up"
-#    And I go to "/conference/i-example-conference/inscription"
-#    Then I should still be on the conference page for "I Example Conference"
-#    And I should see "You are already registered"
+#    When I should not see "Sign up"
+#    And I am on "/conference/i-example-conference/inscription"
+#    Then I should be on the conference page for "I Example Conference"
+#    And I should see "You can not register again in this conference"

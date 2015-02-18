@@ -1,4 +1,4 @@
-@conference @sprint1
+@conference @sprint11
 Feature: See a conference
   In order to know the available conferences
   As a researcher
@@ -33,6 +33,7 @@ Feature: See a conference
       | word      | number  |
       | Example   | 3       |
       | Computing | 1       |
+      | nothing   | 0       |
 
   Scenario: See conference
     Given I am on the homepage
