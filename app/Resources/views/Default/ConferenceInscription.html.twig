@@ -1,16 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                {% for flashMessage in app.session.flashbag.get('success') %}
-                    <div class="flash-notice alert-success alert text-center">
-                        <strong>{{ flashMessage }}</strong>
-                    </div>
-                {% endfor %}
-        </div>
+{% block mainContent %}
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">

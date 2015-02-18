@@ -20,7 +20,22 @@ Feature: fill form
       | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |
       | I Example Conference    | i-example-conference  | Description of the I Example Conference    | 2015/01/01             | 2015/01/31           |
     And there are following articles:
-      | authors | keywords | abstract |
-      | userA   | example1 | 
-      | userB   | example2 |
-      | userC   | example3 |
+      | authors | keywords | abstract             |
+      | userA   | example1 | 1tex example abstract|
+      | userB   | example2 | 2tex example abstract|
+      | userC   | example3 | 3tex example abstract |
+
+
+    Scenario: go page of form
+      Given I am on the inscription page for "I Example Conference"
+      Then I should see "submit"
+
+    Scenario: send empty form
+      Given I am on the inscription page for "I Example Conference"
+      When I press "submit"
+      Then I should be "Error in form"
+
+     Scenario: send form
+       Given I am on the inscription page for "I Example Conference"
+       When I press "submit"
+       Then I should be "Error in form"

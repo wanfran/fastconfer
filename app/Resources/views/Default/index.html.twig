@@ -1,32 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block mainContent %}
 
-
-    <div class="container">
-        <div class="row">
-             <div class="col-md-4">
-
-                 {% block alert %}
-                     {% set flashMessage = app.session.flashbag.get('alert') %}
-                     {% if flashMessage is empty %}
-                         {% if app.user %}
-                             <div class="alert alert-success">
-                                 <a href="{{ url('fos_user_profile_show') }}" class="alert-link">The User {{ user.username }}
-                                     is connected to the system</a>
-                             </div>
-                         {% endif %}
-
-                         {% else %}
-                             {% for  aux in flashMessage %}
-                                 <div class="flash-notice alert-danger alert text-center">
-                                     <strong>{{ aux }}</strong>
-                                 </div>
-                             {% endfor %}
-                     {% endif %}
-                 {% endblock %}
-
-             </div>
              <div class="col-md-8">
                 <form name="form" action="{{ path('find') }}" method="get">
                     <div class="navbar-form navbar-right" role="search" >
@@ -37,7 +12,6 @@
                     </div>
                 </form>
              </div>
-        </div>
 
         {% for conference in conferences %}
         <div class="row">
@@ -59,10 +33,9 @@
                 </div>
             </div>
         </div>
-        {% else %}
-            <h1>No data</h1>
+
         {% endfor %}
 
-    </div>
+
 
 {% endblock %}

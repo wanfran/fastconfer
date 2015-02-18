@@ -30,6 +30,7 @@ class DefaultController extends Controller
         $securityContext=$this->container->get('security.context');
         if($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $user= $this->get('security.context')->getToken()->getUser();
+            $this->get('session')->getFlashBag()->set('success', 'You are be connected to the system ');
         }
         else
             $user=null;
@@ -60,8 +61,7 @@ class DefaultController extends Controller
 
         if($foundConference==null) {
             $this->get('session')->getFlashBag()->set('alert', 'Conference not found');
-            $conferences = $this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
-            return $this->redirectToRoute('homepage', array('user' => $user,'conferences' => $conferences));
+
         }
 
         return $this->render('Default/index.html.twig', array('user' => $user,'conferences' => $foundConference));
@@ -119,9 +119,9 @@ class DefaultController extends Controller
                 return $this->redirect($this->generateUrl('listArticles'));
             }
 
-            if(date("Y-m-d")>$conference->getDateEnd()->format('Y-m-d'))
+            if($conference->getDateEnd()->format('Y-m-d')<date("Y-m-d"))
             {
-                $this->get('session')->getFlashBag()->set('alert', 'Registration is closed');
+                $this->get('session')->getFlashBag()->set('alert', 'You can not register for this conference');
                 return $this->redirectToRoute('conference',array('slug' => $conference->getSlug()));
 
             }
@@ -139,18 +139,16 @@ class DefaultController extends Controller
                     $em->flush();
 
 
-                    $this->get('session')->getFlashBag()->set('success', 'You are already registered');
+                    $this->get('session')->getFlashBag()->set('success', 'Congratulations, you are already registered');
                 }
                 else {
-                    $this->get('session')->getFlashBag()->set('alert', 'You are already registered');
+                    $this->get('session')->getFlashBag()->set('alert', 'You can not register again in this conference');
                     return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
                 }
             }
-
         }
         else
             $user=null;
-
 
      return $this->render('Default/ConferenceInscription.html.twig', array('conference'=> $conference, 'user'=>$user,
          'form' => $form->createView()));

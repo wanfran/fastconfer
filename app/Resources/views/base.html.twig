@@ -100,8 +100,29 @@
 
     {%  endblock %}
 
+        {% block body %}
+            <div class="container">
+                <div class="side-body">
+                    {% block alert %}
+                        {% for flashMessage in app.session.flashbag.get('alert') %}
+                            <div class="alert alert-danger text-center col-md-4">
+                                <strong>{{ flashMessage }}</strong>
+                            </div>
+                        {% endfor %}
 
-        {% block body %}{% endblock %}
+                        {% for flashMessage in app.session.flashbag.get('success') %}
+                            <div class="alert alert-success text-center col-md-4">
+                                <strong>{{ flashMessage }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endblock %}
+                    {% block mainContent %}{% endblock %}
+                </div>
+            </div>
+
+
+
+        {% endblock %}
 
         {%  block footer %}
 

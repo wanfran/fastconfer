@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block mainContent %}
 
-<div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -23,12 +22,7 @@
                         {% endfor %}
                     </div>
 
-
-                    {% block alert %}
-                        {% set flashMessage = app.session.flashbag.get('alert') %}
-                        {% if flashMessage is empty %}
-
-                            {% if conference.dateEnd|date("d/m/y")>= "now" |date("d/m/y")  %}
+                            {% if conference.dateEnd|date("Y-m-d")>= "now" |date("Y-m-d")  %}
 
                                 {% if not app.user %}
                                     <div class="alert alert-danger text-center">
@@ -60,25 +54,9 @@
 
                             {% endif %}
 
-                        {% else %}
-                            {% for  aux in flashMessage %}
-                                <div class="flash-notice alert-danger alert text-center">
-                                    <strong>{{ aux }}</strong>
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    {% endblock %}
-
-
-
-
-
-
-
                 </div>
             </div>
         </div>
- </div>
 
     <!-- Modal -->
 
