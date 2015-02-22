@@ -58,6 +58,13 @@ class Article
      */
      private $topics;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Inscription", inversedBy="articles")
+     */
+    private $inscriptions;
+
+
+    
     function __construct()
     {
         $this->topics=new ArrayCollection();
@@ -244,4 +251,37 @@ class Article
     }
 
 
+
+    /**
+     * Add topics
+     *
+     * @param \AppBundle\Entity\Topic $topics
+     * @return Article
+     */
+    public function addTopic(\AppBundle\Entity\Topic $topics)
+    {
+        $this->topics[] = $topics;
+
+        return $this;
+    }
+
+    /**
+     * Remove topics
+     *
+     * @param \AppBundle\Entity\Topic $topics
+     */
+    public function removeTopic(\AppBundle\Entity\Topic $topics)
+    {
+        $this->topics->removeElement($topics);
+    }
+
+    /**
+     * Get topics
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTopics()
+    {
+        return $this->topics;
+    }
 }

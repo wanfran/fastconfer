@@ -52,12 +52,25 @@ class Article
      */
     private $path;
 
+    /**
+     * @var string
+     * @ORM\Column(name="state", type="string", length=255)
+     */
+    private $state;
+
 
     /**
      * @ORM\ManyToMany(targetEntity="Topic", inversedBy="articles")
      */
      private $topics;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Inscription", inversedBy="articles")
+     */
+    private $inscriptions;
+
+
+    
     function __construct()
     {
         $this->topics=new ArrayCollection();
@@ -142,6 +155,26 @@ class Article
     {
         return $this->abstract;
     }
+
+    /**
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param string $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+
+    
+
 
     /**
      * Set path
@@ -276,5 +309,28 @@ class Article
     public function getTopics()
     {
         return $this->topics;
+    }
+
+    /**
+     * Set inscriptions
+     *
+     * @param \AppBundle\Entity\Inscription $inscriptions
+     * @return Article
+     */
+    public function setInscriptions(\AppBundle\Entity\Inscription $inscriptions = null)
+    {
+        $this->inscriptions = $inscriptions;
+
+        return $this;
+    }
+
+    /**
+     * Get inscriptions
+     *
+     * @return \AppBundle\Entity\Inscription 
+     */
+    public function getInscriptions()
+    {
+        return $this->inscriptions;
     }
 }

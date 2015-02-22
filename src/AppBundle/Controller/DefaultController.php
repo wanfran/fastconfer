@@ -136,13 +136,17 @@ class DefaultController extends Controller
 
 
     /**
-     * @Route("/upload", name="upload")
-     * @param Request $request
+     * @Route("inscription/{id}/upload", name="upload")
+     * @param Inscription $inscription,Request $request
      * @Template()
      */
-    public function uploadAction(Request $request)
+    public function uploadAction(Inscription $inscription, Request $request)
     {
         $article = new Article();
+        $article->setInscriptions($inscription);
+
+
+
         $form = $this->createForm(new InscriptionType(), $article);
 
 

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Inscription
@@ -43,10 +44,18 @@ class Inscription
      */
     private $conference;
 
+    /**
+     * @var string
+     *
+     * @ORM\OneToMany(targetEntity="Article",mappedBy="inscriptions")
+     */
+    private $articles;
+
 
     function __construct()
     {
         $this->createdAt=new \DateTime();
+        $this->articles=new ArrayCollection();
     }
 
 
@@ -133,4 +142,37 @@ class Inscription
 
 
 
+
+    /**
+     * Add articles
+     *
+     * @param \AppBundle\Entity\Article $articles
+     * @return Inscription
+     */
+    public function addArticle(\AppBundle\Entity\Article $articles)
+    {
+        $this->articles[] = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \AppBundle\Entity\Article $articles
+     */
+    public function removeArticle(\AppBundle\Entity\Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
 }
