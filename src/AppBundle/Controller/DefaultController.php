@@ -6,6 +6,8 @@ use AppBundle\Entity\Conference;
 use AppBundle\Entity\Document;
 use AppBundle\Entity\Inscription;
 use AppBundle\Entity\Topic;
+use AppBundle\Entity\Article;
+use AppBundle\Form\Type\InscriptionType;
 use Faker\Provider\cs_CZ\DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -135,10 +137,31 @@ class DefaultController extends Controller
 
     /**
      * @Route("/upload", name="upload")
+     * @param Request $request
+     * @Template()
      */
-    public function uploadAction()
+    public function uploadAction(Request $request)
     {
-        return $this->render('Default/Upload.html.twig');
+        $article = new Article();
+        $form = $this->createForm(new InscriptionType(), $article);
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->set('success', 'Tu articulo se ha subido correctamente');
+
+            return $this->redirect($this->generateUrl(
+                'inscription',
+                array('id' => $article->getId())
+            ));
+        }
+
+        return $this->render('Default/Upload.html.twig',array('form'=>$form->createView()));
 
     }
 
@@ -148,7 +171,6 @@ class DefaultController extends Controller
      */
     public function myConferencesAction()
     {
-        $conference=$this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -162,25 +184,10 @@ class DefaultController extends Controller
         else
             $user = null;
 
-        return $this->render('Default/ListConferences.html.twig', array('inscription' => $inscription,'conference'=>$conference));
+        return $this->render('Default/ListConferences.html.twig', array('inscription' => $inscription));
 
     }
 
-
-
-
-
-
-
-    /**
-     * @Route("/articles")
-     */
-    public function listArticle()
-    {
-        $articles = $this->getDoctrine()->getRepository('AppBundle:Article')->findAll();
-
-        return $this->render('Default/ListArticles.html.twig', array('articles' => $articles));
-    }
 
     /**
      * @Route("/delete")
@@ -197,7 +204,6 @@ class DefaultController extends Controller
 
         return $this->render('Default/ListConferences.html.twig', array('conferences' => $manager));
     }
-
 
     /**
      *

@@ -41,9 +41,22 @@ class Topic
      */
     private $conferences;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="topics")
+     */
+    private $articles;
+
+
     function __construct()
     {
         $this->conferences=new ArrayCollection();
+        $this->articles=new ArrayCollection();
+    }
+
+    function __toString()
+    {
+       return $this->getName();
     }
 
 
@@ -134,5 +147,38 @@ class Topic
     public function getConferences()
     {
         return $this->conferences;
+    }
+
+    /**
+     * Add articles
+     *
+     * @param \AppBundle\Entity\Article $articles
+     * @return Topic
+     */
+    public function addArticle(\AppBundle\Entity\Article $articles)
+    {
+        $this->articles[] = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \AppBundle\Entity\Article $articles
+     */
+    public function removeArticle(\AppBundle\Entity\Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }

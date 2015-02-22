@@ -45,12 +45,7 @@ app:
     type:     annotation
     prefix:   /article
 
-listArticles:
-    pattern:  /articles
 
-listConferences:
-    pattern:  /conferences
-
-showConference:
-    pattern:  /conference/{slug}
+#showConference:
+#    pattern:  /conference/{slug}
 

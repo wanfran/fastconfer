@@ -41,9 +41,17 @@ class Topic
      */
     private $conferences;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="topics")
+     */
+    private $articles;
+
+
     function __construct()
     {
         $this->conferences=new ArrayCollection();
+        $this->articles=new ArrayCollection();
     }
 
 

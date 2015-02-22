@@ -24,9 +24,12 @@ Feature: fill form
       | userA   | example1 | 1tex example abstract|
       | userB   | example2 | 2tex example abstract|
       | userC   | example3 | 3tex example abstract|
+    And there are following inscription
+      |username|conference            |
+      |user1   | I Example Conference |
 
 
-    Scenario: go page of upload
+  Scenario: go page of upload
       Given I am on the inscription page for "I Example Conference"
       When I press "Send new article"
       Then I should be on the upload page for "I Example Conference"

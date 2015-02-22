@@ -24,6 +24,8 @@
                                 <td>{{ aux.id }}</td>
                                 <td>{{ aux.conference }}</td>
                                 <td>{{ aux.createdAt|date("d/m/y") }}</td>
+                                <td><a class="btn btn-default" href="{{ path('upload', {'slug':aux.conference}) }}"
+                                                            role="button">Send new article</a></td>
                             </tr>
                              {% endfor %}
                     </table>

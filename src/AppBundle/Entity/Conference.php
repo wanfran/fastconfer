@@ -69,12 +69,13 @@ class Conference
      */
     private $topics;
 
-
-
     /**
      * @ORM\OneToMany(targetEntity="Inscription", mappedBy="conference")
      */
     private $inscriptions;
+
+
+
 
 
     function __construct()
