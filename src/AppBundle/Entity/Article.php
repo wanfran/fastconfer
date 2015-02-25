@@ -15,6 +15,13 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Article
 {
+    const STATUS_SENT = 'sent';
+    const STATUS_ON_REVIEW = 'on review';
+    const STATUS_ACCEPTED = 'accepted';
+    const STATUS_ACCEPTED_SUGGESTIONS = 'accepted with suggestions';
+    const STATUS_REJECTED = 'rejected';
+
+
     /**
      * @var integer
      *
@@ -58,6 +65,12 @@ class Article
      */
     private $state;
 
+    /**
+     * @var \DateTime
+     *
+     *@ORM\Column(name="created_at", type="datetime")
+     */
+    private $createAt;
 
     /**
      * @ORM\ManyToMany(targetEntity="Topic", inversedBy="articles")
@@ -73,9 +86,10 @@ class Article
     
     function __construct()
     {
-        $this->topics=new ArrayCollection();
+        $this->topics = new ArrayCollection();
+        $this->state = self::STATUS_SENT;
+        $this->createAt = new \DateTime();
     }
-
 
     /**
      * Get id
@@ -172,8 +186,21 @@ class Article
         $this->state = $state;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getCreateAt()
+    {
+        return $this->createAt;
+    }
 
-    
+    /**
+     * @param \DateTime $createAt
+     */
+    public function setCreateAt($createAt)
+    {
+        $this->createAt = $createAt;
+    }
 
 
     /**

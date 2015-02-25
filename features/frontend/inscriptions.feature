@@ -18,20 +18,22 @@ Feature: fill form
       | topicD  |
     And there are following conferences:
       | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |
-      | I Example Conference    | i-example-conference  | Description of the I Example Conference    | 2015/01/01             | 2015/01/31           |
+      | I Example Conference    | i-example-conference  | Description of the I Example Conference    | 2015/01/01             | 2015/04/30           |
     And there are following articles:
-      | authors | keyword  | abstract             |
-      | userA   | example1 | 1tex example abstract|
-      | userB   | example2 | 2tex example abstract|
-      | userC   | example3 | 3tex example abstract|
-    And there are following inscription
-      |username|conference            |
+      | authors | keyword  | abstract             | path        | state |
+      | userA   | example1 | 1tex example abstract| example.pdf | sent  |
+      | userB   | example2 | 2tex example abstract| example.pdf | sent  |
+      | userC   | example3 | 3tex example abstract| example.pdf | sent  |
+    And there are following inscriptions:
+      |username| name                 |
       |user1   | I Example Conference |
+
 
 
   Scenario: go page of upload
       Given I am on the inscription page for "I Example Conference"
-      When I press "Send new article"
+      Then I should see "Send new article"
+      When I follow "Send new article"
       Then I should be on the upload page for "I Example Conference"
 
     Scenario: send empty form

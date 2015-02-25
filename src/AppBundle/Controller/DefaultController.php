@@ -100,6 +100,8 @@ class DefaultController extends Controller
             $em=$this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('conference'=>$conference->getId()
             ,'user'=>$user));
 
+            $ins = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('user'=>$user));
+
             if($conference->getDateEnd()->format('Y-m-d')<date("Y-m-d"))
             {
                 $this->get('session')->getFlashBag()->set('alert', 'You can not register for this conference');
@@ -128,9 +130,12 @@ class DefaultController extends Controller
             }
         }
         else
-            $user=null;
+            $user = null;
 
-     return $this->render('Default/ConferenceInscription.html.twig', array('conference'=> $conference, 'user'=>$user));
+        $article = $this->getDoctrine()->getRepository('AppBundle:Article')->findAll();
+
+     return $this->render('Default/ConferenceInscription.html.twig', array('conference'=> $conference, 'user'=>$user,
+         'inscription'=>$ins,'article'=>$article));
 
     }
 
@@ -145,10 +150,7 @@ class DefaultController extends Controller
         $article = new Article();
         $article->setInscriptions($inscription);
 
-
-
         $form = $this->createForm(new InscriptionType(), $article);
-
 
         $form->handleRequest($request);
 
@@ -157,21 +159,19 @@ class DefaultController extends Controller
             $em->persist($article);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->set('success', 'Tu articulo se ha subido correctamente');
 
-            return $this->redirect($this->generateUrl(
-                'inscription',
-                array('id' => $article->getId())
-            ));
+            $slug=$inscription->getConference()->getSlug();
+            $this->get('session')->getFlashBag()->set('success', 'Your article has been successfully uploaded');
+
+            return $this->redirectToRoute('inscription',array('slug' => $slug));
         }
 
         return $this->render('Default/Upload.html.twig',array('form'=>$form->createView()));
-
     }
 
 
     /**
-     * @Route("/MyConferences", name="MyConferences")
+     * @Route("/myConferences", name="myConferences")
      */
     public function myConferencesAction()
     {

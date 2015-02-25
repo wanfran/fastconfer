@@ -20,29 +20,32 @@
                         {% endfor %}
                     </div>
 
+                    hola
 
                     <div class="card-action">
-                     <a class="btn btn-default" href="{{ path('upload', {'slug':conference.slug}) }}"
+                     <a class="btn btn-default" href="{{ path('upload', {'id':inscription.id}) }}"
                            role="button">Send new article</a>
                         </div>
 
-                    <div class="table-responsive">
+                    <div class="table-responsive card-action">
                     <table class="table table-bordered table-hover">
 
                         <tr class="success">
                             <th>Version</th>
                             <th>Date</th>
                             <th>Reviews</th>
-                            <th>Status</th>
+                            <th>State</th>
                             <th>Actions</th>
                         </tr>
+                        {% for aux in article %}
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
+                            <td>....</td>
+                            <td>{{ aux.createAt |date("d/m/y") }}</td>
+                            <td>....</td>
+                            <td><span class="label label-success"> {{ aux.state }}</span></td>
+                            <td>See reviews</td>
                         </tr>
+                        {% endfor %}
                         </table>
                     </div>
                 </div>

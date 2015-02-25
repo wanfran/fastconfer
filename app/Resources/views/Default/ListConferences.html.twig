@@ -5,37 +5,42 @@
 
     {% if app.user is null %}
         <div class="alert alert-danger text-center">
-                    <strong>You must be registered</strong>
-                </div>
+            <strong>You must be registered</strong>
+        </div>
+
+
         {% else %}
             {% if inscription!=null %}
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
 
-                        <tr class="success">
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Date Inscription</th>
-                            <th>Send Article</th>
+                            <tr class="success">
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Date Inscription</th>
+                                <th>Send Article</th>
 
-                        </tr>
-                            {% for aux in inscription %}
-                            <tr>
-                                <td>{{ aux.id }}</td>
-                                <td>{{ aux.conference }}</td>
-                                <td>{{ aux.createdAt|date("d/m/y") }}</td>
-                                <td><a class="btn btn-default" href="{{ path('upload', {'id':aux.id }) }}"
-                                                            role="button">Send new article</a></td>
                             </tr>
-                             {% endfor %}
-                    </table>
-                </div>
-                {% else %}
-
-                    <div class="alert alert-danger text-center">
-                        <strong>There aren't inscriptions</strong>
+                                {% for aux in inscription %}
+                                <tr>
+                                    <td>{{ aux.id }}</td>
+                                    <td>{{ aux.conference }}</td>
+                                    <td>{{ aux.createdAt|date("d/m/y") }}</td>
+                                    <td><a class="btn btn-default" href="{{ path('upload', {'id':aux.id }) }}"
+                                                                role="button">Send new article</a></td>
+                                </tr>
+                                 {% endfor %}
+                        </table>
                     </div>
+                    {% else %}
 
+                        <div class="alert alert-danger text-center">
+                            <strong>There aren't inscriptions</strong>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
     {% endif %}
 

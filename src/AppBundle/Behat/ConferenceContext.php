@@ -54,7 +54,7 @@ class ConferenceContext extends CoreContext
             throw new ElementNotFoundException('Conference doesn\'t exist');
         }
 
-        $this->getSession()->visit($this->generatePageUrl('showConference', array('slug' => $conference->getSlug())));
+        $this->getSession()->visit($this->generatePageUrl('conference', array('slug' => $conference->getSlug())));
     }
 
     /**
@@ -68,7 +68,7 @@ class ConferenceContext extends CoreContext
             throw new ElementNotFoundException('Conference doesn\'t exist');
         }
 
-        $this->assertSession()->addressEquals($this->generatePageUrl('showConference', array('slug' => $conference->getSlug())));
+        $this->assertSession()->addressEquals($this->generatePageUrl('conference', array('slug' => $conference->getSlug())));
     }
 
     /**

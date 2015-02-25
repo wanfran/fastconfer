@@ -56,6 +56,7 @@ class Inscription
     {
         $this->createdAt=new \DateTime();
         $this->articles=new ArrayCollection();
+
     }
 
 
@@ -174,5 +175,10 @@ class Inscription
     public function getArticles()
     {
         return $this->articles;
+    }
+
+    function __toString()
+    {
+        return $this->getId();
     }
 }

@@ -22,7 +22,6 @@ class InscriptionType extends AbstractType {
             ->add('author')
             ->add('keyword')
             ->add('abstract')
-            ->add('path')
             ->add('topics', 'entity', array(
                 'class' => 'AppBundle:Topic',
                 'property' => 'name',
@@ -31,7 +30,8 @@ class InscriptionType extends AbstractType {
                 'query_builder' => function(EntityRepository $er) use ($conference) {
                     return $er->getAllTopicsFromConference($conference);
                 },
-            ));
+            ))
+            ->add('path','file',array('label'=>'Upload'));
 ////            ->add('save', 'submit', array('label' => 'Submit'));
 
 }
