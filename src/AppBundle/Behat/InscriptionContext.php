@@ -59,6 +59,7 @@ class InscriptionContext extends CoreContext
 
 
     /**
+     * @Given I am on the upload page for :name
      *
      * @Then I should be on the upload page for :name
      */
@@ -70,6 +71,6 @@ class InscriptionContext extends CoreContext
             throw new ElementNotFoundException('Inscription doesn\'t exist');
         }
 
-        $this->assertSession()->addressEquals($this->generatePageUrl('upload', array('id' => $inscription->getId())));
+        $this->assertSession()->addressEquals($this->generatePageUrl('upload', array('id' => $inscription->getConference())));
     }
 }

@@ -31,6 +31,7 @@ class ConferenceContext extends CoreContext
             $conference->setImage('null');
             $conference->setDateStart(new \DateTime($conferenceHash['registration_starts_at']));
             $conference->setDateEnd(new \DateTime($conferenceHash['registration_ends_at']));
+            $conference->setDeadTime(new \DateTime($conferenceHash['dead_time']));
             $em->persist($conference);
         }
         $em->flush();

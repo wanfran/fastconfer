@@ -100,8 +100,6 @@ class DefaultController extends Controller
             $em=$this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('conference'=>$conference->getId()
             ,'user'=>$user));
 
-            $ins = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('user'=>$user));
-
             if($conference->getDateEnd()->format('Y-m-d')<date("Y-m-d"))
             {
                 $this->get('session')->getFlashBag()->set('alert', 'You can not register for this conference');
@@ -124,7 +122,7 @@ class DefaultController extends Controller
                     $this->get('session')->getFlashBag()->set('success', 'Congratulations, you are already registered');
                 }
 //                else {
-//                    $this->get('session')->getFlashBag()->set('alert', 'You can not register again in this conference');
+//                    $this->get('session')->getFlashBag()->set('alert', 'You can  register again in this conference');
 //                    return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
 //                }
             }
@@ -132,10 +130,14 @@ class DefaultController extends Controller
         else
             $user = null;
 
-        $article = $this->getDoctrine()->getRepository('AppBundle:Article')->findAll();
+
+        $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array('user'=>$user));
+
+        $article = $this->getDoctrine()->getRepository('AppBundle:Article')->findBy(
+            array('inscriptions'=>$inscription));
 
      return $this->render('Default/ConferenceInscription.html.twig', array('conference'=> $conference, 'user'=>$user,
-         'inscription'=>$ins,'article'=>$article));
+         'inscription'=>$inscription,'article'=>$article));
 
     }
 

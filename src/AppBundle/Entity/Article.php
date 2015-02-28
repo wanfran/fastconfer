@@ -83,7 +83,6 @@ class Article
     private $inscriptions;
 
 
-    
     function __construct()
     {
         $this->topics = new ArrayCollection();

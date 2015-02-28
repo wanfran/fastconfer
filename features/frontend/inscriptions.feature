@@ -38,9 +38,8 @@ Feature: fill form
 
     Scenario: send empty form
       Given I am on the upload page for "I Example Conference"
-      When I press "Submit"
-      Then I should be on the conference page for "I Example Conference"
-      And I should see "Error send article"
+      When I follow "Create"
+      Then I should see "Completa este campo"
 
      Scenario: send form
        Given I am on the upload page for "I Example Conference"
@@ -49,8 +48,7 @@ Feature: fill form
        |keyword |example1|
        |abstract|1tex example abstract|
        And |I select "topicaA" from "topic"
-       And |I select "topicaB" from "topic"
-       Then I press "Submit"
+       Then I press "Create"
        And I should be on the conference page for "I Example Conference"
        And I should see "Congratulations send article"
 

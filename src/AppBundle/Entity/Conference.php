@@ -65,6 +65,14 @@ class Conference
 
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="deadTime", type="datetime")
+     */
+    private $deadTime;
+
+
+    /**
      * @ORM\ManyToMany(targetEntity="Topic", inversedBy="conferences")
      */
     private $topics;
@@ -114,6 +122,22 @@ class Conference
     public function setDateEnd($dateEnd)
     {
         $this->dateEnd = $dateEnd;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDeadTime()
+    {
+        return $this->deadTime;
+    }
+
+    /**
+     * @param \DateTime $deadTime
+     */
+    public function setDeadTime($deadTime)
+    {
+        $this->deadTime = $deadTime;
     }
 
 

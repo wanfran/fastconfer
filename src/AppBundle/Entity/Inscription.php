@@ -59,6 +59,12 @@ class Inscription
 
     }
 
+    function __toString()
+    {
+        return $this->getConference();
+    }
+
+
 
 
     /**
@@ -177,8 +183,8 @@ class Inscription
         return $this->articles;
     }
 
-    function __toString()
-    {
-        return $this->getId();
-    }
+
+
 }
+
+

@@ -4,5 +4,6 @@
         description: <realText()>
         image: <imageUrl(1200, 200,'city')>
         topics: 5x @topic*
-        dateStart:  <dateTimeBetween($startDate = '+1 days', $endDate = '+7 days')>
+        dateStart: <dateTimeBetween($startDate = '+1 days', $endDate = '+7 days')>
         dateEnd:  <dateTimeBetween($startDate = '+60 days', $endDate = '+70 days')>
+        deadTime: <dateTimeBetween($startDate = '+20 days', $endDate = '+30 days')>
