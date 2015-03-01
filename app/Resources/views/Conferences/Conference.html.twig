@@ -22,44 +22,61 @@
                         {% endfor %}
                     </div>
 
-                            {% if conference.dateEnd|date("Y-m-d")>= "now" |date("Y-m-d")  %}
+                    {% if conference.dateEnd >= date("now")  %}
 
-                                {% if not app.user %}
-                                    <div class="alert alert-danger text-center">
-                                        <a href="{{ url('fos_user_security_login') }}" class="alert-link">You must be logged in to register for the conference</a>
-                                    </div>
+                        {% if not app.user %}
+                            <div class="alert alert-danger text-center">
+                                <a href="{{ url('fos_user_security_login') }}" class="alert-link">You must be logged in to register for the conference</a>
+                            </div>
 
-                                {% else %}
+                        {% else %}
 
-                                    {% if inscription!=null and conference.deadTime|date("Y-m-d")>= "now" |date("Y-m-d") %}
-
-                                        <div class="card-action">
-                                            <a class="btn btn-default center-block" href="{{ path('inscription', {'slug':conference.slug}) }}"
-                                               role="button">View inscription </a>
-                                        </div>
-
-                                    {% elseif inscription!=null %}
-
-                                        <div class="alert alert-danger text-center">
-                                            <strong>You are already registered</strong>
-                                        </div>
-
-                                        {% else %}
-
-                                        <div class="card-action">
-                                            <a class="btn btn-default center-block"  data-toggle="modal" data-target="#myModal"
-                                               role="button">Sign up</a>
-                                        </div>
-                                    {% endif %}
-                                {% endif %}
-
-                            {% else %}
-
-                                <div class="alert alert-danger text-center">
-                                    <strong>Registration is closed</strong>
+                            {% if inscription %}
+                                <div class="card-action">
+                                    <a class="btn btn-default" href="{{ path('conference_upload_article', { 'slug': conference.slug }) }}"
+                                       role="button">Send new article</a>
                                 </div>
 
+                                <div class="table-responsive card-action">
+                                    {% for article in inscription.articles %}
+
+                                    <table class="table table-bordered table-hover">
+                                        <tr>
+                                            <td colspan="5">Title: {{ article.abstract }}</td>
+                                        </tr>
+
+                                        <tr class="success">
+                                            <th>Version</th>
+                                            <th>Date</th>
+                                            <th>Reviews</th>
+                                            <th>State</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                            <tr>
+                                                <td>...</td>
+                                                <td>...</td>
+                                                <td>...</td>
+                                                <td>...</td>
+                                                <td>...</td>
+                                            </tr>
+                                    </table>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="card-action">
+                                    <a class="btn btn-default center-block"  data-toggle="modal" data-target="#myModal"
+                                       role="button">Sign up</a>
+                                </div>
                             {% endif %}
+                        {% endif %}
+
+                    {% else %}
+
+                        <div class="alert alert-danger text-center">
+                            <strong>Registration is closed</strong>
+                        </div>
+
+                    {% endif %}
 
                 </div>
             </div>
