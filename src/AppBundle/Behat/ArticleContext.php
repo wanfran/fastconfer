@@ -26,6 +26,7 @@ class ArticleContext extends CoreContext
         foreach ($tableNode->getHash() as $articleHash)
         {
             $articles = new Article();
+            $articles->setTitle($articleHash['title']);
             $articles->setAuthor($articleHash['authors']);
             $articles->setKeyword($articleHash['keyword']);
             $articles->setAbstract($articleHash['abstract']);

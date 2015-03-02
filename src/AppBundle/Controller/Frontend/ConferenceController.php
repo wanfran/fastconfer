@@ -73,6 +73,7 @@ class ConferenceController extends Controller
     public function uploadAction(Conference $conference, Request $request)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
+
         $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array(
             'conference' => $conference,
             'user' => $user,

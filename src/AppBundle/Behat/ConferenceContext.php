@@ -60,7 +60,7 @@ class ConferenceContext extends CoreContext
 
     /**
      * @Then I should be on the conference page for :name
-     * @Then I should still be on the conference page for :name
+     *
      */
     public function iShouldBeOnConferencePage($name)
     {
@@ -72,11 +72,4 @@ class ConferenceContext extends CoreContext
         $this->assertSession()->addressEquals($this->generatePageUrl('conference', array('slug' => $conference->getSlug())));
     }
 
-    /**
-     * @Given no hay ningún congreso activo
-     */
-    public function deleteConferences()
-    {
-        return true;
-    }
 }

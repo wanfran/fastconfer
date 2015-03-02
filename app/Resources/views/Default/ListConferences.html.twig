@@ -23,13 +23,13 @@
                                 <th>Send Article</th>
 
                             </tr>
-                                {% for aux in inscription %}
+                                {% for article in inscription %}
                                 <tr>
-                                    <td>{{ aux.id }}</td>
-                                    <td>{{ aux.conference }}</td>
-                                    <td>{{ aux.createdAt|date("d/m/y") }}</td>
-                                    <td><a class="btn btn-default" href="{{ path('upload', {'id':aux.id }) }}"
-                                                                role="button">Send new article</a></td>
+                                    <td>{{ article.id }}</td>
+                                    <td>{{ article.conference }}</td>
+                                    <td>{{ article.createdAt|date("d/m/y") }}</td>
+                                    {#<td><a class="btn btn-default" href="{{ path('conference_upload_article',#}
+                                        {#{'slug': inscription.conference.slug }) }}" role="button">Send new article</a></td>#}
                                 </tr>
                                  {% endfor %}
                         </table>

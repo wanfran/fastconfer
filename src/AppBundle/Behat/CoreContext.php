@@ -8,9 +8,19 @@
 
 namespace AppBundle\Behat;
 
+use Behat\Behat\Hook\Scope\AfterStepScope;
 use Sylius\Bundle\ResourceBundle\Behat\DefaultContext;
 
 class CoreContext extends DefaultContext
 {
-
+    /**
+     * @AfterStep
+     * @param $event
+     */
+    public function showError(AfterStepScope $event)
+    {
+        if(!$event->getTestResult()->isPassed()) {
+            print "Ruta: " . $this->getSession()->getCurrentUrl() . "\n";
+        }
+    }
 }

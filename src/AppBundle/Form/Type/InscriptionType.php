@@ -19,9 +19,10 @@ class InscriptionType extends AbstractType {
     {
         $conference = $builder->getData()->getInscriptions()->getConference();
         $builder
+            ->add('title')
             ->add('author')
             ->add('keyword')
-            ->add('abstract')
+            ->add('abstract', 'textarea')
             ->add('topics', 'entity', array(
                 'class' => 'AppBundle:Topic',
                 'property' => 'name',

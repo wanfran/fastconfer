@@ -8,6 +8,7 @@
 
 namespace AppBundle\Behat;
 
+use AppBundle\Entity\User;
 use AppBundle\Entity\Inscription;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Exception\ElementNotFoundException;
@@ -42,35 +43,86 @@ class InscriptionContext extends CoreContext
 
 
 
-
     /**
      * @Given I am on the inscription page for :name
      */
     public function iAmOnInscriptionPage($name)
     {
-        $conference = $this->getEntityManager()->getRepository('AppBundle:Conference')->findOneByName($name);
 
-        if (!$conference) {
-            throw new ElementNotFoundException('Conference doesn\'t exist');
-        }
+        $user=$this->getSecurityContext()->getToken()->getUser();
 
-        $this->getSession()->visit($this->generatePageUrl('inscription', array('slug' => $conference->getSlug())));
-    }
+        $conference = $this->getEntityManager()->getRepository('AppBundle:Conference')->findOneBy(array(
+            'name'=>$name
+        ));
 
-
-    /**
-     * @Given I am on the upload page for :name
-     *
-     * @Then I should be on the upload page for :name
-     */
-    public function iShouldBeOnUploadPage($name)
-    {
-        $inscription = $this->getEntityManager()->getRepository('AppBundle:Inscription')->findOneByConference($name);
+        $inscription = $this->getEntityManager()->getRepository('AppBundle:Inscription')->findOneBy(array(
+            'conference' => $conference,
+        'user' => $user
+        ));
 
         if (!$inscription) {
             throw new ElementNotFoundException('Inscription doesn\'t exist');
         }
 
-        $this->assertSession()->addressEquals($this->generatePageUrl('upload', array('id' => $inscription->getConference())));
+        $this->getSession()->visit($this->generatePageUrl('inscription', array(
+            'slug' => $inscription->getConference()->getSlug()
+        )));
+    }
+
+
+    /**
+     *
+     *@Then I should be on the upload page for :name
+     *
+     */
+    public function iShouldBeOnUploadPage($name)
+    {
+        $user=$this->getSecurityContext()->getToken()->getUser();
+
+        $conference = $this->getEntityManager()->getRepository('AppBundle:Conference')->findOneBy(array(
+            'name'=>$name
+        ));
+
+        $inscription = $this->getEntityManager()->getRepository('AppBundle:Inscription')->findOneBy(array(
+            'conference' => $conference,
+            'user' => $user
+        ));
+
+        if (!$inscription) {
+            throw new ElementNotFoundException('Inscription doesn\'t exist');
+        }
+
+        $this->assertSession()->addressEquals($this->generatePageUrl('conference_upload_article', array(
+            'slug' => $inscription->getConference()->getSlug()
+        )));
+
+    }
+
+    /**
+     * @Given I am on the upload page for :name
+     */
+
+    public function iAmOnUploadPage($name)
+    {
+
+        $user=$this->getSecurityContext()->getToken()->getUser();
+
+        $conference = $this->getEntityManager()->getRepository('AppBundle:Conference')->findOneBy(array(
+            'name'=>$name
+        ));
+
+        $inscription = $this->getEntityManager()->getRepository('AppBundle:Inscription')->findOneBy(array(
+            'conference' => $conference,
+            'user' => $user
+        ));
+
+        if (!$inscription) {
+            throw new ElementNotFoundException('Inscription doesn\'t exist');
+        }
+
+        $this->getSession()->visit($this->generatePageUrl('conference_upload_article', array(
+            'slug' => $inscription->getConference()->getSlug()
+        )));
+
     }
 }

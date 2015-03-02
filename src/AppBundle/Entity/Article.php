@@ -34,7 +34,16 @@ class Article
     /**
      * @var string
      *
+     * @ORM\Column(name="title",type="string", length=255)
+     * @Assert\NotBlank
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="author", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $author;
 
@@ -42,13 +51,17 @@ class Article
      * @var string
      *
      * @ORM\Column(name="keyword", type="string", length=255)
+     *
+     *
      */
     private $keyword;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="abstract", type="string", length=255)
+     *
+     * @Assert\NotBlank
+     * @Assert\Length(min="5", minMessage="too short"))
      */
     private $abstract;
 
@@ -79,6 +92,8 @@ class Article
 
     /**
      * @ORM\ManyToOne(targetEntity="Inscription", inversedBy="articles")
+     *
+     *
      */
     private $inscriptions;
 
@@ -99,6 +114,25 @@ class Article
     {
         return $this->id;
     }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+
+
 
     /**
      * Set author
