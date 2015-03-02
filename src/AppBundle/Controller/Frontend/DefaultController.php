@@ -22,9 +22,16 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        // TODO: Order by
-        // TODO: Remove older
-        $conferences = $this->getDoctrine()->getRepository('AppBundle:Conference')->findAll();
+
+        $conferences = $this->getDoctrine()->getRepository('AppBundle:Conference');
+
+        $query = $conferences->createQueryBuilder('c')
+            ->where('c.dateEnd >= :now')
+            ->setParameter('now', new \DateTime())
+            ->orderBy('c.name', 'ASC')
+            ->getQuery();
+
+        $conferences = $query->getResult();
 
         return $this->render('Default/index.html.twig', array('conferences' => $conferences));
     }
