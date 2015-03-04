@@ -65,12 +65,6 @@ class Article
      */
     private $abstract;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="path", type="string", length=255)
-     */
-    private $path;
 
     /**
      * @var string
@@ -93,13 +87,20 @@ class Article
     /**
      * @ORM\ManyToOne(targetEntity="Inscription", inversedBy="articles")
      *
-     *
      */
     private $inscriptions;
 
 
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Article_Review", mappedBy="articles")
+     */
+    private $articleReviews;
+
+
     function __construct()
     {
+        $this->articleReviews = new ArrayCollection();
         $this->topics = new ArrayCollection();
         $this->state = self::STATUS_SENT;
         $this->createAt = new \DateTime();
@@ -236,106 +237,84 @@ class Article
     }
 
 
-    /**
-     * Set path
-     *
-     * @param string $path
-     * @return Article
-     */
-    public function setPath($path)
-    {
-        $this->path = $path;
-
-        return $this;
-    }
-
-    /**
-     * Get path
-     *
-     * @return string 
-     */
-    public function getPath()
-    {
-        return $this->path;
-    }
-
-    public function getAbsolutePath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadRootDir().'/'.$this->path;
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadDir().'/'.$this->path;
-    }
-
-    protected function getUploadRootDir()
-    {
-        // the absolute directory path where uploaded
-        // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
-    }
-
-    protected function getUploadDir()
-    {
-        // get rid of the __DIR__ so it doesn't screw up
-        // when displaying uploaded doc/image in the view.
-        return 'uploads/documents';
-    }
-
-    /**
-     * @Assert\File(maxSize="6000000")
-     */
-    private $file;
-
-    /**
-     * Sets file.
-     *
-     * @param UploadedFile $file
-     */
-    public function setFile(UploadedFile $file = null)
-    {
-        $this->file = $file;
-    }
-
-    /**
-     * Get file.
-     *
-     * @return UploadedFile
-     */
-    public function getFile()
-    {
-        return $this->file;
-    }
-
-    public function upload()
-    {
-        // the file property can be empty if the field is not required
-        if (null === $this->getFile()) {
-            return;
-        }
-
-        // use the original file name here but you should
-        // sanitize it at least to avoid any security issues
-
-        // move takes the target directory and then the
-        // target filename to move to
-        $this->getFile()->move(
-            $this->getUploadRootDir(),
-            $this->getFile()->getClientOriginalName()
-        );
-
-        // set the path property to the filename where you've saved the file
-        $this->path = $this->getFile()->getClientOriginalName();
-
-        // clean up the file property as you won't need it anymore
-        $this->file = null;
-    }
-
+//
+//    public function getAbsolutePath()
+//    {
+//        return null === $this->path
+//            ? null
+//            : $this->getUploadRootDir().'/'.$this->path;
+//    }
+//
+//    public function getWebPath()
+//    {
+//        return null === $this->path
+//            ? null
+//            : $this->getUploadDir().'/'.$this->path;
+//    }
+//
+//    protected function getUploadRootDir()
+//    {
+//        // the absolute directory path where uploaded
+//        // documents should be saved
+//        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+//    }
+//
+//    protected function getUploadDir()
+//    {
+//        // get rid of the __DIR__ so it doesn't screw up
+//        // when displaying uploaded doc/image in the view.
+//        return 'uploads/documents';
+//    }
+//
+//    /**
+//     * @Assert\File(maxSize="6000000")
+//     */
+//    private $file;
+//
+//    /**
+//     * Sets file.
+//     *
+//     * @param UploadedFile $file
+//     */
+//    public function setFile(UploadedFile $file = null)
+//    {
+//        $this->file = $file;
+//    }
+//
+//    /**
+//     * Get file.
+//     *
+//     * @return UploadedFile
+//     */
+//    public function getFile()
+//    {
+//        return $this->file;
+//    }
+//
+//    public function upload()
+//    {
+//        // the file property can be empty if the field is not required
+//        if (null === $this->getFile()) {
+//            return;
+//        }
+//
+//        // use the original file name here but you should
+//        // sanitize it at least to avoid any security issues
+//
+//        // move takes the target directory and then the
+//        // target filename to move to
+//        $this->getFile()->move(
+//            $this->getUploadRootDir(),
+//            $this->getFile()->getClientOriginalName()
+//        );
+//
+//        // set the path property to the filename where you've saved the file
+//        $this->path = $this->getFile()->getClientOriginalName();
+//
+//        // clean up the file property as you won't need it anymore
+//        $this->file = null;
+//    }
+//
 
 
     /**
@@ -392,5 +371,38 @@ class Article
     public function getInscriptions()
     {
         return $this->inscriptions;
+    }
+
+    /**
+     * Add articleReviews
+     *
+     * @param \AppBundle\Entity\Article_Review $articleReviews
+     * @return Article
+     */
+    public function addArticleReview(\AppBundle\Entity\Article_Review $articleReviews)
+    {
+        $this->articleReviews[] = $articleReviews;
+
+        return $this;
+    }
+
+    /**
+     * Remove articleReviews
+     *
+     * @param \AppBundle\Entity\Article_Review $articleReviews
+     */
+    public function removeArticleReview(\AppBundle\Entity\Article_Review $articleReviews)
+    {
+        $this->articleReviews->removeElement($articleReviews);
+    }
+
+    /**
+     * Get articleReviews
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticleReviews()
+    {
+        return $this->articleReviews;
     }
 }

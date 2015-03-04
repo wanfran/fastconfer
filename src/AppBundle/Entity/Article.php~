@@ -15,6 +15,13 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Article
 {
+    const STATUS_SENT = 'sent';
+    const STATUS_ON_REVIEW = 'on review';
+    const STATUS_ACCEPTED = 'accepted';
+    const STATUS_ACCEPTED_SUGGESTIONS = 'accepted with suggestions';
+    const STATUS_REJECTED = 'rejected';
+
+
     /**
      * @var integer
      *
@@ -27,7 +34,16 @@ class Article
     /**
      * @var string
      *
+     * @ORM\Column(name="title",type="string", length=255)
+     * @Assert\NotBlank
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="author", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $author;
 
@@ -35,13 +51,17 @@ class Article
      * @var string
      *
      * @ORM\Column(name="keyword", type="string", length=255)
+     *
+     *
      */
     private $keyword;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="abstract", type="string", length=255)
+     *
+     * @Assert\NotBlank
+     * @Assert\Length(min="5", minMessage="too short"))
      */
     private $abstract;
 
@@ -52,6 +72,18 @@ class Article
      */
     private $path;
 
+    /**
+     * @var string
+     * @ORM\Column(name="state", type="string", length=255)
+     */
+    private $state;
+
+    /**
+     * @var \DateTime
+     *
+     *@ORM\Column(name="created_at", type="datetime")
+     */
+    private $createAt;
 
     /**
      * @ORM\ManyToMany(targetEntity="Topic", inversedBy="articles")
@@ -60,16 +92,25 @@ class Article
 
     /**
      * @ORM\ManyToOne(targetEntity="Inscription", inversedBy="articles")
+     *
      */
     private $inscriptions;
 
 
-    
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Article_Review", mappedBy="articles")
+     */
+    private $articleReviews;
+
+
     function __construct()
     {
-        $this->topics=new ArrayCollection();
+        $this->articleReviews = new ArrayCollection();
+        $this->topics = new ArrayCollection();
+        $this->state = self::STATUS_SENT;
+        $this->createAt = new \DateTime();
     }
-
 
     /**
      * Get id
@@ -80,6 +121,25 @@ class Article
     {
         return $this->id;
     }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+
+
 
     /**
      * Set author
@@ -149,6 +209,39 @@ class Article
     {
         return $this->abstract;
     }
+
+    /**
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param string $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreateAt()
+    {
+        return $this->createAt;
+    }
+
+    /**
+     * @param \DateTime $createAt
+     */
+    public function setCreateAt($createAt)
+    {
+        $this->createAt = $createAt;
+    }
+
 
     /**
      * Set path
@@ -283,5 +376,28 @@ class Article
     public function getTopics()
     {
         return $this->topics;
+    }
+
+    /**
+     * Set inscriptions
+     *
+     * @param \AppBundle\Entity\Inscription $inscriptions
+     * @return Article
+     */
+    public function setInscriptions(\AppBundle\Entity\Inscription $inscriptions = null)
+    {
+        $this->inscriptions = $inscriptions;
+
+        return $this;
+    }
+
+    /**
+     * Get inscriptions
+     *
+     * @return \AppBundle\Entity\Inscription 
+     */
+    public function getInscriptions()
+    {
+        return $this->inscriptions;
     }
 }

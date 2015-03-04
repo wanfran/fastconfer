@@ -1,7 +1,9 @@
 <?php
 namespace AppBundle\Controller\Frontend;
 
+
 use AppBundle\Entity\Article;
+use AppBundle\Entity\Article_Review;
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Inscription;
 use AppBundle\Form\Type\InscriptionType;
@@ -90,11 +92,21 @@ class ConferenceController extends Controller
 
         $form = $this->createForm(new InscriptionType(), $article);
 
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
+            $em->flush();
+
+            $article_review = new Article_Review();
+            $article_review->setArticles($article);
+
+            $article_review->setPath($form->get('path')->getData());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article_review);
             $em->flush();
 
             $this->get('session')->getFlashBag()->set('success', 'Your article has been successfully uploaded');

@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: sergio
  * Date: 01/03/15
- * Time: 17:38
+ * Time: 17:38.
  */
 
 namespace AppBundle\Controller\Frontend;
-
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,13 +15,12 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * Home page
+     * Home page.
      *
      * @Route("/", name="homepage")
      */
     public function indexAction()
     {
-
         $conferences = $this->getDoctrine()->getRepository('AppBundle:Conference');
 
         $query = $conferences->createQueryBuilder('c')
@@ -42,10 +40,11 @@ class DefaultController extends Controller
     public function findConferenceAction(Request $request)
     {
         $word = $request->get('search');
-        $em=$this->getDoctrine()->getManager();
-        $foundConference= $em->getRepository('AppBundle:Conference')->findConference($word);
 
-        if($foundConference==null) {
+        $em = $this->getDoctrine()->getManager();
+        $foundConference = $em->getRepository('AppBundle:Conference')->findConference($word);
+
+        if ($foundConference == null) {
             $this->get('session')->getFlashBag()->set('alert', 'Conference not found');
         }
 

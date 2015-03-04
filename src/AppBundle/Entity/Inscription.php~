@@ -56,7 +56,14 @@ class Inscription
     {
         $this->createdAt=new \DateTime();
         $this->articles=new ArrayCollection();
+
     }
+
+    function __toString()
+    {
+        return $this->getConference();
+    }
+
 
 
 
@@ -142,4 +149,42 @@ class Inscription
 
 
 
+
+    /**
+     * Add articles
+     *
+     * @param \AppBundle\Entity\Article $articles
+     * @return Inscription
+     */
+    public function addArticle(\AppBundle\Entity\Article $articles)
+    {
+        $this->articles[] = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \AppBundle\Entity\Article $articles
+     */
+    public function removeArticle(\AppBundle\Entity\Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+
+
 }
+
+

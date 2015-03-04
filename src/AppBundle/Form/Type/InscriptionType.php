@@ -8,6 +8,7 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Article_Review;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,6 +19,7 @@ class InscriptionType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $conference = $builder->getData()->getInscriptions()->getConference();
+
         $builder
             ->add('title')
             ->add('author')
@@ -32,7 +34,9 @@ class InscriptionType extends AbstractType {
                     return $er->getAllTopicsFromConference($conference);
                 },
             ))
-            ->add('path','file',array('label'=>'Upload'));
+
+            ->add('path','file',array('mapped' => false));
+
 ////            ->add('save', 'submit', array('label' => 'Submit'));
 
 }
