@@ -1,5 +1,22 @@
 \AppBundle\Entity\Article:
-#    article{1..10}:
-#        title: <company()>
-#        description: <realText()>
-#        articleSend: <dateTimeBetween($startDate = '+1 days', $endDate = '+7 days')>
+    article:
+        title: <word()>
+        author: <username()>
+        keyword: <word()>
+        abstract: <company()>
+        state : accepted with suggestions
+        inscriptions: @inscription
+    article1:
+        title: <word()>
+        author: <username()>
+        keyword: <word()>
+        abstract: <company()>
+        state : rejected
+        inscriptions: @inscription
+    article2:
+        title: <word()>
+        author: <username()>
+        keyword: <word()>
+        abstract: <company()>
+        state : accepted
+        inscriptions: @inscription*

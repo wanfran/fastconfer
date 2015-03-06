@@ -8,17 +8,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Article_Review
+ * ArticleReview
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Article_Review
+class ArticleReview
 {
 
 
     const STATUS_SENT = 'sent';
-    const STATUS_ON_REVIEW = 'on review';
     const STATUS_ACCEPTED = 'accepted';
     const STATUS_ACCEPTED_SUGGESTIONS = 'accepted with suggestions';
     const STATUS_REJECTED = 'rejected';

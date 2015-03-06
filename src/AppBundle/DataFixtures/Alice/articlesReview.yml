@@ -1,0 +1,17 @@
+\AppBundle\Entity\ArticleReview:
+    articleReview:
+        numberReview: 1
+        state: accepted with suggestions
+        path: <word()>
+        articles: @article
+    articleReview1:
+        numberReview: 1
+        state: rejected
+        path: <word()>
+        articles: @article
+    articleReview2:
+        numberReview: 1
+        state: accepted
+        path: <word()>
+        articles: @article
+

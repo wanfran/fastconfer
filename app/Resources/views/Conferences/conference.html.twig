@@ -40,26 +40,39 @@
                                 <div class="table-responsive card-action">
                                     {% for article in inscription.articles %}
 
-                                    <table class="table table-bordered table-hover">
-                                        <tr>
-                                            <td colspan="5">Title: {{ article.title }}</td>
-                                        </tr>
-
-                                        <tr class="success">
-                                            <th>Version</th>
-                                            <th>Date</th>
-                                            <th>Reviews</th>
-                                            <th>State</th>
-                                            <th>Actions</th>
-                                        </tr>
+                                        <table class="table table-bordered table-hover">
                                             <tr>
-                                                <td>...</td>
-                                                <td>...</td>
-                                                <td>...</td>
-                                                <td><span class="label label-success"> {{ article.state }}</span></td>
-                                                <td>...</td>
+                                                <td colspan="5">Title: {{ article.title }}</td>
                                             </tr>
-                                    </table>
+
+                                            <tr class="success">
+                                                <th>Version</th>
+                                                <th>Date</th>
+                                                <th>Reviews</th>
+                                                <th>State</th>
+                                                <th>Actions</th>
+                                            </tr>
+
+                                            {%for review in review %}
+                                                <tr>
+                                                    <td>{{ review.numberReview }}</td>
+                                                    <td>{{ review.createAt|date("d/m/y")}}</td>
+                                                    <td>...</td>
+
+                                                    {% if review.state== 'rejected' %}
+                                                        <td><span class="label label-danger"> {{ review.state }}</span></td>
+                                                    {% else %}
+                                                        <td><span class="label label-success"> {{ review.state }}</span></td>
+                                                    {% endif %}
+
+                                                    {% if review.state== 'accepted with suggestions' %}
+
+                                                        <td><a class="btn btn-default center-block" href="{{ path('conference_upload_article', { 'slug': conference.slug }) }}"
+                                                                    role="button">Send</a></td>
+                                                    {% endif %}
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
                                     {% endfor %}
                                 </div>
                             {% else %}

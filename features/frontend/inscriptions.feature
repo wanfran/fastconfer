@@ -20,14 +20,13 @@ Feature: fill form
       | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |dead_time  |
       | I Example Conference    | i-example-conference  | Description of the I Example Conference    | 2015/01/01             | 2015/04/30           |2015/04/25 |
     And there are following articles:
-      |title | authors | keyword  | abstract             | path        | state |
-      |first | userA   | example1 | 1tex example abstract| example.pdf | sent  |
-      |second| userB   | example2 | 2tex example abstract| example.pdf | sent  |
-      |third | userC   | example3 | 3tex example abstract| example.pdf | sent  |
+      |title | authors | keyword  | abstract             |  state |
+      |first | userA   | example1 | 1tex example abstract|  sent  |
+      |second| userB   | example2 | 2tex example abstract|  sent  |
+      |third | userC   | example3 | 3tex example abstract|  sent  |
     And there are following inscriptions:
       |username| name                 |
       |user1   | I Example Conference |
-
 
 
   Scenario: go page of upload

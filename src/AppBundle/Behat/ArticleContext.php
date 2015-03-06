@@ -30,7 +30,6 @@ class ArticleContext extends CoreContext
             $articles->setAuthor($articleHash['authors']);
             $articles->setKeyword($articleHash['keyword']);
             $articles->setAbstract($articleHash['abstract']);
-            $articles->setPath($articleHash['path']);
             $articles->setState($articleHash['state']);
             $em->persist($articles);
         }

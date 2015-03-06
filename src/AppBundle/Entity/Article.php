@@ -90,10 +90,9 @@ class Article
      */
     private $inscriptions;
 
-
     /**
      *
-     * @ORM\OneToMany(targetEntity="Article_Review", mappedBy="articles")
+     * @ORM\OneToMany(targetEntity="ArticleReview", mappedBy="articles")
      */
     private $articleReviews;
 
@@ -372,14 +371,13 @@ class Article
     {
         return $this->inscriptions;
     }
-
     /**
      * Add articleReviews
      *
-     * @param \AppBundle\Entity\Article_Review $articleReviews
+     * @param \AppBundle\Entity\ArticleReview $articleReviews
      * @return Article
      */
-    public function addArticleReview(\AppBundle\Entity\Article_Review $articleReviews)
+    public function addArticleReview(\AppBundle\Entity\ArticleReview $articleReviews)
     {
         $this->articleReviews[] = $articleReviews;
 
@@ -389,9 +387,9 @@ class Article
     /**
      * Remove articleReviews
      *
-     * @param \AppBundle\Entity\Article_Review $articleReviews
+     * @param \AppBundle\Entity\ArticleReview $articleReviews
      */
-    public function removeArticleReview(\AppBundle\Entity\Article_Review $articleReviews)
+    public function removeArticleReview(\AppBundle\Entity\ArticleReview $articleReviews)
     {
         $this->articleReviews->removeElement($articleReviews);
     }

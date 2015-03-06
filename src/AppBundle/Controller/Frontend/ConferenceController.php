@@ -3,7 +3,7 @@ namespace AppBundle\Controller\Frontend;
 
 
 use AppBundle\Entity\Article;
-use AppBundle\Entity\Article_Review;
+use AppBundle\Entity\ArticleReview;
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Inscription;
 use AppBundle\Form\Type\InscriptionType;
@@ -26,9 +26,13 @@ class ConferenceController extends Controller
             'user' => $user,
         ));
 
+        $review= $this->getDoctrine()->getRepository('AppBundle:ArticleReview')->findBy(array(
+            'articles'=>$inscription
+        ));
+
         return $this->render('Conferences/conference.html.twig', array(
             'conference' => $conference,
-            'inscription' => $inscription,
+            'inscription' => $inscription,'review' =>$review
         ));
     }
 
@@ -100,7 +104,7 @@ class ConferenceController extends Controller
             $em->persist($article);
             $em->flush();
 
-            $article_review = new Article_Review();
+            $article_review = new ArticleReview();
             $article_review->setArticles($article);
 
             $article_review->setPath($form->get('path')->getData());
