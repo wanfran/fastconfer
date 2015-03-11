@@ -65,11 +65,17 @@ class ArticleReview
      */
     private $articles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ReviewComments", mappedBy="articleReviews")
+     */
+    private $reviewComments;
+
     function __construct()
     {
       $this-> createAt = new \DateTime();
       $this-> state = self::STATUS_SENT;
       $this -> numberReview =+ 1;
+        $this->reviemComments = new ArrayCollection();
     }
 
 

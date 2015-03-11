@@ -65,11 +65,17 @@ class ArticleReview
      */
     private $articles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ReviewComments", mappedBy="articleReviews")
+     */
+    private $reviewComments;
+
     function __construct()
     {
       $this-> createAt = new \DateTime();
       $this-> state = self::STATUS_SENT;
       $this -> numberReview =+ 1;
+        $this->reviemComments = new ArrayCollection();
     }
 
 
@@ -191,5 +197,38 @@ class ArticleReview
     public function getArticles()
     {
         return $this->articles;
+    }
+
+    /**
+     * Add reviewComments
+     *
+     * @param \AppBundle\Entity\ReviewComments $reviewComments
+     * @return ArticleReview
+     */
+    public function addReviewComment(\AppBundle\Entity\ReviewComments $reviewComments)
+    {
+        $this->reviewComments[] = $reviewComments;
+
+        return $this;
+    }
+
+    /**
+     * Remove reviewComments
+     *
+     * @param \AppBundle\Entity\ReviewComments $reviewComments
+     */
+    public function removeReviewComment(\AppBundle\Entity\ReviewComments $reviewComments)
+    {
+        $this->reviewComments->removeElement($reviewComments);
+    }
+
+    /**
+     * Get reviewComments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReviewComments()
+    {
+        return $this->reviewComments;
     }
 }

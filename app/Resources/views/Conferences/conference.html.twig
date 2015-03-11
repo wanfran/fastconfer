@@ -42,11 +42,10 @@
 
                                         <table class="table table-bordered table-hover">
                                             <tr>
-                                                <td colspan="5">Title: {{ article.title }}</td>
+                                                <td colspan="4">Title: {{ article.title }}</td>
                                             </tr>
 
                                             <tr class="success">
-                                                <th>Version</th>
                                                 <th>Date</th>
                                                 <th>Reviews</th>
                                                 <th>State</th>
@@ -55,7 +54,6 @@
 
                                             {%for review in review %}
                                                 <tr>
-                                                    <td>{{ review.numberReview }}</td>
                                                     <td>{{ review.createAt|date("d/m/y")}}</td>
                                                     <td>...</td>
 
@@ -67,11 +65,15 @@
 
                                                     {% if review.state== 'accepted with suggestions' %}
 
-                                                        <td><a class="btn btn-default center-block" href="{{ path('conference_upload_article', { 'slug': conference.slug }) }}"
-                                                                    role="button">Send</a></td>
                                                     {% endif %}
+                                                    <td>.....</td>
                                                 </tr>
                                             {% endfor %}
+                                            <tr>
+                                                <td colspan="3" >{{ article.stateEnd }}</td>
+                                                <td colspan="1"><a class="btn btn-default center-block" href="{{ path('conference_upload_article', { 'slug': conference.slug }) }}"
+                                                                       role="button">Send</a></td>
+                                            </tr>
                                         </table>
                                     {% endfor %}
                                 </div>

@@ -68,9 +68,9 @@ class Article
 
     /**
      * @var string
-     * @ORM\Column(name="state", type="string", length=255)
+     * @ORM\Column(name="stateEnd", type="string", length=255)
      */
-    private $state;
+    private $stateEnd;
 
     /**
      * @var \DateTime
@@ -96,12 +96,18 @@ class Article
      */
     private $articleReviews;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Reviewer", mappedBy="articles");
+     */
+    private $reviewers;
+
 
     function __construct()
     {
         $this->articleReviews = new ArrayCollection();
+        $this->reviewers = new ArrayCollection();
         $this->topics = new ArrayCollection();
-        $this->state = self::STATUS_SENT;
+        $this->stateEnd = self::STATUS_SENT;
         $this->createAt = new \DateTime();
     }
 
@@ -206,18 +212,19 @@ class Article
     /**
      * @return string
      */
-    public function getState()
+    public function getStateEnd()
     {
-        return $this->state;
+        return $this->stateEnd;
     }
 
     /**
-     * @param string $state
+     * @param string $stateEnd
      */
-    public function setState($state)
+    public function setStateEnd($stateEnd)
     {
-        $this->state = $state;
+        $this->stateEnd = $stateEnd;
     }
+
 
     /**
      * @return \DateTime
@@ -402,5 +409,38 @@ class Article
     public function getArticleReviews()
     {
         return $this->articleReviews;
+    }
+
+    /**
+     * Add reviewers
+     *
+     * @param \AppBundle\Entity\Reviewer $reviewers
+     * @return Article
+     */
+    public function addReviewer(\AppBundle\Entity\Reviewer $reviewers)
+    {
+        $this->reviewers[] = $reviewers;
+
+        return $this;
+    }
+
+    /**
+     * Remove reviewers
+     *
+     * @param \AppBundle\Entity\Reviewer $reviewers
+     */
+    public function removeReviewer(\AppBundle\Entity\Reviewer $reviewers)
+    {
+        $this->reviewers->removeElement($reviewers);
+    }
+
+    /**
+     * Get reviewers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReviewers()
+    {
+        return $this->reviewers;
     }
 }

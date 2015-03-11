@@ -30,9 +30,16 @@ class User extends BaseUser
      */
     protected $inscriptions;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Reviewer", inversedBy="users")
+     */
+    protected $reviewers;
+
+
     public function __construct()
     {
         parent::__construct();
+        $this->reviewers = new ArrayCollection();
     }
 
 
@@ -112,5 +119,28 @@ class User extends BaseUser
     public function getInscriptions()
     {
         return $this->inscriptions;
+    }
+
+    /**
+     * Set reviewers
+     *
+     * @param \AppBundle\Entity\Reviewer $reviewers
+     * @return User
+     */
+    public function setReviewers(\AppBundle\Entity\Reviewer $reviewers = null)
+    {
+        $this->reviewers = $reviewers;
+
+        return $this;
+    }
+
+    /**
+     * Get reviewers
+     *
+     * @return \AppBundle\Entity\Reviewer 
+     */
+    public function getReviewers()
+    {
+        return $this->reviewers;
     }
 }

@@ -18,7 +18,7 @@ class ConferenceContext extends CoreContext
     /**
      * @Given there are following conferences:
      *
-     * @param TableNode $tableNode
+     *
      */
     public function createConferences(TableNode $tableNode)
     {
@@ -32,6 +32,7 @@ class ConferenceContext extends CoreContext
             $conference->setDateStart(new \DateTime($conferenceHash['registration_starts_at']));
             $conference->setDateEnd(new \DateTime($conferenceHash['registration_ends_at']));
             $conference->setDeadTime(new \DateTime($conferenceHash['dead_time']));
+            $conference->addTopic($this->findTopic($conferenceHash['topics']));
             $em->persist($conference);
         }
         $em->flush();

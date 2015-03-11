@@ -23,4 +23,11 @@ class CoreContext extends DefaultContext
             print "Ruta: " . $this->getSession()->getCurrentUrl() . "\n";
         }
     }
+
+    public function findTopic($topics)
+    {
+        $topic = $this->getEntityManager()->getRepository('AppBundle:Topic')->findOneBy(array('name'=>$topics));
+
+        return $topic;
+    }
 }

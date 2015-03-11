@@ -17,8 +17,8 @@ Feature: fill form
       | topicC  |
       | topicD  |
     And there are following conferences:
-      | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |dead_time  |
-      | I Example Conference    | i-example-conference  | Description of the I Example Conference    | 2015/01/01             | 2015/04/30           |2015/04/25 |
+      | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |dead_time  |topics |
+      | I Example Conference    | i-example-conference  | Description of the I Example Conference    | 2015/01/01             | 2015/04/30           |2015/04/25 |topicA |
     And there are following articles:
       |title | authors | keyword  | abstract             |  state |
       |first | userA   | example1 | 1tex example abstract|  sent  |
@@ -47,10 +47,10 @@ Feature: fill form
        |Author  |userA   |
        |Keyword |example1|
        |Abstract|1tex example abstract|
-#       Then I check "topicA"
-#       And the "topicA" checkbox should be checked
-       Then I should see "Upload"
-#       When I press "Create"
-#       Then I should be on the conference page for "I Example Conference"
-#       Then I should see "Your article has been successfully uploaded"
+       Then I check "topicA"
+       And the "topicA" checkbox should be checked
+       And I attach the file "Perrito.jpg" to "article_path"
+       When I press "Create"
+       Then I should be on the conference page for "I Example Conference"
+       Then I should see "Your article has been successfully uploaded"
 
