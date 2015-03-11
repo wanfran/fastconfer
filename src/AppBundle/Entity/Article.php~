@@ -410,4 +410,37 @@ class Article
     {
         return $this->articleReviews;
     }
+
+    /**
+     * Add reviewers
+     *
+     * @param \AppBundle\Entity\Reviewer $reviewers
+     * @return Article
+     */
+    public function addReviewer(\AppBundle\Entity\Reviewer $reviewers)
+    {
+        $this->reviewers[] = $reviewers;
+
+        return $this;
+    }
+
+    /**
+     * Remove reviewers
+     *
+     * @param \AppBundle\Entity\Reviewer $reviewers
+     */
+    public function removeReviewer(\AppBundle\Entity\Reviewer $reviewers)
+    {
+        $this->reviewers->removeElement($reviewers);
+    }
+
+    /**
+     * Get reviewers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReviewers()
+    {
+        return $this->reviewers;
+    }
 }

@@ -1,0 +1,5 @@
+\AppBundle\Entity\Reviewer:
+    reviewer{1..3}:
+       users: @users*
+       articles: @article1
+

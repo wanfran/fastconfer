@@ -198,4 +198,37 @@ class ArticleReview
     {
         return $this->articles;
     }
+
+    /**
+     * Add reviewComments
+     *
+     * @param \AppBundle\Entity\ReviewComments $reviewComments
+     * @return ArticleReview
+     */
+    public function addReviewComment(\AppBundle\Entity\ReviewComments $reviewComments)
+    {
+        $this->reviewComments[] = $reviewComments;
+
+        return $this;
+    }
+
+    /**
+     * Remove reviewComments
+     *
+     * @param \AppBundle\Entity\ReviewComments $reviewComments
+     */
+    public function removeReviewComment(\AppBundle\Entity\ReviewComments $reviewComments)
+    {
+        $this->reviewComments->removeElement($reviewComments);
+    }
+
+    /**
+     * Get reviewComments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReviewComments()
+    {
+        return $this->reviewComments;
+    }
 }

@@ -4,19 +4,19 @@
         author: <username()>
         keyword: <word()>
         abstract: <company()>
-        stateEnd : accepted with suggestions
+        stateEnd: accepted with suggestions
         inscriptions: @inscription
     article1:
         title: <word()>
         author: <username()>
         keyword: <word()>
         abstract: <company()>
-        stateEnd : rejected
+        stateEnd: rejected
         inscriptions: @inscription
     article2:
         title: <word()>
         author: <username()>
         keyword: <word()>
         abstract: <company()>
-        stateEnd : accepted
+        stateEnd: accepted
         inscriptions: @inscription*

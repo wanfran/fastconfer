@@ -102,4 +102,50 @@ class ReviewComments
     {
         return $this->state;
     }
+
+    /**
+     * Set reviewers
+     *
+     * @param \AppBundle\Entity\Reviewer $reviewers
+     * @return ReviewComments
+     */
+    public function setReviewers(\AppBundle\Entity\Reviewer $reviewers = null)
+    {
+        $this->reviewers = $reviewers;
+
+        return $this;
+    }
+
+    /**
+     * Get reviewers
+     *
+     * @return \AppBundle\Entity\Reviewer 
+     */
+    public function getReviewers()
+    {
+        return $this->reviewers;
+    }
+
+    /**
+     * Set articleReviews
+     *
+     * @param \AppBundle\Entity\ArticleReview $articleReviews
+     * @return ReviewComments
+     */
+    public function setArticleReviews(\AppBundle\Entity\ArticleReview $articleReviews = null)
+    {
+        $this->articleReviews = $articleReviews;
+
+        return $this;
+    }
+
+    /**
+     * Get articleReviews
+     *
+     * @return \AppBundle\Entity\ArticleReview 
+     */
+    public function getArticleReviews()
+    {
+        return $this->articleReviews;
+    }
 }
