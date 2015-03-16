@@ -4,19 +4,38 @@
         author: <username()>
         keyword: <word()>
         abstract: <company()>
-        stateEnd: accepted with suggestions
+        stateEnd: send
         inscriptions: @inscription
+        topics: 2x @topic*
     article1:
+        title: <word()>
+        author: <username()>
+        keyword: <word()>
+        abstract: <company()>
+        stateEnd: accepted
+        inscriptions: @inscription
+        topics: 2x @topic*
+    article2:
         title: <word()>
         author: <username()>
         keyword: <word()>
         abstract: <company()>
         stateEnd: rejected
         inscriptions: @inscription
-    article2:
+        topics: 2x @topic*
+    article3:
+        title: <word()>
+        author: <username()>
+        keyword: <word()>
+        abstract: <company()>
+        stateEnd: accepted with suggestions
+        inscriptions: @inscription
+        topics: 2x @topic*
+    article4:
         title: <word()>
         author: <username()>
         keyword: <word()>
         abstract: <company()>
         stateEnd: accepted
-        inscriptions: @inscription*
+        inscriptions: @inscription
+        topics: 2x @topic*

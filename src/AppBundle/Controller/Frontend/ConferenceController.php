@@ -26,13 +26,9 @@ class ConferenceController extends Controller
             'user' => $user,
         ));
 
-        $review= $this->getDoctrine()->getRepository('AppBundle:ArticleReview')->findBy(array(
-            'articles'=>$inscription
-        ));
-
         return $this->render('Conferences/conference.html.twig', array(
             'conference' => $conference,
-            'inscription' => $inscription,'review' =>$review
+            'inscription' => $inscription,
         ));
     }
 
@@ -106,6 +102,7 @@ class ConferenceController extends Controller
 
             $article_review = new ArticleReview();
             $article_review->setArticles($article);
+            $article_review->count($article_review);
 
             $article_review->setPath($form->get('path')->getData());
 
@@ -119,5 +116,75 @@ class ConferenceController extends Controller
         }
 
         return $this->render('Conferences/upload.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route("conference/{slug}/new", name="new_article")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function newArticleAction(Conference $conference, Inscription $inscription, Request $request)
+    {
+
+        $article = $this->getDoctrine()->getRepository('AppBundle:Article')->findOneBy(array('inscriptions'=>$inscription->getId()));
+
+        $form = $this->createForm(new InscriptionType(), $article);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
+
+            $article_review = new ArticleReview();
+            $article_review->setArticles($article);
+            $article_review->setPath($form->get('path')->getData());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article_review);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->set('success', 'Your new article has been successfully send');
+
+            return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
+        }
+
+        return $this->render('Conferences/upload.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route("comments/{id}", name="comments")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function commentsAction(ArticleReview $articleReview, Conference $conference)
+    {
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array(
+            'conference' => $conference,
+            'user' => $user,
+        ));
+
+        if ($inscription) {
+            $this->get('session')->getFlashBag()->set('alert', 'You can not register again in this conference');
+
+            return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
+        }
+
+        $comments= $this->getDoctrine()->getRepository('AppBundle:ReviewComments')->findBy(array(
+            'articleReviews'=> $articleReview
+        ));
+
+        if ($articleReview->getState()=='send') {
+            $this->get('session')->getFlashBag()->set('alert', 'There are not any comments');
+
+            return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
+        }
+
+        $this->get('session')->getFlashBag()->set('success', 'There is some comments');
+
+        return $this->render('Conferences/comments.html.twig', array('comments' => $comments));
     }
 }

@@ -85,13 +85,14 @@ class Article
      private $topics;
 
     /**
+     * @var string
+     *
      * @ORM\ManyToOne(targetEntity="Inscription", inversedBy="articles")
      *
      */
     private $inscriptions;
 
     /**
-     *
      * @ORM\OneToMany(targetEntity="ArticleReview", mappedBy="articles")
      */
     private $articleReviews;
@@ -110,6 +111,12 @@ class Article
         $this->stateEnd = self::STATUS_SENT;
         $this->createAt = new \DateTime();
     }
+
+    function __toString()
+    {
+        return $this->getTitle();
+    }
+
 
     /**
      * Get id

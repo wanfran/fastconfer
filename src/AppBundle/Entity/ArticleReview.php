@@ -74,8 +74,14 @@ class ArticleReview
     {
       $this-> createAt = new \DateTime();
       $this-> state = self::STATUS_SENT;
-      $this -> numberReview =+ 1;
-        $this->reviemComments = new ArrayCollection();
+      $this -> numberReview = new ArrayCollection();
+      $this->reviemComments = new ArrayCollection();
+    }
+
+
+    public function count()
+    {
+        return count($this->numberReview);
     }
 
 

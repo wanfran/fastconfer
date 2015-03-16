@@ -85,7 +85,6 @@ class Conference
 
 
 
-
     function __construct()
     {
        $this->topics=new ArrayCollection();

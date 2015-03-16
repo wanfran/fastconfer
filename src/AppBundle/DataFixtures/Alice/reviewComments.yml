@@ -1,6 +1,21 @@
 \AppBundle\Entity\ReviewComments:
-    reviewComments{1..5}:
+    reviewComments:
       comment: <realText()>
       state: rejected
       reviewers: @reviewer*
-      articleReviews: @articleReview
+      articleReviews: @articleReview1
+    reviewComments1:
+      comment: <realText()>
+      state: rejected
+      reviewers: @reviewer*
+      articleReviews: @articleReview2
+    reviewComments2:
+      comment: <realText()>
+      state: rejected
+      reviewers: @reviewer*
+      articleReviews: @articleReview3
+    reviewComments3:
+      comment: <realText()>
+      state: rejected
+      reviewers: @reviewer*
+      articleReviews: @articleReview4

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block mainContent %}
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+            {% for comentarios in comments %}
+                {{ comentarios.comment  }}
+            {% endfor %}
+            </div>
+    </div>
+
+{% endblock %}
