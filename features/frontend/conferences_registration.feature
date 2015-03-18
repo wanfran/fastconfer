@@ -16,9 +16,9 @@ Feature: Join a conference
       | topicC  |
       | topicD  |
     And there are following conferences:
-      | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |dead_time   |
-      | I Example Conference    | i-example-conference  | Description of the I Example Conference    | 2015/01/01             | 2015/01/31           |2015/02/30  |
-      | II Example Conference   | ii-example-conference | Description of the II Example Conference   | 2014/01/01             | 2014/01/31           |2014/01/31  |
+      | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |dead_time   |topics |
+      | I Example Conference    | i-example-conference  | Description of the I Example Conference    | 2015/01/01             | 2015/01/31           |2015/02/30  |topicA |
+      | II Example Conference   | ii-example-conference | Description of the II Example Conference   | 2014/01/01             | 2014/01/31           |2014/01/31  |topicB |
 
 #  Scenario: Join to an open conference
 #    Given I am on the conference page for "I Example Conference"

@@ -32,13 +32,6 @@ class ArticleReview
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="number_review", type="integer")
-     */
-    private $numberReview;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="state", type="string", length=255)
@@ -74,14 +67,7 @@ class ArticleReview
     {
       $this-> createAt = new \DateTime();
       $this-> state = self::STATUS_SENT;
-      $this -> numberReview = new ArrayCollection();
       $this->reviemComments = new ArrayCollection();
-    }
-
-
-    public function count()
-    {
-        return count($this->numberReview);
     }
 
 
@@ -93,29 +79,6 @@ class ArticleReview
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set numberReview
-     *
-     * @param integer $numberReview
-     * @return Article_Review
-     */
-    public function setNumberReview($numberReview)
-    {
-        $this->numberReview = $numberReview;
-
-        return $this;
-    }
-
-    /**
-     * Get numberReview
-     *
-     * @return integer 
-     */
-    public function getNumberReview()
-    {
-        return $this->numberReview;
     }
 
     /**

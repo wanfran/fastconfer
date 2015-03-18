@@ -54,6 +54,21 @@ default:
                 - AppBundle\Behat\InscriptionContext
             filters:
                 tags: "@inscription"
+
+        articles:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - AppBundle\Behat\CoreContext
+                - AppBundle\Behat\ConferenceContext
+                - AppBundle\Behat\TopicContext
+                - AppBundle\Behat\UserContext
+                - AppBundle\Behat\WebContext
+                - AppBundle\Behat\ArticleContext
+                - AppBundle\Behat\ArticleReviewContext
+                - AppBundle\Behat\InscriptionContext
+            filters:
+                tags: "@articles"
+
         symfony:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext

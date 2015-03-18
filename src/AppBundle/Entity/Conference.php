@@ -140,9 +140,6 @@ class Conference
     }
 
 
-
-
-
     /**
      * @return mixed
      */

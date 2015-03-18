@@ -30,13 +30,14 @@ class InscriptionContext extends CoreContext
         {
             $inscription = new Inscription();
 
-
             $user=$this->getEntityManager()->getRepository('AppBundle:User')->findOneByUsername($inscriptionHash['username']);
             $conference=$this->getEntityManager()->getRepository('AppBundle:Conference')->findOneByName($inscriptionHash['name']);
 
             $inscription->setUser($user);
             $inscription->setConference($conference);
+
             $em->persist($inscription);
+;
         }
         $em->flush();
     }

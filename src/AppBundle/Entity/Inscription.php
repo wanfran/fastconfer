@@ -64,9 +64,6 @@ class Inscription
         return $this->getConference();
     }
 
-
-
-
     /**
      * Get id
      *

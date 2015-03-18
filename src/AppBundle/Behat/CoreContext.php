@@ -30,4 +30,30 @@ class CoreContext extends DefaultContext
 
         return $topic;
     }
+
+    public function findInscriptions($name)
+    {
+        $user=$this->getSecurityContext()->getToken()->getUser();
+
+        $conference = $this->getEntityManager()->getRepository('AppBundle:Conference')->findOneBy(array(
+            'name'=>$name
+        ));
+
+        $inscription = $this->getEntityManager()->getRepository('AppBundle:Inscription')->findOneBy(array(
+            'conference' => $conference,
+            'user' => $user
+        ));
+
+        return $inscription;
+    }
+
+    public function findArticle($articles)
+    {
+        $article = $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
+            'title'=>$articles
+        ));
+
+        return $article;
+    }
+
 }

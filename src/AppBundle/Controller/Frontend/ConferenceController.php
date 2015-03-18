@@ -102,7 +102,6 @@ class ConferenceController extends Controller
 
             $article_review = new ArticleReview();
             $article_review->setArticles($article);
-            $article_review->count($article_review);
 
             $article_review->setPath($form->get('path')->getData());
 

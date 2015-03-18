@@ -13,7 +13,7 @@ Feature: See a conference
       | topicD  |
     And there are following conferences:
       | name                    | slug                    | description                                | registration_starts_at | registration_ends_at | topics         |dead_time   |
-      | I Example Conference    | i-example-conference    | Description of the I Example Conference    | 2015/01/01             | 2015/01/31           | topicA, topicC |2015/02/30  |
+      | I Example Conference    | i-example-conference    | Description of the I Example Conference    | 2015/01/01             | 2015/01/31           | topicA         |2015/02/30  |
       | II Example Conference   | ii-example-conference   | Description of the II Example Conference   | 2015/01/01             | 2015/01/31           | topicB         |2015/02/30  |
       | III Example Conference  | iii-example-conference  | Description of the III Example Conference  | 2015/01/01             | 2015/01/31           | topicB         |2015/02/30  |
       | I Computing Conference  | i-computing-conference  | Description of the I Computing Conference  | 2015/01/01             | 2015/01/31           | topicD         |2015/02/30  |
