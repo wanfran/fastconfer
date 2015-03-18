@@ -119,15 +119,29 @@ class ConferenceController extends Controller
     }
 
     /**
-     * @Route("conference/{slug}/new", name="new_article")
+     * @Route("conference/new/{id}", name="new_article")
      * @Security("has_role('ROLE_USER')")
      */
-    public function newArticleAction(Conference $conference, Inscription $inscription, Request $request)
+    public function newArticleAction(Article $article, Request $request)
     {
+        $conference = $article->getInscriptions()->getConference();
 
-        $article = $this->getDoctrine()->getRepository('AppBundle:Article')->findOneBy(array('inscriptions'=>$inscription->getId()));
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $form = $this->createForm(new InscriptionType(), $article);
+        $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array(
+            'conference' => $conference,
+            'user' => $user,
+        ));
+
+        if (!$inscription) {
+            $this->get('session')->getFlashBag()->set('alert', 'You are not registered in this conference');
+
+            return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
+        }
+
+        $articles = $this->getDoctrine()->getRepository('AppBundle:Article')->findOneBy(array('id' => $article->getId()));
+
+        $form = $this->createForm(new InscriptionType(), $articles);
 
         $form->handleRequest($request);
 
@@ -157,20 +171,19 @@ class ConferenceController extends Controller
      * @Route("comments/{id}", name="comments")
      * @Security("has_role('ROLE_USER')")
      */
-    public function commentsAction(ArticleReview $articleReview, Conference $conference)
+    public function commentsAction(ArticleReview $articleReview)
     {
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array(
-            'conference' => $conference,
-            'user' => $user,
-        ));
+        $exist =$articleReview->getArticles()->getInscriptions()->getUser();
 
-        if ($inscription) {
-            $this->get('session')->getFlashBag()->set('alert', 'You can not register again in this conference');
+        if ($user!=$exist) {
+            $this->get('session')->getFlashBag()->set('alert', 'You can not see other comments');
 
-            return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
+            return $this->redirectToRoute('conference', array('slug' => $articleReview->getArticles()
+                ->getInscriptions()->getConference()->getSlug()
+            ));
         }
 
         $comments= $this->getDoctrine()->getRepository('AppBundle:ReviewComments')->findBy(array(
@@ -180,7 +193,9 @@ class ConferenceController extends Controller
         if ($articleReview->getState()=='send') {
             $this->get('session')->getFlashBag()->set('alert', 'There are not any comments');
 
-            return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
+            return $this->redirectToRoute('conference', array('slug' => $articleReview->getArticles()
+                ->getInscriptions()->getConference()->getSlug()
+            ));
         }
 
         $this->get('session')->getFlashBag()->set('success', 'There is some comments');

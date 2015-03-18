@@ -4,7 +4,7 @@
         author: <username()>
         keyword: <word()>
         abstract: <company()>
-        stateEnd: send
+        stateEnd: sent
         inscriptions: @inscription
         topics: 2x @topic*
     article1:
@@ -38,4 +38,12 @@
         abstract: <company()>
         stateEnd: accepted
         inscriptions: @inscription
+        topics: 2x @topic*
+    article5:
+        title: <word()>
+        author: <username()>
+        keyword: <word()>
+        abstract: <company()>
+        stateEnd: accepted
+        inscriptions: @inscription11
         topics: 2x @topic*

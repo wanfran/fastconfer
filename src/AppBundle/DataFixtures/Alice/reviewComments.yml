@@ -19,3 +19,8 @@
       state: rejected
       reviewers: @reviewer*
       articleReviews: @articleReview4
+    reviewComments4:
+      comment: <realText()>
+      state: accepted
+      reviewers: @reviewer*
+      articleReviews: @articleReview6
