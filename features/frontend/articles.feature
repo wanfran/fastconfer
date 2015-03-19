@@ -17,8 +17,8 @@ Feature: status of article
       | topicC  |
       | topicD  |
     And there are following conferences:
-      | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |dead_time  |topics |
-      | I Example Conference    | i-example-conference  | Description of the I Example Conference    | 2015/01/01             | 2015/04/30           |2015/04/25 |topicA |
+      | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |dead_time   |topics |
+      | I Example Conference    | i-example-conference  | Description of the I Example Conference    | now -3 days            | now +3 days          |now +2 days |topicA |
     And there are following inscriptions:
        |username| name                 |
        |user1   | I Example Conference |
@@ -29,15 +29,39 @@ Feature: status of article
       |third | userC   | example3 | 3tex example abstract|  sent     |
     And there are following articleReviews:
       | state                     |path        |articles |
-      | sent                      |example.pdf |  first  |
-      | accepted with suggestions |example.pdf |  second |
-      | accepted                  |example.pdf |  second |
-      | rejected                  |example.pdf |  third  |
+      | sent                      |example1.pdf |  first  |
+      | accepted with suggestions |example2.pdf |  second |
+      | accepted                  |example3.pdf |  second |
+      | rejected                  |example4.pdf |  third  |
+    And there are following reviewComments:
+      |state                      |comments                 |articleReviews |
+      |accepted with suggestions  |comments of the article1 |example2.pdf   |
+      |accepted                   |comments of the article2 |example3.pdf   |
+      |rejected                   |comments of the article3 |example4.pdf   |
 
 
   Scenario: see article sent
     Given I am on the inscription page for "I Example Conference"
     Then I should see "first"
+    And I should see "sent"
+
+  Scenario: see article accepted
+    Given I am on the inscription page for "I Example Conference"
+    Then I should see "second"
+    And I should see "view comments"
+    When I follow "view comments"
+    Then I should be on page comments "example2.pdf"
+
+  Scenario: see article accepted with suggestions
+    Given I am on the inscription page for "I Example Conference"
+    Then I should see "second"
+    And I should see "accepted with suggestions"
+    And I should see "view comments"
+    When I follow "Send"
+    Then I should be on the new page for "second"
+
+
+
 
 
 

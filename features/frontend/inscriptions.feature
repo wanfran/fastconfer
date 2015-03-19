@@ -17,8 +17,8 @@ Feature: fill form
       | topicC  |
       | topicD  |
     And there are following conferences:
-      | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |dead_time  |topics |
-      | I Example Conference    | i-example-conference  | Description of the I Example Conference    | 2015/01/01             | 2015/04/30           |2015/04/25 |topicA |
+      | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |dead_time    |topics |
+      | I Example Conference    | i-example-conference  | Description of the I Example Conference    | now -3 days            | now +3 days          |now +2 days  |topicA |
     And there are following inscriptions:
       |username| name                 |
       |user1   | I Example Conference |

@@ -56,4 +56,13 @@ class CoreContext extends DefaultContext
         return $article;
     }
 
+    public function finReviewComments($articleReviews)
+    {
+        $comment = $this->getEntityManager()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
+            'path'=>$articleReviews
+        ));
+
+        return $comment;
+    }
+
 }
