@@ -35,6 +35,8 @@ class ReviewComments
      */
     private $state;
 
+
+
     /**
      * @ORM\ManyToOne(targetEntity="Reviewer", inversedBy="reviewComments")
      */

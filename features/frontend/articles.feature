@@ -23,12 +23,12 @@ Feature: status of article
        |username| name                 |
        |user1   | I Example Conference |
     And I submitted the following articles to "I Example Conference":
-      |title | authors | keyword  | abstract             |  stateEnd |
-      |first | userA   | example1 | 1tex example abstract|  sent     |
-      |second| userB   | example2 | 2tex example abstract|  sent     |
-      |third | userC   | example3 | 3tex example abstract|  sent     |
+      |title | authors | keyword  | abstract             |  stateEnd                  |
+      |first | userA   | example1 | 1tex example abstract|  sent                      |
+      |second| userB   | example2 | 2tex example abstract|  accepted with suggestions |
+      |third | userC   | example3 | 3tex example abstract|  sent                      |
     And there are following articleReviews:
-      | state                     |path        |articles |
+      | state                     |path         |articles |
       | sent                      |example1.pdf |  first  |
       | accepted with suggestions |example2.pdf |  second |
       | accepted                  |example3.pdf |  second |
@@ -50,14 +50,14 @@ Feature: status of article
     Then I should see "second"
     And I should see "view comments"
     When I follow "view comments"
-    Then I should be on page comments "example2.pdf"
+    Then I should be on page comments "second"
 
   Scenario: see article accepted with suggestions
     Given I am on the inscription page for "I Example Conference"
     Then I should see "second"
     And I should see "accepted with suggestions"
-    And I should see "view comments"
-    When I follow "Send"
+    And I should see "qwerty"
+    When I follow "qwerty"
     Then I should be on the new page for "second"
 
 

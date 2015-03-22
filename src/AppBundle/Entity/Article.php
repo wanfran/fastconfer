@@ -98,7 +98,7 @@ class Article
     private $articleReviews;
 
     /**
-     * @ORM\OneToMany(targetEntity="Reviewer", mappedBy="articles");
+     * @ORM\OneToMany(targetEntity="Reviewer", mappedBy="articles")
      */
     private $reviewers;
 

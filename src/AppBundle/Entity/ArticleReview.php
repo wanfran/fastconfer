@@ -35,6 +35,7 @@ class ArticleReview
      * @var string
      *
      * @ORM\Column(name="state", type="string", length=255)
+     *
      */
     private $state;
 

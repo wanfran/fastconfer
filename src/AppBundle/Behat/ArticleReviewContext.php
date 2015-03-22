@@ -49,13 +49,36 @@ class ArticleReviewContext extends CoreContext
             $reviewComments = new ReviewComments();
             $reviewComments->setState($reviewCommentsHash['state']);
             $reviewComments->setComment($reviewCommentsHash['comments']);
-            $reviewComments->setArticleReviews($this->finReviewComments($reviewCommentsHash['articleReviews']));
+            $reviewComments->setArticleReviews($this->findReviewComments($reviewCommentsHash['articleReviews']));
             $em->persist($reviewComments);
         }
         $em->flush();
     }
 
 
+
+
+    /**
+     * @Then I should be on page comments :title
+     */
+    public function iShouldBeOnNewComments($title)
+    {
+        $exist= $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
+            'title'=> $title
+        ));
+
+        $review = $this->getEntityManager()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
+            'articles' => $exist
+        ));
+
+//        if (!$exist) {
+//            throw new ElementNotFoundException('comments doesn\'t exist');
+//        }
+
+        $this->assertSession()->addressEquals($this->generatePageUrl('comments', array(
+            'id' => $review->getId()
+        )));
+    }
 
     /**
      * @Then I should be on the new page for :article
@@ -78,23 +101,6 @@ class ArticleReviewContext extends CoreContext
 
     }
 
-    /**
-     * @Then I should be on page comments :path
-     */
-    public function iShouldBeOnNewComments($path)
-    {
-        $exist= $this->getEntityManager()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
-            'path'=> $path
-        ));
-
-        if (!$exist) {
-            throw new ElementNotFoundException('comments doesn\'t exist');
-        }
-
-        $this->assertSession()->addressEquals($this->generatePageUrl('comments'),array(
-            'id' => $exist
-        ));
-    }
 
 }
 

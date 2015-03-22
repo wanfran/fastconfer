@@ -6,10 +6,36 @@
     <div class="row">
         <div class="col-md-12">
 
-            {% for comentarios in comments %}
-                {{ comentarios.comment  }}
-            {% endfor %}
+            <div class="table-responsive card-action">
+
+                <table class="table table-bordered table-hover">
+
+                    <tr class="success">
+                        <th>Review</th>
+                        <th>Date</th>
+                        <th>Comment</th>
+                        <th>State</th>
+                    </tr>
+
+                    <tr>
+                        {% for comentarios in comments %}
+                            <td>....</td>
+                            <td></td>
+                            <td>{{ comentarios.comment  }}</td>
+
+                            {% if comentarios.state== 'rejected' %}
+                                <td><span class="label label-danger"> {{ comentarios.state }}</span></td>
+                            {% else %}
+                                <td><span class="label label-success"> {{ comentarios.state }}</span></td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+
+                </table>
+
             </div>
+        </div>
     </div>
 
 {% endblock %}
