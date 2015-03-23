@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller\Frontend;
 
+use AppBundle\Entity\Reviewer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,6 +22,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         $conferences = $this->getDoctrine()->getRepository('AppBundle:Conference');
 
         $query = $conferences->createQueryBuilder('c')
@@ -30,6 +33,15 @@ class DefaultController extends Controller
             ->getQuery();
 
         $conferences = $query->getResult();
+
+        $reviewer = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(
+            'users'=>$user
+        ));
+
+        if($reviewer)
+        {
+            $this->get('session')->getFlashBag()->set('success', 'You have accessed as reviewer');
+        }
 
         return $this->render('Default/index.html.twig', array('conferences' => $conferences));
     }
