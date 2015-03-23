@@ -1,5 +1,13 @@
 \AppBundle\Entity\Reviewer:
-    reviewer{1..3}:
-       users: @users*
+    reviewer1:
+       users: @admin
        articles: @article1
-
+    reviewer2:
+       users: @admin
+       articles: @article2
+    reviewer3:
+       users: @admin
+       articles: @article3
+    reviewer4:
+       users: @users1
+       articles: @article
