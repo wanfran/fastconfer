@@ -44,11 +44,15 @@ class ReviewComments
     private $createAt;
 
     /**
+     * @var string
+     *
      * @ORM\ManyToOne(targetEntity="Reviewer", inversedBy="reviewComments")
      */
     private $reviewers;
 
     /**
+     * @var string
+     *
      * @ORM\ManyToOne(targetEntity="ArticleReview", inversedBy="reviewComments")
      */
     private $articleReviews;

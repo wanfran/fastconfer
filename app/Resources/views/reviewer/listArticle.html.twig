@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block mainContent %}
+
+
+    {% if app.user is null %}
+        <div class="alert alert-danger text-center">
+            <strong>You must be registered</strong>
+        </div>
+
+
+    {% else %}
+        {% if review!=null %}
+            <div class="row">
+            <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+
+                    <tr class="success">
+                        <th>Title</th>
+                        <th>Date Inscription</th>
+                        <th>Upload</th>
+                        <th>Edit Article</th>
+
+
+                    </tr>
+                    {% for article in review %}
+                        <tr>
+                            <td>{{ article.articles }}</td>
+                            <td>{{ article.users }}</td>
+                            <td>....</td>
+                            <td><a class="btn btn-default" href="{{ path('article_review',
+                                {'id': article.articles.id }) }}" role="button">view</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% else %}
+
+            <div class="alert alert-danger text-center">
+                <strong>There aren't articles</strong>
+            </div>
+            </div>
+            </div>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

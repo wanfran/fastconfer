@@ -20,7 +20,7 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Date Inscription</th>
-                                <th>Send Article</th>
+                                <th>Go to Conference</th>
 
                             </tr>
                                 {% for article in inscription %}
@@ -28,8 +28,8 @@
                                     <td>{{ article.id }}</td>
                                     <td>{{ article.conference }}</td>
                                     <td>{{ article.createdAt|date("d/m/y") }}</td>
-                                    {#<td><a class="btn btn-default" href="{{ path('conference_upload_article',#}
-                                        {#{'slug': inscription.conference.slug }) }}" role="button">Send new article</a></td>#}
+                                    <td><a class="btn btn-default" href="{{ path('conference',
+                                        {'slug': article.conference.slug }) }}" role="button">view</a></td>
                                 </tr>
                                  {% endfor %}
                         </table>
