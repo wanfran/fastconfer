@@ -35,7 +35,13 @@ class ReviewComments
      */
     private $state;
 
-
+    /**
+     * @var \DateTime
+     *
+     *@ORM\Column(name="created_at", type="datetime")
+     *
+     */
+    private $createAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="Reviewer", inversedBy="reviewComments")
@@ -47,6 +53,10 @@ class ReviewComments
      */
     private $articleReviews;
 
+    function __construct()
+    {
+        $this-> createAt = new \DateTime();
+    }
 
 
     /**
@@ -104,6 +114,24 @@ class ReviewComments
     {
         return $this->state;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreateAt()
+    {
+        return $this->createAt;
+    }
+
+    /**
+     * @param \DateTime $createAt
+     */
+    public function setCreateAt($createAt)
+    {
+        $this->createAt = $createAt;
+    }
+
+
 
     /**
      * Set reviewers
