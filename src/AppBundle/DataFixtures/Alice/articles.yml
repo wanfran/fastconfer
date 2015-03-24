@@ -47,3 +47,11 @@
         stateEnd: accepted
         inscriptions: @inscription11
         topics: 2x @topic*
+    article6:
+        title: <word()>
+        author: <username()>
+        keyword: <word()>
+        abstract: <company()>
+        stateEnd: sent
+        inscriptions: @inscription
+        topics: 2x @topic*
