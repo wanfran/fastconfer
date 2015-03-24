@@ -34,7 +34,7 @@
                             {% if inscription %}
                                 <div class="card-action">
                                     <a class="btn btn-default" href="{{ path('conference_upload_article', { 'slug': conference.slug }) }}"
-                                       role="button">Send new article</a>
+                                       role="button">Send article</a>
                                 </div>
 
                                 <div class="table-responsive card-action">
@@ -42,7 +42,7 @@
 
                                         <table class="table table-bordered table-hover">
                                             <tr>
-                                                <td colspan="4">Title: {{ article.title }}</td>
+                                                <td colspan="4"><strong>Title: {{ article.title }}</strong></td>
                                             </tr>
 
                                             <tr class="success">
@@ -75,7 +75,7 @@
                                                     <td colspan="3" >{{ article.stateEnd }}</td>
                                                     <td colspan="1"><a class="btn btn-default center-block" href="{{ path('new_article',
                                                         {'id':article.id}) }}"
-                                                                           role="button">qwerty</a></td>
+                                                                           role="button">New Article</a></td>
                                                     {% elseif article.stateEnd!='send' %}
                                                         <td colspan="4" >{{ article.stateEnd }}</td>
 

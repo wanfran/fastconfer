@@ -11,26 +11,32 @@
 
     {% else %}
         {% if review!=null %}
-            <div class="row">
-            <div class="col-md-12">
+            <div class="row ">
+            <div class="col-md-12  text-center">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
 
                     <tr class="success">
-                        <th>Title</th>
-                        <th>Date Inscription</th>
-                        <th>Upload</th>
-                        <th>Edit Article</th>
+                        <th class="text-center">Title</th>
+                        <th class="text-center">Abstract</th>
+                        <th class="text-center">keyword</th>
+                        {#<th>Topics</th>#}
+                        <th class="text-center">Download</th>
+                        <th class="text-center">Edit Article</th>
 
 
                     </tr>
                     {% for article in review %}
                         <tr>
                             <td>{{ article.articles }}</td>
-                            <td>{{ article.users }}</td>
-                            <td>....</td>
-                            <td><a class="btn btn-default" href="{{ path('article_review',
-                                {'id': article.articles.id }) }}" role="button">view</a></td>
+                            <td>{{ article.articles.abstract }}</td>
+                            <td>{{ article.articles.keyword }}</td>
+                            <td><a class="btn btn-default glyphicon glyphicon-download-alt " href="{{ path('file_download',
+                                {'id': article.articles.id }) }}" role="button"></a></td>
+                            <td><a class="btn btn-default glyphicon glyphicon-edit" href="{{ path('article_review',
+                                {'id': article.articles.id }) }}" role="button"></a></td>
+
+
                         </tr>
                     {% endfor %}
                 </table>

@@ -12,15 +12,15 @@
         {% else %}
             {% if inscription!=null %}
                 <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 text-center">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
 
                             <tr class="success">
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Date Inscription</th>
-                                <th>Go to Conference</th>
+                                <th class="text-center">Id</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Date Inscription</th>
+                                <th class="text-center">Go to Conference</th>
 
                             </tr>
                                 {% for article in inscription %}
@@ -28,8 +28,8 @@
                                     <td>{{ article.id }}</td>
                                     <td>{{ article.conference }}</td>
                                     <td>{{ article.createdAt|date("d/m/y") }}</td>
-                                    <td><a class="btn btn-default" href="{{ path('conference',
-                                        {'slug': article.conference.slug }) }}" role="button">view</a></td>
+                                    <td><a class="btn btn-default glyphicon glyphicon-eye-open" href="{{ path('conference',
+                                        {'slug': article.conference.slug }) }}" role="button"></a></td>
                                 </tr>
                                  {% endfor %}
                         </table>
