@@ -27,4 +27,7 @@
         state: accepted
         path: <word()>
         articles: @article5
-
+    articleReview7:
+        state: sent
+        path: <word()>
+        articles: @article6

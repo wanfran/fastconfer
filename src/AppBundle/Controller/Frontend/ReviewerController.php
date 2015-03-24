@@ -16,6 +16,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 
 class ReviewerController extends Controller{
@@ -86,6 +88,36 @@ class ReviewerController extends Controller{
         }
 
         return $this->render('reviewer/Article.html.twig', array('form' => $form->createView()));
+    }
+
+
+    /**
+     * @Route("/file/{id}/dowload", name="file_download")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function downloadAction(Article $article)
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $fondArticle = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(
+            'users'=>$user,
+            'articles'=> $article
+        ));
+
+        $review_article = $this->getDoctrine()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
+            'articles'=> $article
+        ));
+
+        echo $review_article->getPath();
+
+        $response = new BinaryFileResponse($review_article->getPath());
+
+        $response->trustXSendfileTypeHeader();
+        $response->setContentDisposition(
+            ResponseHeaderBag::DISPOSITION_INLINE,$review_article->getPath(),
+            iconv('UTF-8','ASCII//TRANSLIT',$review_article->getPath())
+        );
+        return $response;
     }
 
 }
