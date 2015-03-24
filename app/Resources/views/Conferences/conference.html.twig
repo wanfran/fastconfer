@@ -17,8 +17,8 @@
                         <strong>  Date End: </strong>{{ conference.dateEnd|date("d/m/y") }}</p>
                         <hr>
                         <strong>Topics: </strong>
-                        {% for aux in conference.topics %}
-                            <span class="label label-danger"> {{ aux.name }}</span>
+                        {% for topics in conference.topics %}
+                            <span class="label label-danger glyphicon glyphicon-tags"> {{ topics.name }}</span>
                         {% endfor %}
                     </div>
 
