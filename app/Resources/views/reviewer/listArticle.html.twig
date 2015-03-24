@@ -20,7 +20,7 @@
                         <th class="text-center">Title</th>
                         <th class="text-center">Abstract</th>
                         <th class="text-center">keyword</th>
-                        {#<th>Topics</th>#}
+                        <th class="text-center">Topics</th>
                         <th class="text-center">Download</th>
                         <th class="text-center">Edit Article</th>
 
@@ -28,9 +28,14 @@
                     </tr>
                     {% for article in review %}
                         <tr>
-                            <td>{{ article.articles }}</td>
+                            <td>{{ article.articles.title }}</td>
                             <td>{{ article.articles.abstract }}</td>
                             <td>{{ article.articles.keyword }}</td>
+                            <td>
+                                {% for articleReview in article.articles.topics  %}
+                                    <span class="label label-success glyphicon glyphicon-tags"> {{ articleReview.name }}</span>
+                                    {% endfor %}
+                            </td>
                             <td><a class="btn btn-default glyphicon glyphicon-download-alt " href="{{ path('file_download',
                                 {'id': article.articles.id }) }}" role="button"></a></td>
                             <td><a class="btn btn-default glyphicon glyphicon-edit" href="{{ path('article_review',

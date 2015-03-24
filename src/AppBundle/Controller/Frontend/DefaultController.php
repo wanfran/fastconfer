@@ -34,14 +34,14 @@ class DefaultController extends Controller
 
         $conferences = $query->getResult();
 
-        $reviewer = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(
-            'users'=>$user
-        ));
-
-        if($reviewer)
-        {
-            $this->get('session')->getFlashBag()->set('success', 'You have accessed as reviewer');
-        }
+//        $reviewer = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(
+//            'users'=>$user
+//        ));
+//
+//        if($reviewer)
+//        {
+//            $this->get('session')->getFlashBag()->set('success', 'You have accessed as reviewer');
+//        }
 
         return $this->render('Default/index.html.twig', array('conferences' => $conferences));
     }

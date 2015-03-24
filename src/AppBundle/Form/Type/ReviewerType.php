@@ -19,7 +19,8 @@ class ReviewerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('comment','textarea')
+            ->add('comment','textarea',array(
+                'attr' => array('cols' => '10', 'rows' => '10')))
             ->add('state', 'choice', array(
                 'choices' => array('accepted' => 'Accepted', 'accepted with suggestions' => 'Accepted with suggestions',
                     'rejected' => 'Rejected'),

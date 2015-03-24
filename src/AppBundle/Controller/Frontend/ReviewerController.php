@@ -87,7 +87,7 @@ class ReviewerController extends Controller{
             return $this->redirectToRoute('article_list');
         }
 
-        return $this->render('reviewer/Article.html.twig', array('form' => $form->createView()));
+        return $this->render('reviewer/Article.html.twig', array('review' => $fondArticle,'form' => $form->createView()));
     }
 
 

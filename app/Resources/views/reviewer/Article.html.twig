@@ -2,40 +2,34 @@
 
 {% block mainContent %}
 
-    {#{% if review!=null %}#}
-        {#<div class="row ">#}
-            {#<div class="col-md-12  text-center">#}
-            {#<div class="table-responsive">#}
-                {#<table class="table table-bordered table-hover">#}
+    {% if review!=null %}
+        <div class="row ">
+            <div class="col-md-12  text-center">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
 
-                    {#<tr class="success">#}
-                        {#<th class="text-center">Title</th>#}
-                        {#<th class="text-center">Abstract</th>#}
-                        {#<th class="text-center">keyword</th>#}
-                        {#&#123;&#35;<th>Topics</th>&#35;&#125;#}
-                        {#<th class="text-center">Download</th>#}
-                        {#<th class="text-center">Edit Article</th>#}
+                    <tr class="success">
+                        <th class="text-center">Title</th>
+                        <th class="text-center">Abstract</th>
+                        <th class="text-center">keyword</th>
+                        <th class="text-center">Topics</th>
 
-
-                    {#</tr>#}
-                    {#{% for article in review %}#}
-                        {#<tr>#}
-                            {#<td>{{ article.articles }}</td>#}
-                            {#<td>{{ article.articles.abstract }}</td>#}
-                            {#<td>{{ article.articles.keyword }}</td>#}
-                            {#<td><a class="btn btn-default glyphicon glyphicon-download-alt " href="{{ path('file_download',#}
-                                {#{'id': article.articles.id }) }}" role="button"></a></td>#}
-                            {#<td><a class="btn btn-default glyphicon glyphicon-edit" href="{{ path('article_review',#}
-                                {#{'id': article.articles.id }) }}" role="button"></a></td>#}
-
-
-                        {#</tr>#}
-                    {#{% endfor %}#}
-                {#</table>#}
-            {#</div>#}
-            {#</div>#}
-        {#</div>#}
-    {#{% endif %}#}
+                    </tr>
+                        <tr>
+                            <td>{{ review.articles }}</td>
+                            <td>{{ review.articles.abstract }}</td>
+                            <td>{{ review.articles.keyword }}</td>
+                            <td>
+                            {% for articleReview in review.articles.topics  %}
+                                <span class="label label-success glyphicon glyphicon-tags"> {{ articleReview.name }}</span>
+                            {% endfor %}
+                            </td>
+                        </tr>
+                </table>
+            </div>
+            </div>
+        </div>
+    {% endif %}
     <form method="POST" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
 
