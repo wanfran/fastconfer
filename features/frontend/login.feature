@@ -18,7 +18,7 @@ Feature: User sign up
       | password | secret1 |
     And I press "_submit"
     Then I should be on the homepage
-    And I should see "Logout"
+    And I should see "user1"
 
   Scenario: Trying to login with bad credentials
     Given I am on "/login"

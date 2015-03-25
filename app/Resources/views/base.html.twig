@@ -57,12 +57,12 @@
                         </ul>
 
                         {% if not app.user %}
-                            <a href="{{ url('fos_user_security_login') }}" type="button" class="btn btn-default pull-right botones botona"
-                                    >Login</a>
+                            <a href="{{ url('fos_user_security_login') }}" type="button" class="btn btn-default glyphicon glyphicon-user pull-right botones botona"
+                                    > Login</a>
                             {% else %}
 
-                                <a href="{{ url('fos_user_security_logout') }}" type="button" class="btn btn-default pull-right botones botona"
-                                        >Logout</a>
+                                <a href="{{ url('fos_user_security_logout') }}" type="button" class="btn btn-default glyphicon glyphicon-user pull-right botones botona"
+                                        > {{ app.user }}</a>
                         {% endif %}
 
                         <!-- Modal -->
