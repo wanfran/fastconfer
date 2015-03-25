@@ -30,8 +30,8 @@ Feature: fill form
 
   Scenario: go page of upload
       Given I am on the inscription page for "I Example Conference"
-      Then I should see "Send new article"
-      When I follow "Send new article"
+      Then I should see "Send article"
+      When I follow "Send article"
       Then I should be on the upload page for "I Example Conference"
 
     Scenario: send empty form

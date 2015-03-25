@@ -35,7 +35,6 @@ class ArticleReviewContext extends CoreContext
         $em->flush();
     }
 
-
     /**
      * @Given there are following reviewComments:
      *
@@ -56,8 +55,6 @@ class ArticleReviewContext extends CoreContext
     }
 
 
-
-
     /**
      * @Then I should be on page comments :title
      */
@@ -71,11 +68,35 @@ class ArticleReviewContext extends CoreContext
             'articles' => $exist
         ));
 
-//        if (!$exist) {
-//            throw new ElementNotFoundException('comments doesn\'t exist');
-//        }
+        if (!$exist) {
+            throw new ElementNotFoundException('comments doesn\'t exist');
+        }
 
         $this->assertSession()->addressEquals($this->generatePageUrl('comments', array(
+            'id' => $review->getId()
+        )));
+    }
+
+
+    /**
+     * @Given I am on the comments page :title
+     *
+     */
+    public function iAmOnTheCommentsPage($title)
+    {
+        $exist= $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
+            'title'=> $title
+        ));
+
+        $review = $this->getEntityManager()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
+            'articles' => $exist
+        ));
+
+        if (!$exist) {
+            throw new ElementNotFoundException('comments doesn\'t exist');
+        }
+
+        $this->getSession()->visit($this->generatePageUrl('comments', array(
             'id' => $review->getId()
         )));
     }
@@ -99,6 +120,25 @@ class ArticleReviewContext extends CoreContext
             'id' => $exist->getId()
         )));
 
+    }
+
+
+    /**
+     * @Given  I am on the new page for :article
+     */
+    public function iAmOnTheNewPage($article)
+    {
+        $exist = $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
+            'title' => $article
+        ));
+
+        if (!$exist) {
+            throw new ElementNotFoundException('article doesn\'t exist');
+        }
+
+        $this->getSession()->visit($this->generatePageUrl('new_article', array(
+            'id' => $exist->getId()
+        )));
     }
 
 

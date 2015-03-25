@@ -48,20 +48,25 @@ Feature: status of article
   Scenario: see article accepted
     Given I am on the inscription page for "I Example Conference"
     Then I should see "second"
-    And I should see "view comments"
-    When I follow "view comments"
+    And I should see "comments"
+    When I follow "comments"
     Then I should be on page comments "second"
+
+  Scenario: read comment article
+    Given I am on the comments page "second"
+    Then I should see "There is some comments"
 
   Scenario: see article accepted with suggestions
     Given I am on the inscription page for "I Example Conference"
     Then I should see "second"
     And I should see "accepted with suggestions"
-    And I should see "qwerty"
-    When I follow "qwerty"
+    And I should see "New Article"
+    When I follow "New Article"
     Then I should be on the new page for "second"
 
-
-
+  Scenario: forward form
+    Given I am on the new page for "second"
+    Then I should see "Complete the form"
 
 
 
