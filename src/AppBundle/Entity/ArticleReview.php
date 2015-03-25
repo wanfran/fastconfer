@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -12,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @Gedmo\Uploadable(path="/my/path", filenameGenerator="SHA1", allowOverwrite=true, appendNumber=true)
  */
 class ArticleReview
 {
@@ -40,9 +42,10 @@ class ArticleReview
     private $state;
 
     /**
-     * @var string
      *
      * @ORM\Column(name="path", type="string", length=255)
+     * @Gedmo\UploadableFilePath
+     *
      */
     private $path;
 

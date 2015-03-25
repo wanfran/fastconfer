@@ -35,9 +35,9 @@ class InscriptionType extends AbstractType {
                 },
             ))
 
-            ->add('path','file',array('mapped' => false));
+            ->add('path','file',array('mapped' => false)); //de esta forma pongo un atributo que no existe en esa clase
 
-////            ->add('save', 'submit', array('label' => 'Submit'));
+//            ->add('save', 'submit', array('label' => 'Submit'));
 
 }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
