@@ -17,7 +17,6 @@
                         <table class="table table-bordered table-hover">
 
                             <tr class="success">
-                                <th class="text-center">Id</th>
                                 <th class="text-center">Name</th>
                                 <th class="text-center">Date Inscription</th>
                                 <th class="text-center">Go to Conference</th>
@@ -25,7 +24,6 @@
                             </tr>
                                 {% for article in inscription %}
                                 <tr>
-                                    <td>{{ article.id }}</td>
                                     <td>{{ article.conference }}</td>
                                     <td>{{ article.createdAt|date("d/m/y") }}</td>
                                     <td><a class="btn btn-default glyphicon glyphicon-eye-open" href="{{ path('conference',

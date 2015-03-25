@@ -101,13 +101,13 @@
                 <div class="side-body">
                     {% block alert %}
                         {% for flashMessage in app.session.flashbag.get('alert') %}
-                            <div class="alert alert-danger text-center col-md-4 glyphicon glyphicon-remove ">
+                            <div class="alert alert-danger text-center col-md-5 glyphicon glyphicon-remove ">
                                 <strong>{{ flashMessage }}</strong>
                             </div>
                         {% endfor %}
 
                         {% for flashMessage in app.session.flashbag.get('success') %}
-                            <div class="alert alert-success text-center col-md-4 glyphicon glyphicon-ok">
+                            <div class="alert alert-success text-center col-md-5 glyphicon glyphicon-ok">
                                 <strong>{{ flashMessage }}</strong>
                             </div>
                         {% endfor %}
