@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ReviemComments
@@ -25,6 +26,9 @@ class ReviewComments
      * @var string
      *
      * @ORM\Column(name="comment", type="string", length=255)
+     *
+     * @Assert\NotBlank
+     * @Assert\Length(min="5", minMessage="too short"))
      */
     private $comment;
 
@@ -32,6 +36,7 @@ class ReviewComments
      * @var string
      *
      * @ORM\Column(name="state", type="string", length=255)
+     *
      */
     private $state;
 
