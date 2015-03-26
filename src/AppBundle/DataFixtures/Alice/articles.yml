@@ -5,7 +5,7 @@
         keyword: <word()>
         abstract: <company()>
         stateEnd: sent
-        inscriptions: @inscription
+        inscription: @inscription
         topics: 2x @topic*
     article1:
         title: <word()>
@@ -13,7 +13,7 @@
         keyword: <word()>
         abstract: <company()>
         stateEnd: accepted
-        inscriptions: @inscription
+        inscription: @inscription
         topics: 2x @topic*
     article2:
         title: <word()>
@@ -21,7 +21,7 @@
         keyword: <word()>
         abstract: <company()>
         stateEnd: rejected
-        inscriptions: @inscription
+        inscription: @inscription
         topics: 2x @topic*
     article3:
         title: <word()>
@@ -29,7 +29,7 @@
         keyword: <word()>
         abstract: <company()>
         stateEnd: accepted with suggestions
-        inscriptions: @inscription
+        inscription: @inscription
         topics: 2x @topic*
     article4:
         title: <word()>
@@ -37,7 +37,7 @@
         keyword: <word()>
         abstract: <company()>
         stateEnd: accepted
-        inscriptions: @inscription
+        inscription: @inscription
         topics: 2x @topic*
     article5:
         title: <word()>
@@ -45,7 +45,7 @@
         keyword: <word()>
         abstract: <company()>
         stateEnd: accepted
-        inscriptions: @inscription11
+        inscription: @inscription11
         topics: 2x @topic*
     article6:
         title: <word()>
@@ -53,5 +53,5 @@
         keyword: <word()>
         abstract: <company()>
         stateEnd: sent
-        inscriptions: @inscription
+        inscription: @inscription
         topics: 2x @topic*

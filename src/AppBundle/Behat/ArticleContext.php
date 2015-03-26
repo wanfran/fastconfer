@@ -56,7 +56,7 @@ class ArticleContext extends CoreContext
             $articles->setKeyword($articleHash['keyword']);
             $articles->setAbstract($articleHash['abstract']);
             $articles->setStateEnd($articleHash['stateEnd']);
-            $articles->setInscriptions($this->findInscriptions($name));
+            $articles->setInscription($this->findInscription($name));
             $em->persist($articles);
         }
         $em->flush();

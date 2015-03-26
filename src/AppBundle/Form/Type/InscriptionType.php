@@ -18,7 +18,7 @@ class InscriptionType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $conference = $builder->getData()->getInscriptions()->getConference();
+        $conference = $builder->getData()->getInscription()->getConference();
 
         $builder
             ->add('title')

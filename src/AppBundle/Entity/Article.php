@@ -89,7 +89,7 @@ class Article
      * @ORM\ManyToOne(targetEntity="Inscription", inversedBy="articles")
      *
      */
-    private $inscriptions;
+    private $inscription;
 
     /**
      * @ORM\OneToMany(targetEntity="ArticleReview", mappedBy="articles")
@@ -282,28 +282,6 @@ class Article
     }
 
     /**
-     * Set inscriptions
-     *
-     * @param \AppBundle\Entity\Inscription $inscriptions
-     * @return Article
-     */
-    public function setInscriptions(\AppBundle\Entity\Inscription $inscriptions = null)
-    {
-        $this->inscriptions = $inscriptions;
-
-        return $this;
-    }
-
-    /**
-     * Get inscriptions
-     *
-     * @return \AppBundle\Entity\Inscription 
-     */
-    public function getInscriptions()
-    {
-        return $this->inscriptions;
-    }
-    /**
      * Add articleReviews
      *
      * @param \AppBundle\Entity\ArticleReview $articleReviews
@@ -367,5 +345,28 @@ class Article
     public function getReviewers()
     {
         return $this->reviewers;
+    }
+
+    /**
+     * Set inscription
+     *
+     * @param \AppBundle\Entity\Inscription $inscription
+     * @return Article
+     */
+    public function setInscription(\AppBundle\Entity\Inscription $inscription = null)
+    {
+        $this->inscription = $inscription;
+
+        return $this;
+    }
+
+    /**
+     * Get inscription
+     *
+     * @return \AppBundle\Entity\Inscription 
+     */
+    public function getInscription()
+    {
+        return $this->inscription;
     }
 }

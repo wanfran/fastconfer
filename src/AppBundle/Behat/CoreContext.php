@@ -31,7 +31,7 @@ class CoreContext extends DefaultContext
         return $topic;
     }
 
-    public function findInscriptions($name)
+    public function findInscription($name)
     {
         $user=$this->getSecurityContext()->getToken()->getUser();
 

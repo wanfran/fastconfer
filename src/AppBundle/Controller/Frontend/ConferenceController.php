@@ -88,7 +88,7 @@ class ConferenceController extends Controller
         }
 
         $article = new Article();
-        $article->setInscriptions($inscription);
+        $article->setInscription($inscription);
 
         $form = $this->createForm(new InscriptionType(), $article);
 
@@ -123,7 +123,7 @@ class ConferenceController extends Controller
      */
     public function newArticleAction(Article $article, Request $request)
     {
-        $conference = $article->getInscriptions()->getConference();
+        $conference = $article->getInscription()->getConference();
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -174,13 +174,13 @@ class ConferenceController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $exist =$articleReview->getArticles()->getInscriptions()->getUser();
+        $exist =$articleReview->getArticles()->getInscription()->getUser();
 
         if ($user!=$exist) {
             $this->get('session')->getFlashBag()->set('alert', 'You can not see other comments');
 
             return $this->redirectToRoute('conference', array('slug' => $articleReview->getArticles()
-                ->getInscriptions()->getConference()->getSlug()
+                ->getInscription()->getConference()->getSlug()
             ));
         }
 
@@ -192,7 +192,7 @@ class ConferenceController extends Controller
             $this->get('session')->getFlashBag()->set('alert', 'There are not any comments');
 
             return $this->redirectToRoute('conference', array('slug' => $articleReview->getArticles()
-                ->getInscriptions()->getConference()->getSlug()
+                ->getInscription()->getConference()->getSlug()
             ));
         }
 

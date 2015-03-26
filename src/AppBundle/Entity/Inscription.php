@@ -47,7 +47,7 @@ class Inscription
     /**
      * @var string
      *
-     * @ORM\OneToMany(targetEntity="Article",mappedBy="inscriptions")
+     * @ORM\OneToMany(targetEntity="Article",mappedBy="inscription")
      */
     private $articles;
 
