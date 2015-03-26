@@ -28,7 +28,7 @@ Feature: fill form
       |second| userB   | example2 | 2tex example abstract|  sent     |
       |third | userC   | example3 | 3tex example abstract|  sent     |
 
-  Scenario: go page of upload
+    Scenario: go page of upload
       Given I am on the inscription page for "I Example Conference"
       Then I should see "Send article"
       When I follow "Send article"
@@ -39,7 +39,20 @@ Feature: fill form
       When I press "Create"
       Then I should see "This value should not be blank."
 
-     Scenario: send form
+    Scenario: send form too short Abstract
+      Given I am on the upload page for "I Example Conference"
+      When I fill in the following:
+        |Title   |first   |
+        |Author  |userA   |
+        |Keyword |example1|
+        |Abstract|1tex|
+      Then I check "topicA"
+      And the "topicA" checkbox should be checked
+      And I attach the file "Perrito.jpg" to "article_path"
+      When I press "Create"
+      Then I should see "too short"
+
+    Scenario: send form
        Given I am on the upload page for "I Example Conference"
        When I fill in the following:
        |Title   |first   |
