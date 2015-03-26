@@ -68,4 +68,79 @@ class ReviewerContext extends CoreContext
         $this->assertSession()->elementsCount('css', '.glyphicon-edit', $number);
     }
 
+
+    /**
+     * @Given I am on page articles reviewer
+     */
+    public function iAmOnPageArticlesReviewer()
+    {
+        $user=$this->getSecurityContext()->getToken()->getUser();
+
+
+        $reviewer = $this->getEntityManager()->getRepository('AppBundle:Reviewer')->findBy(array(
+            'users'=>$user
+        ));
+
+        if(!$reviewer)
+        {
+            throw new ElementNotFoundException('Reviewer doesn\'t exist');
+        }
+
+        $this->getSession()->visit($this->generatePageUrl('article_list'));
+    }
+
+    /**
+     * @Then I should see on page edit :title
+     *
+     */
+    public function iShouldSeeOnPageEdit($title)
+    {
+
+        $user=$this->getSecurityContext()->getToken()->getUser();
+
+
+        $reviewer = $this->getEntityManager()->getRepository('AppBundle:Reviewer')->findBy(array(
+            'users'=>$user
+        ));
+
+        if(!$reviewer)
+        {
+            throw new ElementNotFoundException('Reviewer can\'t edit this article');
+        }
+
+        $article =$this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
+            'title'=> $title
+        ));
+
+        $this->assertSession()->addressEquals($this->generatePageUrl('article_review',array(
+            'id' => $article->getId()
+        )));
+    }
+
+    /**
+     *@Given I am on the edit page :title
+     */
+    public function iAmOnTheEditPage($title)
+    {
+        $user=$this->getSecurityContext()->getToken()->getUser();
+
+
+        $reviewer = $this->getEntityManager()->getRepository('AppBundle:Reviewer')->findBy(array(
+            'users'=>$user
+        ));
+
+        if(!$reviewer)
+        {
+            throw new ElementNotFoundException('Reviewer can\'t edit this article');
+        }
+
+        $article =$this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
+            'title'=> $title
+        ));
+
+        $this->getSession()->visit($this->generatePageUrl('article_review',array(
+            'id' => $article->getId()
+        )));
+    }
+
 }
