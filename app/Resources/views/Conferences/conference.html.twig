@@ -82,11 +82,11 @@
                                             {% endfor %}
                                             <tr>
                                                 {% if article.stateEnd=='accepted with suggestions' %}
-                                                    <td colspan="3" >{{ article.stateEnd }}</td>
+                                                    <td colspan="3" class="text-center"><em><h4>{{ article.stateEnd }}</h4></em></td>
                                                     <td colspan="1" class="text-center"><a class="btn btn-default glyphicon glyphicon-file" href="{{ path('new_article',
                                                         {'id':article.id}) }}" role="button"> New Article</a></td>
                                                     {% elseif article.stateEnd!='send' %}
-                                                        <td colspan="4" >{{ article.stateEnd }}</td>
+                                                        <td colspan="4" class="text-center"  ><em><h4>{{ article.stateEnd }}</h4></em></td>
                                                 {% endif %}
 
                                             </tr>
