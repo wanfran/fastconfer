@@ -11,6 +11,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class ConferenceController extends Controller
 {
@@ -107,6 +109,10 @@ class ConferenceController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($article_review);
+
+            $uploadableManager = $this->get('stof_doctrine_extensions.uploadable.manager');
+            $uploadableManager->markEntityToUpload($article_review, $article_review->getPath());
+
             $em->flush();
 
             $this->get('session')->getFlashBag()->set('success', 'Your article has been successfully uploaded');
@@ -155,6 +161,10 @@ class ConferenceController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($article_review);
+
+            $uploadableManager = $this->get('stof_doctrine_extensions.uploadable.manager');
+            $uploadableManager->markEntityToUpload($article_review, $article_review->getPath());
+
             $em->flush();
 
             $this->get('session')->getFlashBag()->set('success', 'Your new article has been successfully send');

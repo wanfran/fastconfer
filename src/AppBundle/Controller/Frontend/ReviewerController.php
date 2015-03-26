@@ -108,14 +108,14 @@ class ReviewerController extends Controller{
             'articles'=> $article
         ));
 
-        echo $review_article->getPath();
 
-        $response = new BinaryFileResponse($review_article->getPath());
+        $fileToDownload='/home/fran/fastconfer/upload/'.$review_article->getPath();
+        $response = new BinaryFileResponse($fileToDownload);
 
         $response->trustXSendfileTypeHeader();
         $response->setContentDisposition(
-            ResponseHeaderBag::DISPOSITION_INLINE,$review_article->getPath(),
-            iconv('UTF-8','ASCII//TRANSLIT',$review_article->getPath())
+            ResponseHeaderBag::DISPOSITION_INLINE, $fileToDownload,
+            iconv('UTF-8','ASCII//TRANSLIT',$fileToDownload)
         );
         return $response;
     }
