@@ -3,6 +3,7 @@
     username: admin
     plainPassword: admin
     email: admin@localhost.local
+    roles: ['ROLE_SUPER_ADMIN']
     enabled: 1
   users{1..3}:
     username: <username()>
