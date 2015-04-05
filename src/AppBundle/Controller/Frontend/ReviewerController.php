@@ -40,7 +40,12 @@ class ReviewerController extends Controller{
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('reviewer/listArticle.html.twig', array('review' => $reviewer));
+        $reviewComment = $this->getDoctrine()->getRepository('AppBundle:ReviewComments')->findBy(array(
+            'reviewers'=>$reviewer
+        ));
+
+
+        return $this->render('reviewer/listArticle.html.twig', array('review' => $reviewer,'comment' => $reviewComment));
     }
 
 

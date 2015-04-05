@@ -16,12 +16,12 @@ class UserAdmin extends BaseUserAdmin
     /**
      * {@inheritdoc}
      */
-    protected $baseRouteName = "lanzadera_user";
+    protected $baseRouteName = "fastconfer_user";
 
 	/**
 	 * {@inheritdoc}
 	 */
-	protected $baseRoutePattern = 'lanzadera/user';
+	protected $baseRoutePattern = 'fastconfer/user';
 
     /**
      * {@inheritdoc}

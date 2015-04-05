@@ -10,12 +10,11 @@
 
 
     {% else %}
-        {% if review!=null %}
+        {% if review!=null and comment==null %}
             <div class="row ">
             <div class="col-md-12  text-center">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
-
                     <tr class="success">
                         <th class="text-center">Title</th>
                         <th class="text-center">Abstract</th>
@@ -24,30 +23,66 @@
                         <th class="text-center">Download</th>
                         <th class="text-center">Edit Article</th>
 
-
                     </tr>
-                    {% for article in review %}
+                    {% for reviewer in review %}
+
                         <tr>
-                            <td>{{ article.articles.title }}</td>
-                            <td>{{ article.articles.abstract }}</td>
-                            <td>{{ article.articles.keyword }}</td>
+                            <td>{{ reviewer.articles.title }}</td>
+                            <td>{{ reviewer.articles.abstract }}</td>
+                            <td>{{ reviewer.articles.keyword }}</td>
                             <td>
-                                {% for articleReview in article.articles.topics  %}
+                                {% for articleReview in reviewer.articles.topics  %}
                                     <span class="label label-success glyphicon glyphicon-tags"> {{ articleReview.name }}</span>
                                     {% endfor %}
                             </td>
                             <td><a class="btn btn-default glyphicon glyphicon-download-alt " href="{{ path('file_download',
-                                {'id': article.articles.id }) }}" role="button" id="1"></a></td>
+                                {'id': reviewer.articles.id }) }}" role="button" id="1"></a></td>
                             <td><a class="btn btn-default glyphicon glyphicon-edit" href="{{ path('article_review',
-                                {'id': article.articles.id }) }}" role="button" id="2"></a></td>
-
-
+                                {'id': reviewer.articles.id }) }}" role="button" id="2"></a></td>
                         </tr>
+                        {% endfor %}
+                </table>
+            </div>
+        {% elseif review!=null and comment!=null  %}
+            <div class="row ">
+            <div class="col-md-12  text-center">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <tr class="success">
+                        <th class="text-center">Titleeeeeeeeeeeee</th>
+                        <th class="text-center">Abstract</th>
+                        <th class="text-center">keyword</th>
+                        <th class="text-center">Topics</th>
+                        <th class="text-center">Download</th>
+                        <th class="text-center">Edit Article</th>
+
+                    </tr>
+                    {% for reviewer in review %}
+
+                        {% for comments in comment %}
+
+                            {% if reviewer.id!=comments.id %}
+                                <tr>
+                                    <td>{{ reviewer.articles.title }}</td>
+                                    <td>{{ reviewer.articles.abstract }}</td>
+                                    <td>{{ reviewer.articles.keyword }}</td>
+                                    <td>
+                                        {% for articleReview in reviewer.articles.topics  %}
+                                            <span class="label label-success glyphicon glyphicon-tags"> {{ articleReview.name }}</span>
+                                        {% endfor %}
+                                    </td>
+                                    <td><a class="btn btn-default glyphicon glyphicon-download-alt " href="{{ path('file_download',
+                                        {'id': reviewer.articles.id }) }}" role="button" id="1"></a></td>
+                                    <td><a class="btn btn-default glyphicon glyphicon-edit" href="{{ path('article_review',
+                                        {'id': reviewer.articles.id }) }}" role="button" id="2"></a></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
                     {% endfor %}
                 </table>
             </div>
-        {% else %}
 
+        {% else %}
             <div class="alert alert-danger text-center">
                 <strong>There aren't articles</strong>
             </div>

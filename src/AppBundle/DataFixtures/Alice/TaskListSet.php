@@ -15,7 +15,7 @@ $set->addFile(__DIR__.'/inscription.yml', 'yaml');
 $set->addFile(__DIR__.'/articles.yml', 'yaml');
 $set->addFile(__DIR__.'/articlesReview.yml', 'yaml');
 $set->addFile(__DIR__.'/reviewer.yml', 'yaml');
-$set->addFile(__DIR__.'/reviewComments.yml', 'yaml');
+//$set->addFile(__DIR__.'/reviewComments.yml', 'yaml');
 
 return $set;
 

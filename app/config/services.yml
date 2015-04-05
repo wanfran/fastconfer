@@ -9,3 +9,23 @@ services:
         class: AppBundle\Security\Core\User\FOSUBUserProvider
         #this is the place where the properties are passed to the UserProvider - see config.yml
         arguments: [@fos_user.user_manager,{google: google_id}]
+
+    fastconfer.admin.inscription:
+        class: AppBundle\Admin\InscriptionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Conference", label: "Inscription" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Inscription
+            - AppBundle:Backend\InscriptionAdmin
+
+    fastconfer.admin.conference:
+        class: AppBundle\Admin\ConferenceAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Conference", label: "Conference" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Conference
+            - AppBundle:Backend\ConferenceAdmin
+        calls:
+            - [addChild, [@fastconfer.admin.inscription] ]
