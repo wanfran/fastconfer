@@ -10,14 +10,7 @@ services:
         #this is the place where the properties are passed to the UserProvider - see config.yml
         arguments: [@fos_user.user_manager,{google: google_id}]
 
-    fastconfer.admin.inscription:
-        class: AppBundle\Admin\InscriptionAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Conference", label: "Inscription" }
-        arguments:
-            - ~
-            - AppBundle\Entity\Inscription
-            - AppBundle:Backend\InscriptionAdmin
+
 
     fastconfer.admin.conference:
         class: AppBundle\Admin\ConferenceAdmin
@@ -26,6 +19,34 @@ services:
         arguments:
             - ~
             - AppBundle\Entity\Conference
-            - AppBundle:Backend\ConferenceAdmin
+            - ~
         calls:
-            - [addChild, [@fastconfer.admin.inscription] ]
+            - [addChild, ['@fastconfer.admin.inscription'] ]
+
+    fastconfer.admin.inscription:
+        class: AppBundle\Admin\InscriptionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Conference", label: "Inscription" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Inscription
+            - ~
+        calls:
+            - [addChild, ['@fastconfer.admin.article'] ]
+
+    fastconfer.admin.article:
+        class: AppBundle\Admin\ArticleAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Conference", label: "Article" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Article
+            - ~
+    fastconfer.admin.articlereview:
+        class: AppBundle\Admin\ArticleReviewAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Conference", label: "ArticleReview" }
+        arguments:
+            - ~
+            - AppBundle\Entity\ArticleReview
+            - ~

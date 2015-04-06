@@ -59,6 +59,7 @@ class ConferenceAdmin extends Admin {
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
+                    'show' => array(),
                 )
             ))
         ;
