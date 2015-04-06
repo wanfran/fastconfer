@@ -28,12 +28,11 @@ class ArticleAdmin extends Admin
         ;
     }
 
-
-
-    public function getParentAssociationMapping()
-    {
-        return 'inscription';
-    }
+//
+//    public function getParentAssociationMapping()
+//    {
+//        return 'inscription';
+//    }
 
     protected function configureListFields(ListMapper $list)
     {
@@ -47,6 +46,22 @@ class ArticleAdmin extends Admin
                     'edit' => array())
             ))
         ;
+    }
+
+    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    {
+        if (!$childAdmin && !in_array($action, array('edit'))) {
+            return;
+        }
+
+        $admin = $this->isChild() ? $this->getParent() : $this;
+
+        $id = $admin->getRequest()->get('id');
+
+        $menu->addChild(
+            'articleReviews',
+            array('uri' => $admin->generateUrl('fastconfer.admin.articlereview.list', array('id' => $id)))
+        );
     }
 
 

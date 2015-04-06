@@ -52,20 +52,20 @@ class InscriptionAdmin extends Admin
         ;
     }
 
-    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
-    {
-        if (!$childAdmin && !in_array($action, array('edit'))) {
-            return;
-        }
-
-        $admin = $this->isChild() ? $this->getParent() : $this;
-
-        $id = $admin->getRequest()->get('id');
-
-        $menu->addChild(
-            'articles',
-            array('uri' => $admin->generateUrl('fastconfer.admin.article.list', array('id' => $id)))
-        );
-    }
+//    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
+//    {
+//        if (!$childAdmin && !in_array($action, array('edit'))) {
+//            return;
+//        }
+//
+//        $admin = $this->isChild() ? $this->getParent() : $this;
+//
+//        $id = $admin->getRequest()->get('id');
+//
+//        $menu->addChild(
+//            'articles',
+//            array('uri' => $admin->generateUrl('fastconfer.admin.article.list', array('id' => $id)))
+//        );
+//    }
 
 }

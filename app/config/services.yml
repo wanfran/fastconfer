@@ -42,6 +42,10 @@ services:
             - ~
             - AppBundle\Entity\Article
             - ~
+        calls:
+            - [addChild, ['@fastconfer.admin.articlereview'] ]
+
+
     fastconfer.admin.articlereview:
         class: AppBundle\Admin\ArticleReviewAdmin
         tags:

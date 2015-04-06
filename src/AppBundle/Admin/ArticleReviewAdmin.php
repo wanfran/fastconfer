@@ -8,6 +8,7 @@
 
 namespace AppBundle\Admin;
 
+use Knp\Menu\ItemInterface as MenuItemInterface;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -24,11 +25,11 @@ class ArticleReviewAdmin extends Admin
     }
 
 
-//
-//    public function getParentAssociationMapping()
-//    {
-//        return 'a';
-//    }
+
+    public function getParentAssociationMapping()
+    {
+        return 'articles';
+    }
 
     protected function configureListFields(ListMapper $list)
     {
@@ -43,5 +44,7 @@ class ArticleReviewAdmin extends Admin
             ))
         ;
     }
+
+
 
 }
