@@ -13,13 +13,5 @@ use Sonata\UserBundle\Admin\Entity\GroupAdmin as BaseGroupAdmin;
 
 class GroupAdmin extends BaseGroupAdmin
 {
-   	/**
-     * {@inheritdoc}
-     */
-    protected $baseRouteName = "fastconfer_group";
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected $baseRoutePattern = 'fastconfer/group';
 }

@@ -17,16 +17,6 @@ use Sonata\AdminBundle\Admin\Admin;
 
 class ConferenceAdmin extends Admin {
 
-    /**
-     * {@inheritdoc}
-     */
-    protected $baseRouteName = "fastconfer_conference";
-
-    /**
-     * {@inheritdoc}
-     */
-    protected $baseRoutePattern = 'conference';
-
 
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)

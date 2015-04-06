@@ -16,16 +16,6 @@ class UserAdmin extends BaseUserAdmin
     /**
      * {@inheritdoc}
      */
-    protected $baseRouteName = "fastconfer_user";
-
-	/**
-	 * {@inheritdoc}
-	 */
-	protected $baseRoutePattern = 'fastconfer/user';
-
-    /**
-     * {@inheritdoc}
-     */
     protected $datagridValues = array(
                 '_page' => 1,            // display the first page (default = 1)
                 '_sort_order' => 'ASC', // reverse order (default = 'ASC')

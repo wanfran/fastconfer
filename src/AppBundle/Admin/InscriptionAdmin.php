@@ -14,29 +14,18 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 class InscriptionAdmin extends Admin
 {
 
-    /**
-     * {@inheritdoc}
-     */
-    protected $baseRouteName = "fastconfer_inscription";
-
-    /**
-     * {@inheritdoc}
-     */
-    protected $baseRoutePattern = 'inscription';
-
     public function getParentAssociationMapping()
     {
         return 'conference';
     }
-
 
     protected function configureListFields(ListMapper $list)
     {
         $list
             ->addIdentifier('id')
             ->add('conference')
+            ->add('user')
         ;
     }
-
 
 }
