@@ -14,6 +14,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Show\ShowMapper;
 
 class ConferenceAdmin extends Admin {
 
@@ -24,9 +25,32 @@ class ConferenceAdmin extends Admin {
         $formMapper
             ->add('name')
             ->add('description')
+            ->add('image')
+            ->add('slug')
             ->add('dateStart','sonata_type_datetime_picker',array(
                 'format'=>'dd MMMM YY'
             ))
+            ->add('dateEnd','sonata_type_datetime_picker',array(
+                'format'=>'dd MMMM YY'
+            ))
+            ->add('deadTime','sonata_type_datetime_picker',array(
+                'format'=>'dd MMMM YY'
+            ))
+            ->add('topics')
+        ;
+    }
+
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->add('name')
+            ->add('description')
+            ->add('image')
+            ->add('slug')
+            ->add('dateStart')
+            ->add('dateEnd')
+            ->add('deadTime')
+            ->add('topics')
         ;
     }
 
@@ -42,16 +66,15 @@ class ConferenceAdmin extends Admin {
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
-            ->add('description')
+            ->add('name')
             ->add('dateStart','date', array(
-                    'label' => 'label.dateStart',
+                    'label' => 'Date Start',
                     'pattern' => 'dd MMMM Y',
                     'locale' => 'es',
                     'timezone' => 'Europe/Madrid',
             ))
             ->add('dateEnd','date', array(
-                'label' => 'label.dateEnd',
+                'label' => 'Date End',
                 'pattern' => 'dd MMMM YY',
                 'locale' => 'es',
                 'timezone' => 'Europe/Madrid',
@@ -60,14 +83,13 @@ class ConferenceAdmin extends Admin {
                 'actions' => array(
                     'edit' => array(),
                     'show' => array(),
-                )
-            ))
+                )))
         ;
     }
 
     protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
     {
-        if (!$childAdmin && !in_array($action, array('edit'))) {
+        if (!$childAdmin && !in_array($action, array('edit','show'))) {
             return;
         }
 
