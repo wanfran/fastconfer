@@ -159,5 +159,5 @@ sonata_user:
 
 
 sonata_admin:
-    title:      Acme Demo Bundle
-    title_logo: bundles/sonataadmin/logo_title.png
+    title:      Fastconfer
+    title_logo: bundles/sonataadmin/a.ico

@@ -13,6 +13,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 
 
 class ArticleAdmin extends Admin
@@ -24,33 +25,50 @@ class ArticleAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('author')
+            ->add('keyword')
+            ->add('abstract','textarea')
             ->add('stateEnd')
+            ->add('createAt','sonata_type_datetime_picker',array(
+                'format'=>'dd MMMM YY'
+            ))
+            ->add('topics')
         ;
     }
 
-//
-//    public function getParentAssociationMapping()
-//    {
-//        return 'inscription';
-//    }
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->add('title')
+            ->add('author')
+            ->add('keyword')
+            ->add('abstract')
+            ->add('stateEnd')
+            ->add('createAt')
+            ->add('topics')
+        ;
+    }
 
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->addIdentifier('id')
             ->add('title')
-            ->add('keyword')
 
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'edit' => array())
-            ))
+                    'edit' => array(),
+                    'show' => array(),
+                )))
         ;
+    }
+
+    public function getParentAssociationMapping()
+    {
+        return 'inscription';
     }
 
     protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
     {
-        if (!$childAdmin && !in_array($action, array('edit'))) {
+        if (!$childAdmin && !in_array($action, array('show'))) {
             return;
         }
 

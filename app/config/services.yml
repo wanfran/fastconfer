@@ -54,3 +54,12 @@ services:
             - ~
             - AppBundle\Entity\ArticleReview
             - ~
+
+    fastconfer.admin.reviewer:
+        class: AppBundle\Admin\ReviewerAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Conference", label: "Reviewer" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Reviewer
+            - ~
