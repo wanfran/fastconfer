@@ -14,6 +14,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 
 class InscriptionAdmin extends Admin
 {
@@ -23,9 +24,31 @@ class InscriptionAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
             ->add('conference')
             ->add('user')
+        ;
+    }
+
+
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->add('conference')
+            ->add('user')
+        ;
+    }
+
+    protected function configureListFields(ListMapper $list)
+    {
+        $list
+            ->add('user')
+
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'edit' => array(),
+                    'show' => array(),
+
+                )))
         ;
     }
 
@@ -34,38 +57,21 @@ class InscriptionAdmin extends Admin
         return 'conference';
     }
 
-    protected function configureListFields(ListMapper $list)
+
+    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
     {
-        $list
-            ->addIdentifier('id')
-            ->add('conference')
-            ->add('user')
+        if (!$childAdmin && !in_array($action, array('show'))) {
+            return;
+        }
 
+        $admin = $this->isChild() ? $this->getParent() : $this;
 
+        $id = $admin->getRequest()->get('id');
 
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                    'show' => array(),
-                )
-            ))
-        ;
+        $menu->addChild(
+            'articles',
+            array('uri' => $admin->generateUrl('fastconfer.admin.article.list', array('id' => $id)))
+        );
     }
-
-//    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
-//    {
-//        if (!$childAdmin && !in_array($action, array('edit'))) {
-//            return;
-//        }
-//
-//        $admin = $this->isChild() ? $this->getParent() : $this;
-//
-//        $id = $admin->getRequest()->get('id');
-//
-//        $menu->addChild(
-//            'articles',
-//            array('uri' => $admin->generateUrl('fastconfer.admin.article.list', array('id' => $id)))
-//        );
-//    }
 
 }

@@ -2,62 +2,49 @@
 /**
  * Created by PhpStorm.
  * User: fran
- * Date: 6/04/15
- * Time: 19:26
+ * Date: 7/04/15
+ * Time: 19:20
  */
 
 namespace AppBundle\Admin;
 
-use Knp\Menu\ItemInterface as MenuItemInterface;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class ArticleReviewAdmin extends Admin
+class ReviewerAdmin extends Admin
 {
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('state')
-            ->add('path')
-            ->add('createAt','sonata_type_datetime_picker',array(
-            'format'=>'dd MMMM YY'
-        ))
+            ->add('users')
+            ->add('articles')
         ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('state')
-            ->add('path')
-            ->add('createAt')
+            ->add('users')
+            ->add('articles')
+
         ;
     }
 
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->add('articles')
-            ->add('state')
+            ->add('users')
 
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
                     'show' => array(),
-                    )))
+                )))
         ;
     }
-
-    public function getParentAssociationMapping()
-    {
-        return 'articles';
-    }
-
-
-
 
 }

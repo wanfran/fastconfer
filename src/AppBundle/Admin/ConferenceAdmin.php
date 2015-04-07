@@ -23,8 +23,8 @@ class ConferenceAdmin extends Admin {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-            ->add('description')
+            ->add('name','textarea')
+            ->add('description','textarea')
             ->add('image')
             ->add('slug')
             ->add('dateStart','sonata_type_datetime_picker',array(
@@ -89,7 +89,7 @@ class ConferenceAdmin extends Admin {
 
     protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
     {
-        if (!$childAdmin && !in_array($action, array('edit','show'))) {
+        if (!$childAdmin && !in_array($action, array('show'))) {
             return;
         }
 

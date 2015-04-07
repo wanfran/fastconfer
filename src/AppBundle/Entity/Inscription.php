@@ -61,7 +61,8 @@ class Inscription
 
     function __toString()
     {
-        return $this->getConference();
+        return $this->getConference()->getName();
+        return $this->getUser()->getUserName();
     }
 
     /**
