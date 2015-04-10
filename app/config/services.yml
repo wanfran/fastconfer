@@ -22,34 +22,40 @@ services:
             - ~
         calls:
             - [addChild, ['@fastconfer.admin.inscription'] ]
+            - [ setTemplate, [inner_list_row, Organization/CRUD/inner_list_conference.html.twig]]
+            - [ setTemplate, [base_list_field, SonataAdminBundle:CRUD:base_list_flat_field.html.twig]]
 
     fastconfer.admin.inscription:
         class: AppBundle\Admin\InscriptionAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Conference", label: "Inscription" }
+            - { name: sonata.admin, manager_type: orm }
         arguments:
             - ~
             - AppBundle\Entity\Inscription
             - ~
         calls:
             - [addChild, ['@fastconfer.admin.article'] ]
+            - [ setTemplate, [inner_list_row, Organization/CRUD/inner_list_inscription.html.twig]]
+            - [ setTemplate, [base_list_field, SonataAdminBundle:CRUD:base_list_flat_field.html.twig]]
 
     fastconfer.admin.article:
         class: AppBundle\Admin\ArticleAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Conference", label: "Article" }
+            - { name: sonata.admin, manager_type: orm }
         arguments:
             - ~
             - AppBundle\Entity\Article
             - ~
         calls:
             - [addChild, ['@fastconfer.admin.articlereview'] ]
+            - [ setTemplate, [inner_list_row, Organization/CRUD/inner_list_articles.html.twig]]
+            - [ setTemplate, [base_list_field, SonataAdminBundle:CRUD:base_list_flat_field.html.twig]]
 
 
     fastconfer.admin.articlereview:
         class: AppBundle\Admin\ArticleReviewAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Conference", label: "ArticleReview" }
+            - { name: sonata.admin, manager_type: orm }
         arguments:
             - ~
             - AppBundle\Entity\ArticleReview
@@ -58,7 +64,7 @@ services:
     fastconfer.admin.reviewer:
         class: AppBundle\Admin\ReviewerAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Conference", label: "Reviewer" }
+            - { name: sonata.admin, manager_type: orm }
         arguments:
             - ~
             - AppBundle\Entity\Reviewer
