@@ -8,7 +8,7 @@
       comment: <realText()>
       state: rejected
       reviewers: @reviewer*
-      articleReviews: @articleReview2
+      articleReviews: @articleReview7
     reviewComments2:
       comment: <realText()>
       state: rejected

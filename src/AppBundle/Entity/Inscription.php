@@ -61,8 +61,10 @@ class Inscription
 
     function __toString()
     {
-        return $this->getConference()->getName();
-        return $this->getUser()->getUserName();
+        return sprintf("%s's inscription on %s",
+            $this->getUser(),
+            $this->getConference()
+        );
     }
 
     /**
