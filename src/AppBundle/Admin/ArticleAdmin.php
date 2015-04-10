@@ -55,7 +55,9 @@ class ArticleAdmin extends Admin
 
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'edit' => array(),
+                    'list' => array(
+                        'template' => 'Organization/CRUD/list__action_list_articleReviews.html.twig'
+                    ),
                     'show' => array(),
                 )))
         ;

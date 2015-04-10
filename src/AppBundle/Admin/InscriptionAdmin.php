@@ -26,6 +26,7 @@ class InscriptionAdmin extends Admin
         $formMapper
             ->add('conference')
             ->add('user')
+
         ;
     }
 
@@ -35,6 +36,7 @@ class InscriptionAdmin extends Admin
         $showMapper
             ->add('conference')
             ->add('user')
+            ->add('createdAt')
         ;
     }
 
@@ -42,10 +44,12 @@ class InscriptionAdmin extends Admin
     {
         $list
             ->add('user')
-
+            ->add('createdAt')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'edit' => array(),
+                    'list' => array(
+                        'template' => 'Organization/CRUD/list__action_list_articles.html.twig'
+                    ),
                     'show' => array(),
 
                 )))
@@ -68,10 +72,18 @@ class InscriptionAdmin extends Admin
 
         $id = $admin->getRequest()->get('id');
 
+//        $menu->addChild(
+//            'List Conferences',
+//            array('uri' => $this->generateUrl('fastconfer.admin.conference.list', array('id' => $id)))
+//        );
+
         $menu->addChild(
-            'articles',
-            array('uri' => $admin->generateUrl('fastconfer.admin.article.list', array('id' => $id)))
+            'List Inscriptions',
+            array('uri' => $admin->generateUrl('fastconfer.admin.inscription.list', array('id' => $id)))
         );
+
+
+
     }
 
 }

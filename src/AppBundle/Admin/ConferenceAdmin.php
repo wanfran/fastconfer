@@ -16,6 +16,9 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+
+use Sonata\AdminBundle\Route\RouteCollection;
+
 class ConferenceAdmin extends Admin {
 
 
@@ -79,13 +82,24 @@ class ConferenceAdmin extends Admin {
                 'locale' => 'es',
                 'timezone' => 'Europe/Madrid',
             ))
+
             ->add('_action', 'actions', array(
                 'actions' => array(
+                    'list' => array(
+                        'template' => 'Organization/CRUD/list__action_list_inscriptions.html.twig'
+                    ),
                     'edit' => array(),
                     'show' => array(),
                 )))
         ;
     }
+
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('clone', $this->getRouterIdParameter().'/clone');
+    }
+
 
     protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
     {
@@ -98,10 +112,9 @@ class ConferenceAdmin extends Admin {
         $id = $admin->getRequest()->get('id');
 
         $menu->addChild(
-            'inscriptions',
-            array('uri' => $admin->generateUrl('fastconfer.admin.inscription.list', array('id' => $id)))
+            'List Conferences',
+            array('uri' => $admin->generateUrl('fastconfer.admin.conference.list', array('id' => $id)))
         );
     }
-
 
 }
