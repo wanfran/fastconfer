@@ -28,7 +28,7 @@ services:
     fastconfer.admin.inscription:
         class: AppBundle\Admin\InscriptionAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm }
+            - { name: sonata.admin, manager_type: orm, group: "default", label: "Inscription" }
         arguments:
             - ~
             - AppBundle\Entity\Inscription
@@ -41,21 +41,22 @@ services:
     fastconfer.admin.article:
         class: AppBundle\Admin\ArticleAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm }
+            - { name: sonata.admin, manager_type: orm, group: "default", label: "article" }
         arguments:
             - ~
             - AppBundle\Entity\Article
             - ~
         calls:
             - [addChild, ['@fastconfer.admin.articlereview'] ]
-            - [ setTemplate, [inner_list_row, Organization/CRUD/inner_list_articles.html.twig]]
+            - [ setTemplate, [inner_list_row, Organization/CRUD/show_article.html.twig]]
             - [ setTemplate, [base_list_field, SonataAdminBundle:CRUD:base_list_flat_field.html.twig]]
+            - [setTemplate, [show,Organization/CRUD/show_article.html.twig]]
 
 
     fastconfer.admin.articlereview:
         class: AppBundle\Admin\ArticleReviewAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm }
+            - { name: sonata.admin, manager_type: orm, group: "default", label: "articleReview" }
         arguments:
             - ~
             - AppBundle\Entity\ArticleReview
@@ -64,7 +65,7 @@ services:
     fastconfer.admin.reviewer:
         class: AppBundle\Admin\ReviewerAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm }
+            - { name: sonata.admin, manager_type: orm, group: "default", label: "reviewer" }
         arguments:
             - ~
             - AppBundle\Entity\Reviewer
