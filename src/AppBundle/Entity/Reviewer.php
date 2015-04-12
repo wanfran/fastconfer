@@ -44,6 +44,11 @@ class Reviewer
 
     }
 
+    function __toString()
+    {
+        return $this->getUsers()->getUsername();
+    }
+
 
     /**
      * Get id
