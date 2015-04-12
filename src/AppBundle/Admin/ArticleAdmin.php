@@ -23,21 +23,14 @@ class ArticleAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title')
-            ->add('author')
-            ->add('keyword')
-            ->add('abstract','textarea')
-            ->add('stateEnd')
-            ->add('createAt','sonata_type_datetime_picker',array(
-                'format'=>'dd MMMM YY'
-            ))
-            ->add('topics')
+            ->add('reviewers')
         ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
+            ->with('Article')
             ->add('title')
             ->add('author')
             ->add('keyword')
@@ -45,6 +38,11 @@ class ArticleAdmin extends Admin
             ->add('stateEnd')
             ->add('createAt')
             ->add('topics')
+            ->end()
+            ->with('Reviewers')
+            ->add('reviewers')
+
+            ->end()
         ;
     }
 
@@ -79,8 +77,8 @@ class ArticleAdmin extends Admin
         $id = $admin->getRequest()->get('id');
 
         $menu->addChild(
-            'articleReviews',
-            array('uri' => $admin->generateUrl('fastconfer.admin.articlereview.list', array('id' => $id)))
+            'Add reviewer',
+            array('uri' => $admin->generateUrl('fastconfer.admin.article.edit', array('id' => $id)))
         );
     }
 

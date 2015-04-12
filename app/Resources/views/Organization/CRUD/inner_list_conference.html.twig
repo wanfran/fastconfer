@@ -4,27 +4,29 @@
 
 <div class="media-body" xmlns="http://www.w3.org/1999/html">
 
-    <div class="media">
-        <span class="glyphicon glyphicon-globe"></span>
-            {{ object|render_list_element(admin.list['name']) }}
 
-        <div class="media-body">
-            <small class="text-muted">
+        <div class="media">
+            <span class="glyphicon glyphicon-globe"></span>
+                {{ object|render_list_element(admin.list['name']) }}
+
+            <div class="media-body">
+                <small class="text-muted">
+                    <br/>
+                    <span class="glyphicon glyphicon-list-alt"></span> {{ object.description }}
+                </small>
+            </div>
+
+            <div class="list-field-list-date">
                 <br/>
-                <span class="glyphicon glyphicon-list-alt"></span> {{ object.description }}
-            </small>
+                <span class=" fastconfer-list-field-date"><i class="fa fa-calendar"></i>
+                    {{ object|render_list_element(admin.list['dateStart']) }}    </span>
+
+                <span class="pull-right fastconfer-list-field-date"><i class="fa fa-calendar"></i>
+                    {{ object|render_list_element(admin.list['dateEnd']) }}
+                </span>
+            </div>
         </div>
 
-        <div class="list-field-list-date">
-            <br/>
-            <span class=" fastconfer-list-field-date"><i class="fa fa-calendar"></i>
-                {{ object|render_list_element(admin.list['dateStart']) }}    </span>
-
-            <span class="pull-right fastconfer-list-field-date"><i class="fa fa-calendar"></i>
-                {{ object|render_list_element(admin.list['dateEnd']) }}
-            </span>
-        </div>
-    </div>
 </div>
 
 {% endblock %}
