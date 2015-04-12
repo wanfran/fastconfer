@@ -45,14 +45,6 @@ class InscriptionAdmin extends Admin
         $list
             ->add('user')
             ->add('createdAt')
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'list' => array(
-                        'template' => 'Organization/CRUD/list__action_list_articles.html.twig'
-                    ),
-                    'show' => array(),
-
-                )))
         ;
     }
 
@@ -71,11 +63,6 @@ class InscriptionAdmin extends Admin
         $admin = $this->isChild() ? $this->getParent() : $this;
 
         $id = $admin->getRequest()->get('id');
-
-//        $menu->addChild(
-//            'List Conferences',
-//            array('uri' => $this->generateUrl('fastconfer.admin.conference.list', array('id' => $id)))
-//        );
 
         $menu->addChild(
             'List Inscriptions',

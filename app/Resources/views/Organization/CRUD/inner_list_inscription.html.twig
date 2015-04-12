@@ -3,15 +3,47 @@
 {% block row %}
 
     <div class="media-body" xmlns="http://www.w3.org/1999/html">
-
-        <div class="media">
-            <span class="glyphicon glyphicon-user"></span>
-            {{ object|render_list_element(admin.list['user']) }}
-
-            <span class="pull-right"><i class="fa fa-calendar"></i>
-                {{ object|render_list_element(admin.list['createdAt']) }} </span>
-
+        <div class="row">
+            <div class="col-md-8 glyphicon glyphicon-user"><strong> {{ object.user }}</strong></div>
+            <div class="col-md-4 "><i class="fa fa-calendar"></i> {{ object|render_list_element(admin.list['createdAt']) }}</div>
         </div>
+        <div class="row">
+            <div class="col-md-12">List of articles:</div>
+        </div>
+
+        <table class="table table-striped table-condensed ">
+            <thead>
+                <tr>
+                    <th class="text-center col-md-6">Title</th>
+                    <th class="text-center col-md-2">Reviewer</th>
+                    <th class="text-center col-md-3">State</th>
+                    <th class="text-center col-md-1">Show</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in object.articles %}
+                    <tr>
+                        <td class="text" >{{ article.title}}</td>
+                            {% if article.reviewers | length > 0 %}
+                                <td class="text-center"><span class="label label-success"> Assigned </span></td>
+                            {% else %}
+                                <td class="text-center"><span class="label label-warning"> Pending </span></td>
+                            {% endif %}
+
+                        {% if article.stateEnd== 'rejected' %}
+                            <td class="text-center"><span class="label label-danger"> {{ article.stateEnd }}</span></td>
+                        {% else %}
+                            <td class="text-center"><span class="label label-success"> {{ article.stateEnd}}</span></td>
+                        {% endif %}
+
+                        <td class="text-center"><a class=" btn btn-default glyphicon glyphicon-eye-open" href="{{ path('admin_app_article_show',{'id': article.id }) }}" role="button"></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
     </div>
+
 
 {% endblock %}
