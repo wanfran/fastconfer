@@ -39,7 +39,10 @@ class ConferenceAdmin extends Admin {
             ->add('deadTime','sonata_type_datetime_picker',array(
                 'format'=>'dd MMMM YY'
             ))
-            ->add('topics')
+            ->add('topics','topics_text', array(
+                'required' => false,
+            ))
+
         ;
     }
 

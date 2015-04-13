@@ -10,7 +10,11 @@ services:
         #this is the place where the properties are passed to the UserProvider - see config.yml
         arguments: [@fos_user.user_manager,{google: google_id}]
 
-
+    appbundle.type.topics_text:
+        class: AppBundle\Form\Type\TopicsTextType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: topics_text }
 
     fastconfer.admin.conference:
         class: AppBundle\Admin\ConferenceAdmin

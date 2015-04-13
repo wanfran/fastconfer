@@ -6,9 +6,6 @@
 
     <div class="media-body" xmlns="http://www.w3.org/1999/html">
     <div class="row">
-        {#<div class="col-md-8 glyphicon glyphicon-user"><strong> {{ object.user }}</strong></div>#}
-    </div>
-    <div class="row">
         <div class="col-md-12">Version of article:</div>
     </div>
 
@@ -36,10 +33,11 @@
                     <td class="text-center"><a class="btn btn-default glyphicon glyphicon-download-alt " href="{{ path('file_download',
                         {'id': articlereview.id }) }}" role="button"></a></td>
 
-                    {% if articlereview | length > 0 %}
-                        <td class="text-center"> <a class="btn btn-default glyphicon glyphicon-comment" href=""
+                    {% if articlereview.reviewComments | length > 0 %}
+                        <td class="text-center"> <a class="btn btn-default glyphicon glyphicon-comment" href="{{ path('comments',{'id': articlereview.id } ) }}"
                            role="button"> comments</a></td>
                     {% endif %}
+
                 {% endfor %}
             </tr>
         </tbody>
