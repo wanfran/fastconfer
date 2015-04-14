@@ -34,7 +34,7 @@
                         {'id': articlereview.id }) }}" role="button"></a></td>
 
                     {% if articlereview.reviewComments | length > 0 %}
-                        <td class="text-center"> <a class="btn btn-default glyphicon glyphicon-comment" href="{{ path('comments',{'id': articlereview.id } ) }}"
+                        <td class="text-center"> <a class="btn btn-default glyphicon glyphicon-comment" href="{{ path('admin_app_reviewcomments_show',{'id': articlereview.id } ) }}"
                            role="button"> comments</a></td>
                     {% endif %}
 

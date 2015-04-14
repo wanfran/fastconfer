@@ -52,9 +52,8 @@ services:
             - ~
         calls:
             - [addChild, ['@fastconfer.admin.articlereview'] ]
-            - [ setTemplate, [inner_list_row, Organization/CRUD/show_article.html.twig]]
             - [ setTemplate, [base_list_field, SonataAdminBundle:CRUD:base_list_flat_field.html.twig]]
-            - [setTemplate, [show,Organization/CRUD/show_article.html.twig]]
+            - [ setTemplate, [show,Organization/CRUD/show_article.html.twig]]
 
 
     fastconfer.admin.articlereview:
@@ -73,4 +72,13 @@ services:
         arguments:
             - ~
             - AppBundle\Entity\Reviewer
+            - ~
+
+    fastconfer.admin.reviewcomments:
+        class: AppBundle\Admin\ReviewCommentsAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "default", label: "reviewComments" }
+        arguments:
+            - ~
+            - AppBundle\Entity\ReviewComments
             - ~
