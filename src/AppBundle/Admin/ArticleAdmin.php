@@ -79,11 +79,7 @@ class ArticleAdmin extends Admin
         $menu->addChild(
             'Add reviewer',
             array('uri' => $admin->generateUrl('fastconfer.admin.article.edit', array('id' => $id)))
+
         );
     }
-
-
-
-
-
 }

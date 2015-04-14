@@ -2,11 +2,17 @@
   admin:
     username: admin
     plainPassword: admin
+    firstName: <firstName()>
+    lastName: <lastName()>
+    organization: <city()>
     email: admin@localhost.local
     roles: ['ROLE_SUPER_ADMIN']
     enabled: 1
   users{1..3}:
     username: <username()>
     plainPassword: admin
+    firstName: <firstName()>
+    lastName: <lastName()>
+    organization: <city()>
     email: <email()>
     enabled: 1

@@ -24,6 +24,9 @@ class User extends BaseUser
     /** @ORM\Column(name="google_access_token", type="string", length=255, nullable=true) */
     protected $google_access_token;
 
+    /** @ORM\Column(name="organization", type="string", length=255, nullable=true) */
+    protected $organization;
+
 
     /**
      * @ORM\OneToMany(targetEntity="Inscription", mappedBy="user")
@@ -40,8 +43,25 @@ class User extends BaseUser
     {
         $this->reviewers = new ArrayCollection();
         parent::__construct();
-
     }
+
+    /**
+     * @return mixed
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
+
+    /**
+     * @param mixed $organization
+     */
+    public function setOrganization($organization)
+    {
+        $this->organization = $organization;
+    }
+
+
 
 
     /**
