@@ -27,6 +27,8 @@ class ArticleReviewContext extends CoreContext
         foreach ($tableNode->getHash() as $articleReviewHash)
         {
             $articleReview = new ArticleReview();
+            $articleReview->setFile('file');
+            $articleReview->setMimeType('mimeType');
             $articleReview->setState($articleReviewHash['state']);
             $articleReview->setPath($articleReviewHash['path']);
             $articleReview->setArticles($this->findArticle($articleReviewHash['articles']));

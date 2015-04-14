@@ -28,11 +28,11 @@ Feature: status of article
       |second| userB   | example2 | 2tex example abstract|  accepted with suggestions |
       |third | userC   | example3 | 3tex example abstract|  sent                      |
     And there are following articleReviews:
-      | state                     |path         |articles |
-      | sent                      |example1.pdf |  first  |
-      | accepted with suggestions |example2.pdf |  second |
-      | accepted                  |example3.pdf |  second |
-      | rejected                  |example4.pdf |  third  |
+      | state                     |path         |articles | file |  mimeType      |
+      | sent                      |example1.pdf |  first  | null | application/pdf|
+      | accepted with suggestions |example2.pdf |  second | null | application/pdf|
+      | accepted                  |example3.pdf |  second | null | application/pdf|
+      | rejected                  |example4.pdf |  third  | null | application/pdf|
     And there are following reviewComments:
       |state                      |comments                 |articleReviews |
       |accepted with suggestions  |comments of the article1 |example2.pdf   |
