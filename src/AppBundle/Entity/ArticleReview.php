@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table()
  * @ORM\Entity
- * @Gedmo\Uploadable
+ * @Gedmo\Uploadable(filenameGenerator="SHA1")
  */
 class ArticleReview
 {
@@ -32,6 +32,21 @@ class ArticleReview
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="file", type="string", length=255)
+     * @Gedmo\UploadableFileName
+     */
+    private $file;
+
+    /**
+     * @ORM\Column(name="mime_type", type="string")
+     * @Gedmo\UploadableFileMimeType
+     */
+    private $mimeType;
 
     /**
      * @var string
@@ -72,6 +87,39 @@ class ArticleReview
       $this-> createAt = new \DateTime();
       $this-> state = self::STATUS_SENT;
       $this->reviemComments = new ArrayCollection();
+
+    }
+
+    /**
+     * @return string
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param string $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMimeType()
+    {
+        return $this->mimeType;
+    }
+
+    /**
+     * @param mixed $mimeType
+     */
+    public function setMimeType($mimeType)
+    {
+        $this->mimeType = $mimeType;
     }
 
 

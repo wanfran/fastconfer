@@ -9,6 +9,7 @@
 namespace AppBundle\Controller\Frontend;
 
 use AppBundle\Entity\Article;
+use AppBundle\Entity\ArticleReview;
 use AppBundle\Entity\ReviewComments;
 use AppBundle\Entity\Reviewer;
 use AppBundle\Form\Type\ReviewerType;
@@ -68,12 +69,12 @@ class ReviewerController extends Controller{
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $fondArticle = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(
+        $findArticle = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(
             'users'=>$user,
             'articles'=> $article
         ));
 
-        if(!$fondArticle)
+        if(!$findArticle)
         {
             $this->get('session')->getFlashBag()->set('alert', 'You are not a review');
             return $this->redirectToRoute('homepage');
@@ -85,7 +86,7 @@ class ReviewerController extends Controller{
 
         $reviewComments = new ReviewComments();
 
-        $reviewComments->setReviewers($fondArticle);
+        $reviewComments->setReviewers($findArticle);
         $reviewComments->setArticleReviews($review_article);
 
         $form = $this->createForm(new ReviewerType(), $reviewComments);
@@ -103,7 +104,7 @@ class ReviewerController extends Controller{
             return $this->redirectToRoute('article_list');
         }
 
-        return $this->render('reviewer/Article.html.twig', array('review' => $fondArticle,'form' => $form->createView()));
+        return $this->render('reviewer/Article.html.twig', array('review' => $findArticle,'form' => $form->createView()));
     }
 
 
@@ -111,26 +112,20 @@ class ReviewerController extends Controller{
      * @Route("/file/{id}/dowload", name="file_download")
      * @Security("has_role('ROLE_USER')")
      */
-    public function downloadAction(Article $article)
+    public function downloadAction(ArticleReview $articleReview)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-
-        $fondArticle = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(
-            'users'=>$user,
-            'articles'=> $article
-        ));
 
         $review_article = $this->getDoctrine()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
-            'articles'=> $article
+            'articles'=> $articleReview
         ));
 
 
-        $fileToDownload='/home/fran/fastconfer/upload/'.$review_article->getPath();
+        $fileToDownload=$review_article->getPath();
         $response = new BinaryFileResponse($fileToDownload);
 
         $response->trustXSendfileTypeHeader();
         $response->setContentDisposition(
-            ResponseHeaderBag::DISPOSITION_INLINE, $fileToDownload,
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT, $fileToDownload,
             iconv('UTF-8','ASCII//TRANSLIT',$fileToDownload)
         );
         return $response;
