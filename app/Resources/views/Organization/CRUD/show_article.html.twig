@@ -30,11 +30,11 @@
                         <td class="text-center"><span class="label label-success"> {{ articlereview.state}}</span></td>
                     {% endif %}
 
-                    <td class="text-center"><a class="btn btn-default glyphicon glyphicon-download-alt " href="{{ path('file_download',
+                    <td class="text-center"><a class="btn-sm btn-default glyphicon glyphicon-download-alt " href="{{ path('file_download',
                         {'id': articlereview.id }) }}" role="button"></a></td>
 
                     {% if articlereview.reviewComments | length > 0 %}
-                        <td class="text-center"> <a class="btn btn-default glyphicon glyphicon-comment" href="{{ path('admin_app_reviewcomments_show',{'id': articlereview.id } ) }}"
+                        <td class="text-center"> <a class="btn-sm btn-default glyphicon glyphicon-comment" href="{{ path('admin_app_reviewcomments_show',{'id': articlereview.id } ) }}"
                            role="button"> comments</a></td>
                     {% endif %}
 

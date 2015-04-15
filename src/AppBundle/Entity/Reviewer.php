@@ -46,7 +46,10 @@ class Reviewer
 
     function __toString()
     {
-        return $this->getUsers()->getUsername();
+        return sprintf("%s (%s)",
+            $this->getUsers()->getFullname(),
+            $this->getUsers()->getOrganization()
+        );
     }
 
 
