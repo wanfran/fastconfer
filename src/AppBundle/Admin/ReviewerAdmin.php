@@ -20,7 +20,7 @@ class ReviewerAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('users')
+            ->add('user')
             ->add('article')
         ;
     }
@@ -28,7 +28,7 @@ class ReviewerAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('users')
+            ->add('user')
             ->add('article')
 
         ;
@@ -37,7 +37,7 @@ class ReviewerAdmin extends Admin
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->add('users')
+            ->add('user')
 
             ->add('_action', 'actions', array(
                 'actions' => array(

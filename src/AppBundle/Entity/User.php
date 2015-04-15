@@ -34,7 +34,7 @@ class User extends BaseUser
     protected $inscriptions;
 
     /**
-     * @ORM\OneToMany(targetEntity="Reviewer", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="Reviewer", mappedBy="user")
      */
     protected $reviewers;
 

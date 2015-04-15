@@ -32,7 +32,7 @@ class ReviewerContext extends CoreContext
             $user=$this->getEntityManager()->getRepository('AppBundle:User')->findOneByUsername($reviewerHash['username']);
             $article=$this->getEntityManager()->getRepository('AppBundle:Article')->findOneByTitle($reviewerHash['title']);
 
-            $reviewer->setUsers($user);
+            $reviewer->setUser($user);
             $reviewer->setArticle($article);
 
             $em->persist($reviewer);
@@ -49,7 +49,7 @@ class ReviewerContext extends CoreContext
 
 
         $reviewer = $this->getEntityManager()->getRepository('AppBundle:Reviewer')->findBy(array(
-            'users'=>$user
+            'user'=>$user
         ));
 
         if(!$reviewer)
@@ -78,7 +78,7 @@ class ReviewerContext extends CoreContext
 
 
         $reviewer = $this->getEntityManager()->getRepository('AppBundle:Reviewer')->findBy(array(
-            'users'=>$user
+            'user'=>$user
         ));
 
         if(!$reviewer)
@@ -100,7 +100,7 @@ class ReviewerContext extends CoreContext
 
 
         $reviewer = $this->getEntityManager()->getRepository('AppBundle:Reviewer')->findBy(array(
-            'users'=>$user
+            'user'=>$user
         ));
 
         if(!$reviewer)
@@ -126,7 +126,7 @@ class ReviewerContext extends CoreContext
 
 
         $reviewer = $this->getEntityManager()->getRepository('AppBundle:Reviewer')->findBy(array(
-            'users'=>$user
+            'user'=>$user
         ));
 
         if(!$reviewer)

@@ -32,7 +32,7 @@ class ReviewerController extends Controller{
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $reviewer = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findBy(array(
-            'users'=>$user
+            'user'=>$user
         ));
 
         if(!$reviewer)
@@ -70,7 +70,7 @@ class ReviewerController extends Controller{
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $findArticle = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(
-            'users'=>$user,
+            'user'=>$user,
             'article'=> $article
         ));
 

@@ -26,7 +26,7 @@ class Reviewer
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="reviewers")
      */
-    private $users;
+    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="Article", inversedBy="reviewers")
@@ -47,8 +47,8 @@ class Reviewer
     function __toString()
     {
         return sprintf("%s (%s)",
-            $this->getUsers()->getFullname(),
-            $this->getUsers()->getOrganization()
+            $this->getUser()->getFullname(),
+            $this->getUser()->getOrganization()
         );
     }
 
@@ -64,26 +64,26 @@ class Reviewer
     }
 
     /**
-     * Set users
+     * Set user
      *
-     * @param \AppBundle\Entity\User $users
+     * @param \AppBundle\Entity\User $user
      * @return Reviewer
      */
-    public function setUsers(\AppBundle\Entity\User $users = null)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get users
+     * Get user
      *
      * @return \AppBundle\Entity\User 
      */
-    public function getUsers()
+    public function getUser()
     {
-        return $this->users;
+        return $this->user;
     }
 
     /**
