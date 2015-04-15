@@ -95,7 +95,7 @@ hwi_oauth:
     #automatic user registration on your site, with data from the provider (facebook. google, etc.)
     #and also, the connecting part (get the token and the user_id)
     connect:
-        account_connector: my_user_provider
+        account_connector: fastconfer.user.provider
     # name of the firewall in which this bundle is active, this setting MUST be set
     firewall_name: main
     fosub:
@@ -128,19 +128,9 @@ sonata_block:
         sonata.admin.block.admin_list:
             contexts:   [admin]
 
-        #sonata.admin_doctrine_orm.block.audit:
-        #    contexts:   [admin]
-
         sonata.user.block.menu:    # used to display the menu in profile pages
         sonata.user.block.account: # used to display menu option (login option)
 
-        sonata.block.service.text:
-        sonata.block.service.rss:
-
-        # Some specific block from the SonataMediaBundle
-        #sonata.media.block.media:
-        #sonata.media.block.gallery:
-        #sonata.media.block.feature_media:
 
 sonata_user:
     security_acl: false
@@ -160,4 +150,24 @@ sonata_user:
 
 sonata_admin:
     title:      Fastconfer
-    title_logo: bundles/sonataadmin/a.ico
+#    title_logo: bundles/sonataadmin/a.ico
+
+    templates:
+        layout: backend/standard_layout.html.twig
+
+    dashboard:
+        groups:
+            fastconfer.admin.group.administration:
+                label:           sonata_administration
+                label_catalogue: SonataAdminBundle
+                icon:            '<i class="fa fa-cogs"></i>'
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+
+            fastconfer.admin.group.conferences:
+                label:           Conferences
+                label_catalogue: AppBundle
+                icon:            '<i class="fa fa-sitemap"></i>'
+                items:
+                    - fastconfer.admin.conference
