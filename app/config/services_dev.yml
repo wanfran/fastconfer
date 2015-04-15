@@ -1,0 +1,5 @@
+services:
+    fastconfer.alice.provider:
+        class: AppBundle\DataFixtures\Alice\Provider\FastConferProvider
+        tags:
+            - { name: h4cc_alice_fixtures.provider }

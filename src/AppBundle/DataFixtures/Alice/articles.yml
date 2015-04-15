@@ -1,6 +1,6 @@
 \AppBundle\Entity\Article:
     article:
-        title: <word()>
+        title: <article()>
         author: <username()>
         keyword: <word()>
         abstract: <company()>
@@ -8,7 +8,7 @@
         inscription: @inscription
         topics: 2x @topic*
     article1:
-        title: <word()>
+        title: <article()>
         author: <username()>
         keyword: <word()>
         abstract: <company()>
@@ -16,7 +16,7 @@
         inscription: @inscription
         topics: 2x @topic*
     article2:
-        title: <word()>
+        title: <article()>
         author: <username()>
         keyword: <word()>
         abstract: <company()>
@@ -24,7 +24,7 @@
         inscription: @inscription
         topics: 2x @topic*
     article3:
-        title: <word()>
+        title: <article()>
         author: <username()>
         keyword: <word()>
         abstract: <company()>
@@ -32,7 +32,7 @@
         inscription: @inscription
         topics: 2x @topic*
     article4:
-        title: <word()>
+        title: <article()>
         author: <username()>
         keyword: <word()>
         abstract: <company()>
@@ -40,7 +40,7 @@
         inscription: @inscription
         topics: 2x @topic*
     article5:
-        title: <word()>
+        title: <article()>
         author: <username()>
         keyword: <word()>
         abstract: <company()>
@@ -48,7 +48,7 @@
         inscription: @inscription11
         topics: 2x @topic*
     article6:
-        title: <word()>
+        title: <article()>
         author: <username()>
         keyword: <word()>
         abstract: <company()>
