@@ -103,7 +103,7 @@ class ConferenceController extends Controller
             $em->flush();
 
             $article_review = new ArticleReview();
-            $article_review->setArticles($article);
+            $article_review->setArticle($article);
 
             $article_review->setPath($form->get('path')->getData());
 
@@ -156,7 +156,7 @@ class ConferenceController extends Controller
             $em->flush();
 
             $article_review = new ArticleReview();
-            $article_review->setArticles($article);
+            $article_review->setArticle($article);
             $article_review->setPath($form->get('path')->getData());
 
             $em = $this->getDoctrine()->getManager();
@@ -184,12 +184,12 @@ class ConferenceController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $exist =$articleReview->getArticles()->getInscription()->getUser();
+        $exist =$articleReview->getArticle()->getInscription()->getUser();
 
         if ($user!=$exist) {
             $this->get('session')->getFlashBag()->set('alert', 'You can not see other comments');
 
-            return $this->redirectToRoute('conference', array('slug' => $articleReview->getArticles()
+            return $this->redirectToRoute('conference', array('slug' => $articleReview->getArticle()
                 ->getInscription()->getConference()->getSlug()
             ));
         }
@@ -201,7 +201,7 @@ class ConferenceController extends Controller
         if ($articleReview->getState()=='send') {
             $this->get('session')->getFlashBag()->set('alert', 'There are not any comments');
 
-            return $this->redirectToRoute('conference', array('slug' => $articleReview->getArticles()
+            return $this->redirectToRoute('conference', array('slug' => $articleReview->getArticle()
                 ->getInscription()->getConference()->getSlug()
             ));
         }

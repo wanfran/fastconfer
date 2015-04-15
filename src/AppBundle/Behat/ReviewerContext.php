@@ -33,7 +33,7 @@ class ReviewerContext extends CoreContext
             $article=$this->getEntityManager()->getRepository('AppBundle:Article')->findOneByTitle($reviewerHash['title']);
 
             $reviewer->setUsers($user);
-            $reviewer->setArticles($article);
+            $reviewer->setArticle($article);
 
             $em->persist($reviewer);
         }

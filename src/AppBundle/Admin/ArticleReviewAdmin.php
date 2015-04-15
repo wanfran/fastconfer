@@ -41,7 +41,7 @@ class ArticleReviewAdmin extends Admin
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->add('articles')
+            ->add('article')
             ->add('state')
 
             ->add('_action', 'actions', array(
@@ -54,7 +54,7 @@ class ArticleReviewAdmin extends Admin
 
     public function getParentAssociationMapping()
     {
-        return 'articles';
+        return 'article';
     }
 
 

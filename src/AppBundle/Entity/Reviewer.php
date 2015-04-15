@@ -31,7 +31,7 @@ class Reviewer
     /**
      * @ORM\ManyToOne(targetEntity="Article", inversedBy="reviewers")
      */
-    private $articles;
+    private $article;
 
     /**
      * @ORM\OneToMany(targetEntity="ReviewComments", mappedBy="reviewers")
@@ -87,26 +87,26 @@ class Reviewer
     }
 
     /**
-     * Set articles
+     * Set article
      *
-     * @param \AppBundle\Entity\Article $articles
+     * @param \AppBundle\Entity\Article $article
      * @return Reviewer
      */
-    public function setArticles(\AppBundle\Entity\Article $articles = null)
+    public function setArticle(\AppBundle\Entity\Article $article = null)
     {
-        $this->articles = $articles;
+        $this->article = $article;
 
         return $this;
     }
 
     /**
-     * Get articles
+     * Get article
      *
      * @return \AppBundle\Entity\Article 
      */
-    public function getArticles()
+    public function getArticle()
     {
-        return $this->articles;
+        return $this->article;
     }
 
     /**

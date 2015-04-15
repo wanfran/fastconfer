@@ -75,7 +75,7 @@ class ArticleReview
     /**
      * @ORM\ManyToOne(targetEntity="Article", inversedBy="articleReviews")
      */
-    private $articles;
+    private $article;
 
     /**
      * @ORM\OneToMany(targetEntity="ReviewComments", mappedBy="articleReviews")
@@ -198,26 +198,26 @@ class ArticleReview
 
 
     /**
-     * Set articles
+     * Set article
      *
-     * @param \AppBundle\Entity\Article $articles
+     * @param \AppBundle\Entity\Article $article
      * @return Article_Review
      */
-    public function setArticles(\AppBundle\Entity\Article $articles = null)
+    public function setArticle(\AppBundle\Entity\Article $article = null)
     {
-        $this->articles = $articles;
+        $this->article = $article;
 
         return $this;
     }
 
     /**
-     * Get articles
+     * Get article
      *
      * @return \AppBundle\Entity\Article 
      */
-    public function getArticles()
+    public function getArticle()
     {
-        return $this->articles;
+        return $this->article;
     }
 
     /**

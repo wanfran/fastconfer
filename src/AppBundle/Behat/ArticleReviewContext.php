@@ -31,7 +31,7 @@ class ArticleReviewContext extends CoreContext
             $articleReview->setMimeType('mimeType');
             $articleReview->setState($articleReviewHash['state']);
             $articleReview->setPath($articleReviewHash['path']);
-            $articleReview->setArticles($this->findArticle($articleReviewHash['articles']));
+            $articleReview->setArticle($this->findArticle($articleReviewHash['article']));
             $em->persist($articleReview);
         }
         $em->flush();
@@ -67,7 +67,7 @@ class ArticleReviewContext extends CoreContext
         ));
 
         $review = $this->getEntityManager()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
-            'articles' => $exist
+            'article' => $exist
         ));
 
         if (!$exist) {
@@ -91,7 +91,7 @@ class ArticleReviewContext extends CoreContext
         ));
 
         $review = $this->getEntityManager()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
-            'articles' => $exist
+            'article' => $exist
         ));
 
         if (!$exist) {

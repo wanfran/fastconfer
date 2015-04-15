@@ -4,47 +4,47 @@
         mimeType: 'application/pdf'
         state: send
         path: <word()>
-        articles: @article
+        article: @article
     articleReview1:
         file: ''
         mimeType: 'application/pdf'
         state: accepted
         path: <word()>
-        articles: @article1
+        article: @article1
     articleReview2:
         file: ''
         mimeType: 'application/pdf'
         state: rejected
         path: <word()>
-        articles: @article2
+        article: @article2
     articleReview3:
         file: ''
         mimeType: 'application/pdf'
         state: accepted with suggestions
         path: <word()>
-        articles: @article3
+        article: @article3
     articleReview4:
         file: ''
         mimeType: 'application/pdf'
         state: accepted with suggestions
         path: <word()>
-        articles: @article4
+        article: @article4
     articleReview5:
         file: ''
         mimeType: 'application/pdf'
         state: accepted
         path: <word()>
-        articles: @article4
+        article: @article4
     articleReview6:
         file: ''
         mimeType: 'application/pdf'
         state: accepted
         path: <word()>
-        articles: @article5
+        article: @article5
     articleReview7:
         file: ''
         mimeType: 'application/pdf'
         state: sent
         path: <word()>
-        articles: @article6
+        article: @article6
 

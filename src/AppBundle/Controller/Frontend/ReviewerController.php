@@ -48,7 +48,7 @@ class ReviewerController extends Controller{
 
 
         $articleReview = $this->getDoctrine()->getRepository('AppBundle:ArticleReview')->findBy(array(
-            'articles'=>$article
+            'article'=>$article
         ));
 
 
@@ -71,7 +71,7 @@ class ReviewerController extends Controller{
 
         $findArticle = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(
             'users'=>$user,
-            'articles'=> $article
+            'article'=> $article
         ));
 
         if(!$findArticle)
@@ -81,7 +81,7 @@ class ReviewerController extends Controller{
         }
 
         $review_article = $this->getDoctrine()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
-            'articles'=> $article
+            'article'=> $article
         ));
 
         $reviewComments = new ReviewComments();
@@ -116,7 +116,7 @@ class ReviewerController extends Controller{
     {
 
         $review_article = $this->getDoctrine()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
-            'articles'=> $articleReview
+            'article'=> $articleReview
         ));
 
 

@@ -92,12 +92,12 @@ class Article
     private $inscription;
 
     /**
-     * @ORM\OneToMany(targetEntity="ArticleReview", mappedBy="articles")
+     * @ORM\OneToMany(targetEntity="ArticleReview", mappedBy="article")
      */
     private $articleReviews;
 
     /**
-     * @ORM\OneToMany(targetEntity="Reviewer", mappedBy="articles")
+     * @ORM\OneToMany(targetEntity="Reviewer", mappedBy="article")
      */
     private $reviewers;
 

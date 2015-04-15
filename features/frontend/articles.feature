@@ -28,7 +28,7 @@ Feature: status of article
       |second| userB   | example2 | 2tex example abstract|  accepted with suggestions |
       |third | userC   | example3 | 3tex example abstract|  sent                      |
     And there are following articleReviews:
-      | state                     |path         |articles | file |  mimeType      |
+      | state                     |path         |article  | file |  mimeType      |
       | sent                      |example1.pdf |  first  | null | application/pdf|
       | accepted with suggestions |example2.pdf |  second | null | application/pdf|
       | accepted                  |example3.pdf |  second | null | application/pdf|

@@ -21,7 +21,7 @@ class ReviewerAdmin extends Admin
     {
         $formMapper
             ->add('users')
-            ->add('articles')
+            ->add('article')
         ;
     }
 
@@ -29,7 +29,7 @@ class ReviewerAdmin extends Admin
     {
         $showMapper
             ->add('users')
-            ->add('articles')
+            ->add('article')
 
         ;
     }

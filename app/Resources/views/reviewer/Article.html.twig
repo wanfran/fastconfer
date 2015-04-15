@@ -16,11 +16,11 @@
 
                     </tr>
                         <tr>
-                            <td>{{ review.articles }}</td>
-                            <td>{{ review.articles.abstract }}</td>
-                            <td>{{ review.articles.keyword }}</td>
+                            <td>{{ review.article }}</td>
+                            <td>{{ review.article.abstract }}</td>
+                            <td>{{ review.article.keyword }}</td>
                             <td>
-                            {% for articleReview in review.articles.topics  %}
+                            {% for articleReview in review.article.topics  %}
                                 <span class="label label-success glyphicon glyphicon-tags"> {{ articleReview.name }}</span>
                             {% endfor %}
                             </td>

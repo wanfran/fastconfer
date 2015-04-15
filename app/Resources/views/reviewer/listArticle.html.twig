@@ -38,18 +38,18 @@
 
                     {% for reviewer in review %}
 
-                            <td>{{ reviewer.articles.title }}</td>
-                            <td>{{ reviewer.articles.abstract }}</td>
-                            <td>{{ reviewer.articles.keyword }}</td>
+                            <td>{{ reviewer.article.title }}</td>
+                            <td>{{ reviewer.article.abstract }}</td>
+                            <td>{{ reviewer.article.keyword }}</td>
                             <td>
-                                {% for articleReview in reviewer.articles.topics  %}
+                                {% for articleReview in reviewer.article.topics  %}
                                     <span class="label label-success glyphicon glyphicon-tags"> {{ articleReview.name }}</span>
                                     {% endfor %}
                             </td>
                             <td><a class="btn btn-default glyphicon glyphicon-download-alt " href="{{ path('file_download',
-                                {'id': reviewer.articles.id }) }}" role="button" id="1"></a></td>
+                                {'id': reviewer.article.id }) }}" role="button" id="1"></a></td>
                             <td><a class="btn btn-default glyphicon glyphicon-edit" href="{{ path('article_review',
-                                {'id': reviewer.articles.id }) }}" role="button" id="2"></a></td>
+                                {'id': reviewer.article.id }) }}" role="button" id="2"></a></td>
                         </tr>
                         {% endfor %}
 
@@ -61,7 +61,7 @@
 
         {% else %}
             <div class="alert alert-danger text-center">
-                <strong>There aren't articles</strong>
+                <strong>There aren't article</strong>
             </div>
             </div>
             </div>
