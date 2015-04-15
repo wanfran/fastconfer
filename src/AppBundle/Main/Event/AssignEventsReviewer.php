@@ -6,6 +6,23 @@
  * Time: 19:26
  */
 
-class AssignEventsReviewer {
+namespace AppBundle\Main\Event;
+
+use AppBundle\Entity\Article;
+use Symfony\Component\EventDispatcher\Event;
+
+class AssignEventsReviewer extends Event
+{
+    private $article;
+
+    public function __construct(Article $article)
+    {
+        $this->article = $article;
+    }
+
+    public function getArticle()
+    {
+        return $this->article;
+    }
 
 }
