@@ -34,7 +34,7 @@ class Reviewer
     private $article;
 
     /**
-     * @ORM\OneToMany(targetEntity="ReviewComments", mappedBy="reviewers")
+     * @ORM\OneToMany(targetEntity="ReviewComments", mappedBy="reviewer")
      */
     private $reviewComments;
 

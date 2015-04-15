@@ -34,7 +34,7 @@ Feature: status of article
       | accepted                  |example3.pdf |  second | null | application/pdf|
       | rejected                  |example4.pdf |  third  | null | application/pdf|
     And there are following reviewComments:
-      |state                      |comments                 |articleReviews |
+      |state                      |comments                 |articleReview |
       |accepted with suggestions  |comments of the article1 |example2.pdf   |
       |accepted                   |comments of the article2 |example3.pdf   |
       |rejected                   |comments of the article3 |example4.pdf   |

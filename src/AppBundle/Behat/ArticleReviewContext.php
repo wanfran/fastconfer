@@ -50,7 +50,7 @@ class ArticleReviewContext extends CoreContext
             $reviewComments = new ReviewComments();
             $reviewComments->setState($reviewCommentsHash['state']);
             $reviewComments->setComment($reviewCommentsHash['comments']);
-            $reviewComments->setArticleReviews($this->findReviewComments($reviewCommentsHash['articleReviews']));
+            $reviewComments->setArticleReview($this->findReviewComments($reviewCommentsHash['articleReview']));
             $em->persist($reviewComments);
         }
         $em->flush();

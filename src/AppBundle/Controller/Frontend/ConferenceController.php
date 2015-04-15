@@ -195,7 +195,7 @@ class ConferenceController extends Controller
         }
 
         $comments= $this->getDoctrine()->getRepository('AppBundle:ReviewComments')->findBy(array(
-            'articleReviews'=> $articleReview
+            'articleReview'=> $articleReview
         ));
 
         if ($articleReview->getState()=='send') {

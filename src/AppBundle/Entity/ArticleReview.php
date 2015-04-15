@@ -78,7 +78,7 @@ class ArticleReview
     private $article;
 
     /**
-     * @ORM\OneToMany(targetEntity="ReviewComments", mappedBy="articleReviews")
+     * @ORM\OneToMany(targetEntity="ReviewComments", mappedBy="articleReview")
      */
     private $reviewComments;
 

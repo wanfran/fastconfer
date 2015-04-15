@@ -53,7 +53,7 @@ class ReviewerController extends Controller{
 
 
         $reviewComment = $this->getDoctrine()->getRepository('AppBundle:ReviewComments')->findBy(array(
-            'articleReviews'=>$article
+            'articleReview'=>$article
         ));
 
 
@@ -86,8 +86,8 @@ class ReviewerController extends Controller{
 
         $reviewComments = new ReviewComments();
 
-        $reviewComments->setReviewers($findArticle);
-        $reviewComments->setArticleReviews($review_article);
+        $reviewComments->setReviewer($findArticle);
+        $reviewComments->setArticleReview($review_article);
 
         $form = $this->createForm(new ReviewerType(), $reviewComments);
 

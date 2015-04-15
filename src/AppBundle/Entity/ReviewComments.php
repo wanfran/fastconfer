@@ -53,14 +53,14 @@ class ReviewComments
      *
      * @ORM\ManyToOne(targetEntity="Reviewer", inversedBy="reviewComments")
      */
-    private $reviewers;
+    private $reviewer;
 
     /**
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="ArticleReview", inversedBy="reviewComments")
      */
-    private $articleReviews;
+    private $articleReview;
 
     function __construct()
     {
@@ -143,48 +143,48 @@ class ReviewComments
 
 
     /**
-     * Set reviewers
+     * Set reviewer
      *
-     * @param \AppBundle\Entity\Reviewer $reviewers
+     * @param \AppBundle\Entity\Reviewer $reviewer
      * @return ReviewComments
      */
-    public function setReviewers(\AppBundle\Entity\Reviewer $reviewers = null)
+    public function setReviewer(\AppBundle\Entity\Reviewer $reviewer = null)
     {
-        $this->reviewers = $reviewers;
+        $this->reviewer = $reviewer;
 
         return $this;
     }
 
     /**
-     * Get reviewers
+     * Get reviewer
      *
      * @return \AppBundle\Entity\Reviewer 
      */
-    public function getReviewers()
+    public function getReviewer()
     {
-        return $this->reviewers;
+        return $this->reviewer;
     }
 
     /**
-     * Set articleReviews
+     * Set articleReview
      *
-     * @param \AppBundle\Entity\ArticleReview $articleReviews
+     * @param \AppBundle\Entity\ArticleReview $articleReview
      * @return ReviewComments
      */
-    public function setArticleReviews(\AppBundle\Entity\ArticleReview $articleReviews = null)
+    public function setArticleReview(\AppBundle\Entity\ArticleReview $articleReview = null)
     {
-        $this->articleReviews = $articleReviews;
+        $this->articleReview = $articleReview;
 
         return $this;
     }
 
     /**
-     * Get articleReviews
+     * Get articleReview
      *
      * @return \AppBundle\Entity\ArticleReview 
      */
-    public function getArticleReviews()
+    public function getArticleReview()
     {
-        return $this->articleReviews;
+        return $this->articleReview;
     }
 }
