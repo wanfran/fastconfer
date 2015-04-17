@@ -8,6 +8,8 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Main\AssignEventsReviewers;
+use AppBundle\Main\Event\AssignEventsReviewer;
 use Knp\Menu\ItemInterface as MenuItemInterface;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Admin\AdminInterface;
@@ -24,6 +26,10 @@ class ArticleAdmin extends Admin
     {
         $formMapper
             ->add('reviewers')
+            ->add('stateEnd', 'choice', array(
+        'choices' => array('accepted' => 'Accepted', 'accepted with suggestions' => 'Accepted with suggestions',
+            'rejected' => 'Rejected'),
+        'preferred_choices' => array('accepted')))
         ;
     }
 
@@ -41,7 +47,6 @@ class ArticleAdmin extends Admin
             ->end()
             ->with('Reviewers')
             ->add('reviewers')
-
             ->end()
         ;
     }
@@ -82,4 +87,12 @@ class ArticleAdmin extends Admin
 
         );
     }
+
+    public function postUpdate($object)
+    {
+        $event = new AssignEventsReviewer($object);
+        $event = $this->getConfigurationPool()->getContainer()->get('event_dispatcher')->dispatch( AssignEventsReviewers::SUBMITTED, $event );
+    }
+
+
 }

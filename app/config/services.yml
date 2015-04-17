@@ -82,6 +82,9 @@ services:
             - ~
             - AppBundle\Entity\ReviewComments
             - ~
-#
-#    fastconfer.listener.assign_events_reviewer:
-#        class: AppBundle\m
+
+    fastconfer.listener.assignEventsReviewer:
+        class: AppBundle\Main\EventListener\AssignReviewerSubscriber
+        arguments: [ @mailer, @logger ]
+        tags:
+            - { name: kernel.event_subscriber }

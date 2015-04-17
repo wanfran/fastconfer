@@ -16,6 +16,7 @@
             <th class="text-center">State</th>
             <th class="text-center">Download</th>
             <th class="text-center">Comments</th>
+
         </tr>
         </thead>
         <tbody>
@@ -38,11 +39,18 @@
                            role="button"> comments</a></td>
                     {% endif %}
 
+
+
                 {% endfor %}
             </tr>
+
+
         </tbody>
+
     </table>
 
+        <a class="btn btn-default glyphicon glyphicon-file" href="{{ path('admin_app_article_edit',{'id': object.id } ) }}"
+                                    role="button"> State End</a>
 </div>
 
 

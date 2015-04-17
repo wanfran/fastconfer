@@ -8,46 +8,53 @@
 
 namespace AppBundle\Main\EventListener;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use AppBundle\Main\Event\AssignEventsReviewer;
 use AppBundle\Main\AssignEventsReviewers;
+use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
+use AppBundle\Entity\User;
 
 class AssignReviewerSubscriber implements EventSubscriberInterface
 {
     private $email;
 
-    public function __construct(\Swift_Mailer $email)
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+
+    public function __construct(\Swift_Mailer $email, LoggerInterface $logger)
     {
         $this->email = $email;
+        $this->logger = $logger;
     }
 
     public static function getSubscribedEvents()
     {
         return array(
-            AssignEventsReviewers::SUBMITTED => array('onReviewerSubmitted', -5)
+            AssignEventsReviewers::SUBMITTED => array('onReviewerSubmitted', 5)
         );
     }
 
     public function onReviewerSubmitted(AssignEventsReviewer $event)
     {
         $article = $event->getArticle();
-//
+
+        $this->logger->debug('FASTCONFER: Asignado revisores a artículo: ' . $article->getTitle() );
+
 //        $mailer = $this->get('mailer');
 //        $message = $mailer->createMessage()
 //            ->setSubject('You have Completed Registration!')
 //            ->setFrom('send@example.com')
-//            ->setTo('recipient@example.com')
-//            ->setBody(
-//                $this->renderView(
-//                // app/Resources/views/Emails/registration.html.twig
-//                    'Emails/registration.html.twig',
-//                    array('name' => $name)
-//                ),
+//            ->setTo($article->getInscription()->getUser()->getEmail())
+//            ->setBody('My <em>amazing</em> body',
 //                'text/html'
 //            );
 //        $mailer->send($message);
-
-        $article->notified = true;
+//
+//        $article->notified = true;
     }
 
 }
