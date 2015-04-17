@@ -11,7 +11,7 @@ namespace AppBundle\Main\Event;
 use AppBundle\Entity\Article;
 use Symfony\Component\EventDispatcher\Event;
 
-class AssignReviewerEvents extends Event
+class AssignReviewerEvent extends Event
 {
     private $article;
 
@@ -24,5 +24,4 @@ class AssignReviewerEvents extends Event
     {
         return $this->article;
     }
-
 }

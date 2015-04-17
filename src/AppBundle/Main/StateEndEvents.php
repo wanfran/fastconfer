@@ -8,7 +8,7 @@
 
 namespace AppBundle\Main;
 
-
-class StateEndEvents {
-
+final class StateEndEvents
+{
+    const SUBMITTED = 'Fastconfer.stateEnd.submitted';
 }

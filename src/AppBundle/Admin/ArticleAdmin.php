@@ -8,8 +8,10 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Main\AssignEventsReviewers;
-use AppBundle\Main\Event\AssignEventsReviewer;
+use AppBundle\Main\AssignReviewerEvents;
+use AppBundle\Main\Event\AssignReviewerEvent;
+use AppBundle\Main\StateEndEvents;
+use AppBundle\Main\Event\StateEndEvent;
 use Knp\Menu\ItemInterface as MenuItemInterface;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Admin\AdminInterface;
@@ -88,10 +90,16 @@ class ArticleAdmin extends Admin
         );
     }
 
+//    public function postUpdate($object)
+//    {
+//        $event = new AssignReviewerEvent($object);
+//        $event = $this->getConfigurationPool()->getContainer()->get('event_dispatcher')->dispatch( AssignReviewerEvents::SUBMITTED, $event );
+//    }
+
     public function postUpdate($object)
     {
-        $event = new AssignEventsReviewer($object);
-        $event = $this->getConfigurationPool()->getContainer()->get('event_dispatcher')->dispatch( AssignEventsReviewers::SUBMITTED, $event );
+        $event = new StateEndEvent($object);
+        $event = $this->getConfigurationPool()->getContainer()->get('event_dispatcher')->dispatch( StateEndEvents::SUBMITTED, $event );
     }
 
 

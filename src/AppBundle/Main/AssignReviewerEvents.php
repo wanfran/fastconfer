@@ -8,7 +8,7 @@
 
 namespace AppBundle\Main;
 
-final class AssignEventsReviewers
+final class AssignReviewerEvents
 {
     const SUBMITTED = 'Fastconfer.assignReviewer.submitted';
 }

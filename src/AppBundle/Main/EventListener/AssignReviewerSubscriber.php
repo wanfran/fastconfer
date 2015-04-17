@@ -10,8 +10,8 @@ namespace AppBundle\Main\EventListener;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use AppBundle\Main\Event\AssignEventsReviewer;
-use AppBundle\Main\AssignEventsReviewers;
+use AppBundle\Main\Event\AssignReviewerEvent;
+use AppBundle\Main\AssignReviewerEvents;
 use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
 use AppBundle\Entity\User;
 
@@ -34,11 +34,11 @@ class AssignReviewerSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            AssignEventsReviewers::SUBMITTED => array('onReviewerSubmitted', 5)
+            AssignReviewerEvents::SUBMITTED => array('onReviewerSubmitted', 5)
         );
     }
 
-    public function onReviewerSubmitted(AssignEventsReviewer $event)
+    public function onReviewerSubmitted(AssignReviewerEvent $event)
     {
         $article = $event->getArticle();
 

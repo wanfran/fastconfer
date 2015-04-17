@@ -8,7 +8,6 @@
 
 namespace AppBundle\Main\Event;
 
-
 use AppBundle\Entity\Article;
 use Symfony\Component\EventDispatcher\Event;
 
