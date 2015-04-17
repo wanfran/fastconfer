@@ -18,10 +18,10 @@ class FastConferProvider
         $words = Yaml::parse( __DIR__ . '/data/article.yml' );
         return mb_convert_case(
             sprintf("%s %s in %s %s",
-                $this->getWord($words['one']),
-                $this->getWord($words['two']),
-                $this->getWord($words['three']),
-                $this->getWord($words['four'])
+                $this->getOne($words['one']),
+                $this->getOne($words['two']),
+                $this->getOne($words['three']),
+                $this->getOne($words['four'])
             ),
             MB_CASE_TITLE
         );
@@ -56,14 +56,33 @@ class FastConferProvider
         );
 
         return sprintf("%s %s %s on %s",
-            $number[array_rand($number)],
-            $scope[array_rand($scope)],
-            $conference[array_rand($conference)],
-            $topic[array_rand($topic)]
+            $this->getOne( $number ),
+            $this->getOne( $scope ),
+            $this->getOne( $conference ),
+            $this->getOne( $topic )
         );
     }
 
-    private function getWord(array $array)
+    public function researchOrganization()
+    {
+        $organizations = array(
+            "Massachusetts Institute of Technology (MIT)",
+            "Stanford University",
+            "Carnegie Mellon University",
+            "University of Cambridge",
+            "Harvard University",
+            "University of California, Berkeley (UCB)",
+            "University of Oxford",
+            "ETH Zurich - Swiss Federal Institute of Technology",
+            "National University of Singapore (NUS)",
+            "Politécnica de Madrid",
+            "University of Córdoba",
+        );
+
+        return $this->getOne( $organizations );
+    }
+
+    private function getOne(array $array)
     {
         return $array[array_rand($array)];
     }

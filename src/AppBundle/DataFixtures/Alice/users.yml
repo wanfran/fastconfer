@@ -4,7 +4,7 @@
     plainPassword: admin
     firstName: <firstName()>
     lastName: <lastName()>
-    organization: <city()>
+    organization: <researchOrganization()>
     email: admin@localhost.local
     roles: ['ROLE_SUPER_ADMIN']
     enabled: 1
@@ -13,6 +13,6 @@
     plainPassword: admin
     firstName: <firstName()>
     lastName: <lastName()>
-    organization: <city()>
+    organization: <researchOrganization()>
     email: <email()>
     enabled: 1
