@@ -7,7 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Conference
+ * Conference.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\ConferenceRepository")
@@ -37,7 +37,6 @@ class Conference
      */
     private $description;
 
-
     /**
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(length=128, unique=true)
@@ -63,14 +62,12 @@ class Conference
      */
     private $dateEnd;
 
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="deadTime", type="datetime")
      */
     private $deadTime;
-
 
     /**
      * @ORM\ManyToMany(targetEntity="Topic", inversedBy="conferences")
@@ -82,13 +79,10 @@ class Conference
      */
     private $inscriptions;
 
-
-
-
-    function __construct()
+    public function __construct()
     {
-       $this->topics=new ArrayCollection();
-       $this->inscriptions=new ArrayCollection();
+        $this->topics = new ArrayCollection();
+        $this->inscriptions = new ArrayCollection();
     }
 
     /**
@@ -139,11 +133,9 @@ class Conference
         $this->deadTime = $deadTime;
     }
 
-
     /**
      * @return mixed
      */
-
     public function getSlug()
     {
         return $this->slug;
@@ -157,11 +149,10 @@ class Conference
         $this->slug = $slug;
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -169,9 +160,10 @@ class Conference
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Conference
      */
     public function setName($name)
@@ -182,9 +174,9 @@ class Conference
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -192,10 +184,11 @@ class Conference
     }
 
     /**
-     * Set description
+     * Set description.
      *
 
      * @param string $description
+     *
      * @return Conference
      */
     public function setDescription($description)
@@ -206,9 +199,9 @@ class Conference
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -216,9 +209,10 @@ class Conference
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param string $image
+     *
      * @return Conference
      */
     public function setImage($image)
@@ -229,20 +223,20 @@ class Conference
     }
 
     /**
-     * Get image
+     * Get image.
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
         return $this->image;
     }
 
-
     /**
-     * Add topics
+     * Add topics.
      *
      * @param \AppBundle\Entity\Topic $topics
+     *
      * @return Conference
      */
     public function addTopic(\AppBundle\Entity\Topic $topics)
@@ -253,7 +247,7 @@ class Conference
     }
 
     /**
-     * Remove topics
+     * Remove topics.
      *
      * @param \AppBundle\Entity\Topic $topics
      */
@@ -263,9 +257,9 @@ class Conference
     }
 
     /**
-     * Get topics
+     * Get topics.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTopics()
     {
@@ -273,9 +267,10 @@ class Conference
     }
 
     /**
-     * Add inscriptions
+     * Add inscriptions.
      *
      * @param \AppBundle\Entity\Inscription $inscriptions
+     *
      * @return Conference
      */
     public function addInscription(\AppBundle\Entity\Inscription $inscriptions)
@@ -286,7 +281,7 @@ class Conference
     }
 
     /**
-     * Remove inscriptions
+     * Remove inscriptions.
      *
      * @param \AppBundle\Entity\Inscription $inscriptions
      */
@@ -296,19 +291,17 @@ class Conference
     }
 
     /**
-     * Get inscriptions
+     * Get inscriptions.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getInscriptions()
     {
         return $this->inscriptions;
     }
 
-    function __toString()
+    public function __toString()
     {
         return $this->getName();
     }
-
-
 }

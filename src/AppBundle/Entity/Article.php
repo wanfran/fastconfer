@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Article
+ * Article.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -19,7 +19,6 @@ class Article
     const STATUS_ACCEPTED = 'accepted';
     const STATUS_ACCEPTED_SUGGESTIONS = 'accepted with suggestions';
     const STATUS_REJECTED = 'rejected';
-
 
     /**
      * @var integer
@@ -50,8 +49,6 @@ class Article
      * @var string
      *
      * @ORM\Column(name="keyword", type="string", length=255)
-     *
-     *
      */
     private $keyword;
 
@@ -63,7 +60,6 @@ class Article
      * @Assert\Length(min="5", minMessage="too short"))
      */
     private $abstract;
-
 
     /**
      * @var string
@@ -78,16 +74,15 @@ class Article
      */
     private $createAt;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Topic", inversedBy="articles")
-     */
+     /**
+      * @ORM\ManyToMany(targetEntity="Topic", inversedBy="articles")
+      */
      private $topics;
 
     /**
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="Inscription", inversedBy="articles")
-     *
      */
     private $inscription;
 
@@ -101,8 +96,7 @@ class Article
      */
     private $reviewers;
 
-
-    function __construct()
+    public function __construct()
     {
         $this->articleReviews = new ArrayCollection();
         $this->reviewers = new ArrayCollection();
@@ -111,16 +105,15 @@ class Article
         $this->createAt = new \DateTime();
     }
 
-    function __toString()
+    public function __toString()
     {
         return $this->getTitle();
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -143,13 +136,11 @@ class Article
         $this->title = $title;
     }
 
-
-
-
     /**
-     * Set author
+     * Set author.
      *
      * @param string $author
+     *
      * @return Article
      */
     public function setAuthor($author)
@@ -160,9 +151,9 @@ class Article
     }
 
     /**
-     * Get author
+     * Get author.
      *
-     * @return string 
+     * @return string
      */
     public function getAuthor()
     {
@@ -170,9 +161,10 @@ class Article
     }
 
     /**
-     * Set keyword
+     * Set keyword.
      *
      * @param string $keyword
+     *
      * @return Article
      */
     public function setKeyword($keyword)
@@ -183,9 +175,9 @@ class Article
     }
 
     /**
-     * Get keyword
+     * Get keyword.
      *
-     * @return string 
+     * @return string
      */
     public function getKeyword()
     {
@@ -193,9 +185,10 @@ class Article
     }
 
     /**
-     * Set abstract
+     * Set abstract.
      *
      * @param string $abstract
+     *
      * @return Article
      */
     public function setAbstract($abstract)
@@ -206,9 +199,9 @@ class Article
     }
 
     /**
-     * Get abstract
+     * Get abstract.
      *
-     * @return string 
+     * @return string
      */
     public function getAbstract()
     {
@@ -231,7 +224,6 @@ class Article
         $this->stateEnd = $stateEnd;
     }
 
-
     /**
      * @return \DateTime
      */
@@ -249,9 +241,10 @@ class Article
     }
 
     /**
-     * Add topics
+     * Add topics.
      *
      * @param \AppBundle\Entity\Topic $topics
+     *
      * @return Article
      */
     public function addTopic(\AppBundle\Entity\Topic $topics)
@@ -262,7 +255,7 @@ class Article
     }
 
     /**
-     * Remove topics
+     * Remove topics.
      *
      * @param \AppBundle\Entity\Topic $topics
      */
@@ -272,9 +265,9 @@ class Article
     }
 
     /**
-     * Get topics
+     * Get topics.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTopics()
     {
@@ -282,9 +275,10 @@ class Article
     }
 
     /**
-     * Add articleReviews
+     * Add articleReviews.
      *
      * @param \AppBundle\Entity\ArticleReview $articleReviews
+     *
      * @return Article
      */
     public function addArticleReview(\AppBundle\Entity\ArticleReview $articleReviews)
@@ -295,7 +289,7 @@ class Article
     }
 
     /**
-     * Remove articleReviews
+     * Remove articleReviews.
      *
      * @param \AppBundle\Entity\ArticleReview $articleReviews
      */
@@ -305,9 +299,9 @@ class Article
     }
 
     /**
-     * Get articleReviews
+     * Get articleReviews.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArticleReviews()
     {
@@ -315,9 +309,10 @@ class Article
     }
 
     /**
-     * Add reviewers
+     * Add reviewers.
      *
      * @param \AppBundle\Entity\Reviewer $reviewers
+     *
      * @return Article
      */
     public function addReviewer(\AppBundle\Entity\Reviewer $reviewers)
@@ -328,7 +323,7 @@ class Article
     }
 
     /**
-     * Remove reviewers
+     * Remove reviewers.
      *
      * @param \AppBundle\Entity\Reviewer $reviewers
      */
@@ -338,9 +333,9 @@ class Article
     }
 
     /**
-     * Get reviewers
+     * Get reviewers.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getReviewers()
     {
@@ -348,9 +343,10 @@ class Article
     }
 
     /**
-     * Set inscription
+     * Set inscription.
      *
      * @param \AppBundle\Entity\Inscription $inscription
+     *
      * @return Article
      */
     public function setInscription(\AppBundle\Entity\Inscription $inscription = null)
@@ -361,9 +357,9 @@ class Article
     }
 
     /**
-     * Get inscription
+     * Get inscription.
      *
-     * @return \AppBundle\Entity\Inscription 
+     * @return \AppBundle\Entity\Inscription
      */
     public function getInscription()
     {

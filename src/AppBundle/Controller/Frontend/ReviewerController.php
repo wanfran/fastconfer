@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: fran
  * Date: 23/03/15
- * Time: 17:16
+ * Time: 17:16.
  */
 
 namespace AppBundle\Controller\Frontend;
@@ -20,9 +20,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
-
-class ReviewerController extends Controller{
-
+class ReviewerController extends Controller
+{
     /**
      * @Route ("/article", name="article_list")
      * @Security("has_role('ROLE_USER')")
@@ -32,34 +31,29 @@ class ReviewerController extends Controller{
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $reviewer = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findBy(array(
-            'user'=>$user
+            'user' => $user,
         ));
 
-        if(!$reviewer)
-        {
+        if (!$reviewer) {
             $this->get('session')->getFlashBag()->set('alert', 'You are not a review');
+
             return $this->redirectToRoute('homepage');
         }
 
-
         $article = $this->getDoctrine()->getRepository('AppBundle:Article')->findBy(array(
-            'id'=>$reviewer
+            'id' => $reviewer,
         ));
-
 
         $articleReview = $this->getDoctrine()->getRepository('AppBundle:ArticleReview')->findBy(array(
-            'article'=>$article
+            'article' => $article,
         ));
-
 
         $reviewComment = $this->getDoctrine()->getRepository('AppBundle:ReviewComments')->findBy(array(
-            'articleReview'=>$article
+            'articleReview' => $article,
         ));
 
-
-        return $this->render('reviewer/listArticle.html.twig', array('review' => $reviewer,'a'=>$reviewComment));
+        return $this->render('reviewer/listArticle.html.twig', array('review' => $reviewer, 'a' => $reviewComment));
     }
-
 
     /**
      * @Route ("/article/{id}", name="article_review")
@@ -70,18 +64,18 @@ class ReviewerController extends Controller{
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $findArticle = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(
-            'user'=>$user,
-            'article'=> $article
+            'user' => $user,
+            'article' => $article,
         ));
 
-        if(!$findArticle)
-        {
+        if (!$findArticle) {
             $this->get('session')->getFlashBag()->set('alert', 'You are not a review');
+
             return $this->redirectToRoute('homepage');
         }
 
         $review_article = $this->getDoctrine()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
-            'article'=> $article
+            'article' => $article,
         ));
 
         $reviewComments = new ReviewComments();
@@ -90,7 +84,6 @@ class ReviewerController extends Controller{
         $reviewComments->setArticleReview($review_article);
 
         $form = $this->createForm(new ReviewerType(), $reviewComments);
-
 
         $form->handleRequest($request);
 
@@ -104,9 +97,8 @@ class ReviewerController extends Controller{
             return $this->redirectToRoute('article_list');
         }
 
-        return $this->render('reviewer/Article.html.twig', array('review' => $findArticle,'form' => $form->createView()));
+        return $this->render('reviewer/Article.html.twig', array('review' => $findArticle, 'form' => $form->createView()));
     }
-
 
     /**
      * @Route("/file/{id}/dowload", name="file_download")
@@ -114,21 +106,19 @@ class ReviewerController extends Controller{
      */
     public function downloadAction(ArticleReview $articleReview)
     {
-
         $review_article = $this->getDoctrine()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
-            'article'=> $articleReview
+            'article' => $articleReview,
         ));
 
-
-        $fileToDownload=$review_article->getPath();
+        $fileToDownload = $review_article->getPath();
         $response = new BinaryFileResponse($fileToDownload);
 
         $response->trustXSendfileTypeHeader();
         $response->setContentDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT, $fileToDownload,
-            iconv('UTF-8','ASCII//TRANSLIT',$fileToDownload)
+            iconv('UTF-8', 'ASCII//TRANSLIT', $fileToDownload)
         );
+
         return $response;
     }
-
 }

@@ -6,8 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-
-
 /**
  * @ORM\Entity
  */
@@ -30,7 +28,6 @@ class Document
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     public $path;
-
 
     public function getAbsolutePath()
     {
@@ -110,9 +107,9 @@ class Document
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -120,9 +117,10 @@ class Document
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Document
      */
     public function setName($name)
@@ -133,9 +131,9 @@ class Document
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -143,9 +141,10 @@ class Document
     }
 
     /**
-     * Set path
+     * Set path.
      *
      * @param string $path
+     *
      * @return Document
      */
     public function setPath($path)
@@ -156,9 +155,9 @@ class Document
     }
 
     /**
-     * Get path
+     * Get path.
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {

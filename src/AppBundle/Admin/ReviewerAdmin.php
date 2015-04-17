@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: fran
  * Date: 7/04/15
- * Time: 19:20
+ * Time: 19:20.
  */
 
 namespace AppBundle\Admin;
-
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -43,8 +42,7 @@ class ReviewerAdmin extends Admin
                 'actions' => array(
                     'edit' => array(),
                     'show' => array(),
-                )))
+                ), ))
         ;
     }
-
 }

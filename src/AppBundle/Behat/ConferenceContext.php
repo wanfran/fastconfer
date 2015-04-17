@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: sergio
  * Date: 11/01/15
- * Time: 18:07
+ * Time: 18:07.
  */
 
 namespace AppBundle\Behat;
-
 
 use AppBundle\Entity\Conference;
 use Behat\Gherkin\Node\TableNode;
@@ -17,8 +16,6 @@ class ConferenceContext extends CoreContext
 {
     /**
      * @Given there are following conferences:
-     *
-     *
      */
     public function createConferences(TableNode $tableNode)
     {
@@ -61,7 +58,6 @@ class ConferenceContext extends CoreContext
 
     /**
      * @Then I should be on the conference page for :name
-     *
      */
     public function iShouldBeOnConferencePage($name)
     {
@@ -72,5 +68,4 @@ class ConferenceContext extends CoreContext
 
         $this->assertSession()->addressEquals($this->generatePageUrl('conference', array('slug' => $conference->getSlug())));
     }
-
 }

@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: fran
  * Date: 13/04/15
- * Time: 17:17
+ * Time: 17:17.
  */
 
 namespace AppBundle\Form\Type;
@@ -16,24 +16,24 @@ use Symfony\Component\Form\FormBuilderInterface;
 class TopicsTextType extends AbstractType
 {
     /**
-    * @var ObjectManager
-    */
+     * @var ObjectManager
+     */
     private $om;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param ObjectManager $om
      */
-    function __construct( ObjectManager $om )
+    public function __construct(ObjectManager $om)
     {
         $this->om = $om;
     }
 
-    public function buildForm( FormBuilderInterface $builder, array $options )
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $transformer = new TopicsToTextTransformer( $this->om );
-        $builder->addModelTransformer( $transformer );
+        $transformer = new TopicsToTextTransformer($this->om);
+        $builder->addModelTransformer($transformer);
     }
 
     /**
@@ -53,5 +53,4 @@ class TopicsTextType extends AbstractType
     {
         return 'topics_text';
     }
-
 }

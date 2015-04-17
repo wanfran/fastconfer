@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: fran
  * Date: 14/04/15
- * Time: 19:37
+ * Time: 19:37.
  */
 
 namespace AppBundle\Main\EventListener;
@@ -12,7 +12,6 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use AppBundle\Main\Event\AssignReviewerEvent;
 use AppBundle\Main\AssignReviewerEvents;
-use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
 use AppBundle\Entity\User;
 
 class AssignReviewerSubscriber implements EventSubscriberInterface
@@ -24,7 +23,6 @@ class AssignReviewerSubscriber implements EventSubscriberInterface
      */
     private $logger;
 
-
     public function __construct(\Swift_Mailer $email, LoggerInterface $logger)
     {
         $this->email = $email;
@@ -34,7 +32,7 @@ class AssignReviewerSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            AssignReviewerEvents::SUBMITTED => array('onReviewerSubmitted', 5)
+            AssignReviewerEvents::SUBMITTED => array('onReviewerSubmitted', 5),
         );
     }
 
@@ -42,7 +40,7 @@ class AssignReviewerSubscriber implements EventSubscriberInterface
     {
         $article = $event->getArticle();
 
-        $this->logger->debug('FASTCONFER: Asignado revisores a artículo: ' . $article->getTitle() );
+        $this->logger->debug('FASTCONFER: Asignado revisores a artículo: '.$article->getTitle());
 
 //        $mailer = $this->get('mailer');
 //        $message = $mailer->createMessage()
@@ -56,5 +54,4 @@ class AssignReviewerSubscriber implements EventSubscriberInterface
 //
 //        $article->notified = true;
     }
-
 }

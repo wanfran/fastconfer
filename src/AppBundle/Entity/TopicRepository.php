@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: fran
  * Date: 22/02/15
- * Time: 18:22
+ * Time: 18:22.
  */
-
 
 namespace AppBundle\Entity;
 
@@ -23,7 +22,5 @@ class TopicRepository extends EntityRepository
         $query->setParameter('id', $conference->getId());
 
         return $query;
-
     }
-
 }

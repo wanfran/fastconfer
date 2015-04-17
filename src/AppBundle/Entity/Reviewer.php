@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Reviewer
+ * Reviewer.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -21,7 +21,6 @@ class Reviewer
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="reviewers")
@@ -38,13 +37,12 @@ class Reviewer
      */
     private $reviewComments;
 
-    function __construct()
+    public function __construct()
     {
         $this->reviemComments = new ArrayCollection();
-
     }
 
-    function __toString()
+    public function __toString()
     {
         return sprintf("%s (%s)",
             $this->getUser()->getFullname(),
@@ -52,11 +50,10 @@ class Reviewer
         );
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -64,9 +61,10 @@ class Reviewer
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \AppBundle\Entity\User $user
+     *
      * @return Reviewer
      */
     public function setUser(\AppBundle\Entity\User $user = null)
@@ -77,9 +75,9 @@ class Reviewer
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {
@@ -87,9 +85,10 @@ class Reviewer
     }
 
     /**
-     * Set article
+     * Set article.
      *
      * @param \AppBundle\Entity\Article $article
+     *
      * @return Reviewer
      */
     public function setArticle(\AppBundle\Entity\Article $article = null)
@@ -100,9 +99,9 @@ class Reviewer
     }
 
     /**
-     * Get article
+     * Get article.
      *
-     * @return \AppBundle\Entity\Article 
+     * @return \AppBundle\Entity\Article
      */
     public function getArticle()
     {
@@ -110,9 +109,10 @@ class Reviewer
     }
 
     /**
-     * Add reviewComments
+     * Add reviewComments.
      *
      * @param \AppBundle\Entity\ReviewComments $reviewComments
+     *
      * @return Reviewer
      */
     public function addReviewComment(\AppBundle\Entity\ReviewComments $reviewComments)
@@ -123,7 +123,7 @@ class Reviewer
     }
 
     /**
-     * Remove reviewComments
+     * Remove reviewComments.
      *
      * @param \AppBundle\Entity\ReviewComments $reviewComments
      */
@@ -133,9 +133,9 @@ class Reviewer
     }
 
     /**
-     * Get reviewComments
+     * Get reviewComments.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getReviewComments()
     {

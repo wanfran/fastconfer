@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Topic
+ * Topic.
+ *
  *@ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\TopicRepository")
  */
@@ -40,29 +41,26 @@ class Topic
      */
     private $conferences;
 
-
     /**
      * @ORM\ManyToMany(targetEntity="Article", mappedBy="topics")
      */
     private $articles;
 
-
-    function __construct()
+    public function __construct()
     {
-        $this->conferences=new ArrayCollection();
-        $this->articles=new ArrayCollection();
+        $this->conferences = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
-    function __toString()
+    public function __toString()
     {
-       return $this->getName();
+        return $this->getName();
     }
-
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -70,9 +68,10 @@ class Topic
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Topic
      */
     public function setName($name)
@@ -83,9 +82,9 @@ class Topic
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -93,9 +92,10 @@ class Topic
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
+     *
      * @return Topic
      */
     public function setSlug($slug)
@@ -106,9 +106,9 @@ class Topic
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -116,9 +116,10 @@ class Topic
     }
 
     /**
-     * Add conferences
+     * Add conferences.
      *
      * @param \AppBundle\Entity\Conference $conferences
+     *
      * @return Topic
      */
     public function addConference(\AppBundle\Entity\Conference $conferences)
@@ -129,7 +130,7 @@ class Topic
     }
 
     /**
-     * Remove conferences
+     * Remove conferences.
      *
      * @param \AppBundle\Entity\Conference $conferences
      */
@@ -139,9 +140,9 @@ class Topic
     }
 
     /**
-     * Get conferences
+     * Get conferences.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getConferences()
     {
@@ -149,9 +150,10 @@ class Topic
     }
 
     /**
-     * Add articles
+     * Add articles.
      *
      * @param \AppBundle\Entity\Article $articles
+     *
      * @return Topic
      */
     public function addArticle(\AppBundle\Entity\Article $articles)
@@ -162,7 +164,7 @@ class Topic
     }
 
     /**
-     * Remove articles
+     * Remove articles.
      *
      * @param \AppBundle\Entity\Article $articles
      */
@@ -172,9 +174,9 @@ class Topic
     }
 
     /**
-     * Get articles
+     * Get articles.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {

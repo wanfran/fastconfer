@@ -17,4 +17,3 @@ $set->addFile(__DIR__.'/reviewer.yml', 'yaml');
 //$set->addFile(__DIR__.'/reviewComments.yml', 'yaml');
 
 return $set;
-

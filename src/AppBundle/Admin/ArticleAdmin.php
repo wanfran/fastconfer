@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: fran
  * Date: 6/04/15
- * Time: 17:13
+ * Time: 17:13.
  */
 
 namespace AppBundle\Admin;
@@ -19,10 +19,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-
 class ArticleAdmin extends Admin
 {
-
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -30,8 +28,8 @@ class ArticleAdmin extends Admin
             ->add('reviewers')
             ->add('stateEnd', 'choice', array(
         'choices' => array('accepted' => 'Accepted', 'accepted with suggestions' => 'Accepted with suggestions',
-            'rejected' => 'Rejected'),
-        'preferred_choices' => array('accepted')))
+            'rejected' => 'Rejected', ),
+        'preferred_choices' => array('accepted'), ))
         ;
     }
 
@@ -61,10 +59,10 @@ class ArticleAdmin extends Admin
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'list' => array(
-                        'template' => 'Organization/CRUD/list__action_list_articleReviews.html.twig'
+                        'template' => 'Organization/CRUD/list__action_list_articleReviews.html.twig',
                     ),
                     'show' => array(),
-                )))
+                ), ))
         ;
     }
 
@@ -99,8 +97,6 @@ class ArticleAdmin extends Admin
     public function postUpdate($object)
     {
         $event = new StateEndEvent($object);
-        $event = $this->getConfigurationPool()->getContainer()->get('event_dispatcher')->dispatch( StateEndEvents::SUBMITTED, $event );
+        $event = $this->getConfigurationPool()->getContainer()->get('event_dispatcher')->dispatch(StateEndEvents::SUBMITTED, $event);
     }
-
-
 }

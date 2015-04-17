@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: sergio
  * Date: 8/10/14
- * Time: 9:57
+ * Time: 9:57.
  */
 
 namespace AppBundle\Behat;
@@ -15,33 +15,34 @@ class CoreContext extends DefaultContext
 {
     /**
      * @AfterStep
+     *
      * @param $event
      */
     public function showError(AfterStepScope $event)
     {
-        if(!$event->getTestResult()->isPassed()) {
-            print "Ruta: " . $this->getSession()->getCurrentUrl() . "\n";
+        if (!$event->getTestResult()->isPassed()) {
+            print "Ruta: ".$this->getSession()->getCurrentUrl()."\n";
         }
     }
 
     public function findTopic($topics)
     {
-        $topic = $this->getEntityManager()->getRepository('AppBundle:Topic')->findOneBy(array('name'=>$topics));
+        $topic = $this->getEntityManager()->getRepository('AppBundle:Topic')->findOneBy(array('name' => $topics));
 
         return $topic;
     }
 
     public function findInscription($name)
     {
-        $user=$this->getSecurityContext()->getToken()->getUser();
+        $user = $this->getSecurityContext()->getToken()->getUser();
 
         $conference = $this->getEntityManager()->getRepository('AppBundle:Conference')->findOneBy(array(
-            'name'=>$name
+            'name' => $name,
         ));
 
         $inscription = $this->getEntityManager()->getRepository('AppBundle:Inscription')->findOneBy(array(
             'conference' => $conference,
-            'user' => $user
+            'user' => $user,
         ));
 
         return $inscription;
@@ -50,7 +51,7 @@ class CoreContext extends DefaultContext
     public function findArticle($articles)
     {
         $article = $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
-            'title'=>$articles
+            'title' => $articles,
         ));
 
         return $article;
@@ -59,10 +60,9 @@ class CoreContext extends DefaultContext
     public function findReviewComments($articleReviews)
     {
         $comment = $this->getEntityManager()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
-            'path'=>$articleReviews
+            'path' => $articleReviews,
         ));
 
         return $comment;
     }
-
 }

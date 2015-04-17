@@ -2,14 +2,12 @@
 
 namespace AppBundle\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * ArticleReview
+ * ArticleReview.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -17,8 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ArticleReview
 {
-
-
     const STATUS_SENT = 'sent';
     const STATUS_ACCEPTED = 'accepted';
     const STATUS_ACCEPTED_SUGGESTIONS = 'accepted with suggestions';
@@ -32,7 +28,6 @@ class ArticleReview
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
 
     /**
      * @var string
@@ -52,15 +47,12 @@ class ArticleReview
      * @var string
      *
      * @ORM\Column(name="state", type="string", length=255)
-     *
      */
     private $state;
 
     /**
-     *
      * @ORM\Column(name="path", type="string", length=255)
      * @Gedmo\UploadableFilePath
-     *
      */
     private $path;
 
@@ -68,7 +60,6 @@ class ArticleReview
      * @var \DateTime
      *
      *@ORM\Column(name="created_at", type="datetime")
-     *
      */
     private $createAt;
 
@@ -82,12 +73,11 @@ class ArticleReview
      */
     private $reviewComments;
 
-    function __construct()
+    public function __construct()
     {
-      $this-> createAt = new \DateTime();
-      $this-> state = self::STATUS_SENT;
-      $this->reviemComments = new ArrayCollection();
-
+        $this->createAt = new \DateTime();
+        $this->state = self::STATUS_SENT;
+        $this->reviemComments = new ArrayCollection();
     }
 
     /**
@@ -122,11 +112,10 @@ class ArticleReview
         $this->mimeType = $mimeType;
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -134,9 +123,10 @@ class ArticleReview
     }
 
     /**
-     * Set state
+     * Set state.
      *
      * @param string $state
+     *
      * @return Article_Review
      */
     public function setState($state)
@@ -147,9 +137,9 @@ class ArticleReview
     }
 
     /**
-     * Get state
+     * Get state.
      *
-     * @return string 
+     * @return string
      */
     public function getState()
     {
@@ -157,9 +147,10 @@ class ArticleReview
     }
 
     /**
-     * Set path
+     * Set path.
      *
      * @param string $path
+     *
      * @return Article_Review
      */
     public function setPath($path)
@@ -170,9 +161,9 @@ class ArticleReview
     }
 
     /**
-     * Get path
+     * Get path.
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {
@@ -195,12 +186,11 @@ class ArticleReview
         $this->createAt = $createAt;
     }
 
-
-
     /**
-     * Set article
+     * Set article.
      *
      * @param \AppBundle\Entity\Article $article
+     *
      * @return Article_Review
      */
     public function setArticle(\AppBundle\Entity\Article $article = null)
@@ -211,9 +201,9 @@ class ArticleReview
     }
 
     /**
-     * Get article
+     * Get article.
      *
-     * @return \AppBundle\Entity\Article 
+     * @return \AppBundle\Entity\Article
      */
     public function getArticle()
     {
@@ -221,9 +211,10 @@ class ArticleReview
     }
 
     /**
-     * Add reviewComments
+     * Add reviewComments.
      *
      * @param \AppBundle\Entity\ReviewComments $reviewComments
+     *
      * @return ArticleReview
      */
     public function addReviewComment(\AppBundle\Entity\ReviewComments $reviewComments)
@@ -234,7 +225,7 @@ class ArticleReview
     }
 
     /**
-     * Remove reviewComments
+     * Remove reviewComments.
      *
      * @param \AppBundle\Entity\ReviewComments $reviewComments
      */
@@ -244,9 +235,9 @@ class ArticleReview
     }
 
     /**
-     * Get reviewComments
+     * Get reviewComments.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getReviewComments()
     {

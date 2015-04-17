@@ -3,14 +3,13 @@
  * Created by PhpStorm.
  * User: fran
  * Date: 27/01/15
- * Time: 18:42
+ * Time: 18:42.
  */
 
 namespace AppBundle\Behat;
 
 use AppBundle\Entity\User;
 use Behat\Gherkin\Node\TableNode;
-
 
 class UserContext extends CoreContext
 {
@@ -43,5 +42,4 @@ class UserContext extends CoreContext
         $this->fillField('_password', $password);
         $this->pressButton('_submit');
     }
-
 }

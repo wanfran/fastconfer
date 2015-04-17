@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
+
 /**
  * @ORM\Entity()
  * @ORM\Table()
@@ -27,7 +28,6 @@ class User extends BaseUser
     /** @ORM\Column(name="organization", type="string", length=255, nullable=true) */
     protected $organization;
 
-
     /**
      * @ORM\OneToMany(targetEntity="Inscription", mappedBy="user")
      */
@@ -37,7 +37,6 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Reviewer", mappedBy="user")
      */
     protected $reviewers;
-
 
     public function __construct()
     {
@@ -61,11 +60,8 @@ class User extends BaseUser
         $this->organization = $organization;
     }
 
-
-
-
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */
@@ -85,7 +81,7 @@ class User extends BaseUser
     /**
      * @param mixed $google_id
      */
-    public function setGoogleId( $google_id )
+    public function setGoogleId($google_id)
     {
         $this->google_id = $google_id;
     }
@@ -101,18 +97,18 @@ class User extends BaseUser
     /**
      * @param mixed $google_access_token
      */
-    public function setGoogleAccessToken( $google_access_token )
+    public function setGoogleAccessToken($google_access_token)
     {
         $this->google_access_token = $google_access_token;
     }
 
-    
     //YOU CAN ADD MORE CODE HERE !
 
     /**
-     * Add inscriptions
+     * Add inscriptions.
      *
      * @param \AppBundle\Entity\Inscription $inscriptions
+     *
      * @return User
      */
     public function addInscription(\AppBundle\Entity\Inscription $inscriptions)
@@ -123,7 +119,7 @@ class User extends BaseUser
     }
 
     /**
-     * Remove inscriptions
+     * Remove inscriptions.
      *
      * @param \AppBundle\Entity\Inscription $inscriptions
      */
@@ -133,9 +129,9 @@ class User extends BaseUser
     }
 
     /**
-     * Get inscriptions
+     * Get inscriptions.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getInscriptions()
     {
@@ -143,9 +139,10 @@ class User extends BaseUser
     }
 
     /**
-     * Set reviewers
+     * Set reviewers.
      *
      * @param \AppBundle\Entity\Reviewer $reviewers
+     *
      * @return User
      */
     public function setReviewers(\AppBundle\Entity\Reviewer $reviewers = null)
@@ -156,9 +153,9 @@ class User extends BaseUser
     }
 
     /**
-     * Get reviewers
+     * Get reviewers.
      *
-     * @return \AppBundle\Entity\Reviewer 
+     * @return \AppBundle\Entity\Reviewer
      */
     public function getReviewers()
     {
@@ -166,9 +163,10 @@ class User extends BaseUser
     }
 
     /**
-     * Add reviewers
+     * Add reviewers.
      *
      * @param \AppBundle\Entity\Reviewer $reviewers
+     *
      * @return User
      */
     public function addReviewer(\AppBundle\Entity\Reviewer $reviewers)
@@ -179,7 +177,7 @@ class User extends BaseUser
     }
 
     /**
-     * Remove reviewers
+     * Remove reviewers.
      *
      * @param \AppBundle\Entity\Reviewer $reviewers
      */

@@ -1,7 +1,6 @@
 <?php
 namespace AppBundle\Controller\Frontend;
 
-
 use AppBundle\Entity\Article;
 use AppBundle\Entity\ArticleReview;
 use AppBundle\Entity\Conference;
@@ -11,8 +10,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class ConferenceController extends Controller
 {
@@ -93,7 +90,6 @@ class ConferenceController extends Controller
         $article->setInscription($inscription);
 
         $form = $this->createForm(new InscriptionType(), $article);
-
 
         $form->handleRequest($request);
 
@@ -181,28 +177,27 @@ class ConferenceController extends Controller
      */
     public function commentsAction(ArticleReview $articleReview)
     {
-
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $exist =$articleReview->getArticle()->getInscription()->getUser();
+        $exist = $articleReview->getArticle()->getInscription()->getUser();
 
-        if ($user!=$exist) {
+        if ($user != $exist) {
             $this->get('session')->getFlashBag()->set('alert', 'You can not see other comments');
 
             return $this->redirectToRoute('conference', array('slug' => $articleReview->getArticle()
-                ->getInscription()->getConference()->getSlug()
+                ->getInscription()->getConference()->getSlug(),
             ));
         }
 
-        $comments= $this->getDoctrine()->getRepository('AppBundle:ReviewComments')->findBy(array(
-            'articleReview'=> $articleReview
+        $comments = $this->getDoctrine()->getRepository('AppBundle:ReviewComments')->findBy(array(
+            'articleReview' => $articleReview,
         ));
 
-        if ($articleReview->getState()=='send') {
+        if ($articleReview->getState() == 'send') {
             $this->get('session')->getFlashBag()->set('alert', 'There are not any comments');
 
             return $this->redirectToRoute('conference', array('slug' => $articleReview->getArticle()
-                ->getInscription()->getConference()->getSlug()
+                ->getInscription()->getConference()->getSlug(),
             ));
         }
 

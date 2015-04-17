@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Inscription
+ * Inscription.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -29,7 +29,6 @@ class Inscription
      */
     private $createdAt;
 
-
     /**
      * @var string
      *
@@ -51,15 +50,13 @@ class Inscription
      */
     private $articles;
 
-
-    function __construct()
+    public function __construct()
     {
-        $this->createdAt=new \DateTime();
-        $this->articles=new ArrayCollection();
-
+        $this->createdAt = new \DateTime();
+        $this->articles = new ArrayCollection();
     }
 
-    function __toString()
+    public function __toString()
     {
         return sprintf("%s's inscription on %s",
             $this->getUser(),
@@ -68,9 +65,9 @@ class Inscription
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -78,9 +75,10 @@ class Inscription
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
+     *
      * @return Inscription
      */
     public function setCreatedAt($createdAt)
@@ -91,9 +89,9 @@ class Inscription
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -101,9 +99,10 @@ class Inscription
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param string $user
+     *
      * @return Inscription
      */
     public function setUser($user)
@@ -114,9 +113,9 @@ class Inscription
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return string 
+     * @return string
      */
     public function getUser()
     {
@@ -124,9 +123,10 @@ class Inscription
     }
 
     /**
-     * Set conference
+     * Set conference.
      *
      * @param string $conference
+     *
      * @return Inscription
      */
     public function setConference($conference)
@@ -137,23 +137,20 @@ class Inscription
     }
 
     /**
-     * Get conference
+     * Get conference.
      *
-     * @return string 
+     * @return string
      */
     public function getConference()
     {
         return $this->conference;
     }
 
-
-
-
-
     /**
-     * Add articles
+     * Add articles.
      *
      * @param \AppBundle\Entity\Article $articles
+     *
      * @return Inscription
      */
     public function addArticle(\AppBundle\Entity\Article $articles)
@@ -164,7 +161,7 @@ class Inscription
     }
 
     /**
-     * Remove articles
+     * Remove articles.
      *
      * @param \AppBundle\Entity\Article $articles
      */
@@ -174,15 +171,12 @@ class Inscription
     }
 
     /**
-     * Get articles
+     * Get articles.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {
         return $this->articles;
     }
-
-
-
 }

@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: fran
  * Date: 25/03/15
- * Time: 23:59
+ * Time: 23:59.
  */
 
 namespace AppBundle\Behat;
@@ -13,7 +13,6 @@ use AppBundle\Entity\Reviewer;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Exception\ElementNotFoundException;
 
-
 class ReviewerContext extends CoreContext
 {
     /**
@@ -21,16 +20,14 @@ class ReviewerContext extends CoreContext
      *
      * @param TableNode $tableNode
      */
-
     public function createReviewer(TableNode $tableNode)
     {
         $em = $this->getEntityManager();
-        foreach ($tableNode->getHash() as $reviewerHash)
-        {
+        foreach ($tableNode->getHash() as $reviewerHash) {
             $reviewer = new Reviewer();
 
-            $user=$this->getEntityManager()->getRepository('AppBundle:User')->findOneByUsername($reviewerHash['username']);
-            $article=$this->getEntityManager()->getRepository('AppBundle:Article')->findOneByTitle($reviewerHash['title']);
+            $user = $this->getEntityManager()->getRepository('AppBundle:User')->findOneByUsername($reviewerHash['username']);
+            $article = $this->getEntityManager()->getRepository('AppBundle:Article')->findOneByTitle($reviewerHash['title']);
 
             $reviewer->setUser($user);
             $reviewer->setArticle($article);
@@ -45,15 +42,13 @@ class ReviewerContext extends CoreContext
      */
     public function iShouldBeOnPageArticlesReviewer()
     {
-        $user=$this->getSecurityContext()->getToken()->getUser();
-
+        $user = $this->getSecurityContext()->getToken()->getUser();
 
         $reviewer = $this->getEntityManager()->getRepository('AppBundle:Reviewer')->findBy(array(
-            'user'=>$user
+            'user' => $user,
         ));
 
-        if(!$reviewer)
-        {
+        if (!$reviewer) {
             throw new ElementNotFoundException('Reviewer doesn\'t exist');
         }
 
@@ -68,21 +63,18 @@ class ReviewerContext extends CoreContext
         $this->assertSession()->elementsCount('css', '.glyphicon-edit', $number);
     }
 
-
     /**
      * @Given I am on page articles reviewer
      */
     public function iAmOnPageArticlesReviewer()
     {
-        $user=$this->getSecurityContext()->getToken()->getUser();
-
+        $user = $this->getSecurityContext()->getToken()->getUser();
 
         $reviewer = $this->getEntityManager()->getRepository('AppBundle:Reviewer')->findBy(array(
-            'user'=>$user
+            'user' => $user,
         ));
 
-        if(!$reviewer)
-        {
+        if (!$reviewer) {
             throw new ElementNotFoundException('Reviewer doesn\'t exist');
         }
 
@@ -91,29 +83,25 @@ class ReviewerContext extends CoreContext
 
     /**
      * @Then I should see on page edit :title
-     *
      */
     public function iShouldSeeOnPageEdit($title)
     {
-
-        $user=$this->getSecurityContext()->getToken()->getUser();
-
+        $user = $this->getSecurityContext()->getToken()->getUser();
 
         $reviewer = $this->getEntityManager()->getRepository('AppBundle:Reviewer')->findBy(array(
-            'user'=>$user
+            'user' => $user,
         ));
 
-        if(!$reviewer)
-        {
+        if (!$reviewer) {
             throw new ElementNotFoundException('Reviewer can\'t edit this article');
         }
 
-        $article =$this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
-            'title'=> $title
+        $article = $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
+            'title' => $title,
         ));
 
-        $this->assertSession()->addressEquals($this->generatePageUrl('article_review',array(
-            'id' => $article->getId()
+        $this->assertSession()->addressEquals($this->generatePageUrl('article_review', array(
+            'id' => $article->getId(),
         )));
     }
 
@@ -122,25 +110,22 @@ class ReviewerContext extends CoreContext
      */
     public function iAmOnTheEditPage($title)
     {
-        $user=$this->getSecurityContext()->getToken()->getUser();
-
+        $user = $this->getSecurityContext()->getToken()->getUser();
 
         $reviewer = $this->getEntityManager()->getRepository('AppBundle:Reviewer')->findBy(array(
-            'user'=>$user
+            'user' => $user,
         ));
 
-        if(!$reviewer)
-        {
+        if (!$reviewer) {
             throw new ElementNotFoundException('Reviewer can\'t edit this article');
         }
 
-        $article =$this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
-            'title'=> $title
+        $article = $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
+            'title' => $title,
         ));
 
-        $this->getSession()->visit($this->generatePageUrl('article_review',array(
-            'id' => $article->getId()
+        $this->getSession()->visit($this->generatePageUrl('article_review', array(
+            'id' => $article->getId(),
         )));
     }
-
 }

@@ -3,12 +3,10 @@
  * Created by PhpStorm.
  * User: fran
  * Date: 6/04/15
- * Time: 19:26
+ * Time: 19:26.
  */
 
 namespace AppBundle\Admin;
-
-use Knp\Menu\ItemInterface as MenuItemInterface;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -23,8 +21,8 @@ class ArticleReviewAdmin extends Admin
         $formMapper
             ->add('state')
             ->add('path')
-            ->add('createAt','sonata_type_datetime_picker',array(
-            'format'=>'dd MMMM YY'
+            ->add('createAt', 'sonata_type_datetime_picker', array(
+            'format' => 'dd MMMM YY',
         ))
         ;
     }
@@ -48,7 +46,7 @@ class ArticleReviewAdmin extends Admin
                 'actions' => array(
                     'edit' => array(),
                     'show' => array(),
-                    )))
+                    ), ))
         ;
     }
 
@@ -56,8 +54,4 @@ class ArticleReviewAdmin extends Admin
     {
         return 'article';
     }
-
-
-
-
 }

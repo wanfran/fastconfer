@@ -3,20 +3,17 @@
  * Created by PhpStorm.
  * User: sergio
  * Date: 15/02/15
- * Time: 20:05
+ * Time: 20:05.
  */
 
 namespace AppBundle\Behat;
-
 
 use Sylius\Bundle\ResourceBundle\Behat\DefaultContext;
 
 class WebContext extends DefaultContext
 {
-
     /**
      * @When I follow :button near :link
-     *
      */
     public function iClickNear($button, $value)
     {

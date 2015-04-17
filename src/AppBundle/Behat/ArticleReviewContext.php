@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: fran
  * Date: 14/01/15
- * Time: 16:29
+ * Time: 16:29.
  */
 
 namespace AppBundle\Behat;
@@ -24,8 +24,7 @@ class ArticleReviewContext extends CoreContext
     public function createArticleReview(TableNode $tableNode)
     {
         $em = $this->getEntityManager();
-        foreach ($tableNode->getHash() as $articleReviewHash)
-        {
+        foreach ($tableNode->getHash() as $articleReviewHash) {
             $articleReview = new ArticleReview();
             $articleReview->setFile('file');
             $articleReview->setMimeType('mimeType');
@@ -45,8 +44,7 @@ class ArticleReviewContext extends CoreContext
     public function createReviewComments(TableNode $tableNode)
     {
         $em = $this->getEntityManager();
-        foreach($tableNode->getHash() as $reviewCommentsHash)
-        {
+        foreach ($tableNode->getHash() as $reviewCommentsHash) {
             $reviewComments = new ReviewComments();
             $reviewComments->setState($reviewCommentsHash['state']);
             $reviewComments->setComment($reviewCommentsHash['comments']);
@@ -56,18 +54,17 @@ class ArticleReviewContext extends CoreContext
         $em->flush();
     }
 
-
     /**
      * @Then I should be on page comments :title
      */
     public function iShouldBeOnNewComments($title)
     {
-        $exist= $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
-            'title'=> $title
+        $exist = $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
+            'title' => $title,
         ));
 
         $review = $this->getEntityManager()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
-            'article' => $exist
+            'article' => $exist,
         ));
 
         if (!$exist) {
@@ -75,23 +72,21 @@ class ArticleReviewContext extends CoreContext
         }
 
         $this->assertSession()->addressEquals($this->generatePageUrl('comments', array(
-            'id' => $review->getId()
+            'id' => $review->getId(),
         )));
     }
 
-
     /**
      * @Given I am on the comments page :title
-     *
      */
     public function iAmOnTheCommentsPage($title)
     {
-        $exist= $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
-            'title'=> $title
+        $exist = $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
+            'title' => $title,
         ));
 
         $review = $this->getEntityManager()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
-            'article' => $exist
+            'article' => $exist,
         ));
 
         if (!$exist) {
@@ -99,19 +94,17 @@ class ArticleReviewContext extends CoreContext
         }
 
         $this->getSession()->visit($this->generatePageUrl('comments', array(
-            'id' => $review->getId()
+            'id' => $review->getId(),
         )));
     }
 
     /**
      * @Then I should be on the new page for :article
-     *
      */
     public function iShouldBeOnNewPage($article)
     {
-
         $exist = $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
-            'title' => $article
+            'title' => $article,
         ));
 
         if (!$exist) {
@@ -119,11 +112,9 @@ class ArticleReviewContext extends CoreContext
         }
 
         $this->assertSession()->addressEquals($this->generatePageUrl('new_article', array(
-            'id' => $exist->getId()
+            'id' => $exist->getId(),
         )));
-
     }
-
 
     /**
      * @Given  I am on the new page for :article
@@ -131,7 +122,7 @@ class ArticleReviewContext extends CoreContext
     public function iAmOnTheNewPage($article)
     {
         $exist = $this->getEntityManager()->getRepository('AppBundle:Article')->findOneBy(array(
-            'title' => $article
+            'title' => $article,
         ));
 
         if (!$exist) {
@@ -139,10 +130,7 @@ class ArticleReviewContext extends CoreContext
         }
 
         $this->getSession()->visit($this->generatePageUrl('new_article', array(
-            'id' => $exist->getId()
+            'id' => $exist->getId(),
         )));
     }
-
-
 }
-

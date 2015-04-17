@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * ReviemComments
+ * ReviemComments.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -36,7 +36,6 @@ class ReviewComments
      * @var string
      *
      * @ORM\Column(name="state", type="string", length=255)
-     *
      */
     private $state;
 
@@ -44,7 +43,6 @@ class ReviewComments
      * @var \DateTime
      *
      *@ORM\Column(name="created_at", type="datetime")
-     *
      */
     private $createAt;
 
@@ -62,16 +60,15 @@ class ReviewComments
      */
     private $articleReview;
 
-    function __construct()
+    public function __construct()
     {
-        $this-> createAt = new \DateTime();
+        $this->createAt = new \DateTime();
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -79,9 +76,10 @@ class ReviewComments
     }
 
     /**
-     * Set comment
+     * Set comment.
      *
      * @param string $comment
+     *
      * @return ReviewComments
      */
     public function setComment($comment)
@@ -92,9 +90,9 @@ class ReviewComments
     }
 
     /**
-     * Get comment
+     * Get comment.
      *
-     * @return string 
+     * @return string
      */
     public function getComment()
     {
@@ -102,9 +100,10 @@ class ReviewComments
     }
 
     /**
-     * Set state
+     * Set state.
      *
      * @param string $state
+     *
      * @return ReviewComments
      */
     public function setState($state)
@@ -115,9 +114,9 @@ class ReviewComments
     }
 
     /**
-     * Get state
+     * Get state.
      *
-     * @return string 
+     * @return string
      */
     public function getState()
     {
@@ -140,12 +139,11 @@ class ReviewComments
         $this->createAt = $createAt;
     }
 
-
-
     /**
-     * Set reviewer
+     * Set reviewer.
      *
      * @param \AppBundle\Entity\Reviewer $reviewer
+     *
      * @return ReviewComments
      */
     public function setReviewer(\AppBundle\Entity\Reviewer $reviewer = null)
@@ -156,9 +154,9 @@ class ReviewComments
     }
 
     /**
-     * Get reviewer
+     * Get reviewer.
      *
-     * @return \AppBundle\Entity\Reviewer 
+     * @return \AppBundle\Entity\Reviewer
      */
     public function getReviewer()
     {
@@ -166,9 +164,10 @@ class ReviewComments
     }
 
     /**
-     * Set articleReview
+     * Set articleReview.
      *
      * @param \AppBundle\Entity\ArticleReview $articleReview
+     *
      * @return ReviewComments
      */
     public function setArticleReview(\AppBundle\Entity\ArticleReview $articleReview = null)
@@ -179,9 +178,9 @@ class ReviewComments
     }
 
     /**
-     * Get articleReview
+     * Get articleReview.
      *
-     * @return \AppBundle\Entity\ArticleReview 
+     * @return \AppBundle\Entity\ArticleReview
      */
     public function getArticleReview()
     {

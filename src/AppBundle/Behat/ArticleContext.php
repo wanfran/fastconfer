@@ -3,16 +3,13 @@
  * Created by PhpStorm.
  * User: fran
  * Date: 14/01/15
- * Time: 16:29
+ * Time: 16:29.
  */
 
 namespace AppBundle\Behat;
 
-use AppBundle\Entity\Conference;
-use AppBundle\Entity\Inscription;
 use AppBundle\Entity\Article;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Mink\Exception\ElementNotFoundException;
 
 class ArticleContext extends CoreContext
 {
@@ -24,10 +21,7 @@ class ArticleContext extends CoreContext
     public function createArticle(TableNode $tableNode)
     {
         $em = $this->getEntityManager();
-        foreach ($tableNode->getHash() as $articleHash)
-        {
-
-
+        foreach ($tableNode->getHash() as $articleHash) {
             $articles = new Article();
             $articles->setTitle($articleHash['title']);
             $articles->setAuthor($articleHash['authors']);
@@ -41,15 +35,11 @@ class ArticleContext extends CoreContext
 
     /**
      * @Given /^I submitted the following articles to "([^".]*)":$/
-     *
      */
     public function iSubmittedTheFollowing($name, TableNode $tableNode)
     {
         $em = $this->getEntityManager();
-        foreach ($tableNode->getHash() as $articleHash)
-        {
-
-
+        foreach ($tableNode->getHash() as $articleHash) {
             $articles = new Article();
             $articles->setTitle($articleHash['title']);
             $articles->setAuthor($articleHash['authors']);
@@ -61,5 +51,4 @@ class ArticleContext extends CoreContext
         }
         $em->flush();
     }
-
 }
