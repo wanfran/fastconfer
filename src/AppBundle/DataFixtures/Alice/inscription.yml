@@ -1,7 +1,7 @@
 \AppBundle\Entity\Inscription:
     inscription:
          user: @admin
-         conference: @conference1
+         conference: @conference_test
     inscription1{1..3}:
          user: @users*
          conference: @conference*

@@ -1,10 +1,10 @@
 \AppBundle\Entity\Reviewer:
     reviewer1:
-       user: @admin
+       user: @users_mary
        article: @article
     reviewer2:
-       user: @admin
+       user: @users_mary
        article: @article6
     reviewer4:
-       user: @users1
+       user: @users_lucas
        article: @article
