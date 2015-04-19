@@ -152,6 +152,9 @@ sonata_admin:
     title:      Fastconfer
 #    title_logo: bundles/sonataadmin/a.ico
 
+    security:
+        handler: fastconfer.security.handler.voter
+
     templates:
         layout: backend/standard_layout.html.twig
 
@@ -171,3 +174,5 @@ sonata_admin:
                 icon:            '<i class="fa fa-sitemap"></i>'
                 items:
                     - fastconfer.admin.conference
+                    - fastconfer.admin.inscription
+                    - fastconfer.admin.article

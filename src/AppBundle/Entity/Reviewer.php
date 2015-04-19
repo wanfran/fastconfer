@@ -4,12 +4,19 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * Reviewer.
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @UniqueEntity(
+ *     fields={"user", "article"},
+ *     errorPath="user",
+ *     message="This user is already a reviewer for this article."
+ * )
  */
 class Reviewer
 {

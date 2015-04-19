@@ -29,19 +29,39 @@ class User extends BaseUser
     protected $organization;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Inscription", mappedBy="user")
      */
     protected $inscriptions;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Reviewer", mappedBy="user")
      */
     protected $reviewers;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Conference", mappedBy="chairmans")
+     */
+    protected $conferences;
+
     public function __construct()
     {
         $this->reviewers = new ArrayCollection();
+        $this->conferences = new ArrayCollection();
         parent::__construct();
+    }
+
+    public function __toString()
+    {
+        return sprintf("%s <%s>",
+            $this->getFullname(),
+            $this->getEmail()
+        );
     }
 
     /**
@@ -184,5 +204,47 @@ class User extends BaseUser
     public function removeReviewer(\AppBundle\Entity\Reviewer $reviewers)
     {
         $this->reviewers->removeElement($reviewers);
+    }
+
+    /**
+     * Add conference
+     *
+     * @param \AppBundle\Entity\Conference $conference
+     *
+     * @return User
+     */
+    public function addConference(\AppBundle\Entity\Conference $conference)
+    {
+        $this->conferences[] = $conference;
+
+        return $this;
+    }
+
+    /**
+     * Remove conference
+     *
+     * @param \AppBundle\Entity\Conference $conference
+     */
+    public function removeConference(\AppBundle\Entity\Conference $conference)
+    {
+        $this->conferences->removeElement($conference);
+    }
+
+    /**
+     * Get conferences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getConferences()
+    {
+        return $this->conferences;
+    }
+
+    public function getCompleteName()
+    {
+        return sprintf("%s <%s>",
+            $this->getFullname(),
+            $this->getEmail()
+        );
     }
 }

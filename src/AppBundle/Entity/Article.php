@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\AppBundle;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -364,5 +365,25 @@ class Article
     public function getInscription()
     {
         return $this->inscription;
+    }
+
+    /**
+     * Get conference.
+     *
+     * @return Conference
+     */
+    public function getConference()
+    {
+        return $this->getInscription()->getConference();
+    }
+
+    /**
+     * Get user.
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->getInscription()->getUser()->getFullname();
     }
 }

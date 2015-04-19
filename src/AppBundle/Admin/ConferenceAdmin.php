@@ -8,17 +8,34 @@
 
 namespace AppBundle\Admin;
 
+use Doctrine\DBAL\Query\QueryBuilder;
 use Knp\Menu\ItemInterface as MenuItemInterface;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 class ConferenceAdmin extends Admin
 {
+    public function createQuery( $context = 'list' )
+    {
+        $conference = $this->getCurrentConference();
+
+        /** @var QueryBuilder $query */
+        $query = parent::createQuery( $context );
+        $alias = current($query->getRootAliases());
+
+        $query->andWhere( $query->expr()->eq( $alias.'.id', ':id'))
+            ->setParameter('id', $conference->getId())
+        ;
+
+        return $query;
+
+    }
+
+
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -27,6 +44,9 @@ class ConferenceAdmin extends Admin
             ->add('description', 'textarea')
             ->add('image')
             ->add('slug')
+            ->add('chairmans', null, array(
+                'property' => 'getCompleteName'
+            ))
             ->add('dateStart', 'sonata_type_datetime_picker', array(
                 'format' => 'dd MMMM YY',
             ))
@@ -82,15 +102,12 @@ class ConferenceAdmin extends Admin
                 'locale' => 'es',
                 'timezone' => 'Europe/Madrid',
             ))
-
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'list' => array(
-                        'template' => 'Organization/CRUD/list__action_list_inscriptions.html.twig',
-                    ),
                     'edit' => array(),
                     'show' => array(),
-                ), ))
+                ),
+            ))
         ;
     }
 

@@ -243,4 +243,9 @@ class ArticleReview
     {
         return $this->reviewComments;
     }
+
+    public function getConference()
+    {
+        return $this->getArticle()->getInscription()->getConference();
+    }
 }

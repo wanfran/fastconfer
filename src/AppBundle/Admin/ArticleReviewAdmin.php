@@ -8,7 +8,6 @@
 
 namespace AppBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
@@ -41,12 +40,12 @@ class ArticleReviewAdmin extends Admin
         $list
             ->add('article')
             ->add('state')
-
+            ->add('createAt')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'edit' => array(),
                     'show' => array(),
-                    ), ))
+                ),
+            ))
         ;
     }
 

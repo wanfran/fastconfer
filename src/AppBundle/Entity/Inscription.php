@@ -58,10 +58,7 @@ class Inscription
 
     public function __toString()
     {
-        return sprintf("%s's inscription on %s",
-            $this->getUser(),
-            $this->getConference()
-        );
+        return $this->getUser()->__toString();
     }
 
     /**
@@ -115,7 +112,7 @@ class Inscription
     /**
      * Get user.
      *
-     * @return string
+     * @return User
      */
     public function getUser()
     {

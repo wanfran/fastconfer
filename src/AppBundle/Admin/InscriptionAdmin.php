@@ -8,60 +8,33 @@
 
 namespace AppBundle\Admin;
 
-use Knp\Menu\ItemInterface as MenuItemInterface;
-use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Admin\AdminInterface;
+use Doctrine\ORM\QueryBuilder;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 class InscriptionAdmin extends Admin
 {
-    // Fields to be shown on create/edit forms
-    protected function configureFormFields(FormMapper $formMapper)
+    public function createQuery( $context = 'list' )
     {
-        $formMapper
-            ->add('conference')
-            ->add('user')
-
+        $conference = $this->getCurrentConference();
+        /** @var QueryBuilder $query */
+        $query = parent::createQuery( $context );
+        $alias = current($query->getRootAliases());
+        $query->andWhere($query->expr()->eq($alias.'.conference', ':conference'))
+            ->setParameter('conference', $conference)
         ;
-    }
 
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('conference')
-            ->add('user')
-            ->add('createdAt')
-        ;
+        return $query;
     }
 
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->add('user')
+            ->add('user', null, array(
+                'property' => 'getCompleteName',
+            ))
             ->add('createdAt')
         ;
-    }
-
-    public function getParentAssociationMapping()
-    {
-        return 'conference';
-    }
-
-    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
-    {
-        if (!$childAdmin && !in_array($action, array('show'))) {
-            return;
-        }
-
-        $admin = $this->isChild() ? $this->getParent() : $this;
-
-        $id = $admin->getRequest()->get('id');
-
-        $menu->addChild(
-            'List Inscriptions',
-            array('uri' => $admin->generateUrl('fastconfer.admin.inscription.list', array('id' => $id)))
-        );
     }
 }

@@ -8,7 +8,6 @@
 
 namespace AppBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 class ReviewCommentsAdmin extends Admin

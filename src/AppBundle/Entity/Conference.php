@@ -44,6 +44,13 @@ class Conference
     private $slug;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="code", length=32, unique=true, nullable=false)
+     */
+    private $code;
+
+    /**
      * @ORM\Column(name="image", type="string", length=255)
      */
     private $image;
@@ -75,6 +82,13 @@ class Conference
     private $topics;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="conferences")
+     */
+    private $chairmans;
+
+    /**
      * @ORM\OneToMany(targetEntity="Inscription", mappedBy="conference")
      */
     private $inscriptions;
@@ -83,6 +97,7 @@ class Conference
     {
         $this->topics = new ArrayCollection();
         $this->inscriptions = new ArrayCollection();
+        $this->chairmans = new ArrayCollection();
     }
 
     /**
@@ -300,8 +315,63 @@ class Conference
         return $this->inscriptions;
     }
 
+    /**
+     * To string
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setCode( $code )
+    {
+        $this->code = $code;
+    }
+
+    /**
+     * Add chairman
+     *
+     * @param \AppBundle\Entity\User $chairman
+     *
+     * @return Conference
+     */
+    public function addChairman(\AppBundle\Entity\User $chairman)
+    {
+        $this->chairmans[] = $chairman;
+
+        return $this;
+    }
+
+    /**
+     * Remove chairman
+     *
+     * @param \AppBundle\Entity\User $chairman
+     */
+    public function removeChairman(\AppBundle\Entity\User $chairman)
+    {
+        $this->chairmans->removeElement($chairman);
+    }
+
+    /**
+     * Get chairmans
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChairmans()
+    {
+        return $this->chairmans;
     }
 }

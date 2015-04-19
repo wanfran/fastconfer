@@ -8,10 +8,8 @@
 
 namespace AppBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 
 class ReviewerAdmin extends Admin
 {
@@ -19,25 +17,18 @@ class ReviewerAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('user')
-            ->add('article')
-        ;
-    }
-
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('user')
-            ->add('article')
-
+            ->add('user', null, array(
+                'property' => 'getCompleteName',
+            ))
         ;
     }
 
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->add('user')
-
+            ->add('user', null, array(
+                'associated_tostring' => 'getCompleteName',
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -45,4 +36,11 @@ class ReviewerAdmin extends Admin
                 ), ))
         ;
     }
+
+    public function getParentAssociationMapping()
+    {
+        return 'article';
+    }
+
+
 }
