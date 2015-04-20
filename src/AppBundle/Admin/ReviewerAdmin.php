@@ -8,6 +8,8 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Main\AssignReviewerEvents;
+use AppBundle\Main\Event\AssignReviewerEvent;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
@@ -29,11 +31,6 @@ class ReviewerAdmin extends Admin
             ->add('user', null, array(
                 'associated_tostring' => 'getCompleteName',
             ))
-            ->add('_action', 'actions', array(
-                'actions' => array(
-                    'edit' => array(),
-                    'show' => array(),
-                ), ))
         ;
     }
 
@@ -42,5 +39,9 @@ class ReviewerAdmin extends Admin
         return 'article';
     }
 
-
+    public function postPersist($object)
+    {
+        $event = new AssignReviewerEvent($object);
+        $event = $this->getConfigurationPool()->getContainer()->get('event_dispatcher')->dispatch( AssignReviewerEvents::SUBMITTED, $event );
+    }
 }

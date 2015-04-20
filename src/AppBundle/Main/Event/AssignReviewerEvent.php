@@ -8,20 +8,20 @@
 
 namespace AppBundle\Main\Event;
 
-use AppBundle\Entity\Article;
+use AppBundle\Entity\Reviewer;
 use Symfony\Component\EventDispatcher\Event;
 
 class AssignReviewerEvent extends Event
 {
-    private $article;
+    private $reviewer;
 
-    public function __construct(Article $article)
+    public function __construct(Reviewer $reviewer)
     {
-        $this->article = $article;
+        $this->reviewer = $reviewer;
     }
 
-    public function getArticle()
+    public function getReviewer()
     {
-        return $this->article;
+        return $this->reviewer;
     }
 }

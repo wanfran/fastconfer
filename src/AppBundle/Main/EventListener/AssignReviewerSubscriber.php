@@ -38,20 +38,19 @@ class AssignReviewerSubscriber implements EventSubscriberInterface
 
     public function onReviewerSubmitted(AssignReviewerEvent $event)
     {
-        $article = $event->getArticle();
+        $reviewer = $event->getReviewer();
 
-        $this->logger->debug('FASTCONFER: Asignado revisores a artículo: '.$article->getTitle());
+        $this->logger->debug('FASTCONFER: Asignado revisores a artículo: '.$reviewer->getArticle()->getTitle());
 
-//        $mailer = $this->get('mailer');
-//        $message = $mailer->createMessage()
-//            ->setSubject('You have Completed Registration!')
-//            ->setFrom('send@example.com')
-//            ->setTo($article->getInscription()->getUser()->getEmail())
-//            ->setBody('My <em>amazing</em> body',
-//                'text/html'
-//            );
-//        $mailer->send($message);
-//
-//        $article->notified = true;
+        $message = $this->email->createMessage()
+            ->setSubject('You have Completed Registration!')
+            ->setFrom('send@example.com')
+            ->setTo($reviewer->getUser()->getEmail())
+            ->setBody('My <em>amazing</em> body',
+                'text/html'
+            );
+        $this->email->send($message);
+
+        $reviewer->notified = true;
     }
 }
