@@ -12,7 +12,7 @@
         author: <username()>
         keyword: <word()>
         abstract: <company()>
-        stateEnd: accepted
+        stateEnd: rejected
         inscription: @inscription
         topics: 2x @topic*
     article2:
