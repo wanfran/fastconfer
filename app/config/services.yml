@@ -86,7 +86,7 @@ services:
         arguments:
             - ~
             - AppBundle\Entity\ArticleReview
-            - ~
+            - AppBundle:Backend\ArticleReview
 
     fastconfer.admin.reviewer:
         class: AppBundle\Admin\ReviewerAdmin

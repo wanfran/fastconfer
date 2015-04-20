@@ -10,6 +10,7 @@ namespace AppBundle\Admin;
 
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 class ArticleReviewAdmin extends Admin
@@ -48,6 +49,14 @@ class ArticleReviewAdmin extends Admin
             ))
         ;
     }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add( 'accepted', $this->getRouterIdParameter() . '/accepted');
+        $collection->add( 'accepted with suggestions', $this->getRouterIdParameter() . '/accepted_with_suggestions');
+        $collection->add( 'rejected', $this->getRouterIdParameter() . '/rejected');
+    }
+
 
     public function getParentAssociationMapping()
     {
