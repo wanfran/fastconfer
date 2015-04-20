@@ -8,20 +8,20 @@
 
 namespace AppBundle\Main\Event;
 
-use AppBundle\Entity\Article;
+use AppBundle\Entity\ArticleReview;
 use Symfony\Component\EventDispatcher\Event;
 
 class StateEndEvent extends Event
 {
-    private $article;
+    private $articleReview;
 
-    public function __construct(Article $article)
+    public function __construct(ArticleReview $articleReview)
     {
-        $this->article = $article;
+        $this->articleReview = $articleReview;
     }
 
-    public function getArticle()
+    public function getArticleReview()
     {
-        return $this->article;
+        return $this->articleReview;
     }
 }

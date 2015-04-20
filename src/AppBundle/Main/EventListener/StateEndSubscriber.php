@@ -13,6 +13,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use AppBundle\Main\Event\StateEndEvent;
 use AppBundle\Main\StateEndEvents;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Article;
 
 class StateEndSubscriber implements EventSubscriberInterface
 {
@@ -38,7 +39,16 @@ class StateEndSubscriber implements EventSubscriberInterface
 
     public function onStateEndSubmitted(StateEndEvent $event)
     {
-        $article = $event->getArticle();
-        $this->logger->debug('PRUEBA: Asignado estado final del artículo: '.$article->getTitle());
+        $articleReview = $event->getArticleReview();
+        $this->logger->debug('PRUEBA: Asignado estado final del artículo: '.$articleReview->getArticle()->getTitle());
+
+        $message = $this->email->createMessage()
+            ->setSubject('You have Completed Registration!')
+            ->setFrom('send@example.com')
+            ->setTo($articleReview->getArticle()->getInscription()->getUser()->getEmail())
+            ->setBody('You article have state'.$articleReview->getArticle()->getStateEnd());
+        $this->email->send($message);
+
+        $articleReview->notified = true;
     }
 }

@@ -84,16 +84,4 @@ class ArticleAdmin extends Admin
             ))
         ;
     }
-
-//    public function postUpdate($object)
-//    {
-//        $event = new AssignReviewerEvent($object);
-//        $event = $this->getConfigurationPool()->getContainer()->get('event_dispatcher')->dispatch( AssignReviewerEvents::SUBMITTED, $event );
-//    }
-
-    public function postUpdate($object)
-    {
-        $event = new StateEndEvent($object);
-        $event = $this->getConfigurationPool()->getContainer()->get('event_dispatcher')->dispatch(StateEndEvents::SUBMITTED, $event);
-    }
 }
