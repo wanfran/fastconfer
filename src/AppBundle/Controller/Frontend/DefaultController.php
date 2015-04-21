@@ -43,7 +43,7 @@ class DefaultController extends Controller
 //            $this->get('session')->getFlashBag()->set('success', 'You have accessed as reviewer');
 //        }
 
-        return $this->render('Default/index.html.twig', array('conferences' => $conferences));
+        return $this->render('Default/index2.html.twig', array('conferences' => $conferences));
     }
 
     /**
