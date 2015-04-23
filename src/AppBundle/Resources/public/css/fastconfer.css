@@ -1,0 +1,133 @@
+// Scaffolding
+// -------------------------
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+
+.bg-custom-lg {
+    background: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(http://lorempixel.com/1400/650/city/9/);
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(http://lorempixel.com/1400/650/city/9/);
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(http://lorempixel.com/1400/650/city/9/);
+    color: #fff;
+    min-height: 360px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+h2 {
+  margin-bottom: 0.7em;
+}
+
+.content-header {
+  padding: 0!important;
+}
+
+.padding-md {
+  padding: 2em !important;
+}
+
+.bg-black-trans {
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+}
+
+// CARD
+
+.conference-card {
+  opacity: 0;
+}
+
+.conference-card {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    border-radius: 3px 3px;
+    margin: 0 auto 10px;
+    -webkit-transition: all 400ms ease;
+    -moz-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
+    transition: all 400ms ease;
+    -webkit-transform:  translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+    -moz-transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+    transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+    opacity: 0;
+}
+
+.conference-card.appeared{
+    -webkit-transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+    -moz-transform:  translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+    transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+    opacity: 1;
+}
+
+
+/********************************/
+/*          conference cards         */
+/********************************/
+.conference.conference-card {
+    position: relative;
+    height: 241px;
+    border: none;
+    overflow: hidden;
+    background-color: white;
+}
+.conference.conference-card .conference-heading {
+    position: relative;
+    z-index: 2;
+    height: 180px;
+    border-bottom-color: #fff;
+    overflow: hidden;
+    
+    -webkit-transition: height 600ms ease-in-out;
+            transition: height 600ms ease-in-out;
+}
+.conference.conference-card .conference-heading img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: 120%;
+    
+    -webkit-transform: translate3d(-50%,-50%,0);
+            transform: translate3d(-50%,-50%,0);
+}
+
+.conference.conference-card .description {
+    opacity: 0;
+
+    -webkit-transition: opacity 400ms ease-in-out;
+            transition: opacity 400ms ease-in-out;
+}
+
+.conference.conference-card .conference-body {
+    padding: 0;
+
+    -webkit-transition: padding 400ms ease-in-out;
+            transition: padding 400ms ease-in-out;
+} 
+
+
+.conference.conference-card:hover .conference-heading {
+    height: 155px;
+    
+    -webkit-transition: height 400ms ease-in-out;
+            transition: height 400ms ease-in-out;
+}
+.conference.conference-card:hover .conference-body {
+    padding-top: 0px;
+    
+    -webkit-transition: padding 400ms ease-in-out;
+            transition: padding 400ms ease-in-out;
+}
+
+.conference.conference-card:hover .description {
+    opacity: 1;
+
+    -webkit-transition: opacity 400ms ease-in-out;
+            transition: opacity 400ms ease-in-out;
+}
