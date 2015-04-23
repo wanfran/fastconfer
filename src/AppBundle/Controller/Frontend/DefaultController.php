@@ -10,15 +10,22 @@ namespace AppBundle\Controller\Frontend;
 
 use AppBundle\Entity\Reviewer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class DefaultController
+ * @Route(host="www.%site_base%")
+ * @package AppBundle\Controller\Frontend
+ */
 class DefaultController extends Controller
 {
     /**
      * Home page.
      *
      * @Route("/", name="homepage")
+     * @Template("frontend/Default/index.html.twig")
      */
     public function indexAction()
     {
@@ -34,32 +41,28 @@ class DefaultController extends Controller
 
         $conferences = $query->getResult();
 
-//        $reviewer = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(
-//            'users'=>$user
-//        ));
-//
-//        if($reviewer)
-//        {
-//            $this->get('session')->getFlashBag()->set('success', 'You have accessed as reviewer');
-//        }
-
-        return $this->render('Default/index2.html.twig', array('conferences' => $conferences));
+        return [
+            "conferences" => $conferences,
+        ];
     }
 
     /**
      * @Route("/find", name="find")
+     * @Template("frontend/Default/index.html.twig")
      */
     public function findConferenceAction(Request $request)
     {
         $word = $request->get('search');
 
         $em = $this->getDoctrine()->getManager();
-        $foundConference = $em->getRepository('AppBundle:Conference')->findConference($word);
+        $conferences = $em->getRepository('AppBundle:Conference')->findConference($word);
 
-        if ($foundConference == null) {
+        if ($conferences == null) {
             $this->get('session')->getFlashBag()->set('alert', 'Conference not found');
         }
 
-        return $this->render('Default/index.html.twig', array('conferences' => $foundConference));
+        return [
+            "conferences" => $conferences,
+        ];
     }
 }

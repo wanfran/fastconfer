@@ -176,3 +176,9 @@ sonata_admin:
                     - fastconfer.admin.conference
                     - fastconfer.admin.inscription
                     - fastconfer.admin.article
+
+sp_bower:
+    assetic:
+        nest_dependencies: false
+    bundles:
+        AppBundle: ~

@@ -36,9 +36,14 @@ class CurrentConferenceListener
     public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
-
         $currentHost = $request->getHost();
+
+
         $subdomain = str_replace('.'.$this->baseHost, '', $currentHost);
+        if ("www" === $subdomain) {
+            return;
+        }
+
 
         $conference = $this->om
             ->getRepository('AppBundle:Conference')

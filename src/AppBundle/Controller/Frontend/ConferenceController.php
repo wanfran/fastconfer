@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller\Frontend;
 
+use AppBundle\Controller\Controller;
 use AppBundle\Entity\Article;
 use AppBundle\Entity\ArticleReview;
 use AppBundle\Entity\Conference;
@@ -8,27 +9,34 @@ use AppBundle\Entity\Inscription;
 use AppBundle\Form\Type\InscriptionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class ConferenceController
+ * @package AppBundle\Controller\Frontend
+ * @Route(condition="not (context.getHost() matches '/www/')")
+ */
 class ConferenceController extends Controller
 {
     /**
-     * @Route ("/conference/{slug}", name="conference")
+     * @Route ("/", name="conference_show")
+     * @Template("frontend/Conference/index.html.twig")
      */
-    public function showConferenceAction(Conference $conference)
+    public function showAction()
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $conference = $this->getConference();
+        $user = $this->getUser();
 
         $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array(
             'conference' => $conference->getId(),
             'user' => $user,
         ));
 
-        return $this->render('Conferences/conference.html.twig', array(
-            'conference' => $conference,
-            'inscription' => $inscription,
-        ));
+        return [
+            "conference" => $conference,
+            "inscription" => $inscription,
+        ];
     }
 
     /**
