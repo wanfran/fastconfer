@@ -42,16 +42,17 @@ class ConferenceController extends Controller
     /**
      * @Route("/conference/{slug}/inscription", name="inscription")
      * @Security("has_role('ROLE_USER')")
+     *
      */
     public function inscriptionAction(Conference $conference)
     {
         if ($conference->getDateEnd() < new \DateTime()) {
             $this->get('session')->getFlashBag()->set('alert', 'You can not register for this conference');
 
-            return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
+            return $this->redirectToRoute('conference_show');
         }
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
         $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array(
             'conference' => $conference,
             'user' => $user,
@@ -60,7 +61,7 @@ class ConferenceController extends Controller
         if ($inscription) {
             $this->get('session')->getFlashBag()->set('alert', 'You can not register again in this conference');
 
-            return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
+            return $this->redirectToRoute('conference_show');
         }
 
         $inscription = new Inscription();
@@ -72,7 +73,7 @@ class ConferenceController extends Controller
 
         $this->get('session')->getFlashBag()->set('success', 'Congratulations, you are already registered');
 
-        return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
+        return $this->redirectToRoute('conference_show');
     }
 
     /**
@@ -81,7 +82,7 @@ class ConferenceController extends Controller
      */
     public function uploadAction(Conference $conference, Request $request)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
 
         $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array(
             'conference' => $conference,
