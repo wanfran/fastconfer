@@ -76,7 +76,7 @@ services:
             - [ addChild, ['@fastconfer.admin.reviewer'] ]
             - [ addChild, ['@fastconfer.admin.articlereview'] ]
 #            - [ setTemplate, [base_list_field, SonataAdminBundle:CRUD:base_list_flat_field.html.twig]]
-            - [ setTemplate, [show,Organization/CRUD/show_article.html.twig]]
+            - [ setTemplate, [show,backend/Article/CRUD/show_article.html.twig]]
 
 
     fastconfer.admin.articlereview:

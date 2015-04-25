@@ -1,0 +1,47 @@
+#Conferences
+Conference: "Conferencia"
+Name: "Nombre"
+Date End: "Fecha Fín"
+Date Start: "Fecha Inicio"
+Dead Time: "Fecha Limite"
+Slug: "Ruta"
+Description: "Descripción"
+Topics: "Temas"
+Image: "Imágen"
+
+#Inscription
+Inscription: "Inscripción"
+User: "Usuario"
+Created At: "Creado el"
+
+#Article
+Article: "Artículo"
+Title: "Título"
+Author: "Autor"
+Keyword: "Palabra Clave"
+Abstract: "Resumen"
+Create At: "Creado el"
+State End: "Estado Final"
+Reviewers: "Revisores"
+State: "Estado"
+Reviews: "Versiones"
+sent: "enviado"
+rejected: "rechazado"
+accepted with suggestions: "acceptado con sugerencias"
+accepted: "acceptado"
+Download Article: "Descargar Artículo"
+List Reviews: "Listar Versiones"
+List Reviewer: "Listar Revisores"
+
+#Reviews
+reviewer: "revisor"
+Reviewer: "Revisor"
+Reject: "Rechazar"
+Accept with suggerences: "Acceptar con sugerencias"
+Accept: "Acceptar"
+Created at: "Creado el"
+Comment: "Comentario"
+Version: "Versión"
+
+#General
+Actions: "Acciones"
