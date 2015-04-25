@@ -89,7 +89,7 @@ class ConferenceAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name')
+            ->add('name',null,array('label' => 'Name'))
             ->add('dateStart', 'date', array(
                     'label' => 'Date Start',
                     'pattern' => 'dd MMMM Y',
@@ -102,7 +102,7 @@ class ConferenceAdmin extends Admin
                 'locale' => 'es',
                 'timezone' => 'Europe/Madrid',
             ))
-            ->add('_action', 'actions', array(
+            ->add('_action', 'actions', array('label'=>'Actions',
                 'actions' => array(
                     'edit' => array(),
                     'show' => array(),

@@ -79,6 +79,7 @@ class ConferenceController extends Controller
     /**
      * @Route("conference/{slug}/upload", name="conference_upload_article")
      * @Security("has_role('ROLE_USER')")
+     * @Template("frontend/Conference/index.html.twig")
      */
     public function uploadAction(Conference $conference, Request $request)
     {
@@ -122,21 +123,21 @@ class ConferenceController extends Controller
 
             $this->get('session')->getFlashBag()->set('success', 'Your article has been successfully uploaded');
 
-            return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
+            return $this->redirectToRoute('conference_show');
         }
 
-        return $this->render('Conferences/upload.html.twig', array('form' => $form->createView()));
+        return $this->render('frontend/Conference/upload.html.twig', array('form' => $form->createView()));
     }
 
     /**
      * @Route("conference/new/{id}", name="new_article")
      * @Security("has_role('ROLE_USER')")
+     *
      */
     public function newArticleAction(Article $article, Request $request)
     {
         $conference = $article->getInscription()->getConference();
-
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
 
         $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array(
             'conference' => $conference,
@@ -174,10 +175,10 @@ class ConferenceController extends Controller
 
             $this->get('session')->getFlashBag()->set('success', 'Your new article has been successfully send');
 
-            return $this->redirectToRoute('conference', array('slug' => $conference->getSlug()));
+            return $this->redirectToRoute('conference_show');
         }
 
-        return $this->render('Conferences/upload.html.twig', array('form' => $form->createView()));
+        return $this->render('frontend/Conference/upload.html.twig', array('form' => $form->createView()));
     }
 
     /**

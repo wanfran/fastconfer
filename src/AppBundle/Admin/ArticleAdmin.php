@@ -8,18 +8,25 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Main\StateEndEvents;
-use AppBundle\Main\Event\StateEndEvent;
 use Doctrine\ORM\QueryBuilder;
-use Knp\Menu\ItemInterface as MenuItemInterface;
-use Sonata\AdminBundle\Admin\AdminInterface;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\HttpFoundation\Response;
 
+use AppBundle\Entity\Article;
 class ArticleAdmin extends Admin
 {
+
+
+    public function StateAction(Article $object)
+    {
+
+        $t = $this->getConfigurationPool()->getContainer()->get('translator')->trans('State'.$object->getStateEnd());
+
+        return new Response($t);
+    }
+
     public function createQuery( $context = 'list' )
     {
         $conference = $this->getCurrentConference();
@@ -71,9 +78,9 @@ class ArticleAdmin extends Admin
             ->add('title')
             ->add('user')
             ->add('stateEnd')
-            ->add('_action', 'actions', array(
+            ->add('_action', 'actions', array('label'=>'Actions',
                 'actions' => array(
-                    'review_list' => array(
+                    'review_list' => array('label' => 'List Reviewer',
                         'template' => 'backend/Article/CRUD/list__action_list_reviews.html.twig',
                     ),
                     'reviewer_list' => array(

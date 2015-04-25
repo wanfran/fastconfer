@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block mainContent %}
+{% block content %}
 
         <div class="row">
             <div class="col-md-4">
@@ -13,9 +13,6 @@
 
     <form method="POST" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
-
-        <input type="submit" value="Create"
-               class="btn btn-default pull-right" />
     </form>
 
 

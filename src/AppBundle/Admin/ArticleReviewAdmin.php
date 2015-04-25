@@ -42,7 +42,7 @@ class ArticleReviewAdmin extends Admin
             ->add('article')
             ->add('state')
             ->add('createAt')
-            ->add('_action', 'actions', array(
+            ->add('_action', 'actions', array('label'=>'Actions',
                 'actions' => array(
                     'show' => array(),
                 ),
