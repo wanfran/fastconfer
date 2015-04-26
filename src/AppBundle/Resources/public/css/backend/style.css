@@ -1,0 +1,16 @@
+.label-sent {
+    background-color: #5bc0de;
+}
+
+.label-accepted {
+    background-color: #00a65a !important;
+}
+
+.label-rejected {
+    background-color: #d9534f;
+}
+
+.label-suggestions,
+.label-accepted-with-suggestions {
+    background-color: #f0ad4e;
+}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+<section class="content-header">
+    <h1>
+        {{ 'New submission' | trans }}
+        <small>{{ conference.name }}</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{ path('conference_show') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Submissions</a></li>
+        <li class="active">New submission</li>
+    </ol>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="box box-default">
+            <div class="box-header">
+                <h3 class="box-title">Send article</h3>
+            </div>
+            <form method="POST" {{ form_enctype(form) }}>
+                <div class="box-body">
+                    {{ form_widget(form) }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
