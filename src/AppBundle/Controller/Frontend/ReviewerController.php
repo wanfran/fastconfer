@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 class ReviewerController extends Controller
 {
     /**
-     * @Route ("/article", name="article_list")
+     * @Route ("/article", name="review_article_list")
      * @Security("has_role('ROLE_USER')")
      */
     public function listArticleAction()
@@ -100,25 +100,5 @@ class ReviewerController extends Controller
         return $this->render('reviewer/Article.html.twig', array('review' => $findArticle, 'form' => $form->createView()));
     }
 
-    /**
-     * @Route("/file/{id}/dowload", name="file_download")
-     * @Security("has_role('ROLE_USER')")
-     */
-    public function downloadAction(ArticleReview $articleReview)
-    {
-        $review_article = $this->getDoctrine()->getRepository('AppBundle:ArticleReview')->findOneBy(array(
-            'article' => $articleReview,
-        ));
 
-        $fileToDownload = $review_article->getPath();
-        $response = new BinaryFileResponse($fileToDownload);
-
-        $response->trustXSendfileTypeHeader();
-        $response->setContentDisposition(
-            ResponseHeaderBag::DISPOSITION_ATTACHMENT, $fileToDownload,
-            iconv('UTF-8', 'ASCII//TRANSLIT', $fileToDownload)
-        );
-
-        return $response;
-    }
 }

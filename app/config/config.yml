@@ -22,6 +22,7 @@ framework:
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
+        cookie_domain: %site_base%
     fragments:       ~
     http_method_override: true
 
@@ -170,15 +171,9 @@ sonata_admin:
 
             fastconfer.admin.group.conferences:
                 label:           Conferences
-                label_catalogue: AppBundle
+                label_catalogue: messages
                 icon:            '<i class="fa fa-sitemap"></i>'
                 items:
                     - fastconfer.admin.conference
                     - fastconfer.admin.inscription
                     - fastconfer.admin.article
-
-sp_bower:
-    assetic:
-        nest_dependencies: false
-    bundles:
-        AppBundle: ~

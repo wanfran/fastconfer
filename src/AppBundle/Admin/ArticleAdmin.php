@@ -21,7 +21,6 @@ class ArticleAdmin extends Admin
 
     public function StateAction(Article $object)
     {
-
         $t = $this->getConfigurationPool()->getContainer()->get('translator')->trans('State'.$object->getStateEnd());
 
         return new Response($t);
@@ -77,7 +76,9 @@ class ArticleAdmin extends Admin
         $list
             ->add('title')
             ->add('user')
-            ->add('stateEnd')
+            ->add('stateEnd', null, array(
+                'template' => 'backend/Article/CRUD/list__show_state_end.html.twig'
+            ))
             ->add('_action', 'actions', array('label'=>'Actions',
                 'actions' => array(
                     'review_list' => array('label' => 'List Reviewer',

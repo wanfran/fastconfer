@@ -5,14 +5,14 @@
     <title>FastConfer</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     {% block stylesheets %}
-        {% stylesheets
-            "@bootstrap_css"
-            "@select2_bootstrap_css_css"
-            "@select2_dist_css"
-            "@components_font_awesome_css"
-            "@ionicons_css"
-            "@admin_lte_css"
-            "bundles/app/components/admin-lte/dist/css/skins/skin-blue.css"
+        {% stylesheets filter="cssrewrite" output="css/compiled/fastconfer.css" debug=false
+            "vendor/admin-lte/bootstrap/css/bootstrap.css"
+            "vendor/select2/select2.css"
+            "vendor/select2/select2-bootstrap.css"
+            "vendor/components-font-awesome/css/font-awesome.css"
+            "vendor/ionicons/css/ionicons.css"
+            "vendor/admin-lte/dist/css/AdminLTE.css"
+            "vendor/admin-lte/dist/css/skins/skin-blue.css"
             "bundles/app/css/fastconfer.css"
         %}
         <link rel="stylesheet" href="{{ asset_url }}" />
@@ -139,7 +139,11 @@
                 {% if app.user %}
                   <li><a href="{{ url('myConferences') }}"><i class="fa fa-user"></i> My Conferences</a></li>
                 {% endif %}
+
+
             </ul>
+            {{ knp_menu_render('AppBundle:Builder:mainMenu', {'currentClass': 'active' }) }}
+
         </section>
         <!-- /.sidebar -->
     </aside>
@@ -148,9 +152,10 @@
     <div class="content-wrapper">
     {% block mainContent %}
 
-        <section class="content-header">
-        {% block header %}{% endblock %}
-        </section>
+        {% block header %}
+            <section class="content-header">
+            </section>
+        {% endblock %}
 
         <!-- Main content -->
         <section class="content">
@@ -168,13 +173,13 @@
 </div><!-- ./wrapper -->
 
 {% block javascripts %}
-    {% javascripts
-        "@jquery_js"
-        "@appear_js"
-        "@bootstrap_js"
-        "@bootstrap_filestyle_js"
-        "@select2_dist_js"
-        "@admin_lte_js"
+    {% javascripts filter="cssrewrite" output="js/compiled/fastconfer.js" debug=false
+        "vendor/jquery/dist/jquery.js"
+        "vendor/appear/jquery.appear.js"
+        "vendor/bootstrap/dist/js/bootstrap.js"
+        "vendor/bootstrap-filestyle/src/bootstrap-filestyle.js"
+        "vendor/select2/select2.js"
+        "vendor/admin-lte/dist/js/app.js"
         "bundles/app/js/fastconfer.js"
     %}
         <script src="{{ asset_url }}"></script>

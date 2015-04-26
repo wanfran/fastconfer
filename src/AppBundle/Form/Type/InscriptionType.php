@@ -21,21 +21,27 @@ class InscriptionType extends AbstractType
 
         $builder
             ->add('title')
-            ->add('author')
+            ->add('abstract', 'textarea', array(
+                'attr' => ['rows' => 12],
+            ))
             ->add('keyword')
-            ->add('abstract', 'textarea')
             ->add('topics', 'entity', array(
                 'class' => 'AppBundle:Topic',
                 'property' => 'name',
                 'multiple' => true,
-                'expanded' => true,
+                'expanded' => false,
                 'query_builder' => function (EntityRepository $er) use ($conference) {
                     return $er->getAllTopicsFromConference($conference);
                 },
             ))
-
-            ->add('path', 'file', array('mapped' => false)) //de esta forma pongo un atributo que no existe en esa clase
-            ->add('save', 'submit', array('label' => 'Submit','validation_groups' => false,));
+            ->add('path', 'file', array(
+                'mapped' => false,
+                'attr' => ['class' => 'filestyle']
+            )) //de esta forma pongo un atributo que no existe en esa clase
+            ->add('save', 'submit', array(
+                'label' => 'Submit',
+                'validation_groups' => false,
+            ));
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {

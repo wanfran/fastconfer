@@ -2,27 +2,19 @@
 
 {% block header %}
 
-    <section class="bg-custom-lg ">
-        {#<img class="img-responsive" src="{{ conference.image }}?name={{ conference.name }}">#}
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="padding-md">
+    <section class="content-header conference-header">
+        <img src="{{ conference.image }}?name={{ conference.name }}" />
+        <div class="conference-title">
+            <div class="padding-md">
+                <h1><span class="text-white">{{ conference.name }}</span></h1>
+                <h2><span class="text-white">{{ conference.description | slice(0, 20) }}</span></h2>
 
-                        <h1><span class="text-white">{{ conference.name }}</span></h1>
-                        <h2><span class="text-white">{{ conference.description | slice(0, 20) }}</span></h2>
-                        {% if not inscription %}
-                            <a role="button" class="btn btn-white btn-outline"  data-toggle="modal" data-target="#myModal">Register now!</a>
-                        {% else %}
-                            <a class="btn btn-white fa fa-file btn-outline" href="{{ path('conference_upload_article', { 'slug': conference.slug }) }}" role="button"> Send article</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-
+                {% if not inscription %}
+                    <a class="btn btn-white btn-outline" role="button" data-toggle="modal" data-target="#myModal">Register now!</a>
+                {% endif %}
+            </div><!-- /.padding -->
+        </div><!-- /.col -->
     </section>
-
 {% endblock %}
 
 {% block content %}
@@ -111,7 +103,7 @@
                             data-dismiss="modal" >No
                     </button>
 
-                    <a role="button" class="btn btn-default" href="{{ path('inscription', {'slug':conference.slug}) }}">
+                    <a role="button" class="btn btn-default" href="{{ path('inscription') }}">
                         Yes
                     </a>
                 </div>
@@ -120,118 +112,3 @@
     </div>
 
 {% endblock %}
-
-    {#<div class="row">#}
-            {#<div class="col-md-12">#}
-                {#<div class="card">#}
-                    {#<div class="card-image">#}
-                        {#<img class="img-responsive" src="{{ conference.image }}?name={{ conference.name }}">#}
-                        {#<span class="card-title">{{ conference.name }}</span>#}
-                    {#</div>#}
-
-                    {#<div class="card-content">#}
-                        {#<p><strong> Summary: </strong>{{ conference.description }}</p>#}
-                        {#<hr>#}
-                        {#<div class="row">#}
-                        {#<div class="col-md-9">#}
-                            {#<strong>Topics: </strong>#}
-                            {#{% for topics in conference.topics %}#}
-                                {#<span class="label label-danger glyphicon glyphicon-tags"> {{ topics.name }}</span>#}
-                            {#{% endfor %}#}
-                            {#</div>#}
-                        {#<div class="col-md-3">#}
-                            {#<p><i class="fa fa-calendar fa-2x"></i><strong> Start: </strong>{{ conference.dateStart|date("d/m/y") }}#}
-                                {#<strong>  End: </strong>{{ conference.dateEnd|date("d/m/y") }}</p>#}
-
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-
-                    {#{% if conference.dateEnd >= date("now")  %}#}
-
-                        {#{% if not app.user %}#}
-                            {#<div class="alert alert-danger text-center">#}
-                                {#<a href="{{ url('fos_user_security_login') }}" class="alert-link">You must be logged in to register for the conference</a>#}
-                            {#</div>#}
-
-                        {#{% else %}#}
-
-                            {#{% if inscription %}#}
-                                {#<div class="card-action">#}
-                                    {#<a class="btn btn-default glyphicon glyphicon-file" href="{{ path('conference_upload_article', { 'slug': conference.slug }) }}"#}
-                                       {#role="button"> Send article</a>#}
-                                {#</div>#}
-
-                                {#<div class="table-responsive card-action  ">#}
-                                    {#{% for article in inscription.articles %}#}
-
-                                        {#<table class="table table-bordered table-hover ">#}
-                                            {#<tr>#}
-                                                    {#<td colspan="4"><h4>Title: <strong> {{ article.title }}</strong> </h4>#}
-                                                    {#</td>#}
-                                            {#</tr>#}
-
-                                            {#<tr class="success">#}
-                                                {#<th class="text-center">Date</th>#}
-                                                {#<th class="text-center">Reviews</th>#}
-                                                {#<th class="text-center">State</th>#}
-                                                {#<th class="text-center">Actions</th>#}
-                                            {#</tr>#}
-
-                                            {#{%for review in article.articleReviews %}#}
-                                                {#<tr class="text-center">#}
-                                                    {#<div class="row">#}
-                                                        {#<td class="col-md-3" >{{ review.createAt|date("d/m/y")}}</td>#}
-                                                        {#<td class="col-md-2">.. of ..</td>#}
-
-                                                        {#{% if review.state== 'rejected' %}#}
-                                                            {#<td class="col-md-4"><span class="label label-danger"> {{ review.state }}</span></td>#}
-                                                        {#{% else %}#}
-                                                            {#<td class="col-md-4"><span class="label label-success  "> {{ review.state }}</span></td>#}
-                                                        {#{% endif %}#}
-                                                        {#<td class="col-md-3">#}
-                                                            {#{% if review.reviewComments | length > 0 %}#}
-                                                                {#<a class="btn btn-default glyphicon glyphicon-comment" href="{{ path('comments',{'id': review.id } ) }}"#}
-                                                                {#role="button"> comments</a>#}
-                                                            {#{% endif %}#}
-                                                       {#</td>#}
-
-                                                    {#</div>#}
-                                                {#</tr>#}
-                                            {#{% endfor %}#}
-                                            {#<tr>#}
-                                                {#{% if article.stateEnd=='accepted with suggestions' %}#}
-                                                    {#<td colspan="3" class="text-center"><em><h4>{{ article.stateEnd }}</h4></em></td>#}
-                                                    {#<td colspan="1" class="text-center"><a class="btn btn-default glyphicon glyphicon-file" href="{{ path('new_article',#}
-                                                        {#{'id':article.id}) }}" role="button"> New Article</a></td>#}
-                                                    {#{% elseif article.stateEnd!='send' %}#}
-                                                        {#<td colspan="4" class="text-center"  ><em><h4>{{ article.stateEnd }}</h4></em></td>#}
-                                                {#{% endif %}#}
-
-                                            {#</tr>#}
-                                        {#</table>#}
-                                    {#{% endfor %}#}
-                                {#</div>#}
-                            {#{% else %}#}
-                                {#<div class="card-action">#}
-                                    {#<a class="btn btn-default center-block"  data-toggle="modal" data-target="#myModal"#}
-                                       {#role="button">Sign up</a>#}
-                                {#</div>#}
-                            {#{% endif %}#}
-                        {#{% endif %}#}
-
-                    {#{% else %}#}
-
-                        {#<div class="alert alert-danger text-center">#}
-                            {#<strong>Registration is closed</strong>#}
-                        {#</div>#}
-
-                    {#{% endif %}#}
-
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
-
-
-
-{#{% endblock %}#}

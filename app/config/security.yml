@@ -65,7 +65,7 @@ security:
                 key: "%secret%"
                 lifetime: 31536000 # 365 days in seconds
                 path: /
-                domain: ~ # Defaults to the current domain from $_SERVER
+                domain: %site_base%
  
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
