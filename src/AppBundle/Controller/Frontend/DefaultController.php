@@ -46,6 +46,28 @@ class DefaultController extends Controller
         ];
     }
 
+
+    /**
+     * @Route("/myConferences", name="myConferences")
+     * @Template("frontend/Conference/listConferences.html.twig")
+     */
+    public function myConferencesAction()
+    {
+        $user = $this->getUser();
+        dump($user);
+        $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findBy(array('user' => $user));
+
+        $securityContext = $this->container->get('security.context');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+        } else {
+            $user = null;
+        }
+
+        return [
+            "inscription" => $inscription
+        ];
+    }
+
     /**
      * @Route("/find", name="find")
      * @Template("frontend/Default/index.html.twig")
@@ -58,7 +80,7 @@ class DefaultController extends Controller
         $conferences = $em->getRepository('AppBundle:Conference')->findConference($word);
 
         if ($conferences == null) {
-            $this->get('session')->getFlashBag()->set('alert', 'Conference not found');
+            $this->addFlash('alert', 'Conference not found');
         }
 
         return [

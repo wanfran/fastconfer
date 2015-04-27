@@ -18,14 +18,6 @@ use AppBundle\Entity\Article;
 class ArticleAdmin extends Admin
 {
 
-
-    public function StateAction(Article $object)
-    {
-        $t = $this->getConfigurationPool()->getContainer()->get('translator')->trans('State'.$object->getStateEnd());
-
-        return new Response($t);
-    }
-
     public function createQuery( $context = 'list' )
     {
         $conference = $this->getCurrentConference();

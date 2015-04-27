@@ -1,42 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block mainContent %}
-
+{% block content %}
 
     {% if app.user is null %}
         <div class="alert alert-danger text-center">
             <strong>You must be registered</strong>
         </div>
-
-
-        {% else %}
-            {% if inscription!=null %}
-                <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-
-                            <tr class="success">
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Date Inscription</th>
-                                <th class="text-center">Go to Conference</th>
-
-                            </tr>
-                                {% for article in inscription %}
+    {% else %}
+    {% if inscription!=null %}
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                    <div class="box box-default">
+                        <div class="box-header">
+                            <h3 class="box-title">{{ 'Conferences' |trans }}</h3>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-condensed">
+                                <thead>
                                 <tr>
-                                    <td>{{ article.conference }}</td>
-                                    <td>{{ article.createdAt|date("d/m/y") }}</td>
-                                    <td><a class="btn btn-default glyphicon glyphicon-eye-open" href="{{ path('conference_show')}}" role="button"></a></td>
+                                    <th class="col-md-9">{{ 'Name' | trans }}</th>
+                                    <th class="col-md-2">{{ 'Date' | trans }}</th>
+                                    <th class="col-md-1">{{ 'Go to Conference' | trans }}</th>
                                 </tr>
-                                 {% endfor %}
-                        </table>
-                    </div>
-                    {% else %}
-
-                        <div class="alert alert-danger text-center">
-                            <strong>There aren't inscriptions</strong>
+                                </thead>
+                                <tbody>
+                                {% for article in inscription  %}
+                                    <tr>
+                                        <td> {{ article.conference }} </td>
+                                        <td>{{ article.createdAt | date("d/m/y") }}</td>
+                                        <td><a class="btn btn-default glyphicon glyphicon-eye-open" href="http://{{ article.conference.code }}.fastconfer.dev:8000{{ path('article_list')}}" role="button"></a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                </div>
+            </div>
+            {% else %}
+                <div class="alert alert-danger text-center">
+                    <strong>There aren't inscriptions</strong>
                 </div>
             {% endif %}
     {% endif %}

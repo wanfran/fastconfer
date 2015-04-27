@@ -14,17 +14,22 @@ use AppBundle\Entity\ReviewComments;
 use AppBundle\Entity\Reviewer;
 use AppBundle\Form\Type\ReviewerType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
+/**
+ * Class ReviewerController
+ * @package AppBundle\Controller\Frontend
+ * @Security("has_role('ROLE_USER')")
+ *
+ */
 class ReviewerController extends Controller
 {
     /**
-     * @Route ("/article", name="review_article_list")
-     * @Security("has_role('ROLE_USER')")
+     * @Route ("/reviewer/article", name="review_article_list")
+     * @Template("frontend/reviewer/listArticle.html.twig")
      */
     public function listArticleAction()
     {
@@ -35,7 +40,7 @@ class ReviewerController extends Controller
         ));
 
         if (!$reviewer) {
-            $this->get('session')->getFlashBag()->set('alert', 'You are not a review');
+            $this->addFlash('alert', 'You are not a review');
 
             return $this->redirectToRoute('homepage');
         }
@@ -52,12 +57,15 @@ class ReviewerController extends Controller
             'articleReview' => $article,
         ));
 
-        return $this->render('reviewer/listArticle.html.twig', array('review' => $reviewer, 'a' => $reviewComment));
+        return [
+            'review' => $reviewer,
+            'a' => $reviewComment
+        ];
     }
 
     /**
-     * @Route ("/article/{id}", name="article_review")
-     * @Security("has_role('ROLE_USER')")
+     * @Route ("/reviewer/article/{id}", name="article_review")
+     * @Template("frontend/reviewer/Article.html.twig")
      */
     public function reviewArticle(Article $article, Request $request)
     {
@@ -69,7 +77,7 @@ class ReviewerController extends Controller
         ));
 
         if (!$findArticle) {
-            $this->get('session')->getFlashBag()->set('alert', 'You are not a review');
+            $this->addFlash('alert', 'You are not a review');
 
             return $this->redirectToRoute('homepage');
         }
@@ -92,12 +100,15 @@ class ReviewerController extends Controller
             $em->persist($reviewComments);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->set('success', 'Your article has been successfully edited');
+            $this->addFlash('success', 'Your article has been successfully edited');
 
             return $this->redirectToRoute('article_list');
         }
 
-        return $this->render('reviewer/Article.html.twig', array('review' => $findArticle, 'form' => $form->createView()));
+        return [
+            'review' => $findArticle,
+            'form' => $form->createView()
+        ];
     }
 
 

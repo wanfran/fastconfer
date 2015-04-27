@@ -1,40 +1,47 @@
 {% extends 'base.html.twig' %}
 
+{% block header %}
+    <section class="content-header">
+        <h1>
+            {{ 'Comment' | trans }}
+            <small>{{ conference.name }}</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ path('conference_show') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ path('article_list') }}">Submissions</a></li>
+            <li class="active">Comment</li>
+        </ol>
+    </section>
+{% endblock %}
+
 {% block content %}
-
     <div class="row">
-        <div class="col-md-12">
-
-            <div class="table-responsive card-action">
-
-                <table class="table table-bordered table-hover">
-
-                    <tr class="success">
-                        <th class="text-center">Review</th>
-                        <th class="text-center">Date</th>
-                        <th class="text-center">State</th>
-                        <th class="text-center">Comment</th>
-                    </tr>
-
-                    <tr class="text-center">
-                        {% for comentarios in comments %}
-                            <td class="col-md-2">......</td>
-                            <td class="col-md-2">{{ comentarios.createAt|date("d/m/y")}}</td>
-                            {% if comentarios.state== 'rejected' %}
-                                <td class="col-md-1"><span class="label label-danger"> {{ comentarios.state }}</span></td>
-                            {% else %}
-                                <td class="col-md-1"><span class="label label-success"> {{ comentarios.state }}</span></td>
-                            {% endif %}
-
-                            <td class="col-md-6"> {{ comentarios.comment  }}</td>
-
-                        {% endfor %}
-                    </tr>
-
-                </table>
-
-            </div>
+        <div class="col-lg-8 col-lg-offset-2">
+            {% for comment in comments %}
+                <div class="box box-default">
+                    <div class="box-header">
+                        <h3 class="box-title">{{ comment.articleReview.article.title }}</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-condensed">
+                            <thead>
+                            <tr>
+                                <th class="col-md-2">{{ 'Date' | trans }}</th>
+                                <th class="col-md-3">{{ 'State' | trans }}</th>
+                                <th class="col-md-7">{{ 'Comment' | trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ comment.createAt | date("d/m/y") }}</td>
+                                    <td><span class="label label-{{ comment.state }}">{{ comment.state | trans}}</span></td>
+                                    <td>{{ comment.comment }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
-
 {% endblock %}

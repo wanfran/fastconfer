@@ -26,6 +26,33 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ArticleController extends Controller
 {
+
+    /**
+     * @Route("/list", name="article_list")
+     * @Template("frontend/Article/list.html.twig")
+     */
+    public function listAction()
+    {
+        $conference = $this->getConference();
+        $user = $this->getUser();
+
+        $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array(
+            'conference' => $conference,
+            'user' => $user,
+        ));
+
+        if (!$inscription) {
+            $this->addFlash('alert', 'You are not registered in this conference');
+
+            return $this->redirectToRoute('conference_show');
+        }
+
+        return [
+            'conference' => $conference,
+            'inscription' => $inscription,
+        ];
+    }
+
     /**
      * @Route("/new", name="article_new")
      * @Template("frontend/Article/new.html.twig")
@@ -85,7 +112,6 @@ class ArticleController extends Controller
 
     /**
      * @Route("/{id}/review/new", name="article_new_review")
-     * @Security("has_role('ROLE_USER')")
      * @Template("frontend/Article/new.html.twig")
      */
     public function newReviewAction(Article $article, Request $request)
@@ -135,32 +161,6 @@ class ArticleController extends Controller
         return [
             'conference' => $conference,
             'form' => $form->createView(),
-        ];
-    }
-
-    /**
-     * @Route("/list", name="article_list")
-     * @Template("frontend/Article/list.html.twig")
-     */
-    public function listAction()
-    {
-        $conference = $this->getConference();
-        $user = $this->getUser();
-
-        $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findOneBy(array(
-            'conference' => $conference,
-            'user' => $user,
-        ));
-
-        if (!$inscription) {
-            $this->addFlash('alert', 'You are not registered in this conference');
-
-            return $this->redirectToRoute('conference_show');
-        }
-
-        return [
-            'conference' => $conference,
-            'inscription' => $inscription,
         ];
     }
 

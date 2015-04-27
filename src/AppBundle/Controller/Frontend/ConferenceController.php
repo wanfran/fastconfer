@@ -2,11 +2,7 @@
 namespace AppBundle\Controller\Frontend;
 
 use AppBundle\Controller\Controller;
-use AppBundle\Entity\Article;
-use AppBundle\Entity\ArticleReview;
-use AppBundle\Entity\Conference;
 use AppBundle\Entity\Inscription;
-use AppBundle\Form\Type\InscriptionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -16,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class ConferenceController
  * @package AppBundle\Controller\Frontend
  * @Route(condition="not (context.getHost() matches '/www/')")
+ * @Security("has_role('ROLE_USER')")
  */
 class ConferenceController extends Controller
 {
@@ -39,9 +36,9 @@ class ConferenceController extends Controller
         ];
     }
 
+
     /**
      * @Route("/inscription", name="inscription")
-     * @Security("has_role('ROLE_USER')")
      *
      */
     public function inscriptionAction()

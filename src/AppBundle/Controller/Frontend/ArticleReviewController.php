@@ -39,7 +39,7 @@ class ArticleReviewController extends Controller
         $exist = $articleReview->getArticle()->getInscription()->getUser();
 
         if ($user != $exist) {
-            $this->get('session')->getFlashBag()->set('alert', 'You can not see other comments');
+            $this->addFlash('alert', 'You can not see other comments');
             return $this->redirectToRoute('conference_show');
         }
 
@@ -48,12 +48,12 @@ class ArticleReviewController extends Controller
         ));
 
         if ($articleReview->getState() == 'send') {
-            $this->get('session')->getFlashBag()->set('alert', 'There are not any comments');
+            $this->addFlash('alert', 'There are not any comments');
 
             return $this->redirectToRoute('conference_show');
         }
 
-        $this->get('session')->getFlashBag()->set('success', 'There is some comments');
+        $this->addFlash('success', 'There is some comments');
 
         return [
             'conference' => $conference,

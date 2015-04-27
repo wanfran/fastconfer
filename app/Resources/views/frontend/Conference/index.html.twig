@@ -24,7 +24,7 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <ul class="timeline">
                     <li class="time-label">
-                        <span class="bg-red"> {{ conference.deadTime|date("d/m/y") }} </span>
+                        <span class="bg-red"> {{ conference.dateStart|date("d/m/y") }} </span>
                     </li>
                     <li>
                         <i class="fa fa-calendar-o bg-aqua"></i>
@@ -33,7 +33,7 @@
                         </div>
                     </li>
                     <li class="time-label">
-                        <span class="bg-red"> {{ conference.dateEnd|date("d/m/y") }} </span>
+                        <span class="bg-red">  {{ conference.deadTime|date("d/m/y") }} </span>
                     </li>
                     <li>
                         <i class="fa fa-user bg-aqua"></i>
@@ -42,7 +42,7 @@
                         </div>
                     </li>
                     <li class="time-label">
-                        <span class="bg-red"> 13 Dec 2014  no esta configurado</span>
+                        <span class="bg-red"> {{ conference.dateEnd|date("d/m/y") }} </span>
                     </li>
                     <li>
                         <i class="fa fa-user bg-aqua"></i>
