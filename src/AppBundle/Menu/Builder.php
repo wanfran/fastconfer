@@ -21,6 +21,21 @@ class Builder extends ContainerAware
 
         $menu->addChild('All Conferences', array('route' => 'homepage'));
 
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        // access services from the container!
+        $em = $this->container->get('doctrine')->getManager();
+
+        $inscription = $em->getRepository('AppBundle:Inscription')->findOneBy(array(
+            'user' => $user,
+        ));
+
+        if ($inscription)
+            $menu->addChild('My Conferences',array('route'=> 'myConferences'));
+
+
+
+
         return $menu;
     }
 }
