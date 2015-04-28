@@ -23,6 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class ReviewerController
  * @package AppBundle\Controller\Frontend
  * @Security("has_role('ROLE_USER')")
+ * @Route(host="www.%site_base%")
  *
  */
 class ReviewerController extends Controller

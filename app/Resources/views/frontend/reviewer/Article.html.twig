@@ -1,23 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block mainContent %}
+
+{% block header %}
+    <section class="content-header">
+        <h1>
+            {{ 'Reviewer' | trans }}
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ path('conference_show') }}"><i class="fa fa-dashboard"></i>{{ 'Home' | trans }} </a></li>
+            <li><a href="">{{ 'Article' | trans }}</a></li>
+            <li class="active">{{ 'Comment article' | trans }}</li>
+        </ol>
+    </section>
+{% endblock %}
+
+{% block content %}
 
     {% if review!=null %}
-        <div class="row ">
-            <div class="col-md-12  text-center">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
 
-                    <tr class="success">
-                        <th class="text-center">Title</th>
-                        <th class="text-center">Abstract</th>
-                        <th class="text-center">keyword</th>
-                        <th class="text-center">Topics</th>
-
-                    </tr>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="box box-default">
+                <div class="box-header">
+                    <h3 class="box-title">{{ 'Comment article' | trans }}</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-condensed">
+                        <thead>
+                        <tr>
+                            <th class="col-md-5">{{ 'Title' | trans }}</th>
+                            <th class="col-md-2">{{ 'Keyword' | trans }}</th>
+                            <th class="col-md-1">{{ 'Topics' | trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         <tr>
                             <td>{{ review.article }}</td>
-                            <td>{{ review.article.abstract }}</td>
                             <td>{{ review.article.keyword }}</td>
                             <td>
                             {% for articleReview in review.article.topics  %}
@@ -25,16 +43,26 @@
                             {% endfor %}
                             </td>
                         </tr>
-                </table>
-            </div>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <form method="POST" {{ form_enctype(form) }}>
+                                {{ form_widget(form) }}
+                                <input type="submit" value="Create" class="btn btn-default pull-right" />
+                            </form>
+                        </tr>
+                        </tfoot>
+                        <br>
+                        <br>
+                        <br>
+                    </table>
+                </div>
+
             </div>
         </div>
-    {% endif %}
-    <form method="POST" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
+    </div>
 
-        <input type="submit" value="Create"
-               class="btn btn-default pull-right" />
-    </form>
+    {% endif %}
+
 
 {% endblock %}

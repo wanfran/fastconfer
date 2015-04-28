@@ -1,3 +1,5 @@
+#BackEnd
+
 #Conferences
 Conference: "Conferencia"
 Conferences: "Conferencias"
@@ -19,7 +21,7 @@ Created At: "Creado el"
 Article: "Artículo"
 Title: "Título"
 Author: "Autor"
-Keyword: "Palabra Clave"
+Keyword: "Palabras Claves"
 Abstract: "Resumen"
 Create At: "Creado el"
 State End: "Estado Final"
@@ -46,3 +48,45 @@ Version: "Versión"
 
 #General
 Actions: "Acciones"
+
+#FrontEnd
+
+#Homepage
+Login: "Iniciar sesión"
+Logout: "Cerrar sesión"
+Profile: "Perfil"
+Online: "En línea"
+Search...: "Buscar..."
+MAIN: "MENÚ"
+University of Córdoba: "Universidad de Córdoba"
+All rights reserved: "Todos los derechos reservados"
+
+#Menú
+All Conferences: "Todas las Conferencias"
+My Conferences: "Mis Conferencias"
+
+#DetallesConferencia
+Register now!: "Registrarse ahora!"
+Start date of inscription: "Fecha inicio de incripción"
+Final submission deadline: "Fecha límite de presentación final"
+Abstract submission deadline: "Fecha límite de nueva presentación"
+Summary: "Descripción"
+
+#MyConferences
+Date: "Fecha inscripción"
+Show: "Ver"
+
+#ArticleLis
+Status: "Estado"
+Submitted at: "Enviado el"
+Submissions: "Inscripciones"
+Home: "Inicio"
+See reviews: "Ver versiones"
+Download: "Descargar"
+Send new version: "Enviar nueva versión"
+New article: "Nuevo artículo"
+Send article: "Enviar artículo"
+
+#Reviewer
+Edit: "Editar"
+Comment article: "Comentar artículo"

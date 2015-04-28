@@ -10,7 +10,7 @@
                 <h2><span class="text-white">{{ conference.description | slice(0, 20) }}</span></h2>
 
                 {% if not inscription %}
-                    <a class="btn btn-white btn-outline" role="button" data-toggle="modal" data-target="#myModal">Register now!</a>
+                    <a class="btn btn-white btn-outline" role="button" data-toggle="modal" data-target="#myModal">{{"Register now!" | trans  }}</a>
                 {% endif %}
             </div><!-- /.padding -->
         </div><!-- /.col -->
@@ -29,25 +29,25 @@
                     <li>
                         <i class="fa fa-calendar-o bg-aqua"></i>
                         <div class="timeline-item">
-                            <h3 class="timeline-header no-border">Abstract submission deadline</h3>
+                            <h3 class="timeline-header no-border">{{ 'Start date of inscription' | trans }}</h3>
                         </div>
                     </li>
                     <li class="time-label">
-                        <span class="bg-red">  {{ conference.deadTime|date("d/m/y") }} </span>
+                        <span class="bg-red">  {{ conference.dateEnd|date("d/m/y") }} </span>
                     </li>
                     <li>
                         <i class="fa fa-user bg-aqua"></i>
                         <div class="timeline-item">
-                            <h3 class="timeline-header no-border">Final submission deadline</h3>
+                            <h3 class="timeline-header no-border">{{ 'Final submission deadline' | trans }}</h3>
                         </div>
                     </li>
                     <li class="time-label">
-                        <span class="bg-red"> {{ conference.dateEnd|date("d/m/y") }} </span>
+                        <span class="bg-red"> {{ conference.deadTime|date("d/m/y")  }} </span>
                     </li>
                     <li>
                         <i class="fa fa-user bg-aqua"></i>
                         <div class="timeline-item">
-                            <h3 class="timeline-header no-border">Notification of acceptance date</h3>
+                            <h3 class="timeline-header no-border">{{ 'Abstract submission deadline' | trans }}</h3>
                         </div>
                     </li>
                 </ul>
@@ -55,11 +55,11 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Summary</h3>
+                        <h3 class="box-title">{{ 'Summary' | trans }}</h3>
                     </div>
                     <div class="box-body">
                         <p>{{ conference.description }}</p>
-                        <h4>Topics</h4>
+                        <h4>{{ 'Topics' | trans }}</h4>
                         <ul>
                             {% for topics in conference.topics %}
                                 <li> {{ topics.name }} </li>

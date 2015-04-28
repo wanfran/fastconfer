@@ -19,7 +19,8 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('root');
         $menu->setChildrenAttributes(array('class' => 'sidebar-menu'));
 
-        $menu->addChild('All Conferences', array('route' => 'homepage'));
+        $menu->addChild( $this->container->get('translator')->trans('All Conferences'), array('route' => 'homepage'));
+
 
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
 
@@ -31,7 +32,7 @@ class Builder extends ContainerAware
         ));
 
         if ($inscription)
-            $menu->addChild('My Conferences',array('route'=> 'myConferences'));
+            $menu->addChild($this->container->get('translator')->trans('My Conferences'),array('route'=> 'myConferences'));
 
 
 

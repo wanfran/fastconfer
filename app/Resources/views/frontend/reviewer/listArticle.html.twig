@@ -1,131 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block mainContent %}
 
+{% block header %}
+    <section class="content-header">
+        <h1>
+            {{ 'Reviewer' | trans }}
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ path('conference_show') }}"><i class="fa fa-dashboard"></i>{{ 'Home' | trans }} </a></li>
+            <li class="active"><a href="">{{ 'Article' | trans }}</a></li>
 
-    {% if app.user is null %}
-        <div class="alert alert-danger text-center">
-            <strong>You must be registered</strong>
-        </div>
-
-
-    {% else %}
-        {% if review!=null %}
-            <div class="row ">
-            <div class="col-md-12  text-center">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <tr class="success">
-                        <th class="text-center">Title</th>
-                        <th class="text-center">Abstract</th>
-                        <th class="text-center">keyword</th>
-                        <th class="text-center">Topics</th>
-                        <th class="text-center">Download</th>
-                        <th class="text-center">Edit Article</th>
-
-                    </tr>
-                    {% if a != null %}
-
-                    <span>adsdasd</span>
-
-                    {% else %}
-                    {#&#123;&#35;<td>{{ aux.comment}} </td>&#35;&#125;#}
-
-                    {#{% if aux.comment != null %}#}
-                     {#<td>{{ aux.comment}} </td>#}
-
-                    {#{% else %}#}
-
-                    {% for reviewer in review %}
-
-                            <td>{{ reviewer.article.title }}</td>
-                            <td>{{ reviewer.article.abstract }}</td>
-                            <td>{{ reviewer.article.keyword }}</td>
-                            <td>
-                                {% for articleReview in reviewer.article.topics  %}
-                                    <span class="label label-success glyphicon glyphicon-tags"> {{ articleReview.name }}</span>
-                                    {% endfor %}
-                            </td>
-                            <td><a class="btn btn-default glyphicon glyphicon-download-alt " href="{{ path('file_download',
-                                {'id': reviewer.article.id }) }}" role="button" id="1"></a></td>
-                            <td><a class="btn btn-default glyphicon glyphicon-edit" href="{{ path('article_review',
-                                {'id': reviewer.article.id }) }}" role="button" id="2"></a></td>
-                        </tr>
-                        {% endfor %}
-
-                        {% endif %}
-                                   {#{% endfor %}#}
-                                   {#{% endif %}#}
-                </table>
-            </div>
-
-        {% else %}
-            <div class="alert alert-danger text-center">
-                <strong>There aren't article</strong>
-            </div>
-            </div>
-            </div>
-        {% endif %}
-    {% endif %}
-
+        </ol>
+    </section>
 {% endblock %}
 
-{#{% extends 'base.html.twig' %}#}
 
-{#{% block mainContent %}#}
+{% block content %}
 
+{% if app.user is null %}
+    <div class="alert alert-danger text-center">
+        <strong>You must be registered</strong>
+    </div>
 
-    {#{% if app.user is null %}#}
-        {#<div class="alert alert-danger text-center">#}
-            {#<strong>You must be registered</strong>#}
-        {#</div>#}
+{% else %}
+    {% if review!=null %}
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+            {% for reviewer in review %}
+                <div class="box box-default">
+                    <div class="box-header">
+                        <h3 class="box-title">{{ reviewer.article.title }}</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-condensed">
+                            <thead>
+                            <tr>
+                                <th class="col-md-4">{{ 'Abstract' | trans }}</th>
+                                <th class="col-md-1">{{ 'Keyword' | trans }}</th>
+                                <th class="col-md-1">{{ 'Topics' | trans }}</th>
+                                <th class="col-md-1">{{ 'Download' | trans }}</th>
+                                <th class="col-md-1">{{ 'Edit' | trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{ reviewer.article.abstract }}</td>
+                                <td>{{ reviewer.article.keyword }}</td>
+                                <td>
+                                    {% for articleReview in reviewer.article.topics  %}
+                                        <span class="label label-success glyphicon glyphicon-tags"> {{ articleReview.name }}</span>
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    <a class="btn btn-default" href="{{ path("article_review_download", {'id': reviewer.id}) }}" role="button" id="1"><i class="fa fa-download"></i></a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-default" href="{{ path('article_review',{'id': reviewer.article.id }) }}" role="button" id="2"><i class="fa fa-edit"></i></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+        <div class="alert alert-danger text-center">
+            <strong>There aren't article</strong>
+        </div>
+    {% endif %}
+{% endif %}
 
-
-    {#{% else %}#}
-        {#{% if review!=null %}#}
-            {#{% for reviewer in review %}#}
-                {#{% for article in reviewer.articles.articleReviews %}#}
-                  {#{% for a in article.reviewComments %}#}
-                      {#<td>{{ a.article.reviewComments.state }}</td>#}
-                    {#&#123;&#35;{% if a.comment!= null %}&#35;&#125;#}
-
-                    {#<div class="row ">#}
-                    {#<div class="col-md-12  text-center">#}
-                    {#<div class="table-responsive">#}
-                        {#<table class="table table-bordered table-hover">#}
-                            {#<tr class="success">#}
-                                {#<th class="text-center">Title</th>#}
-                                {#<th class="text-center">Abstract</th>#}
-                                {#<th class="text-center">keyword</th>#}
-                                {#<th class="text-center">Topics</th>#}
-                                {#<th class="text-center">Download</th>#}
-                                {#<th class="text-center">Edit Article</th>#}
-
-                            {#</tr>#}
-                             {#<tr>#}
-
-                                    {#<td>{{ reviewer.articles.title }}</td>#}
-                                    {#<td>{{ reviewer.articles.abstract }}</td>#}
-                                    {#<td>{{ reviewer.articles.keyword }}</td>#}
-                                    {#<td>#}
-                                        {#{% for articleReview in reviewer.articles.topics  %}#}
-                                            {#<span class="label label-success glyphicon glyphicon-tags"> {{ articleReview.name }}</span>#}
-                                        {#{% endfor %}#}
-                                    {#</td>#}
-                                    {#<td><a class="btn btn-default glyphicon glyphicon-download-alt " href="{{ path('file_download',#}
-                                        {#{'id': reviewer.articles.id }) }}" role="button" id="1"></a></td>#}
-                                    {#<td><a class="btn btn-default glyphicon glyphicon-edit" href="{{ path('article_review',#}
-                                        {#{'id': reviewer.articles.id }) }}" role="button" id="2"></a></td>#}
-                                {#</tr>#}
-                        {#</table>#}
-                    {#</div>#}
-                    {#</div>#}
-                    {#</div>#}
-                    {#&#123;&#35;{% endif %}&#35;&#125;#}
-                  {#{% endfor %}#}
-            {#{% endfor %}#}
-        {#{% endfor %}#}
-    {#{% endif %}#}
-    {#{% endif %}#}
-
-{#{% endblock %}#}
+{% endblock %}

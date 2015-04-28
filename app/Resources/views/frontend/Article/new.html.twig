@@ -7,9 +7,9 @@
         <small>{{ conference.name }}</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ path('conference_show') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{ path('article_list') }}">Submissions</a></li>
-        <li class="active">New submission</li>
+        <li><a href="{{ path('conference_show') }}"><i class="fa fa-dashboard"></i>{{ 'Home' | trans }} </a></li>
+        <li><a href="{{ path('article_list') }}">{{ 'Submissions' | trans }}</a></li>
+        <li class="active">{{ 'New article' | trans }}</li>
     </ol>
 </section>
 {% endblock %}
@@ -19,7 +19,7 @@
     <div class="col-lg-8 col-lg-offset-2">
         <div class="box box-default">
             <div class="box-header">
-                <h3 class="box-title">Send article</h3>
+                <h3 class="box-title"> {{ 'Send article' | trans }}</h3>
             </div>
             <form method="POST" {{ form_enctype(form) }}>
                 <div class="box-body">

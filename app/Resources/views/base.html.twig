@@ -41,7 +41,7 @@
                 <ul class="nav navbar-nav">
 
                     {% if not app.user %}
-                    <a href="{{ url('fos_user_security_login') }}" class="btn btn-default btn-flat"> Login
+                    <a href="{{ url('fos_user_security_login') }}" class="btn btn-default btn-flat"> {{ 'Login' | trans }}
     </a>
 
                     {% else %}
@@ -63,24 +63,20 @@
                                 <img src="http://g.cdn.ecn.cl/hombres/files/2013/10/feo-19.jpg" class="img-circle" alt="User Image" />
                                 <p>
                                     {{ app.user }}
-                                    <small>Member since Nov. 2012</small>
+
                                 </p>
                                 {% endif %}
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
 
-                                {% if not app.user %}
-                                <div class="pull-right">
-                                    <a href="{{ url('fos_user_security_login') }}" class="btn btn-default btn-flat"> Login</a>
-                                    </div>
-                                {% else %}
+                                {% if app.user %}
                                     <div class="pull-left">
-                                        <a href="{{ url('fos_user_profile_show') }}" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="{{ url('fos_user_profile_show') }}" class="btn btn-default btn-flat">{{ 'Profile' | trans }}</a>
                                     </div>
 
                                     <div class="pull-right">
-                                        <a href="{{ url('fos_user_security_logout') }}" class="btn btn-default btn-flat"> Logout</a>
+                                        <a href="{{ url('fos_user_security_logout') }}" class="btn btn-default btn-flat"> {{ 'Logout' | trans }}</a>
                                     </div>
 
                                 {% endif %}
@@ -106,7 +102,7 @@
                         <img src="http://g.cdn.ecn.cl/hombres/files/2013/10/feo-19.jpg" class="img-circle" alt="User Image" />
                     </div>
                     <div class="pull-left info">
-                        <p><i class="fa fa-circle text-success"></i> Online</p>
+                        <p><i class="fa fa-circle text-success"></i> {{ 'Online' | trans }}</p>
                     </div>
                     <div class="pull-left info">
                     <p>{{ app.user }}</p>
@@ -117,7 +113,7 @@
             <!-- search form -->
             <form action="{{ path('find') }}" method="get" class="sidebar-form">
                 <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="Search..."/>
+                    <input type="text" name="search" class="form-control" placeholder={{ 'Search...' | trans }} >
               <span class="input-group-btn">
                 <button type='submit' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
@@ -126,7 +122,7 @@
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
-                <li class="header">MAIN</li>
+                <li class="header">{{ 'MAIN' | trans }}</li>
 
 
             </ul>
@@ -155,7 +151,7 @@
 
     <footer class="main-footer">
         {% block footer %}
-        <strong>Copyright © 2015 <a href="http://www.uco.es/">University of Córdoba</a>.</strong> All rights reserved.
+        <strong>Copyright © 2015 <a href="http://www.uco.es/">{{ 'University of Córdoba' | trans }}</a>.</strong> {{ 'All rights reserved' | trans }}.
         {% endblock %}
     </footer>
 </div><!-- ./wrapper -->
