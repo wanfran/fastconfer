@@ -131,3 +131,12 @@ services:
         arguments: [ @mailer, @logger ]
         tags:
             - { name: kernel.event_subscriber }
+
+    #TWIG
+
+    fastconfer.twig.conferenceextension:
+        class: AppBundle\Twig\ConferenceExtension
+        arguments: [ @request_stack ]
+        public: false
+        tags:
+           - { name: twig.extension }
