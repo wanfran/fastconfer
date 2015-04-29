@@ -42,7 +42,7 @@ class ArticleController extends Controller
         ));
 
         if (!$inscription) {
-            $this->addFlash('alert', 'You are not registered in this conference');
+            $this->addFlash('alert', $this->get('translator')->trans( 'You are not registered in this conference'));
 
             return $this->redirectToRoute('conference_show');
         }
@@ -68,7 +68,7 @@ class ArticleController extends Controller
         ));
 
         if (!$inscription) {
-            $this->addFlash('alert', 'You are not registered in this conference');
+            $this->addFlash('alert', $this->get('translator')->trans( 'You are not registered in this conference'));
 
             return $this->redirectToRoute('conference_show');
         }
@@ -98,7 +98,7 @@ class ArticleController extends Controller
 
             $em->flush();
 
-            $this->addFlash('success', 'Your article has been successfully uploaded');
+            $this->addFlash('success', $this->get('translator')->trans( 'Your article has been successfully uploaded'));
 
             return $this->redirectToRoute('conference_show');
         }
@@ -125,7 +125,7 @@ class ArticleController extends Controller
         ));
 
         if (!$inscription) {
-            $this->addFlash('alert', 'You are not registered in this conference');
+            $this->addFlash('alert', $this->get('translator')->trans('You are not registered in this conference'));
 
             return $this->redirectToRoute('conference_show');
         }
@@ -153,7 +153,7 @@ class ArticleController extends Controller
 
             $em->flush();
 
-            $this->get('session')->getFlashBag()->set('success', 'Your new article has been successfully send');
+            $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans( 'Your new article has been successfully send'));
 
             return $this->redirectToRoute('conference_show');
         }

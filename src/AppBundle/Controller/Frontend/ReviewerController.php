@@ -34,14 +34,14 @@ class ReviewerController extends Controller
      */
     public function listArticleAction()
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
 
         $reviewer = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findBy(array(
             'user' => $user,
         ));
 
         if (!$reviewer) {
-            $this->addFlash('alert', 'You are not a review');
+            $this->addFlash('alert',$this->get('translator')->trans( 'You are not a review'));
 
             return $this->redirectToRoute('homepage');
         }
@@ -70,7 +70,7 @@ class ReviewerController extends Controller
      */
     public function reviewArticle(Article $article, Request $request)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
 
         $findArticle = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(
             'user' => $user,
@@ -78,7 +78,7 @@ class ReviewerController extends Controller
         ));
 
         if (!$findArticle) {
-            $this->addFlash('alert', 'You are not a review');
+            $this->addFlash('alert',$this->get('translator')->trans( 'You are not a review'));
 
             return $this->redirectToRoute('homepage');
         }
@@ -101,9 +101,9 @@ class ReviewerController extends Controller
             $em->persist($reviewComments);
             $em->flush();
 
-            $this->addFlash('success', 'Your article has been successfully edited');
+            $this->addFlash('success',$this->get('translator')->trans( 'Your article has been successfully edited'));
 
-            return $this->redirectToRoute('article_list');
+            return $this->redirectToRoute('review_article_list');
         }
 
         return [

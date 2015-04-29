@@ -3,8 +3,9 @@
 {% block content %}
 
     {% if app.user is null %}
-        <div class="alert alert-danger text-center">
-            <strong>You must be registered</strong>
+        <div class="callout callout-danger">
+            <h4>{{ 'Warning!' |trans }}</h4>
+            <strong>{{ 'You must be registered' |trans }}</strong>
         </div>
     {% else %}
     {% if inscription!=null %}
@@ -38,8 +39,9 @@
                 </div>
             </div>
             {% else %}
-                <div class="alert alert-danger text-center">
-                    <strong>There aren't inscriptions</strong>
+                <div class="callout callout-danger">
+                    <h4>{{ 'Warning!' |trans }}</h4>
+                    <strong>{{ 'There are not inscriptions' |trans }}</strong>
                 </div>
             {% endif %}
     {% endif %}

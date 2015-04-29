@@ -54,7 +54,6 @@ class DefaultController extends Controller
     public function myConferencesAction()
     {
         $user = $this->getUser();
-        dump($user);
         $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findBy(array('user' => $user));
 
         $securityContext = $this->container->get('security.context');
@@ -80,7 +79,7 @@ class DefaultController extends Controller
         $conferences = $em->getRepository('AppBundle:Conference')->findConference($word);
 
         if ($conferences == null) {
-            $this->addFlash('alert', 'Conference not found');
+            $this->addFlash('alert',$this->get('translator')->trans('Conference not found'));
         }
 
         return [

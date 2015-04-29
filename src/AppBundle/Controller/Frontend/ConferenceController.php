@@ -36,7 +36,6 @@ class ConferenceController extends Controller
         ];
     }
 
-
     /**
      * @Route("/inscription", name="inscription")
      *
@@ -46,7 +45,7 @@ class ConferenceController extends Controller
         $conference = $this->getConference();
 
         if ($conference->getDateEnd() < new \DateTime()) {
-            $this->get('session')->getFlashBag()->set('alert', 'You can not register for this conference');
+            $this->get('session')->getFlashBag()->set('alert',$this->get('translator')->trans( 'You can not register for this conference'));
 
             return $this->redirectToRoute('conference_show');
         }
@@ -58,7 +57,7 @@ class ConferenceController extends Controller
         ));
 
         if ($inscription) {
-            $this->get('session')->getFlashBag()->set('alert', 'You can not register again in this conference');
+            $this->get('session')->getFlashBag()->set('alert', $this->get('translator')->trans( 'You can not register again in this conference'));
 
             return $this->redirectToRoute('conference_show');
         }
@@ -70,7 +69,7 @@ class ConferenceController extends Controller
         $this->getDoctrine()->getManager()->persist($inscription);
         $this->getDoctrine()->getManager()->flush();
 
-        $this->get('session')->getFlashBag()->set('success', 'Congratulations, you are already registered');
+        $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans( 'Congratulations you are already registered'));
 
         return $this->redirectToRoute('conference_show');
     }
