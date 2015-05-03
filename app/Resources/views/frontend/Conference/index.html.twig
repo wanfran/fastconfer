@@ -8,10 +8,11 @@
             <div class="padding-md">
                 <h1><span class="text-white">{{ conference.name }}</span></h1>
                 <h2><span class="text-white">{{ conference.description | slice(0, 20) }}</span></h2>
-
-                {% if not inscription %}
+                
+                {% if not inscription and app.user %}
                     <a class="btn btn-white btn-outline" role="button" data-toggle="modal" data-target="#myModal">{{"Register now!" | trans  }}</a>
                 {% endif %}
+
             </div><!-- /.padding -->
         </div><!-- /.col -->
     </section>
