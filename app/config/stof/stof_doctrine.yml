@@ -1,0 +1,10 @@
+stof_doctrine_extensions:
+    uploadable:
+        default_file_path:       %kernel.root_dir%/../upload
+        mime_type_guesser_class: Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter
+        default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
+    orm:
+        default:
+            sluggable: true
+            timestampable: true
+            uploadable: true

@@ -20,52 +20,31 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        admin:
-            pattern:            /admin(.*)
-            context:            user
-            form_login:
-                provider:       fos_userbundle
-                login_path:     /admin/login
-                use_forward:    false
-                check_path:     /admin/login_check
-                failure_path:   null
-            logout:
-                path:           /admin/logout
-            anonymous:          true
-
         main:
-            pattern:             .*
-            context:             user
+            pattern:              .*
+            context:              user
             form_login:
-               provider:       fos_userbundle
-               login_path:     /login
-               use_forward:    false
-               check_path:     /login_check
-               failure_path:   null
+               provider:          fos_userbundle
+               login_path:        /login
+               use_forward:       false
+               check_path:        /login_check
+               failure_path:      null
+               use_referer:       true
 
             oauth:
                 resource_owners:
-                    google:             "/login/check-google"
-                login_path:        /login
-                failure_path:      /login
- 
+                    sir:          /login/check-sir
+                login_path:       /login
+                failure_path:     /login
                 oauth_user_provider:
-                    #this is my custom user provider, created from FOSUBUserProvider - will manage the
-                    #automatic user registration on your site, with data from the provider (facebook. google, etc.)
                     service: fastconfer.user.provider
-            logout:       true
-            anonymous:    true
- 
-        login:
-            pattern:  ^/login$
-            security: false
- 
+            logout:               true
+            anonymous:            true
             remember_me:
-                key: "%secret%"
-                lifetime: 31536000 # 365 days in seconds
-                path: /
-                domain: %site_base%
+                key:              "%secret%"
+                lifetime:         31536000 # 365 days in seconds
+                path:             /
+                domain:           %site_base%
  
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

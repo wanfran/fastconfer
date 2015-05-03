@@ -7,5 +7,7 @@ $(document).ready(function(){
         $('.conference-card').appear({force_process: true});
     });
 
+
+
     $('select').select2();
 });

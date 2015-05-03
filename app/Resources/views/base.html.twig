@@ -12,7 +12,8 @@
             "vendor/components-font-awesome/css/font-awesome.css"
             "vendor/ionicons/css/ionicons.css"
             "vendor/admin-lte/dist/css/AdminLTE.css"
-            "vendor/admin-lte/dist/css/skins/skin-blue.css"
+            "vendor/admin-lte/dist/css/skins/skin-black.css"
+            "vendor/admin-lte/plugins/iCheck/square/blue.css"
             "bundles/app/css/fastconfer.css"
         %}
         <link rel="stylesheet" href="{{ asset_url }}" />
@@ -22,7 +23,8 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('a.ico') }}" />
 
 </head>
-<body class="skin-blue sidebar-mini">
+<body class="{% block body_class %}skin-black{% endblock %}">
+{% block body %}
 <!-- Site wrapper -->
 <div class="wrapper">
 
@@ -167,13 +169,16 @@
     </footer>
 </div><!-- ./wrapper -->
 
+{% endblock body %}
+
 {% block javascripts %}
     {% javascripts filter="cssrewrite" output="js/compiled/fastconfer.js" debug=false
         "vendor/jquery/dist/jquery.js"
+        "vendor/select2/select2.js"
         "vendor/appear/jquery.appear.js"
         "vendor/bootstrap/dist/js/bootstrap.js"
         "vendor/bootstrap-filestyle/src/bootstrap-filestyle.js"
-        "vendor/select2/select2.js"
+        "vendor/admin-lte/plugins/iCheck/icheck.js"
         "vendor/admin-lte/dist/js/app.js"
         "bundles/app/js/fastconfer.js"
     %}

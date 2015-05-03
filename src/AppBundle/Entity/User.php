@@ -19,13 +19,25 @@ class User extends BaseUser
      */
     protected $id;
 
-    /** @ORM\Column(name="google_id", type="string", length=255, nullable=true) */
-    protected $google_id;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sir_id", type="string", length=255, nullable=true)
+     */
+    protected $sir_id;
 
-    /** @ORM\Column(name="google_access_token", type="string", length=255, nullable=true) */
-    protected $google_access_token;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sir_access_token", type="string", length=255, nullable=true)
+     */
+    protected $sir_access_token;
 
-    /** @ORM\Column(name="organization", type="string", length=255, nullable=true) */
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="organization", type="string", length=255, nullable=true)
+     */
     protected $organization;
 
     /**
@@ -65,6 +77,16 @@ class User extends BaseUser
     }
 
     /**
+     * Get id.
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * @return mixed
      */
     public function getOrganization()
@@ -81,48 +103,36 @@ class User extends BaseUser
     }
 
     /**
-     * Get id.
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @return mixed
      */
-    public function getGoogleId()
+    public function getSirId()
     {
-        return $this->google_id;
+        return $this->sir_id;
     }
 
     /**
-     * @param mixed $google_id
+     * @param mixed $sir_id
      */
-    public function setGoogleId($google_id)
+    public function setSirId($sir_id)
     {
-        $this->google_id = $google_id;
+        $this->sir_id = $sir_id;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getGoogleAccessToken()
+    public function getSirAccessToken()
     {
-        return $this->google_access_token;
+        return $this->sir_access_token;
     }
 
     /**
-     * @param mixed $google_access_token
+     * @param int $sir_access_token
      */
-    public function setGoogleAccessToken($google_access_token)
+    public function setSirAccessToken($sir_access_token)
     {
-        $this->google_access_token = $google_access_token;
+        $this->sir_access_token = $sir_access_token;
     }
-
-    //YOU CAN ADD MORE CODE HERE !
 
     /**
      * Add inscriptions.
@@ -246,5 +256,29 @@ class User extends BaseUser
             $this->getFullname(),
             $this->getEmail()
         );
+    }
+
+    /*
+     * Get either a Gravatar URL or complete image tag for a specified email address.
+     *
+     * @param integer $s Size in pixels, defaults to 80px [ 1 - 2048 ]
+     * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
+     * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
+     * @param boolean $img True to return a complete IMG tag False for just the URL
+     * @param array $atts Optional, additional key/value attributes to include in the IMG tag
+     * @return String containing either just a URL or a complete image tag
+     * @source http://gravatar.com/site/implement/images/php/
+     */
+    public function getGravatar($s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+        $url = 'http://www.gravatar.com/avatar/';
+        $url .= md5( strtolower( trim( $this->getEmail() ) ) );
+        $url .= "?s=$s&d=$d&r=$r";
+        if ( $img ) {
+            $url = '<img src="' . $url . '"';
+            foreach ( $atts as $key => $val )
+                $url .= ' ' . $key . '="' . $val . '"';
+            $url .= ' />';
+        }
+        return $url;
     }
 }

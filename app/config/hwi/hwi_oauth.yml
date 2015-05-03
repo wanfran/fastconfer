@@ -1,0 +1,24 @@
+hwi_oauth:
+    #this is my custom user provider, created from FOSUBUserProvider - will manage the
+    #automatic user registration on your site, with data from the provider (facebook. google, etc.)
+    #and also, the connecting part (get the token and the user_id)
+    target_path_parameter: _target
+    connect:
+        account_connector: fastconfer.user.provider
+    # name of the firewall in which this bundle is active, this setting MUST be set
+    firewall_name: main
+    fosub:
+        username_iterations: 30
+        properties:
+            # these properties will be used/redefined later in the custom FOSUBUserProvider service.
+            sir: sir_id
+    resource_owners:
+        sir:
+            type:                oauth2
+            client_id:           "%sir_app_id%"
+            client_secret:       "%sir_app_secret%"
+            access_token_url:    http://localhost/simplesaml/module.php/oauth2/token.php
+            authorization_url:   http://localhost/simplesaml/module.php/oauth2/authorize.php
+            infos_url:           http://localhost/simplesaml/module.php/oauth2/user.php
+            scope:               "user_details"
+            user_response_class: AppBundle\OAuth\Response\SirUserResponse

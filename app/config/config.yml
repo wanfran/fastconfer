@@ -2,6 +2,16 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    # FOS Bundles
+    - { resource: fos/fos_user.yml }
+    # HWI Bundles
+    - { resource: hwi/hwi_oauth.yml}
+    # Sonata Bundles
+    - { resource: sonata/sonata_admin.yml }
+    - { resource: sonata/sonata_block.yml }
+    - { resource: sonata/sonata_user.yml }
+    # StoF Bundles
+    - { resource: stof/stof_doctrine.yml }
 
 framework:
     #esi:             ~
@@ -77,103 +87,3 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
-fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: main
-    user_class: AppBundle\Entity\User
-
-    group:
-        group_class:   Application\Sonata\UserBundle\Entity\Group
-        group_manager: sonata.user.orm.group_manager
-
-    service:
-        user_manager: sonata.user.orm.user_manager
-
-
-hwi_oauth:
-    #this is my custom user provider, created from FOSUBUserProvider - will manage the
-    #automatic user registration on your site, with data from the provider (facebook. google, etc.)
-    #and also, the connecting part (get the token and the user_id)
-    connect:
-        account_connector: fastconfer.user.provider
-    # name of the firewall in which this bundle is active, this setting MUST be set
-    firewall_name: main
-    fosub:
-        username_iterations: 30
-        properties:
-            # these properties will be used/redefined later in the custom FOSUBUserProvider service.
-            google: google_id
-    resource_owners:
-        google:
-            type:                google
-            client_id:           "%google_app_id%"
-            client_secret:       "%google_app_secret%"
-            scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
-    # here you will add one (or more) configurations for resource owners
-
-stof_doctrine_extensions:
-    uploadable:
-        default_file_path:       %kernel.root_dir%/../upload
-        mime_type_guesser_class: Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter
-        default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
-    orm:
-        default:
-            sluggable: true
-            timestampable: true
-            uploadable: true
-
-sonata_block:
-    default_contexts: [cms]
-    blocks:
-        sonata.admin.block.admin_list:
-            contexts:   [admin]
-
-        sonata.user.block.menu:    # used to display the menu in profile pages
-        sonata.user.block.account: # used to display menu option (login option)
-
-
-sonata_user:
-    security_acl: false
-    manager_type: orm
-
-    class:
-         user:         AppBundle\Entity\User
-         group:        AppBundle\Entity\Group
-
-    admin:
-        user:
-            class: AppBundle\Admin\UserAdmin
-        group:
-            class: AppBundle\Admin\GroupAdmin
-
-
-
-sonata_admin:
-    title:      Fastconfer
-#    title_logo: bundles/sonataadmin/a.ico
-
-    security:
-        handler: fastconfer.security.handler.voter
-
-    templates:
-        layout: backend/standard_layout.html.twig
-
-    dashboard:
-        groups:
-            fastconfer.admin.group.administration:
-                label:           sonata_administration
-                label_catalogue: SonataAdminBundle
-                icon:            '<i class="fa fa-cogs"></i>'
-                items:
-                    - sonata.user.admin.user
-                    - sonata.user.admin.group
-
-            fastconfer.admin.group.conferences:
-                label:           Conferences
-                label_catalogue: messages
-                icon:            '<i class="fa fa-sitemap"></i>'
-                items:
-                    - fastconfer.admin.conference
-                    - fastconfer.admin.inscription
-                    - fastconfer.admin.article

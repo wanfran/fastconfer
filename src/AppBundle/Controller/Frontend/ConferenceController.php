@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
  * Class ConferenceController
  * @package AppBundle\Controller\Frontend
  * @Route(condition="not (context.getHost() matches '/www/')")
- * @Security("has_role('ROLE_USER')")
  */
 class ConferenceController extends Controller
 {
@@ -38,7 +37,7 @@ class ConferenceController extends Controller
 
     /**
      * @Route("/inscription", name="inscription")
-     *
+     * @Security("has_role('ROLE_USER')")
      */
     public function inscriptionAction()
     {
