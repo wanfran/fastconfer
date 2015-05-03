@@ -33,8 +33,12 @@ class Builder extends ContainerAware
 
         if ($inscription)
             $menu->addChild($this->container->get('translator')->trans('My Conferences'),array('route'=> 'myConferences'));
+        $reviewer = $em->getRepository('AppBundle:Reviewer')->findOneBy(array(
+            'user' => $user
+        ));
 
-
+        if($reviewer)
+            $menu->addChild($this->container->get('translator')->trans('Assigned Reviews'),array('route'=> 'review_article_list'));
 
 
         return $menu;

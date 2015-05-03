@@ -19,7 +19,7 @@
 
 {% if app.user is null %}
     <div class="alert alert-danger text-center">
-        <strong>You must be registered</strong>
+        <strong>{{ 'You must be registered' |trans }}</strong>
     </div>
 
 {% else %}
@@ -67,7 +67,7 @@
     </div>
     {% else %}
         <div class="alert alert-danger text-center">
-            <strong>There aren't article</strong>
+            <strong>{{ 'There are not article' | trans }}</strong>
         </div>
     {% endif %}
 {% endif %}
