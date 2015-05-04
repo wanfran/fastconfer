@@ -60,10 +60,9 @@
                             <!-- User image -->
                             <li class="user-header">
                                 {% if app.user %}
-                                <img src="{{ app.user.gravatar(160) }}" class="img-circle" alt="User Image" />
+                                <img src="{{ app.user.gravatar(160) }}" class="img-circle" alt="User Image"/>
                                 <p>
                                     {{ app.user }}
-
                                 </p>
                                 {% endif %}
                             </li>
@@ -99,7 +98,7 @@
             <div class="user-panel">
                 {% if app.user %}
                     <div class="pull-left image">
-                        <img src={{ app.user.gravatar(64) }} class="img-circle" alt="User Image" />
+                        <img src={{ app.user.gravatar(64) }} class="img-circle" alt="User Image"/>
                     </div>
                     <div class="pull-left info">
                         <p><i class="fa fa-circle text-success"></i> {{ 'Online' | trans }}</p>

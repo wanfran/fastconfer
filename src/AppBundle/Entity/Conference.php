@@ -38,12 +38,6 @@ class Conference
     private $description;
 
     /**
-     * @Gedmo\Slug(fields={"name"})
-     * @ORM\Column(length=128, unique=true)
-     */
-    private $slug;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="code", length=32, unique=true, nullable=false)
@@ -54,6 +48,12 @@ class Conference
      * @ORM\Column(name="image", type="string", length=255)
      */
     private $image;
+
+    /**
+     * @var string
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
 
     /**
      * @var \DateTime
@@ -75,6 +75,13 @@ class Conference
      * @ORM\Column(name="deadTime", type="datetime")
      */
     private $deadTime;
+
+    /**
+     * @var \DateTime
+     *
+     *@ORM\Column(name="dateNews", type="datetime")
+     */
+    private $dateNews;
 
     /**
      * @ORM\ManyToMany(targetEntity="Topic", inversedBy="conferences")
@@ -149,20 +156,38 @@ class Conference
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
-    public function getSlug()
+    public function getDateNews()
     {
-        return $this->slug;
+        return $this->dateNews;
     }
 
     /**
-     * @param mixed $slug
+     * @param \DateTime $dateNews
      */
-    public function setSlug($slug)
+    public function setDateNews($dateNews)
     {
-        $this->slug = $slug;
+        $this->dateNews = $dateNews;
     }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+
 
     /**
      * Get id.

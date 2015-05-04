@@ -9,17 +9,21 @@
               reliability, and simulation
         chairmans: [@users_mary]
         image: <imageUrl(1200, 200,'city')>
+        url: http://www.example@example.org
         topics: 5x @topic*
         dateStart: <dateTimeBetween($startDate = '+1 days', $endDate = '+7 days')>
         dateEnd:  <dateTimeBetween($startDate = '+60 days', $endDate = '+70 days')>
         deadTime: <dateTimeBetween($startDate = '+20 days', $endDate = '+30 days')>
+        dateNews: <dateTimeBetween($startDate = '+90 days', $endDate = '+100 days')>
     conference{1..4}:
         name (unique): <conference()>
         code: code<current()>
         description: <realText()>
         chairmans: [@users_lucas]
         image: <imageUrl(1200, 200,'city')>
+        url: http://www.<current()>@example.org
         topics: 5x @topic*
         dateStart: <dateTimeBetween($startDate = '+1 days', $endDate = '+7 days')>
         dateEnd:  <dateTimeBetween($startDate = '+60 days', $endDate = '+70 days')>
         deadTime: <dateTimeBetween($startDate = '+20 days', $endDate = '+30 days')>
+        dateNews: <dateTimeBetween($startDate = '+90 days', $endDate = '+100 days')>
