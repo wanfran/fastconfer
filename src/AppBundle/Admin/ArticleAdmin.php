@@ -50,7 +50,7 @@ class ArticleAdmin extends Admin
         $showMapper
             ->with('Article')
             ->add('title')
-            ->add('author')
+            ->add('authors')
             ->add('keyword')
             ->add('abstract')
             ->add('stateEnd')

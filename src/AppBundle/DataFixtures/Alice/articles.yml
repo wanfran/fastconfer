@@ -1,7 +1,7 @@
 \AppBundle\Entity\Article:
     article:
         title: <article()>
-        author: <username()>
+        authors: <username()>
         keyword: <word()>
         abstract: <company()>
         stateEnd: sent
@@ -9,7 +9,7 @@
         topics: 2x @topic*
     article1:
         title: <article()>
-        author: <username()>
+        authors: <username()>
         keyword: <word()>
         abstract: <company()>
         stateEnd: rejected
@@ -17,7 +17,7 @@
         topics: 2x @topic*
     article2:
         title: <article()>
-        author: <username()>
+        authors: <username()>
         keyword: <word()>
         abstract: <company()>
         stateEnd: rejected
@@ -25,7 +25,7 @@
         topics: 2x @topic*
     article3:
         title: <article()>
-        author: <username()>
+        authors: <username()>
         keyword: <word()>
         abstract: <company()>
         stateEnd: accepted with suggestions
@@ -33,7 +33,7 @@
         topics: 2x @topic*
     article4:
         title: <article()>
-        author: <username()>
+        authors: <username()>
         keyword: <word()>
         abstract: <company()>
         stateEnd: accepted
@@ -41,7 +41,7 @@
         topics: 2x @topic*
     article5:
         title: <article()>
-        author: <username()>
+        authors: <username()>
         keyword: <word()>
         abstract: <company()>
         stateEnd: accepted
@@ -49,7 +49,7 @@
         topics: 2x @topic*
     article6:
         title: <article()>
-        author: <username()>
+        authors: <username()>
         keyword: <word()>
         abstract: <company()>
         stateEnd: sent

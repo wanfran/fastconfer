@@ -43,7 +43,7 @@ class ConferenceAdmin extends Admin
             ->add('name', 'textarea')
             ->add('description', 'textarea')
             ->add('image')
-            ->add('slug')
+            ->add('url')
             ->add('chairmans', null, array(
                 'property' => 'getCompleteName'
             ))
@@ -54,6 +54,9 @@ class ConferenceAdmin extends Admin
                 'format' => 'dd MMMM YY',
             ))
             ->add('deadTime', 'sonata_type_datetime_picker', array(
+                'format' => 'dd MMMM YY',
+            ))
+            ->add('dateNews', 'sonata_type_datetime_picker', array(
                 'format' => 'dd MMMM YY',
             ))
             ->add('topics', 'topics_text', array(
@@ -69,10 +72,11 @@ class ConferenceAdmin extends Admin
             ->add('name')
             ->add('description')
             ->add('image')
-            ->add('slug')
+            ->add('url')
             ->add('dateStart')
             ->add('dateEnd')
             ->add('deadTime')
+            ->add('dateNews')
             ->add('topics')
         ;
     }

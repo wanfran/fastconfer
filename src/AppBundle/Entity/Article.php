@@ -41,10 +41,10 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\Column(name="authors", type="string", length=255)
      * @Assert\NotBlank
      */
-    private $author;
+    private $authors;
 
     /**
      * @var string
@@ -137,29 +137,6 @@ class Article
         $this->title = $title;
     }
 
-    /**
-     * Set author.
-     *
-     * @param string $author
-     *
-     * @return Article
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author.
-     *
-     * @return string
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
 
     /**
      * Set keyword.
@@ -208,6 +185,24 @@ class Article
     {
         return $this->abstract;
     }
+
+    /**
+     * @return string
+     */
+    public function getAuthors()
+    {
+        return $this->authors;
+    }
+
+    /**
+     * @param string $authors
+     */
+    public function setAuthors($authors)
+    {
+        $this->authors = $authors;
+    }
+
+
 
     /**
      * @return string
