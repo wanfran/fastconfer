@@ -26,6 +26,12 @@ services:
         tags:
             - { name: security.voter }
 
+    fastconfer.security.article.voter:
+        class: AppBundle\Security\Voter\ArticleVoter
+        public: false
+        tags:
+          - { name: security.voter }
+
     fastconfer.security.handler.voter:
         class: AppBundle\Security\Handler\VoterSecurityHandler
         arguments: [@security.authorization_checker, ['ROLE_SUPER_ADMIN']]
@@ -72,7 +78,6 @@ services:
         calls:
             - [ addChild, ['@fastconfer.admin.reviewer'] ]
             - [ addChild, ['@fastconfer.admin.articlereview'] ]
-#            - [ setTemplate, [base_list_field, SonataAdminBundle:CRUD:base_list_flat_field.html.twig]]
             - [ setTemplate, [show,backend/Article/CRUD/show_article.html.twig]]
 
 
