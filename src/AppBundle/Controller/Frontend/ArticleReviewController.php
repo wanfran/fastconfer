@@ -67,14 +67,17 @@ class ArticleReviewController extends Controller
     public function downloadAction(ArticleReview $articleReview)
     {
         $this->denyAccessUnlessGranted('DOWNLOAD', $articleReview);
+        $article = $articleReview->getArticle();
 
         $fileToDownload = $articleReview->getPath();
+        $filename = $this->get('slugify')->slugify($article->getTitle())
+            . '.' . pathinfo($fileToDownload, PATHINFO_EXTENSION);
         $response = new BinaryFileResponse($fileToDownload);
 
         $response->trustXSendfileTypeHeader();
         $response->setContentDisposition(
-            ResponseHeaderBag::DISPOSITION_ATTACHMENT, $fileToDownload,
-            iconv('UTF-8', 'ASCII//TRANSLIT', $fileToDownload)
+            ResponseHeaderBag::DISPOSITION_INLINE, $filename,
+            iconv('UTF-8', 'ASCII//TRANSLIT', $filename)
         );
 
         return $response;
