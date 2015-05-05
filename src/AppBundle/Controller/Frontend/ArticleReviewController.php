@@ -40,20 +40,19 @@ class ArticleReviewController extends Controller
 
         if ($user != $exist) {
             $this->addFlash('alert', $this->get('translator')->trans('You can not see other comments'));
-            return $this->redirectToRoute('conference_show');
+            return $this->redirectToRoute('article_list');
         }
 
         $comments = $this->getDoctrine()->getRepository('AppBundle:ReviewComments')->findBy(array(
             'articleReview' => $articleReview,
         ));
 
-        if ($articleReview->getState() == 'send') {
+        if ($articleReview->getState() == 'sent') {
             $this->addFlash('alert', $this->get('translator')->trans( 'There are not any comments'));
 
-            return $this->redirectToRoute('conference_show');
+            return $this->redirectToRoute('article_list');
         }
 
-        $this->addFlash('success', $this->get('translator')->trans( 'There is some comments'));
 
         return [
             'conference' => $conference,

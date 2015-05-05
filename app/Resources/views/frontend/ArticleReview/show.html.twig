@@ -7,9 +7,9 @@
             <small>{{ conference.name }}</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ path('conference_show') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{ path('article_list') }}">Submissions</a></li>
-            <li class="active">Comment</li>
+            <li><a href="{{ path('conference_show') }}"><i class="fa fa-dashboard"></i>{{ 'Home' |trans }} </a></li>
+            <li><a href="{{ path('article_list') }}">{{ 'Articles' |trans }}</a></li>
+            <li class="active">{{ 'Comment' |trans }}</li>
         </ol>
     </section>
 {% endblock %}

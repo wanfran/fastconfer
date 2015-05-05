@@ -2,7 +2,7 @@
     articleReview:
         file: ''
         mimeType: 'application/pdf'
-        state: send
+        state: sent
         path: <word()>
         article: @article
     articleReview1:
