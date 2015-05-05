@@ -3,12 +3,12 @@
 {% block header %}
     <section class="content-header">
         <h1>
-            {{ 'Submissions' | trans }}
+            {{ 'Articles' | trans }}
             <small>{{ conference.name }}</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ path('conference_show') }}"><i class="fa fa-dashboard"></i>{{ 'Home' | trans }} </a></li>
-            <li class="active"><a href="{{ path('article_list') }}">{{ 'Submissions' | trans }}</a></li>
+            <li class="active"><a href="{{ path('article_list') }}">{{ 'Articles' | trans }}</a></li>
         </ol>
     </section>
 {% endblock %}
@@ -42,7 +42,7 @@
                                         <a href="{{ path("article_review_show", {'id': review.id}) }}" class="btn btn-default btn-sm">
                                             <i class="fa fa-eye"></i> {{ 'See reviews' | trans }}
                                         </a>
-                                        <a href="{{ path("article_review_download", {'id': review.id}) }}" class="btn btn-default btn-sm">
+                                        <a target="_blank" href="{{ path("article_review_download", {'id': review.id}) }}" class="btn btn-default btn-sm">
                                             <i class="fa fa-download"></i> {{ 'Download' | trans }}
                                         </a>
                                 </div></td>
@@ -53,7 +53,8 @@
                             <tr>
                                 <td colspan="2">
                                     <div class="btn-group">
-                                        <a href="{{ path("article_new_review", {'id': article.id}) }}" class="btn btn-default btn-small">
+
+                                        <a href="{{ path("article_new_review", {'id': article.id}) }}" class="btn btn-default btn-small {% if not is_granted('UPLOAD_NEW_ARTICLE_REVIEW', article) %}disabled{% endif %}">
                                             <i class="fa fa-upload"></i> {{ 'Send new version' | trans }}
                                         </a>
                                     </div>
