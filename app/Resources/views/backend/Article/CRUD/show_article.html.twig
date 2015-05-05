@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-md-12">{% trans %}Download Article{% endtrans %}:
                         <td>
-                            <a class="btn-sm btn-default glyphicon glyphicon-download-alt " href="{{ path('file_download',{'id': articlereview.id }) }}" role="button"></a>
+                            <a class="btn-sm btn-default glyphicon glyphicon-download-alt " href="{{ path('article_review_download',{'id': articlereview.id }) }}" role="button"></a>
                         </td>
 
                     </div>
@@ -81,6 +81,4 @@
 
 {% endblock %}
 
-        {#<a class="btn btn-default glyphicon glyphicon-file" href="{{ path('admin_app_article_edit',{'id': object.id } ) }}"#}
-                                    {#role="button"> State End</a>#}
 

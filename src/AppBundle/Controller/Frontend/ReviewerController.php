@@ -45,18 +45,6 @@ class ReviewerController extends Controller
 
             return $this->redirectToRoute('homepage');
         }
-//
-//        $article = $this->getDoctrine()->getRepository('AppBundle:Article')->findBy(array(
-//            'id' => $reviewer,
-//        ));
-//
-//        $articleReview = $this->getDoctrine()->getRepository('AppBundle:ArticleReview')->findBy(array(
-//            'article' => $article,
-//        ));
-//
-//        $reviewComment = $this->getDoctrine()->getRepository('AppBundle:ReviewComments')->findBy(array(
-//            'articleReview' => $article,
-//        ));
 
         return [
             'review' => $reviewer,

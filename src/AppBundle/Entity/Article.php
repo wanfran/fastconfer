@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\AppBundle;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -38,13 +37,6 @@ class Article
      */
     private $title;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="authors", type="string", length=255)
-     * @Assert\NotBlank
-     */
-    private $authors;
 
     /**
      * @var string
@@ -81,6 +73,12 @@ class Article
      private $topics;
 
     /**
+     * @ORM\OneToMany(targetEntity="Author", mappedBy="article", cascade={"persist"})
+     */
+    private $authors;
+
+
+    /**
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="Inscription", inversedBy="articles")
@@ -104,6 +102,7 @@ class Article
         $this->topics = new ArrayCollection();
         $this->stateEnd = self::STATUS_SENT;
         $this->createAt = new \DateTime();
+        $this->authors = new ArrayCollection();
     }
 
     public function __toString()
@@ -185,24 +184,6 @@ class Article
     {
         return $this->abstract;
     }
-
-    /**
-     * @return string
-     */
-    public function getAuthors()
-    {
-        return $this->authors;
-    }
-
-    /**
-     * @param string $authors
-     */
-    public function setAuthors($authors)
-    {
-        $this->authors = $authors;
-    }
-
-
 
     /**
      * @return string
@@ -380,5 +361,41 @@ class Article
     public function getUser()
     {
         return $this->getInscription()->getUser()->getFullname();
+    }
+
+    /**
+     * Add author
+     *
+     * @param \AppBundle\Entity\Author $author
+     *
+     * @return Article
+     */
+    public function addAuthor(\AppBundle\Entity\Author $author)
+    {
+        $author->setArticle($this);
+
+        $this->authors[] = $author;
+
+        return $this;
+    }
+
+    /**
+     * Remove author
+     *
+     * @param \AppBundle\Entity\Author $author
+     */
+    public function removeAuthor(\AppBundle\Entity\Author $author)
+    {
+        $this->authors->removeElement($author);
+    }
+
+    /**
+     * Get authors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAuthors()
+    {
+        return $this->authors;
     }
 }

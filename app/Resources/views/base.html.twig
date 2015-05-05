@@ -43,17 +43,20 @@
                 <ul class="nav navbar-nav">
 
                     {% if not app.user %}
-
                     <li class="tasks-menu">
                         <a href="{{ url('fos_user_security_login') }}"><i class="fa fa-sign-in"></i> {{ 'Login' | trans }}</a>
                     </li>
 
                     {% else %}
+                    {% block tasks_menu %}
+                        <li class="tasks-menu"><a href="{{ url('article_list') }}"><i class="fa fa-list"></i> {{ 'List Articles' | trans }}</a></li>
+                        <li class="tasks-menu"><a href="{{ url('article_new') }}"><i class="fa fa-upload"></i> {{ 'New article' | trans }}</a></li>
+                    {% endblock %}
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="{{ app.user.gravatar(64)}}" class="user-image" alt="User Image"/>
-                                <span class="hidden-xs">{{ app.user }}</span>
+                                <span class="hidden-xs">{{ app.user.username }}</span>
                             {% endif %}
                         </a>
                         <ul class="dropdown-menu">

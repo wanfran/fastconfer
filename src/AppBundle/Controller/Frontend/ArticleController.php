@@ -12,6 +12,7 @@ namespace AppBundle\Controller\Frontend;
 use AppBundle\Controller\Controller;
 use AppBundle\Entity\Article;
 use AppBundle\Entity\ArticleReview;
+use AppBundle\Entity\Author;
 use AppBundle\Form\Type\InscriptionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -113,6 +114,7 @@ class ArticleController extends Controller
     /**
      * @Route("/{id}/review/new", name="article_new_review")
      * @Template("frontend/Article/new.html.twig")
+     * @Security("is_granted('UPLOAD_NEW_ARTICLE_REVIEW', article)")
      */
     public function newReviewAction(Article $article, Request $request)
     {

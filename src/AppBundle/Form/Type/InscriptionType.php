@@ -21,6 +21,12 @@ class InscriptionType extends AbstractType
 
         $builder
             ->add('title')
+            ->add('authors', 'collection', array(
+                'type' => new AuthorType(),
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ))
             ->add('abstract', 'textarea', array(
                 'attr' => ['rows' => 12],
             ))
