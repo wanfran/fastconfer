@@ -80,32 +80,12 @@ class ConferenceAdmin extends Admin
             ->add('topics')
         ;
     }
-
-    // Fields to be shown on filter forms
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-    {
-        $datagridMapper
-            ->add('name')
-        ;
-    }
-
+    
     // Fields to be shown on lists
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
             ->add('name',null,array('label' => 'Name'))
-            ->add('dateStart', 'date', array(
-                    'label' => 'Date Start',
-                    'pattern' => 'dd MMMM Y',
-                    'locale' => 'es',
-                    'timezone' => 'Europe/Madrid',
-            ))
-            ->add('dateEnd', 'date', array(
-                'label' => 'Date End',
-                'pattern' => 'dd MMMM YY',
-                'locale' => 'es',
-                'timezone' => 'Europe/Madrid',
-            ))
             ->add('_action', 'actions', array('label'=>'Actions',
                 'actions' => array(
                     'edit' => array(),
