@@ -88,7 +88,7 @@ class ReviewerController extends Controller
             $em->persist($reviewComments);
             $em->flush();
 
-            $this->addFlash('success',$this->get('translator')->trans( 'Your article has been successfully edited'));
+            $this->addFlash('success',$this->get('translator')->trans( 'Your comment has been successfully edited'));
 
             return $this->redirectToRoute('review_article_list');
         }

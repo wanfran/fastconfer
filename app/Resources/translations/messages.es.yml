@@ -95,6 +95,14 @@ New submission: "Nuevo Artículo"
 #Reviewer
 Edit: "Editar"
 Comment article: "Comentar artículo"
+Comment to User: "Comentario para el Usuario"
+Comment to Chairman: "Comentario para el Presidente"
+Submit: "Enviar"
+Option:
+  Reject: "Rechazar"
+  Accept with suggerences: "Aceptar con sugerencias"
+  Accept: "Aceptar"
+
 
 #Alert
 Warning!: "Advertencia!"
@@ -112,10 +120,11 @@ You can not see other comments: "No puedes ver otros comentarios"
 There are not any comments: "No hay comentarios"
 There is some comments: "Hay comentarios"
 You are not a review: "No eres revisor"
-Your article has been successfully edited: "Tu artículo ha sido editado correctamente"
+Your comment has been successfully edited: "Tu comentario ha sido editado correctamente"
 The user with name: "El usuario con el nombre"
 will be enrolled in the conference with the name: "será inscripto en la conferencia con el nombre: "
 Message: "Mensaje"
 Do you agree?: "¿Está usted deacuerdo?"
 Yes: "Si"
 There are not article: "No hay artículo"
+

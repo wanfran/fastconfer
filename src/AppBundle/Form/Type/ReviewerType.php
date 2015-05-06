@@ -18,14 +18,17 @@ class ReviewerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('comment', 'textarea', array(
+            ->add('comment', 'textarea', array('label'=> 'Comment to User',
                 'attr' => array('cols' => '10', 'rows' => '10'), ))
             ->add('state', 'choice', array(
-                'choices' => array('accepted' => 'Accepted', 'accepted with suggestions' => 'Accepted with suggestions',
-                    'rejected' => 'Rejected', ),
+                'choices' => array('accepted' => 'Option.Accept', 'accepted with suggestions' => 'Option.Accept with suggerences', 'rejected' => 'Option.Reject', ),
                 'preferred_choices' => array('accepted'),
-            ));
-//            ->add('save', 'submit', array('label' => 'Submit'));
+            ))
+
+            ->add('privateComment', 'textarea', array('label'=> 'Comment to Chairman',
+                'attr' => array('cols' => '10', 'rows' => '10'), ))
+            ->add('save', 'submit', array('label' => 'Submit'))
+        ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
