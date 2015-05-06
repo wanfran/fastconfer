@@ -32,8 +32,7 @@ class ArticleAdmin extends Admin
         return $query;
     }
 
-
-    // Fields to be shown on create/edit forms
+//     Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper

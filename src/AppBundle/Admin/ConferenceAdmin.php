@@ -80,7 +80,7 @@ class ConferenceAdmin extends Admin
             ->add('topics')
         ;
     }
-    
+
     // Fields to be shown on lists
     protected function configureListFields(ListMapper $listMapper)
     {

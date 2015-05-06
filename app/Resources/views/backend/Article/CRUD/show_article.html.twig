@@ -18,8 +18,12 @@
                 <td>{{ object.createAt | date("d/m/y") }}</td>
             </tr>
             <tr>
-                <th>{% trans %}Comment{% endtrans %}</th>
+                <th>{% trans %}Comment to User{% endtrans %}</th>
                 <td>{{ object.comment }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Comment to Chairman{% endtrans %}</th>
+                <td>{{ object.privateComment }}</td>
             </tr>
         </tbody>
     </table>
