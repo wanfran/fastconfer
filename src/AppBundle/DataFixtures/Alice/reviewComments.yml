@@ -1,26 +1,31 @@
 \AppBundle\Entity\ReviewComments:
     reviewComments:
       comment: <realText()>
+      privateComment: <realText()>
       state: rejected
       reviewer: @reviewer*
       articleReview: @articleReview1
     reviewComments1:
       comment: <realText()>
+      privateComment: <realText()>
       state: rejected
       reviewer: @reviewer*
       articleReview: @articleReview7
     reviewComments2:
       comment: <realText()>
+      privateComment: <realText()>
       state: rejected
       reviewer: @reviewer*
       articleReview: @articleReview3
     reviewComments3:
       comment: <realText()>
+      privateComment: <realText()>
       state: rejected
       reviewer: @reviewer*
       articleReview: @articleReview4
     reviewComments4:
       comment: <realText()>
+      privateComment: <realText()>
       state: accepted
       reviewer: @reviewer*
       articleReview: @articleReview6

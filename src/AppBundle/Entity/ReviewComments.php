@@ -32,6 +32,18 @@ class ReviewComments
      */
     private $comment;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="privateComment", type="string", length=255)
+     *
+     * @Assert\NotBlank
+     * @Assert\Length(min="5", minMessage="too short"))
+     */
+    private $privateComment;
+
+
     /**
      * @var string
      *
@@ -98,6 +110,24 @@ class ReviewComments
     {
         return $this->comment;
     }
+
+    /**
+     * @return string
+     */
+    public function getPrivateComment()
+    {
+        return $this->privateComment;
+    }
+
+    /**
+     * @param string $privateComment
+     */
+    public function setPrivateComment($privateComment)
+    {
+        $this->privateComment = $privateComment;
+    }
+
+
 
     /**
      * Set state.
