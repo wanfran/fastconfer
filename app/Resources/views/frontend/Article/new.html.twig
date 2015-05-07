@@ -24,7 +24,29 @@
             <form method="POST" {{ form_enctype(form) }}>
 
                 <div class="box-body">
-                    {{ form_widget(form) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.abstract) }}
+                    <div class="group-form">
+                        {{ form_label(form.authors) }}
+                        <div class="nav-tabs-custom" id="article_authors" data-prototype="{{ form_widget(form.authors.vars.prototype)|e }}">
+                            <ul class="nav nav-tabs" id="author_nav">
+                                {% for idx, author in form.authors %}
+                                    <li><a href="#author_{{ idx }}" data-toggle="tab">Author {{ idx + 1 }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            <div class="tab-content" id="author_list">
+                                {% for idx, author in form.authors %}
+                                    <div class="tab-pane" id="author_{{ idx }}">{{ form_row(author) }}</div>
+                                {% endfor %}
+                            </div><!-- /.tab-content -->
+                        </div>
+                        <p class="help-block">{{ form_errors(form.authors) }}</p>
+                    </div>
+                    {{ form_row(form.keyword) }}
+                    {{ form_row(form.topics) }}
+                    {{ form_row(form.path) }}
+                    {{ form_row(form.save) }}
+                    {{ form_widget(form._token) }}
                 </div>
             </form>
         </div>
@@ -38,34 +60,36 @@
         var $collectionHolder;
 
         // setup an "add a tag" link
-        var $addAuthorLink = $('<a href="#" class="btn btn-default add_author_link">Add a new author</a>');
-        var $newLinkLi = $('<div class="form-group"></div>').append($addAuthorLink);
+        var $addAuthorLink = $('<li class="pull-right"><a href="#" class="text-muted add_author_link"><i class="fa fa-plus"></i> Add author</a></li>');
+        var $authorNav = $('#author_nav').append($addAuthorLink);
+        var $authorList = $('#author_list');
 
         jQuery(document).ready(function() {
+            $('#author_nav a:first').tab('show');
+
             // Get the ul that holds the collection of tags
             $collectionHolder = $('#article_authors');
 
-            // add the "add a tag" anchor and li to the tags ul
-            $collectionHolder.append($newLinkLi);
-
             // count the current form inputs we have (e.g. 2), use that as the new
             // index when inserting a new item (e.g. 2)
-            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+            $collectionHolder.data('index', $collectionHolder.find('li').length - 1);
 
             $addAuthorLink.on('click', function(e) {
                 // prevent the link from creating a "#" on the URL
                 e.preventDefault();
 
                 // add a new tag form (see next code block)
-                addAuthorForm($collectionHolder, $newLinkLi);
+                addAuthorForm($collectionHolder, $authorNav, $authorList);
             });
 
-            function addAuthorForm($collectionHolder, $newLinkLi) {
+            function addAuthorForm($collectionHolder, $authorNav, $authorList) {
                 // Get the data-prototype explained earlier
                 var prototype = $collectionHolder.data('prototype');
 
                 // get the new index
                 var index = $collectionHolder.data('index');
+
+                $authorNav.append('<li><a href="#author_' + index + '" data-toggle="tab">Author ' + (index + 1) + '</a></li>');
 
                 // Replace '__name__' in the prototype's HTML to
                 // instead be a number based on how many items we have
@@ -75,8 +99,11 @@
                 $collectionHolder.data('index', index + 1);
 
                 // Display the form in the page in an li, before the "Add a tag" link li
-                var $newFormLi = $('<div class="form-group"></div>').append(newForm);
-                $newLinkLi.before($newFormLi);
+                var $newFormLi = $('<div class="tab-pane" id="author_' + index + '"></div>').append(newForm);
+                $authorList.append($newFormLi);
+
+                // Show tab
+                $('#author_nav a:last').tab('show');
             }
         });
 
