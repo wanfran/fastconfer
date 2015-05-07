@@ -8,12 +8,11 @@
 
 namespace AppBundle\Main\EventListener;
 
+use AppBundle\Main\TwigMailGenerator;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use AppBundle\Main\Event\StateEndEvent;
 use AppBundle\Main\StateEndEvents;
-use AppBundle\Entity\User;
-use AppBundle\Entity\Article;
 
 class StateEndSubscriber implements EventSubscriberInterface
 {
@@ -47,7 +46,23 @@ class StateEndSubscriber implements EventSubscriberInterface
             ->setFrom('send@example.com')
             ->setTo($articleReview->getArticle()->getInscription()->getUser()->getEmail())
             ->setBody('You article have state'.$articleReview->getArticle()->getStateEnd());
+
         $this->email->send($message);
+
+
+//        $twig = $this->get('twig');     // Twig_Environment
+//        $mailer = $this->get('mailer'); // Swift_Mailer
+//
+//        $generator = new TwigMailGenerator($twig); // Can be in a DIC
+//
+//        $message = $generator->getMessage('newsletter', array(
+//            'customer' => $articleReview->getArticle()->getInscription()->getUser()
+//        ));
+//
+//        $message = $this->email->createMessage()
+//        ->setTo($articleReview->getArticle()->getInscription()->getUser()->getEmail());
+//
+//        $this->email->send($message);
 
         $articleReview->notified = true;
     }

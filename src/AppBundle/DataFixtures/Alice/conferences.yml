@@ -8,7 +8,9 @@
              electronic components, materials, assembly, interconnections, device and system packaging, optoelectronics,
               reliability, and simulation
         chairmans: [@users_mary]
-        image: <imageUrl(1200, 200,'city')>
+#        image: <imageUrl(1200, 200,'city')>
+        image: ''
+        path: <word()>
         url: http://www.example@example.org
         topics: 5x @topic*
         dateStart: <dateTimeBetween($startDate = '+1 days', $endDate = '+7 days')>
@@ -20,7 +22,8 @@
         code: code<current()>
         description: <realText()>
         chairmans: [@users_lucas]
-        image: <imageUrl(1200, 200,'city')>
+        image: ''
+        path: <word()>
         url: http://www.<current()>@example.org
         topics: 5x @topic*
         dateStart: <dateTimeBetween($startDate = '+1 days', $endDate = '+7 days')>

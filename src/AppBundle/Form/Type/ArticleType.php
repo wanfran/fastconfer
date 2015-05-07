@@ -13,7 +13,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class InscriptionType extends AbstractType
+class ArticleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -21,14 +21,15 @@ class InscriptionType extends AbstractType
 
         $builder
             ->add('title')
+
+            ->add('abstract', 'textarea', array(
+                'attr' => ['rows' => 12],
+            ))
             ->add('authors', 'collection', array(
                 'type' => new AuthorType(),
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-            ))
-            ->add('abstract', 'textarea', array(
-                'attr' => ['rows' => 12],
             ))
             ->add('keyword')
             ->add('topics', 'entity', array(

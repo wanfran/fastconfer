@@ -12,8 +12,7 @@ namespace AppBundle\Controller\Frontend;
 use AppBundle\Controller\Controller;
 use AppBundle\Entity\Article;
 use AppBundle\Entity\ArticleReview;
-use AppBundle\Entity\Author;
-use AppBundle\Form\Type\InscriptionType;
+use AppBundle\Form\Type\ArticleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -77,7 +76,7 @@ class ArticleController extends Controller
         $article = new Article();
         $article->setInscription($inscription);
 
-        $form = $this->createForm(new InscriptionType(), $article);
+        $form = $this->createForm(new ArticleType(), $article);
 
         $form->handleRequest($request);
 
@@ -134,7 +133,7 @@ class ArticleController extends Controller
 
         $articles = $this->getDoctrine()->getRepository('AppBundle:Article')->findOneBy(array('id' => $article->getId()));
 
-        $form = $this->createForm(new InscriptionType(), $articles);
+        $form = $this->createForm(new ArticleType(), $articles);
 
         $form->handleRequest($request);
 

@@ -12,10 +12,10 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use Knp\Menu\ItemInterface as MenuItemInterface;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+
 
 class ConferenceAdmin extends Admin
 {
@@ -42,7 +42,9 @@ class ConferenceAdmin extends Admin
         $formMapper
             ->add('name', 'textarea')
             ->add('description', 'textarea')
-            ->add('image')
+            ->add('image','file',array(
+                'required' => false
+            ))
             ->add('url')
             ->add('chairmans', null, array(
                 'property' => 'getCompleteName'
@@ -115,4 +117,20 @@ class ConferenceAdmin extends Admin
             array('uri' => $admin->generateUrl('fastconfer.admin.conference.list', array('id' => $id)))
         );
     }
+
+    public function prePersist($object)
+    {
+        $object->upload();
+    }
+
+    public function preUpdate($object)
+    {
+        $object->upload();
+    }
+
+    public function postRemove($object)
+    {
+        $object->removeUpload();
+    }
+
 }
