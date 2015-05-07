@@ -3,7 +3,7 @@
 {% block header %}
 
     <section class="content-header conference-header">
-        <img src="{{ conference.image }}?name={{ conference.name }}" />
+        <img src="{{ asset('/images/' ~ conference.image) }}" />
         <div class="conference-title">
             <div class="padding-md">
                 <h1><span class="text-white">{{ conference.name }}</span></h1>

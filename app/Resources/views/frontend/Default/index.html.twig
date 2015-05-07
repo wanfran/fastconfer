@@ -10,7 +10,7 @@
     <div class="col-md-12">
         <div class="conference conference-default conference-card">
             <div class="conference-heading">
-                <img src="{{ conference.image }}?name={{ conference.name }}">
+                <img src="{{ asset('/images/' ~ conference.image) }}">
             </div>
             <div class="conference-body text-center">
                 <h4 class="conference-header">
