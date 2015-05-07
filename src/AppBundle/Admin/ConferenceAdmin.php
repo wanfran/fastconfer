@@ -42,8 +42,9 @@ class ConferenceAdmin extends Admin
         $formMapper
             ->add('name', 'textarea')
             ->add('description', 'textarea')
-            ->add('image','file',array(
-                'required' => false
+            ->add('image', 'file', array(
+                'data_class' => null,
+                'attr' => ['class' => 'filestyle']
             ))
             ->add('url')
             ->add('chairmans', null, array(
@@ -120,17 +121,11 @@ class ConferenceAdmin extends Admin
 
     public function prePersist($object)
     {
-        $object->upload();
+        $this->getService('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($object, $object->getImage());
     }
 
     public function preUpdate($object)
     {
-        $object->upload();
+        $this->getService('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($object, $object->getImage());
     }
-
-    public function postRemove($object)
-    {
-        $object->removeUpload();
-    }
-
 }
