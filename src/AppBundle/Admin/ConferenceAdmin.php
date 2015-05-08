@@ -42,10 +42,6 @@ class ConferenceAdmin extends Admin
         $formMapper
             ->add('name', 'textarea')
             ->add('description', 'textarea')
-            ->add('image', 'file', array(
-                'data_class' => null,
-                'attr' => ['class' => 'filestyle']
-            ))
             ->add('url')
             ->add('chairmans', null, array(
                 'property' => 'getCompleteName'
@@ -65,22 +61,30 @@ class ConferenceAdmin extends Admin
             ->add('topics', 'topics_text', array(
                 'required' => false,
             ))
+            ->add('image', 'file', array(
+                'data_class' => null,
+                'attr' => ['class' => 'filestyle']
+            ))
 
         ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper)
     {
+
+
         $showMapper
             ->add('name')
             ->add('description')
-            ->add('image')
             ->add('url')
             ->add('dateStart')
             ->add('dateEnd')
             ->add('deadTime')
             ->add('dateNews')
             ->add('topics')
+            ->add('image',null,array(
+                'template' => 'image/image.html.twig',
+            ))
         ;
     }
 

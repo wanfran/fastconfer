@@ -40,15 +40,19 @@ class StateEndSubscriber implements EventSubscriberInterface
         $articleReview = $event->getArticleReview();
         $this->logger->debug('PRUEBA: Asignado estado final del artículo: '.$articleReview->getArticle()->getTitle());
 
+//
 //        $message = $this->email->createMessage()
 //            ->setSubject('You have Completed Registration!')
 //            ->setFrom('send@example.com')
 //            ->setTo($articleReview->getArticle()->getInscription()->getUser()->getEmail())
-//            ->setBody('You article have state'.$articleReview->getArticle()->getStateEnd());
+//            ->setBody(
+//                $this->renderView(
+//                    'email/email.html.twig',
+//                    array('state' =>$articleReview->getArticle()->getStateEnd() ),'text/html'
+//                )
+//            );
 //
 //        $this->email->send($message);
-
-
 
 
         $articleReview->notified = true;
