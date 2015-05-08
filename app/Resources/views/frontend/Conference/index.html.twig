@@ -7,11 +7,10 @@
         <div class="conference-title">
             <div class="padding-md">
                 <h1><span class="text-white">{{ conference.name }}</span></h1>
-                <h2><span class="text-white">{{ conference.description | slice(0, 20) }}</span></h2>
+                <h2><span class="text-white">{{ conference.city }}, Aug 2015</span></h2>
 
                 {% if not inscription and app.user %}
                     <a class="btn btn-white btn-outline" role="button" data-toggle="modal" data-target="#myModal">{{"Register now!" | trans  }}</a>
-
                 {% else %}
                     <a class="btn btn-white btn-outline" role="button" href="{{ url('article_new') }}">{{"Send article" | trans  }}</a>
                 {% endif %}
@@ -37,15 +36,6 @@
                         </div>
                     </li>
                     <li class="time-label">
-                        <span class="bg-red">  {{ conference.dateEnd|date("d/m/y") }} </span>
-                    </li>
-                    <li>
-                        <i class="fa fa-user bg-aqua"></i>
-                        <div class="timeline-item">
-                            <h3 class="timeline-header no-border">{{ 'Final submission deadline' | trans }}</h3>
-                        </div>
-                    </li>
-                    <li class="time-label">
                         <span class="bg-red"> {{ conference.deadTime|date("d/m/y")  }} </span>
                     </li>
                     <li>
@@ -55,12 +45,21 @@
                         </div>
                     </li>
                     <li class="time-label">
+                        <span class="bg-red">  {{ conference.dateEnd|date("d/m/y") }} </span>
+                    </li>
+                    <li>
+                        <i class="fa fa-user bg-aqua"></i>
+                        <div class="timeline-item">
+                            <h3 class="timeline-header no-border">{{ 'Final submission deadline' | trans }}</h3>
+                        </div>
+                    </li>
+                    <li class="time-label">
                         <span class="bg-red"> {{ conference.dateNews|date("d/m/y")  }} </span>
                     </li>
                     <li>
                         <i class="fa fa-info bg-aqua"></i>
                         <div class="timeline-item">
-                            <h3 class="timeline-header no-border">{{ 'Date of termination' | trans }}</h3>
+                            <h3 class="timeline-header no-border">{{ 'Notification of acceptance' | trans }}</h3>
                         </div>
                     </li>
                 </ul>

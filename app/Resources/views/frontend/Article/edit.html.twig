@@ -1,57 +1,56 @@
 {% extends 'base.html.twig' %}
 
 {% block header %}
-<section class="content-header">
-    <h1>
-        {{ 'New submission' | trans }}
-        <small>{{ conference.name }}</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="{{ path('conference_show') }}"><i class="fa fa-dashboard"></i>{{ 'Home' | trans }} </a></li>
-        <li><a href="{{ path('article_list') }}">{{ 'Submissions' | trans }}</a></li>
-        <li class="active">{{ 'New article' | trans }}</li>
-    </ol>
-</section>
+    <section class="content-header">
+        <h1>
+            {{ 'New submission' | trans }}
+            <small>{{ conference.name }}</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ path('conference_show') }}"><i class="fa fa-dashboard"></i>{{ 'Home' | trans }} </a></li>
+            <li><a href="{{ path('article_list') }}">{{ 'Submissions' | trans }}</a></li>
+            <li class="active">{{ 'New article' | trans }}</li>
+        </ol>
+    </section>
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-        <div class="box box-default">
-            <div class="box-header">
-                <h3 class="box-title"> {{ 'Send article' | trans }}</h3>
-            </div>
-            <form method="POST" {{ form_enctype(form) }}>
-
-                <div class="box-body">
-                    {{ form_row(form.title) }}
-                    {{ form_row(form.abstract) }}
-                    <div class="group-form">
-                        {{ form_label(form.authors) }}
-                        <div class="nav-tabs-custom" id="article_authors" data-prototype="{{ form_widget(form.authors.vars.prototype)|e }}">
-                            <ul class="nav nav-tabs" id="author_nav">
-                                {% for idx, author in form.authors %}
-                                    <li><a href="#author_{{ idx }}" data-toggle="tab"><button class="close closeTab" type="button" >×</button> Author {{ idx + 1 }}</a></li>
-                                {% endfor %}
-                            </ul>
-                            <div class="tab-content" id="author_list">
-                                {% for idx, author in form.authors %}
-                                    <div class="tab-pane" id="author_{{ idx }}">{{ form_row(author) }}</div>
-                                {% endfor %}
-                            </div><!-- /.tab-content -->
-                        </div>
-                        <p class="help-block">{{ form_errors(form.authors) }}</p>
-                    </div>
-                    {{ form_row(form.keyword) }}
-                    {{ form_row(form.topics) }}
-                    {{ form_row(form.path) }}
-                    {{ form_row(form.save) }}
-                    {{ form_widget(form._token) }}
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="box box-default">
+                <div class="box-header">
+                    <h3 class="box-title"> {{ 'Send article' | trans }}</h3>
                 </div>
-            </form>
+                <form method="POST" {{ form_enctype(form) }}>
+
+                    <div class="box-body">
+                        {{ form_row(form.title) }}
+                        {{ form_row(form.abstract) }}
+                        <div class="group-form">
+                            {{ form_label(form.authors) }}
+                            <div class="nav-tabs-custom" id="article_authors" data-prototype="{{ form_widget(form.authors.vars.prototype)|e }}">
+                                <ul class="nav nav-tabs" id="author_nav">
+                                    {% for idx, author in form.authors %}
+                                        <li><a href="#author_{{ idx }}" data-toggle="tab"><button class="close closeTab" type="button" >×</button> Author {{ idx + 1 }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                                <div class="tab-content" id="author_list">
+                                    {% for idx, author in form.authors %}
+                                        <div class="tab-pane" id="author_{{ idx }}">{{ form_row(author) }}</div>
+                                    {% endfor %}
+                                </div><!-- /.tab-content -->
+                            </div>
+                            <p class="help-block">{{ form_errors(form.authors) }}</p>
+                        </div>
+                        {{ form_row(form.keyword) }}
+                        {{ form_row(form.topics) }}
+                        {{ form_row(form.save) }}
+                        {{ form_widget(form._token) }}
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
 {% block javascripts %}

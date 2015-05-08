@@ -16,10 +16,12 @@ class Builder extends ContainerAware
 {
     public function mainMenu(FactoryInterface $factory, array $options)
     {
+        $trans = function($value) { return $this->container->get('translator')->trans($value); };
+
         $menu = $factory->createItem('root');
         $menu->setChildrenAttributes(array('class' => 'sidebar-menu'));
 
-        $menu->addChild( $this->container->get('translator')->trans('All Conferences'), array('route' => 'homepage'));
+        $menu->addChild( $trans('All Conferences'), array('route' => 'homepage'));
 
 
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
@@ -30,16 +32,14 @@ class Builder extends ContainerAware
         $inscription = $em->getRepository('AppBundle:Inscription')->findOneBy(array(
             'user' => $user,
         ));
+        if ($inscription) {
+            $menu->addChild($trans('My Conferences'), array('route' => 'myConferences'));
+        }
 
-        if ($inscription)
-            $menu->addChild($this->container->get('translator')->trans('My Conferences'),array('route'=> 'myConferences'));
-        $reviewer = $em->getRepository('AppBundle:Reviewer')->findOneBy(array(
-            'user' => $user
-        ));
-
-        if($reviewer)
-            $menu->addChild($this->container->get('translator')->trans('Assigned Reviews'),array('route'=> 'review_article_list'));
-
+        $reviewer = $em->getRepository('AppBundle:Reviewer')->findOneBy(array('user' => $user));
+        if($reviewer) {
+            $menu->addChild($trans('Assigned Reviews'), array('route'=> 'review_article_list'));
+        }
 
         return $menu;
     }

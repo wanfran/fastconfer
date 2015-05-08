@@ -1,3 +1,15 @@
 \AppBundle\Entity\Topic:
-  topic{1..7}:
-        name: <word()>
+    topic1:
+        name: Coding theory
+    topic2:
+        name: Algorithms
+    topic3:
+        name: Computer vision
+    topic4:
+        name: Natural language processing
+    topic5:
+        name: Roborics
+    topic6:
+        name: Data mining
+    topic7:
+        name: Bioinformatics

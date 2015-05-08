@@ -13,6 +13,8 @@ use AppBundle\Controller\Controller;
 use AppBundle\Entity\Article;
 use AppBundle\Entity\ArticleReview;
 use AppBundle\Form\Type\ArticleType;
+use AppBundle\Form\Type\EditArticleType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -100,11 +102,58 @@ class ArticleController extends Controller
 
             $this->addFlash('success', $this->get('translator')->trans( 'Your article has been successfully uploaded'));
 
-            return $this->redirectToRoute('conference_show');
+            return $this->redirectToRoute('article_list');
         }
 
         return [
             'conference' => $conference,
+            'form' => $form->createView(),
+        ];
+    }
+
+    /**
+     * @param Article $article
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @Route("/{id}/edit", name="article_edit")
+     * @Template("frontend/Article/edit.html.twig")
+     */
+    public function editAction(Article $article, Request $request)
+    {
+        $this->denyAccessUnlessGranted('OWNER', $article);
+
+        // Saving the old authors
+        $originalAuthors = new ArrayCollection();
+        foreach($article->getAuthors() as $author) {
+            $originalAuthors->add($author);
+        }
+
+
+        $form = $this->createForm(new EditArticleType(), $article);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            // remove the relationship between the author and the article
+            foreach ($originalAuthors as $author) {
+                if (false === $article->getAuthors()->contains($author)) {
+                    $em->remove($author);
+                }
+            }
+
+            $em->persist($article);
+            $em->flush();
+
+            $this->addFlash('success', $this->get('translator')->trans('Your article has been successfully updated.'));
+
+            return $this->redirectToRoute('article_list');
+        }
+
+        return [
+            'conference' => $this->getConference(),
             'form' => $form->createView(),
         ];
     }
@@ -156,7 +205,7 @@ class ArticleController extends Controller
 
             $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans( 'Your new article has been successfully send'));
 
-            return $this->redirectToRoute('conference_show');
+            return $this->redirectToRoute('article_list');
         }
 
         return [

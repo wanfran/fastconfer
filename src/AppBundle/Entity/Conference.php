@@ -35,6 +35,13 @@ class Conference
     /**
      * @var string
      *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="string", length=2000)
      */
     private $description;
@@ -263,6 +270,22 @@ class Conference
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
     }
 
     /**

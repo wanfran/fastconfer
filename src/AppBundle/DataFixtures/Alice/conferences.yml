@@ -2,13 +2,14 @@
     conference_test:
         name: 65th Electronic Components and Technology Conference
         code: test
+        city: <city()>
         description: |
             ECTC is the premier international conference sponsored by the IEEE Components, Packaging and Manufacturing
              Technology (CPMT) Society. ECTC papers comprise a wide spectrum of topics, including 3D packaging,
              electronic components, materials, assembly, interconnections, device and system packaging, optoelectronics,
               reliability, and simulation
         chairmans: [@users_mary]
-        path: <image('./web/images/', 1200, 200, 'city')>
+        path: <image('./web/images/', 1200, 600, 'city')>
         image: <(basename($path))>
         mimeType: 'image/jpeg'
         url: http://www.example@example.org
@@ -20,9 +21,10 @@
     conference{1..4}:
         name (unique): <conference()>
         code: code<current()>
+        city: <city()>
         description: <realText()>
         chairmans: [@users_lucas]
-        path: <image('./web/images/', 1200, 200, 'city')>
+        path: <image('./web/images/', 1200, 600, 'city')>
         image: <(basename($path))>
         mimeType: 'image/jpeg'
         url: http://www.<current()>@example.org

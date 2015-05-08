@@ -37,6 +37,7 @@ class ArticleVoter extends AbstractVoter
     {
         return [
             'UPLOAD_NEW_ARTICLE_REVIEW',
+            'OWNER'
         ];
     }
 
@@ -64,7 +65,12 @@ class ArticleVoter extends AbstractVoter
                 if (Article::STATUS_ACCEPTED_SUGGESTIONS == $object->getArticleReviews()->last()->getState()) {
                     return true;
                 }
-                break;
+            break;
+            case 'OWNER':
+                if ($user instanceof UserInterface && $user->getUsername() === $object->getUser()->getUsername()) {
+                    return true;
+                }
+            break;
         }
 
         return false;

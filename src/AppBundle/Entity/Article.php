@@ -360,7 +360,7 @@ class Article
      */
     public function getUser()
     {
-        return $this->getInscription()->getUser()->getFullname();
+        return $this->getInscription()->getUser();
     }
 
     /**
