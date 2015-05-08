@@ -33,6 +33,20 @@ class ArticleReviewController extends CRUDController
         $this->getDoctrine()->getManager()->persist($object);
         $this->getDoctrine()->getManager()->flush();
 
+        $message = $this->get('mailer')->createMessage()
+            ->setSubject('You have Completed Registration!')
+            ->setFrom('send@example.com')
+            ->setTo($object->getArticle()->getInscription()->getUser()->getEmail())
+            ->setBody(
+                $this->renderView(
+                    'email/email.html.twig',
+                    array('object' =>$object
+                    ),
+                    'text/html'
+                )
+            );
+
+        $this->get('mailer')->send($message);
 
         return $this->redirectToRoute('admin_app_article_show', array(
            'id' => $object->getArticle()->getId(),
@@ -56,6 +70,21 @@ class ArticleReviewController extends CRUDController
         $this->getDoctrine()->getManager()->persist($object);
         $this->getDoctrine()->getManager()->flush();
 
+        $message = $this->get('mailer')->createMessage()
+            ->setSubject('You have Completed Registration!')
+            ->setFrom('send@example.com')
+            ->setTo($object->getArticle()->getInscription()->getUser()->getEmail())
+            ->setBody(
+                $this->renderView(
+                    'email/email.html.twig',
+                    array('object' =>$object
+                    ),
+                    'text/html'
+                )
+            );
+
+        $this->get('mailer')->send($message);
+
         return $this->redirectToRoute('admin_app_article_show',array(
             'id' => $object->getArticle()->getId()
         ));
@@ -76,6 +105,21 @@ class ArticleReviewController extends CRUDController
         $object->getArticle()->setStateEnd(Article::STATUS_ACCEPTED_SUGGESTIONS);
         $this->getDoctrine()->getManager()->persist($object);
         $this->getDoctrine()->getManager()->flush();
+
+        $message = $this->get('mailer')->createMessage()
+            ->setSubject('You have Completed Registration!')
+            ->setFrom('send@example.com')
+            ->setTo($object->getArticle()->getInscription()->getUser()->getEmail())
+            ->setBody(
+                $this->renderView(
+                    'email/email.html.twig',
+                    array('object' =>$object
+                    ),
+                    'text/html'
+                )
+            );
+
+        $this->get('mailer')->send($message);
 
         return $this->redirectToRoute('admin_app_article_show',array(
             'id' => $object->getArticle()->getId()
