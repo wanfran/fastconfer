@@ -41,6 +41,8 @@ class ArticleAdmin extends Admin
                 'mapped' => false,
             ))
         ;
+
+        $formMapper->getFormBuilder()->addEventSubscriber($this->getConfigurationPool()->getContainer()->get('fastconfer.listener.stateendevent'));
     }
 
     protected function configureShowFields(ShowMapper $showMapper)

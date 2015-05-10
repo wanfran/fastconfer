@@ -8,48 +8,65 @@
 
 namespace AppBundle\Main\EventListener;
 
+use AppBundle\Entity\ArticleReview;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use AppBundle\Main\Event\StateEndEvent;
-use AppBundle\Main\StateEndEvents;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Templating\EngineInterface;
 
 class StateEndSubscriber implements EventSubscriberInterface
 {
-    private $email;
+    private $mailer;
 
     /**
      * @var LoggerInterface
      */
     private $logger;
+    /**
+     * @var EngineInterface
+     */
+    private $templating;
 
-    public function __construct(\Swift_Mailer $email, LoggerInterface $logger)
+
+    public function __construct(\Swift_Mailer $mailer, LoggerInterface $logger, EngineInterface $templating)
     {
-        $this->email = $email;
+        $this->mailer = $mailer;
         $this->logger = $logger;
+        $this->templating = $templating;
     }
 
     public static function getSubscribedEvents()
     {
+
         return array(
-            FormEvents::POST_SUBMIT => array('postSubmit', 4),
-            StateEndEvents::SUBMITTED => array('onStateEndSubmitted', 4),
+            FormEvents::POST_SUBMIT => array('postSubmit', 1)
         );
     }
 
     public function postSubmit(FormEvent $event)
     {
+
         $article = $event->getData();
         $articleReview = $article->getArticleReviews()->last();
         $comment = $event->getForm()->get('comment')->getData();
 
+        $message = $this->mailer->createMessage()
+            ->setSubject('You have Completed Registration!')
+            ->setFrom('send@example.com')
+            ->setTo($article->getInscription()->getUser()->getEmail())
+            ->setBody(
+                $this->templating->render(
+                    'email/stateEndArticle.html.twig',
+                    array(
+                        'article' => $article,
+                        'comment' => $comment,
+                    )
+                )
+            );
 
-    }
+        $this->mailer->send($message);
 
-    public function onStateEndSubmitted(StateEndEvent $event)
-    {
-        $articleReview = $event->getArticleReview();
-        $this->logger->debug('PRUEBA: Asignado estado final del artículo: '.$articleReview->getArticle()->getTitle());
+        $articleReview->setState($article->getStateEnd());
     }
 }

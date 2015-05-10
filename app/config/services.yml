@@ -124,7 +124,7 @@ services:
 
     fastconfer.listener.stateEndEvent:
         class: AppBundle\Main\EventListener\StateEndSubscriber
-        arguments: [ @mailer, @logger ]
+        arguments: [ @mailer, @logger, @templating]
         tags:
             - { name: kernel.event_subscriber }
 

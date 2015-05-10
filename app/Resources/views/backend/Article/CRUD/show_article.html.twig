@@ -67,17 +67,6 @@
                         </div>
                     </div>
                 {% endfor %}
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="btn-group">
-                            <a class="btn btn-default" href="{{ path("admin_app_articlereview_accepted", {'id': object.id}) }}">{% trans %}Accept{% endtrans %}</a>
-                            <a class="btn btn-default" href="{{ path("admin_app_articlereview_accepted with suggestions", {'id': object.id}) }}">{% trans %}Accept with suggerences{% endtrans %}</a>
-                            <a class="btn btn-default" href="{{ path("admin_app_articlereview_rejected", {'id': object.id}) }}">{% trans %}Reject{% endtrans %}</a>
-                        </div>
-                    </div>
-                </div>
-
             {% endfor %}
         </div>
     </div>
