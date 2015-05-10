@@ -69,15 +69,21 @@ class ArticleAdmin extends Admin
             ->add('stateEnd', null, array(
                 'template' => 'backend/Article/CRUD/list__show_state_end.html.twig'
             ))
-            ->add('_action', 'actions', array('label'=>'Actions',
+            ->add('_action', 'actions', array(
+                'label'=>'Actions',
                 'actions' => array(
-                    'review_list' => array('label' => 'List Reviewer',
+                    'review_list' => array(
+                        'label' => 'List Reviewer',
                         'template' => 'backend/Article/CRUD/list__action_list_reviews.html.twig',
                     ),
                     'reviewer_list' => array(
                         'template' => 'backend/Article/CRUD/list__action_list_reviewer.html.twig',
                     ),
+                    'editStateEnd_list' => array(
+                        'template' => 'backend/Article/CRUD/list__action_edit_stateEnd.html.twig',
+                    ),
                     'show' => array(),
+
                 ),
             ))
         ;
