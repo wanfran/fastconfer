@@ -78,7 +78,7 @@ services:
         calls:
             - [ addChild, ['@fastconfer.admin.reviewer'] ]
             - [ addChild, ['@fastconfer.admin.articlereview'] ]
-            - [ setTemplate, [show,backend/Article/CRUD/show_article.html.twig]]
+            - [ setTemplate, [show, backend/Article/CRUD/show_article.html.twig]]
 
 
     fastconfer.admin.articlereview:

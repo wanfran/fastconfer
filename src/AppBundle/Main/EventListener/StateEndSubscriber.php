@@ -12,6 +12,8 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use AppBundle\Main\Event\StateEndEvent;
 use AppBundle\Main\StateEndEvents;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class StateEndSubscriber implements EventSubscriberInterface
 {
@@ -31,30 +33,23 @@ class StateEndSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
+            FormEvents::POST_SUBMIT => array('postSubmit', 4),
             StateEndEvents::SUBMITTED => array('onStateEndSubmitted', 4),
         );
+    }
+
+    public function postSubmit(FormEvent $event)
+    {
+        $article = $event->getData();
+        $articleReview = $article->getArticleReviews()->last();
+        $comment = $event->getForm()->get('comment')->getData();
+
+
     }
 
     public function onStateEndSubmitted(StateEndEvent $event)
     {
         $articleReview = $event->getArticleReview();
         $this->logger->debug('PRUEBA: Asignado estado final del artículo: '.$articleReview->getArticle()->getTitle());
-
-//
-//        $message = $this->email->createMessage()
-//            ->setSubject('You have Completed Registration!')
-//            ->setFrom('send@example.com')
-//            ->setTo($articleReview->getArticle()->getInscription()->getUser()->getEmail())
-//            ->setBody(
-//                $this->renderView(
-//                    'email/email.html.twig',
-//                    array('state' =>$articleReview->getArticle()->getStateEnd() ),'text/html'
-//                )
-//            );
-//
-//        $this->email->send($message);
-
-
-        $articleReview->notified = true;
     }
 }

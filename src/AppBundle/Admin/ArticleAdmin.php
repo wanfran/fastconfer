@@ -12,9 +12,7 @@ use Doctrine\ORM\QueryBuilder;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Symfony\Component\HttpFoundation\Response;
 
-use AppBundle\Entity\Article;
 class ArticleAdmin extends Admin
 {
 
@@ -36,11 +34,12 @@ class ArticleAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('reviewers')
             ->add('stateEnd', 'choice', array(
-        'choices' => array('accepted' => 'Accepted', 'accepted with suggestions' => 'Accepted with suggestions',
-            'rejected' => 'Rejected', ),
+        'choices' => array('accepted' => 'Accepted', 'accepted with suggestions' => 'Accepted with suggestions', 'rejected' => 'Rejected', ),
         'preferred_choices' => array('accepted'), ))
+            ->add('comment', 'textarea', array(
+                'mapped' => false,
+            ))
         ;
     }
 

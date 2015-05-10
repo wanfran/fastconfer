@@ -86,17 +86,4 @@ class DefaultController extends Controller
             "conferences" => $conferences,
         ];
     }
-
-    /**
-     * @Route("/profile", name="prueba")
-     * @Template("SonataUserBundle/Profile/show.html.twig")
-     */
-
-    public function showAction()
-    {
-        $user = $this->getUser();
-
-
-        return [ "user" => $user];
-    }
 }
