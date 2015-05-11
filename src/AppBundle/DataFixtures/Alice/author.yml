@@ -1,4 +1,0 @@
-\AppBundle\Entity\Author:
-  author{1..4}:
-    fullname: <firstName()>
-    email: <email()>
