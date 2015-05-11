@@ -8,7 +8,6 @@
 
 namespace AppBundle\Main\EventListener;
 
-use AppBundle\Entity\ArticleReview;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
