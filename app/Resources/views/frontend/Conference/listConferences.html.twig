@@ -21,7 +21,9 @@
                                 <tr>
                                     <th class="col-md-9">{{ 'Name' | trans }}</th>
                                     <th class="col-md-3">{{ 'Date' | trans }}</th>
-                                    <th class="col-md-1">{{ 'Show' | trans }}</th>
+                                    {#<th class="col-md-1">{{ 'Show' | trans }}</th>#}
+                                    <th class="col-md-1">{{ 'Edit' | trans }}</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -29,7 +31,8 @@
                                     <tr>
                                         <td> {{ article.conference }} </td>
                                         <td>{{ article.createdAt | date("d/m/y") }}</td>
-                                        <td><a class="btn btn-default glyphicon glyphicon-eye-open" href="http://{{ article.conference.code }}.fastconfer.dev:8000{{ path('article_list')}}" role="button"></a></td>
+                                        {#<td><a class="btn btn-default fa fa-eye" href="{{ conference_url(article.conference) }}{{ path('article_list')}}" role="button"></a></td>#}
+                                        <td><a class="btn btn-default fa fa-edit" href=" {{ conference_url(article.conference) }}" role="button"></a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
