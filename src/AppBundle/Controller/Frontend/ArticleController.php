@@ -147,7 +147,7 @@ class ArticleController extends Controller
             $em->persist($article);
             $em->flush();
 
-            $this->addFlash('success', $this->get('translator')->trans('Your article has been successfully updated.'));
+            $this->addFlash('success', $this->get('translator')->trans('Your article has been successfully updated'));
 
             return $this->redirectToRoute('article_list');
         }
