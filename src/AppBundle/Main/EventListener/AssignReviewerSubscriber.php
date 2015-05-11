@@ -12,7 +12,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use AppBundle\Main\Event\AssignReviewerEvent;
 use AppBundle\Main\AssignReviewerEvents;
-use AppBundle\Entity\User;
+use Symfony\Component\Templating\EngineInterface;
 
 class AssignReviewerSubscriber implements EventSubscriberInterface
 {
@@ -23,10 +23,16 @@ class AssignReviewerSubscriber implements EventSubscriberInterface
      */
     private $logger;
 
-    public function __construct(\Swift_Mailer $email, LoggerInterface $logger)
+    /**
+     * @var EngineInterface
+     */
+    private $templating;
+
+    public function __construct(\Swift_Mailer $email, LoggerInterface $logger, EngineInterface $templating)
     {
         $this->email = $email;
         $this->logger = $logger;
+        $this->templating = $templating;
     }
 
     public static function getSubscribedEvents()
@@ -46,11 +52,17 @@ class AssignReviewerSubscriber implements EventSubscriberInterface
             ->setSubject('You have Completed Registration!')
             ->setFrom('send@example.com')
             ->setTo($reviewer->getUser()->getEmail())
-            ->setBody('My <em>amazing</em> body',
-                'text/html'
+            ->setBody(
+                $this->templating->render(
+                    'email/assignReviewerEvent.html.twig',
+                    array(
+                        'reviewer' => $reviewer,
+                    )
+                )
             );
+
         $this->email->send($message);
 
-        $reviewer->notified = true;
+
     }
 }

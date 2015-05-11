@@ -118,7 +118,7 @@ services:
 
     fastconfer.listener.assignReviewerEvent:
         class: AppBundle\Main\EventListener\AssignReviewerSubscriber
-        arguments: [ @mailer, @logger ]
+        arguments: [ @mailer, @logger, @templating ]
         tags:
             - { name: kernel.event_subscriber }
 
