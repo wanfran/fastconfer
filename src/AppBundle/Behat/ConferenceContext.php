@@ -24,7 +24,6 @@ class ConferenceContext extends CoreContext
             $conference = new Conference();
             $conference->setName($conferenceHash['name']);
             $conference->setDescription($conferenceHash['description']);
-            $conference->setSlug($conferenceHash['slug']);
             $conference->setImage('null');
             $conference->setDateStart(new \DateTime($conferenceHash['registration_starts_at']));
             $conference->setDateEnd(new \DateTime($conferenceHash['registration_ends_at']));

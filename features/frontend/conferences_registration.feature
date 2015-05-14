@@ -1,4 +1,4 @@
-@conference @sprint1
+@conference @sprint11
 Feature: Join a conference
   In order to send my articles
   As a researcher

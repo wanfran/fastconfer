@@ -1,4 +1,4 @@
-@conference @sprint1
+@conference @sprint11
 Feature: See a conference
   In order to know the available conferences
   As a researcher
