@@ -10,6 +10,7 @@ namespace AppBundle\Controller\Frontend;
 
 use AppBundle\Entity\Reviewer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -54,7 +55,8 @@ class DefaultController extends Controller
     public function myConferencesAction()
     {
         $user = $this->getUser();
-        $inscription = $this->getDoctrine()->getRepository('AppBundle:Inscription')->findBy(array('user' => $user));
+
+        $conferences = $this->getDoctrine()->getRepository('AppBundle:Conference')->findUserConferences($user);
 
         $securityContext = $this->container->get('security.context');
         if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
@@ -63,7 +65,7 @@ class DefaultController extends Controller
         }
 
         return [
-            "inscription" => $inscription
+            "conferences" => $conferences,
         ];
     }
 

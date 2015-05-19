@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class ConferenceController
  * @package AppBundle\Controller\Frontend
- * @Route(condition="not (context.getHost() matches '/www/')")
+ * @Route(host="{code}.%site_base%", condition="not (context.getHost() matches '/www/')")
  */
 class ConferenceController extends Controller
 {
