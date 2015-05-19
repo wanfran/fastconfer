@@ -6,4 +6,5 @@
 {% endblock %}
 
 {% block side_bar_after_nav %}
+    {{ knp_menu_render('AppBundle:Builder:dashboardMenu', {'currentClass': 'active' }) }}
 {% endblock %}

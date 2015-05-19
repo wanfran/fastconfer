@@ -43,4 +43,21 @@ class Builder extends ContainerAware
 
         return $menu;
     }
+
+    public function dashboardMenu(FactoryInterface $factory, array $options)
+    {
+        $trans = function($value) { return $this->container->get('translator')->trans($value); };
+
+        $menu = $factory->createItem('root');
+        $menu->setChildrenAttributes(array('class' => 'sidebar-menu'));
+
+        $conference = $this->container->get('fastconfer.security.conference_manager')->getConference();
+
+        $menu->addChild( $trans('Main page'), array(
+            'route' => 'conference_show',
+            'routeParameters' => array('code' => $conference->getCode())
+        ));
+
+        return $menu;
+    }
 }
