@@ -7,7 +7,7 @@
         <small>{{ conference.name }}</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ path('conference_show') }}"><i class="fa fa-dashboard"></i>{{ 'Home' | trans }} </a></li>
+        <li><a href="{{ path('conference_show', {'code': conference.code}) }}"><i class="fa fa-dashboard"></i>{{ 'Home' | trans }} </a></li>
         <li><a href="{{ path('article_list') }}">{{ 'Submissions' | trans }}</a></li>
         <li class="active">{{ 'New article' | trans }}</li>
     </ol>

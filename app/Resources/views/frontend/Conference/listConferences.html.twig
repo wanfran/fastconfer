@@ -8,7 +8,7 @@
             <strong>{{ 'You must be registered' |trans }}</strong>
         </div>
     {% else %}
-    {% if inscription!=null %}
+    {% if conferences %}
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                     <div class="box box-default">
@@ -21,18 +21,18 @@
                                 <tr>
                                     <th class="col-md-9">{{ 'Name' | trans }}</th>
                                     <th class="col-md-3">{{ 'Date' | trans }}</th>
-                                    {#<th class="col-md-1">{{ 'Show' | trans }}</th>#}
+                                    <th class="col-md-1">{{ 'Show' | trans }}</th>
                                     <th class="col-md-1">{{ 'Edit' | trans }}</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for article in inscription  %}
+                                {% for conference in conferences  %}
                                     <tr>
-                                        <td> {{ article.conference }} </td>
-                                        <td>{{ article.createdAt | date("d/m/y") }}</td>
-                                        {#<td><a class="btn btn-default fa fa-eye" href="{{ conference_url(article.conference) }}{{ path('article_list')}}" role="button"></a></td>#}
-                                        <td><a class="btn btn-default fa fa-edit" href=" {{ conference_url(article.conference) }}" role="button"></a></td>
+                                        <td> {{ conference.name }} </td>
+                                        <td>{{ conference.dateStart | date("d/m/y") }}</td>
+                                        <td><a class="btn btn-default fa fa-eye" href="{{ path('conference_show', {'code': conference.code}) }}" role="button"></a></td>
+                                        <td><a class="btn btn-default fa fa-edit" href=" {{ path('sonata_admin_dashboard', {'code': conference.code}) }}" role="button"></a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -44,7 +44,7 @@
             {% else %}
                 <div class="callout callout-danger">
                     <h4>{{ 'Warning!' |trans }}</h4>
-                    <strong>{{ 'There are not inscriptions' |trans }}</strong>
+                    <strong>{{ 'There are not conferences' |trans }}</strong>
                 </div>
             {% endif %}
     {% endif %}

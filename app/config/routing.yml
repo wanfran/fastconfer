@@ -49,6 +49,9 @@ sonata_user:
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin
+    host: "{code}.%site_base%"
+    defaults:
+        code: "www"
 
 _sonata_admin:
     resource: .

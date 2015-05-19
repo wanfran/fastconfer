@@ -14,7 +14,8 @@
             </div>
             <div class="conference-body text-center">
                 <h4 class="conference-header">
-                    <a href="{{ conference_url(conference) }}">{{ conference.name }}</a>
+                    {#<a href="{{ conference_url(conference) }}">{{ conference.name }}</a>#}
+                    <a href="{{ path('conference_show', {'code': conference.code}) }}">{{ conference.name }}</a>
                 </h4>
                 <span class="description">{{ conference.city }}, Aug 2015</span>
             </div>
