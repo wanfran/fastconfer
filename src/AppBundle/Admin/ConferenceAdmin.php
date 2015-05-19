@@ -46,18 +46,10 @@ class ConferenceAdmin extends Admin
             ->add('chairmans', null, array(
                 'property' => 'getCompleteName'
             ))
-            ->add('dateStart', 'sonata_type_datetime_picker', array(
-                'format' => 'dd MMMM YY',
-            ))
-            ->add('dateEnd', 'sonata_type_datetime_picker', array(
-                'format' => 'dd MMMM YY',
-            ))
-            ->add('deadTime', 'sonata_type_datetime_picker', array(
-                'format' => 'dd MMMM YY',
-            ))
-            ->add('dateNews', 'sonata_type_datetime_picker', array(
-                'format' => 'dd MMMM YY',
-            ))
+            ->add('dateStart', 'sonata_type_date_picker')
+            ->add('dateEnd', 'sonata_type_date_picker')
+            ->add('deadTime', 'sonata_type_date_picker')
+            ->add('dateNews', 'sonata_type_date_picker')
             ->add('topics', 'topics_text', array(
                 'required' => false,
             ))
@@ -125,11 +117,15 @@ class ConferenceAdmin extends Admin
 
     public function prePersist($object)
     {
-        $this->getService('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($object, $object->getImage());
+        if ($object->getImage()) {
+            $this->getService('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($object, $object->getImage());
+        }
     }
 
     public function preUpdate($object)
     {
-        $this->getService('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($object, $object->getImage());
+        if ($object->getImage()) {
+            $this->getService('stof_doctrine_extensions.uploadable.manager')->markEntityToUpload($object, $object->getImage());
+        }
     }
 }
