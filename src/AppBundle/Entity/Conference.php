@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Conference.
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AppBundle\Entity\ConferenceRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Doctrine\ORM\ConferenceRepository")
  * @Gedmo\Uploadable(filenameGenerator="SHA1", path="../web/images")
  */
 class Conference
