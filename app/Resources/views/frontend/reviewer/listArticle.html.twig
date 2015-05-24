@@ -7,8 +7,7 @@
             {{ 'Reviewer' | trans }}
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ path('conference_show', {'code': conference.code}) }}"><i class="fa fa-dashboard"></i>{{ 'Home' | trans }} </a></li>
-            <li class="active"><a href="">{{ 'Article' | trans }}</a></li>
+            <li class="active"><a href="{{ path('review_article_list') }}"><i class="fa fa-dashboard"></i>{{ 'Home' | trans }} </a></li>
         </ol>
     </section>
 {% endblock %}
