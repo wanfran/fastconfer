@@ -70,6 +70,6 @@ class ConferenceController extends Controller
 
         $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans( 'Congratulations you are already registered'));
 
-        return $this->redirectToRoute('conference_show');
+        return $this->redirectToRoute('conference_show', ['code' => $conference->getCode()]);
     }
 }
