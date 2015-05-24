@@ -9,6 +9,7 @@ default:
             snippets: false
     extensions:
         Behat\MinkExtension:
+            base_url: 'http://www.fastconfer.dev'
             sessions:
                 default:
                     symfony2: ~
