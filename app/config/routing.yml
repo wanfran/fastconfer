@@ -44,14 +44,11 @@ sonata_user_change_password:
 
 sonata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
-    prefix: /admin
+    prefix: /
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin
-    host: "{code}.%site_base%"
-    defaults:
-        code: "www"
 
 _sonata_admin:
     resource: .
