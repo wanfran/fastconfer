@@ -15,5 +15,5 @@
     lastName: <lastName()>
     organization: <researchOrganization()>
     email: <current()>@fastconfer.com
-    roles: ['ROLE_ADMIN']
+    roles: ['ROLE_ORGANIZATOR']
     enabled: 1

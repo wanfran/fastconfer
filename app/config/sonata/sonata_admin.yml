@@ -3,7 +3,8 @@ sonata_admin:
 #    title_logo: bundles/sonataadmin/a.ico
 
     security:
-        handler: fastconfer.security.handler.voter
+#        handler: fastconfer.security.handler.voter
+        handler: sonata.admin.security.handler.role
 
     templates:
         layout: backend/standard_layout.html.twig
