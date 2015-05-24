@@ -32,7 +32,7 @@
                                         <td> {{ conference.name }} </td>
                                         <td>{{ conference.dateStart | date("d/m/y") }}</td>
                                         <td><a class="btn btn-default fa fa-eye" href="{{ path('conference_show', {'code': conference.code}) }}" role="button"></a></td>
-                                        <td><a class="btn btn-default fa fa-edit" href=" {{ path('sonata_admin_dashboard', {'code': conference.code}) }}" role="button"></a></td>
+                                        <td><a class="btn btn-default fa fa-edit" href=" {{ conference_admin_url(conference) }}" role="button"></a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

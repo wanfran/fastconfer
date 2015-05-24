@@ -10,21 +10,22 @@ namespace AppBundle\Twig;
 
 use AppBundle\Entity\Conference;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\RouterInterface;
 
 class ConferenceExtension extends \Twig_Extension
 {
     /**
-     * @var RequestStack
+     * @var RouterInterface
      */
-    private $requestStack;
+    private $router;
 
 
     /**
      * @param RequestStack $requestStack
      */
-    function __construct($requestStack)
+    function __construct(RouterInterface $router)
     {
-        $this->requestStack = $requestStack;
+        $this->router = $router;
     }
 
     /**
@@ -33,22 +34,15 @@ class ConferenceExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-          new \Twig_SimpleFunction('conference_url',[$this, 'conferenceURL']),
+            new \Twig_SimpleFunction('conference_admin_url',[$this, 'conferenceBackendURL']),
         ];
     }
 
-    /**
-     * Returns the base url of a conference
-     *
-     *
-     * @param Conference $conference
-     * @return string
-     */
-    public function conferenceURL(Conference $conference)
+    public function conferenceBackendURL(Conference $conference)
     {
-        $request = $this->requestStack->getCurrentRequest();
+        $url = $this->router->generate('sonata_admin_dashboard', [], RouterInterface::ABSOLUTE_URL);
 
-        return str_replace('www', $conference->getCode(), $request->getUri());
+        return str_replace('www', $conference->getCode(), $url);
     }
 
     /**

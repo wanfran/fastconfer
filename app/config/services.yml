@@ -7,18 +7,18 @@ services:
     fastconfer.security.conference_manager:
         class: AppBundle\Security\Manager\ConferenceManager
 
-    fastconfer.security.voter.conference:
-        class: AppBundle\Security\Voter\ConferenceVoter
-        public: false
-        arguments: [@fastconfer.security.conference_manager]
-        tags:
-            - { name: security.voter }
+#    fastconfer.security.voter.conference:
+#        class: AppBundle\Security\Voter\ConferenceVoter
+#        public: false
+#        arguments: [@fastconfer.security.conference_manager]
+#        tags:
+#            - { name: security.voter }
 
-    fastconfer.security.voter.admin:
-        class: AppBundle\Security\Voter\AdminVoter
-        public: false
-        tags:
-            - { name: security.voter }
+#    fastconfer.security.voter.admin:
+#        class: AppBundle\Security\Voter\AdminVoter
+#        public: false
+#        tags:
+#            - { name: security.voter }
 
     fastconfer.security.article_review.download.voter:
         class: AppBundle\Security\Voter\ArticleReviewDownloadVoter
@@ -132,7 +132,7 @@ services:
 
     fastconfer.twig.conferenceextension:
         class: AppBundle\Twig\ConferenceExtension
-        arguments: [ @request_stack ]
+        arguments: [ @router ]
         public: false
         tags:
            - { name: twig.extension }
