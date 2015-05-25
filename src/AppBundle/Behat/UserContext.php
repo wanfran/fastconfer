@@ -37,7 +37,7 @@ class UserContext extends CoreContext
      */
     public function iAmAuthenticated($username, $password)
     {
-        $this->getSession()->visit($this->generatePageUrl('fos_user_security_login'));
+        $this->getSession()->visit($this->generateUrl('fos_user_security_login', [], true));
         $this->fillField('_username', $username);
         $this->fillField('_password', $password);
         $this->pressButton('_submit');

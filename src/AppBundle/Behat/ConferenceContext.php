@@ -23,12 +23,19 @@ class ConferenceContext extends CoreContext
         foreach ($tableNode->getHash() as $conferenceHash) {
             $conference = new Conference();
             $conference->setName($conferenceHash['name']);
+            $conference->setCity($conferenceHash['city']);
             $conference->setDescription($conferenceHash['description']);
+            $conference->setCode($conferenceHash['code']);
+            $conference->setUrl($conferenceHash['url']);
             $conference->setImage('null');
-            $conference->setDateStart(new \DateTime($conferenceHash['registration_starts_at']));
-            $conference->setDateEnd(new \DateTime($conferenceHash['registration_ends_at']));
-            $conference->setDeadTime(new \DateTime($conferenceHash['dead_time']));
+            $conference->setMimeType('null');
+            $conference->setPath('null');
+            $conference->setDateStart(new \DateTime($conferenceHash['dateStart']));
+            $conference->setDateEnd(new \DateTime($conferenceHash['dateEnd']));
+            $conference->setDeadTime(new \DateTime($conferenceHash['deadTime']));
+            $conference->setDateNews(new \DateTime($conferenceHash['dateNews']));
             $conference->addTopic($this->findTopic($conferenceHash['topics']));
+            $conference->addChairman($this->findUser($conferenceHash['chairmans']));
             $em->persist($conference);
         }
         $em->flush();
@@ -39,7 +46,7 @@ class ConferenceContext extends CoreContext
      */
     public function iShouldSeeConferences($number)
     {
-        $this->assertSession()->elementsCount('css', '.card', $number);
+        $this->assertSession()->elementsCount('css', 'div.col-lg-6.col-md-12', $number);
     }
 
     /**
@@ -52,7 +59,7 @@ class ConferenceContext extends CoreContext
             throw new ElementNotFoundException('Conference doesn\'t exist');
         }
 
-        $this->getSession()->visit($this->generatePageUrl('conference', array('slug' => $conference->getSlug())));
+        $this->getSession()->visit($this->generateUrl('conference_show', array('code' => $conference->getCode()),true));
     }
 
     /**
@@ -65,6 +72,6 @@ class ConferenceContext extends CoreContext
             throw new ElementNotFoundException('Conference doesn\'t exist');
         }
 
-        $this->assertSession()->addressEquals($this->generatePageUrl('conference', array('slug' => $conference->getSlug())));
+        $this->assertSession()->addressEquals($this->generateUrl('conference_show', array('code' => $conference->getCode())));
     }
 }

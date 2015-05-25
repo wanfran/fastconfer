@@ -1,4 +1,4 @@
-@login @sprint1
+@login @sprint11
 Feature: User sign up
   In order to access to Fastconfer
   As an identified user
@@ -18,7 +18,7 @@ Feature: User sign up
       | password | secret1 |
     And I press "_submit"
     Then I should be on the homepage
-    And I should see "Sign out"
+    And I should see "Logout"
 
   Scenario: Trying to login with bad credentials
     Given I am on "/login"

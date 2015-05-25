@@ -32,6 +32,14 @@ class CoreContext extends DefaultContext
         return $topic;
     }
 
+    public function findUser($users)
+    {
+        $users = $this->getEntityManager()->getRepository('AppBundle:User')->findOneBy(array('username' => $users));
+
+        return $users;
+    }
+
+
     public function findInscription($name)
     {
         $user = $this->getSecurityContext()->getToken()->getUser();

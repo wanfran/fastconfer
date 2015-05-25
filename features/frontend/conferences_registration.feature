@@ -1,4 +1,4 @@
-@conference @sprint11
+@conference @sprint1
 Feature: Join a conference
   In order to send my articles
   As a researcher
@@ -15,10 +15,15 @@ Feature: Join a conference
       | topicB  |
       | topicC  |
       | topicD  |
+    And there are following users:
+      | username  | email     | plainPassword | enabled |
+      | user2     | b@uco.es  | secret2       | 1       |
+      | user3     | c@uco.es  | secret3       | 1       |
+
     And there are following conferences:
-      | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |dead_time   |topics |
-      | I Example Conference    | i-example-conference  | Description of the I Example Conference    | now -3 days            | now +3 days          |2015/02/30  |topicA |
-      | II Example Conference   | ii-example-conference | Description of the II Example Conference   | 2014/01/01             | 2014/01/31           |2014/01/31  |topicB |
+      | name                    | city    | description                               | code  | url       |dateStart  | dateEnd    | topics |deadTime   |dateNews   |chairmans|
+      | I Example Conference    | London1 | Description of the I Example Conference   | code1 | www.a.com |2014/01/01 | 2014/01/01 | topicA |2014/01/01 |2014/01/01 |user2    |
+      | II Example Conference   | London2 | Description of the II Example Conference  | code2 | www.b.com |now -3 days| now +3 days| topicB |now +3 days|now +3 days|user3    |
 
 #  Scenario: Join to an open conference
 #    Given I am on the conference page for "I Example Conference"
@@ -26,14 +31,18 @@ Feature: Join a conference
 #    Then I should still be on the conference page for "I Example Conference"
 #    And I should see "Registered"
 
+  @javascript
   Scenario: Open the page of a closed conference
     Given I am on the conference page for "II Example Conference"
-    Then I should see "Registration is closed"
+    Then I should see "Register now!"
+    Then I should see "Send article"
 
-  Scenario: Join to a closed conference
-    Given I am on "/conference/ii-example-conference/inscription"
-    Then I should be on the conference page for "II Example Conference"
-    And I should see "You can not register for this conference"
+#    Then I should see "You can not register for this conference"
+
+#  Scenario: Join to a closed conference
+#    Given I am on "/conference/ii-example-conference/inscription"
+#    Then I should be on the conference page for "I Example Conference"
+#    And I should see "You can not register for this conference"
 
 #  Scenario: Try to register to the same conference
 #    Given I am on the conference page for "I Example Conference"
