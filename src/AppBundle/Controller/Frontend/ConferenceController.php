@@ -46,7 +46,7 @@ class ConferenceController extends Controller
         if ($conference->getDateEnd() < new \DateTime()) {
             $this->get('session')->getFlashBag()->set('alert',$this->get('translator')->trans( 'You can not register for this conference'));
 
-            return $this->redirectToRoute('conference_show');
+            return $this->redirectToRoute('conference_show', ['code' => $conference->getCode()]);
         }
 
         $user = $this->getUser();
@@ -58,7 +58,7 @@ class ConferenceController extends Controller
         if ($inscription) {
             $this->get('session')->getFlashBag()->set('alert', $this->get('translator')->trans( 'You can not register again in this conference'));
 
-            return $this->redirectToRoute('conference_show');
+            return $this->redirectToRoute('conference_show', ['code' => $conference->getCode()]);
         }
 
         $inscription = new Inscription();
