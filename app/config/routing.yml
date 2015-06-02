@@ -21,7 +21,7 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
-#FosUserBundle Routes
+#SonataUserBundle Routes
 sonata_user_security:
     resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
     host: www.%site_base%
