@@ -1,12 +1,15 @@
 #BackEnd
 
 #Conferences
+Main page: "Página Principal"
 Conference: "Conferencia"
 Conferences: "Conferencias"
 Name: "Nombre"
+Chairmans: "Organizadores"
 Date End: "Fecha Fín"
 Date Start: "Fecha Inicio"
 Dead Time: "Fecha Limite"
+Date News: "Fecha Notificación"
 Slug: "Ruta"
 Description: "Descripción"
 Topics: "Temas"
@@ -136,3 +139,4 @@ Name of User: "Nombre de usuario"
 Email: "Correo electrónico"
 Edit Profile: "Editar Perfil"
 Change Password: "Cambiar Contraseña"
+Organization: "Organización"

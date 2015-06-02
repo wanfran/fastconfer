@@ -36,16 +36,18 @@
                                         <td><strong>{{ 'Email' | trans }}:</strong></td>
                                         <td>{{ user.email }}</td>
                                     </tr>
-
+                                    <tr>
+                                        <td><strong>{{ 'Organization' | trans }}:</strong></td>
+                                        <td>{{ user.getOrganization }}</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                     <div class="box-footer" align="center">
-                        <a href="{{ path('sonata_user_profile_edit')}}" class="btn btn-default">{{ 'Change Password' |trans }}</a>
-                        <a href="{{ path('sonata_user_profile_edit')}}" class="btn btn-default">{{ 'Edit Profile' |trans }}</a>
-                        <a href="{{ path('sonata_user_security_logout')}}" class="btn btn-default">{{ 'Logout' |trans }}</a>
+                        <a href="{{ path('fos_user_profile_edit')}}" class="btn btn-default">{{ 'Edit Profile' |trans }}</a>
+                        <a href="{{ path('fos_user_security_logout')}}" class="btn btn-default">{{ 'Logout' |trans }}</a>
                     </div>
                 </div>
             </div>

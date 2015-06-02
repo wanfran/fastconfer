@@ -20,7 +20,7 @@
         {% endstylesheets %}
     {% endblock %}
     <!-- Bootstrap 3.3.2 -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('a.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('logo.ico') }}" />
 
 </head>
 <body class="{% block body_class %}skin-black{% endblock %}">
@@ -74,7 +74,7 @@
 
                                 {% if app.user %}
                                     <div class="pull-left">
-                                        <a href="{{ url('sonata_user_profile_show') }}" class="btn btn-default btn-flat">{{ 'Profile' | trans }}</a>
+                                        <a href="{{ url('fos_user_profile_show') }}" class="btn btn-default btn-flat">{{ 'Profile' | trans }}</a>
                                     </div>
 
                                     <div class="pull-right">
