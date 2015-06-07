@@ -31,7 +31,7 @@
                             <div class="nav-tabs-custom" id="article_authors" data-prototype="{{ form_widget(form.authors.vars.prototype)|e }}">
                                 <ul class="nav nav-tabs" id="author_nav">
                                     {% for idx, author in form.authors %}
-                                        <li><a href="#author_{{ idx }}" data-toggle="tab"><button class="close closeTab" type="button" >×</button> Author {{ idx + 1 }}</a></li>
+                                        <li><a href="#author_{{ idx }}" data-toggle="tab"><button class="close closeTab" type="button" >×</button> {{ 'Author' | trans }}{{ idx + 1 }}</a></li>
                                     {% endfor %}
                                 </ul>
                                 <div class="tab-content" id="author_list">
@@ -59,7 +59,7 @@
         var $collectionHolder;
 
         // setup an "add a tag" link
-        var $addAuthorLink = $('<li class="pull-right"><a href="#" class="text-muted add_author_link"><i class="fa fa-plus"></i> Add author</a></li>');
+        var $addAuthorLink = $('<li class="pull-right"><a href="#" class="text-muted add_author_link"><i class="fa fa-plus"></i> {{ 'Add author' | trans }}</a></li>');
         var $authorNav = $('#author_nav').append($addAuthorLink);
         var $authorList = $('#author_list');
 
@@ -90,7 +90,7 @@
                 // get the new index
                 var index = $collectionHolder.data('index');
 
-                $authorNav.append('<li><a href="#author_' + index + '" data-toggle="tab"><button class="close closeTab" type="button" >×</button> Author ' + (index + 1) + '</a></li>');
+                $authorNav.append('<li><a href="#author_' + index + '" data-toggle="tab"><button class="close closeTab" type="button" >×</button> {{ 'Author' | trans }}' + (index + 1) + '</a></li>');
 
                 // Replace '__name__' in the prototype's HTML to
                 // instead be a number based on how many items we have

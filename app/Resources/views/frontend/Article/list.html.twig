@@ -54,7 +54,7 @@
                                 <td colspan="2">
                                     <div class="input-group-btn">
                                         <a class="btn btn-default btn-small" href="{{ path("article_edit", {'id': article.id}) }}">
-                                            <i class="fa fa-edit">{{ 'Edit article' | trans }}</i>
+                                            <i class="fa fa-edit"> {{ 'Edit article' | trans }}</i>
                                         </a>
                                         <a href="{{ path("article_new_review", {'id': article.id}) }}" class="btn btn-default btn-small {% if not is_granted('UPLOAD_NEW_ARTICLE_REVIEW', article) %}disabled{% endif %}">
                                             <i class="fa fa-upload"></i> {{ 'Send new version' | trans }}
