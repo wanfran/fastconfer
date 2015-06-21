@@ -21,7 +21,7 @@ class ReviewerType extends AbstractType
             ->add('comment', 'textarea', array('label'=> 'Comment to User',
                 'attr' => array('cols' => '10', 'rows' => '10'), ))
             ->add('state', 'choice', array(
-                'choices' => array('accepted' => 'Option.Accept', 'accepted with suggestions' => 'Option.Accept with suggerences', 'rejected' => 'Option.Reject', ),
+                'choices' => array('accepted' => 'Accept', 'accepted with suggestions' => 'Accept with suggerences', 'rejected' => 'Reject', ),
                 'preferred_choices' => array('accepted'),
             ))
 

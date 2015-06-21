@@ -42,6 +42,7 @@ class ConferenceAdmin extends Admin
         $formMapper
             ->add('name', 'textarea')
             ->add('description', 'textarea')
+            ->add('city')
             ->add('url')
             ->add('chairmans', null, array(
                 'property' => 'getCompleteName'
@@ -68,6 +69,7 @@ class ConferenceAdmin extends Admin
         $showMapper
             ->add('name')
             ->add('description')
+            ->add('city')
             ->add('url')
             ->add('dateStart')
             ->add('dateEnd')

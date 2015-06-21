@@ -72,6 +72,20 @@ class ConferenceContext extends CoreContext
             throw new ElementNotFoundException('Conference doesn\'t exist');
         }
 
-        $this->assertSession()->addressEquals($this->generateUrl('conference_show', array('code' => $conference->getCode())));
+        $this->assertSession()->addressEquals($this->generateUrl('conference_show', array('code' => $conference->getCode()
+        )));
+    }
+
+    /**
+     * @Then I should be on new article page for :name
+     */
+    public function iShouldBeOnNewArticle($name)
+    {
+        $conference = $this->getEntityManager()->getRepository('AppBundle:Conference')->findOneByName($name);
+        if (!$conference) {
+            throw new ElementNotFoundException('Conference doesn\'t exist');
+        }
+        $this->assertSession()->addressEquals($this->generateUrl('article_new', array('code' => $conference->getCode()
+        )));
     }
 }

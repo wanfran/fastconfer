@@ -51,4 +51,17 @@ class ArticleContext extends CoreContext
         }
         $em->flush();
     }
+
+    /**
+     * @Given I am on the new article page for :name
+     */
+    public function iAmOnConferencePage($name)
+    {
+        $conference = $this->getEntityManager()->getRepository('AppBundle:Conference')->findOneByName($name);
+        if (!$conference) {
+            throw new ElementNotFoundException('Conference doesn\'t exist');
+        }
+        
+        $this->getSession()->visit($this->generateUrl('article_new', array('code' => $conference->getCode()),true));
+    }
 }

@@ -43,7 +43,7 @@ class ArticleType extends AbstractType
             ))
             ->add('path', 'file', array(
                 'mapped' => false,
-                'attr' => ['class' => 'filestyle','data-buttonBefore'=> 'true']
+                'attr' => ['class' => 'filestyle','data-buttonBefore'=> 'true', 'data-buttonText' => 'Choose file' ]
             )) //de esta forma pongo un atributo que no existe en esa clase
             ->add('save', 'submit', array(
                 'label' => 'Submit',
