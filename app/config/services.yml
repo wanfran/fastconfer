@@ -7,18 +7,6 @@ services:
     fastconfer.security.conference_manager:
         class: AppBundle\Security\Manager\ConferenceManager
 
-#    fastconfer.security.voter.conference:
-#        class: AppBundle\Security\Voter\ConferenceVoter
-#        public: false
-#        arguments: [@fastconfer.security.conference_manager]
-#        tags:
-#            - { name: security.voter }
-
-#    fastconfer.security.voter.admin:
-#        class: AppBundle\Security\Voter\AdminVoter
-#        public: false
-#        tags:
-#            - { name: security.voter }
 
     fastconfer.security.article_review.download.voter:
         class: AppBundle\Security\Voter\ArticleReviewDownloadVoter
@@ -40,6 +28,12 @@ services:
 
     fastconfer.security.see_comments_review.voter:
         class: AppBundle\Security\Voter\SeeCommentsReview
+        public: false
+        tags:
+           - { name: security.voter }
+
+    fastconfer.security.article_comments.voter:
+        class: AppBundle\Security\Voter\ArticleComment
         public: false
         tags:
            - { name: security.voter }

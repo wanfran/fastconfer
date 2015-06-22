@@ -26,7 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleReviewController extends Controller
 {
     /**
-     * @Route("/{id}", name="article_review_show")
+     * @Route("/{id}", name="article_review_see")
      * @Template("frontend/ArticleReview/show.html.twig")
      */
     public function commentsAction(ArticleReview $articleReview)
