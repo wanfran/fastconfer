@@ -16,7 +16,7 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-lg-10 col-lg-offset-1">
             {% for comment in comments %}
                 <div class="box box-default">
                     <div class="box-header">
@@ -26,9 +26,9 @@
                         <table class="table table-condensed">
                             <thead>
                             <tr>
-                                <th class="col-md-3">{{ 'Date' | trans }}</th>
+                                <th class="col-md-2">{{ 'Date' | trans }}</th>
                                 <th class="col-md-2">{{ 'State' | trans }}</th>
-                                <th class="col-md-7">{{ 'Comment' | trans }}</th>
+                                <th class="col-md-8">{{ 'Comment' | trans }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,6 +39,9 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="box-footer">
+                        <a class="btn btn-default" href="{{ path("article_list") }}">{{ 'Return' | trans }}</a>
                     </div>
                 </div>
             {% endfor %}
