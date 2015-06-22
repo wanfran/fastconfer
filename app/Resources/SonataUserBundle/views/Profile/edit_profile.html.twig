@@ -23,8 +23,10 @@
 
                                 <form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form">
                                     {{ form_widget(form) }}
-                                    <div class="form-actions">
-                                        <button type="submit" name="submit"  class="btn btn-primary pull-right">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
+
+                                    <div class="box-footer" align="center">
+                                        <button type="submit" name="submit"  class="btn btn-default">{{ 'Save changes'|trans }}</button>
+                                        <a href="{{ path('fos_user_profile_show')}}" class="btn btn-default">{{ 'Close without saving' |trans }}</a>
                                     </div>
                                 </form>
                             </div>
