@@ -15,7 +15,7 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-lg-10 col-lg-offset-1">
 
             {% for article in inscription.articles %}
                 <div class="box box-default">
@@ -39,10 +39,10 @@
                                 <td>{{ review.createAt | date }}</td>
                                 <td><span class="label label-{{ review.state }}">{{ review.state | trans }}</span></td>
                                 <td><div class="btn-group">
-                                        <a href="{{ path("article_review_show", {'id': review.id}) }}" class="btn btn-default btn-sm">
+                                        <a href="{{ path("article_review_show", {'code': conference.code, 'id': review.id}) }}" class="btn btn-default btn-sm">
                                             <i class="fa fa-eye"></i> {{ 'See Comment' | trans }}
                                         </a>
-                                        <a target="_blank" href="{{ path("article_review_download", {'id': review.id}) }}" class="btn btn-default btn-sm">
+                                        <a target="_blank" href="{{ path("article_review_download", {'code': conference.code, 'id': review.id}) }}" class="btn btn-default btn-sm">
                                             <i class="fa fa-download"></i> {{ 'Download' | trans }}
                                         </a>
                                 </div></td>

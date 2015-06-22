@@ -3,17 +3,38 @@
 {% block content %}
     {% block sonata_profile_content %}
 
-        {{ form_errors(form) }}
 
-        {% form_theme form _self %}
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="box box-default">
+                    <div class="box-header">
+                        <h3 class="box-title">{{ 'Profile' |trans }}</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 " align="center">
+                                <img src="{{ app.user.gravatar(120)}}" class="user-image" alt="User Image"/>
+                            </div>
+                            <div class=" col-md-9 col-lg-9 ">
 
+                                {{ form_errors(form) }}
 
-        <form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form-horizontal">
-            {{ form_widget(form) }}
-            <div class="form-actions">
-                <button type="submit" name="submit"  class="btn btn-primary pull-right">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
+                                {% form_theme form _self %}
+
+                                <form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form">
+                                    {{ form_widget(form) }}
+                                    <div class="form-actions">
+                                        <button type="submit" name="submit"  class="btn btn-primary pull-right">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
+
+
 
 
     {% endblock %}

@@ -9,10 +9,12 @@
                 <h1><span class="text-white">{{ conference.name }}</span></h1>
                 <h2><span class="text-white">{{ conference.city }}, Aug 2015</span></h2>
 
-                {% if not inscription and app.user %}
+                {% if inscription %}
+                    <a class="btn btn-white btn-outline" role="button" href="{{ url('article_new') }}">{{"Send article" | trans  }}</a>
+                {% elseif app.user %}
                     <a class="btn btn-white btn-outline" role="button" data-toggle="modal" data-target="#myModal">{{"Register now!" | trans  }}</a>
                 {% else %}
-                    <a class="btn btn-white btn-outline" role="button" href="{{ url('article_new') }}">{{"Send article" | trans  }}</a>
+                    <a class="btn btn-white btn-outline" role="button" href="{{ url('fos_user_security_login') }}">{{"Register now!" | trans  }}</a>
                 {% endif %}
 
             </div><!-- /.padding -->

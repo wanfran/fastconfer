@@ -10,7 +10,7 @@
     {% else %}
     {% if conferences %}
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-lg-10 col-lg-offset-1">
                     <div class="box box-default">
                         <div class="box-header">
                             <h3 class="box-title">{{ 'Conferences' |trans }}</h3>
@@ -19,11 +19,9 @@
                             <table class="table table-condensed">
                                 <thead>
                                 <tr>
-                                    <th class="col-md-9">{{ 'Name' | trans }}</th>
-                                    <th class="col-md-3">{{ 'Date' | trans }}</th>
-                                    <th class="col-md-1">{{ 'Show' | trans }}</th>
-                                    <th class="col-md-1">{{ 'Edit' | trans }}</th>
-
+                                    <th class="col-md-7">{{ 'Name' | trans }}</th>
+                                    <th class="col-md-2">{{ 'Date' | trans }}</th>
+                                    <th class="col-md-2">{{ 'Actions' | trans }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -31,8 +29,12 @@
                                     <tr>
                                         <td> {{ conference.name }} </td>
                                         <td>{{ conference.dateStart | date("d/m/y") }}</td>
-                                        <td><a class="btn btn-default fa fa-eye" href="{{ path('conference_show', {'code': conference.code}) }}" role="button"></a></td>
-                                        <td><a class="btn btn-default fa fa-edit" href=" {{ conference_admin_url(conference) }}" role="button"></a></td>
+                                        <td>
+                                            <div class="button-group">
+                                                <a class="btn btn-default fa fa-eye" href="{{ path('conference_show', {'code': conference.code}) }}" role="button"></a>
+                                                <a class="btn btn-default fa fa-edit" href=" {{ conference_admin_url(conference) }}" role="button"></a>
+                                            </div>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

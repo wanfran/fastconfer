@@ -21,53 +21,46 @@
     </div>
 
 {% else %}
-    {% if review!=null %}
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-            {% for reviewer in review %}
+            <div class="col-lg-10 col-lg-offset-1">
                 <div class="box box-default">
                     <div class="box-header">
-                        <h3 class="box-title">{{ reviewer.article.title }}</h3>
+                        <h3 class="box-title">{{ 'List of assigned articles' | trans }}</h3>
                     </div>
                     <div class="box-body">
                         <table class="table table-condensed">
                             <thead>
                             <tr>
-                                <th class="col-md-4">{{ 'Abstract' | trans }}</th>
-                                <th class="col-md-1">{{ 'Keyword' | trans }}</th>
-                                <th class="col-md-1">{{ 'Topics' | trans }}</th>
-                                <th class="col-md-1">{{ 'Download' | trans }}</th>
-                                <th class="col-md-1">{{ 'Edit' | trans }}</th>
+                                <th class="col-md-5">{{ 'Conference' | trans }}</th>
+                                <th class="col-md-5">{{ 'Article' | trans }}</th>
+                                <th class="col-md-2">{{ 'Actions' | trans }}</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td>{{ reviewer.article.abstract }}</td>
-                                <td>{{ reviewer.article.keyword }}</td>
-                                <td>
-                                    {% for articleReview in reviewer.article.topics  %}
-                                        <span class="label label-success glyphicon glyphicon-tags"> {{ articleReview.name }}</span>
-                                    {% endfor %}
-                                </td>
-                                <td>
-                                    <a class="btn btn-default" href="{{ path("article_review_download", {'id': reviewer.id}) }}" role="button" id="1"><i class="fa fa-download"></i></a>
-                                </td>
-                                <td>
-                                    <a class="btn btn-default" href="{{ path('article_review',{'id': reviewer.article.id }) }}" role="button" id="2"><i class="fa fa-edit"></i></a>
-                                </td>
-                            </tr>
-                            </tbody>
+                            {% for assignation in assignations %}
+                                <tr>
+                                    <td>{{ assignation.article.conference }}</td>
+                                    <td>{{ assignation.article.title }}</td>
+                                    <td>
+                                        <div class="button-group">
+                                            <a class="btn btn-default" href="{{ path("article_review_download", {'code': assignation.article.conference.code , 'id': assignation.article.articleReviews.last().id()}) }}" role="button" id="1"><i class="fa fa-download"></i></a>
+                                            <a class="btn btn-default" href="{{ path('article_review_show',{'id': assignation.article.id }) }}" role="button" id="2"><i class="fa fa-eye"></i></a>
+                                            {% if is_granted('CREATE', assignation.article) %}
+                                                <a class="btn btn-default" href="{{ path('article_review',{'id': assignation.article.id }) }}" role="button" id="2"><i class="fa fa-edit"></i></a>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <div class="alert alert-danger text-center">
+                                    <strong>{{ 'There are not article' | trans }}</strong>
+                                </div>
+                            {% endfor %}
                         </table>
                     </div>
                 </div>
-            {% endfor %}
         </div>
     </div>
-    {% else %}
-        <div class="alert alert-danger text-center">
-            <strong>{{ 'There are not article' | trans }}</strong>
-        </div>
-    {% endif %}
+
 {% endif %}
 
 {% endblock %}

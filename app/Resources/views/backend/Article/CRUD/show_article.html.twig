@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-md-12">{% trans %}Download Article{% endtrans %}:
                         <td>
-                            <a class="btn-sm btn-default glyphicon glyphicon-download-alt " href="{{ path('article_review_download',{'id': articlereview.id }) }}" role="button"></a>
+                            <a class="btn-sm btn-default glyphicon glyphicon-download-alt " href="{{ path('article_review_download',{'code': conference_manager.conference.code, 'id': articlereview.id }) }}" role="button"></a>
                         </td>
 
                     </div>
