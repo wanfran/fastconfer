@@ -10,7 +10,7 @@
             <a href="{{ path("homepage") }}"><b>Fast</b>Confer</a>
         </div><!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg">{{ 'Sign in to start your session' | trans }}</p>
             {% block fos_user_content %}{% endblock %}
 
             <div class="social-auth-links text-center">

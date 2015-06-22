@@ -102,12 +102,15 @@ Is notified: "Notificar"
 Edit article: "Editar Artículo"
 Choose file: "Elegir Archivo"
 
+
 #Reviewer
 Edit: "Editar"
 Comment article: "Comentar artículo"
 Comment to User: "Comentario para el Usuario"
 Comment to Chairman: "Comentario para el Presidente"
 Submit: "Enviar"
+List of assigned articles: "Listado de artículos asignados"
+
 Option:
   Reject: "Rechazar"
   Accept with suggerences: "Aceptar con sugerencias"
@@ -138,11 +141,17 @@ Message: "Mensaje"
 Do you agree?: "¿Está usted deacuerdo?"
 Yes: "Si"
 There are not article: "No hay artículo"
+There are not reviews: "No hay revisores"
+List Comments Articles: "Listado de artículos comentados"
+Return: "Volver"
+Sign in to start your session: "Inicia sesión para comenzar"
 
 #Profile
-Surname: "Apellidos"
+Surname: "Apellido"
 Name of User: "Nombre de usuario"
 Email: "Correo electrónico"
 Edit Profile: "Editar Perfil"
 Change Password: "Cambiar Contraseña"
 Organization: "Organización"
+Save changes: "Guardar cambios"
+Close without saving: "Cerrar sin guardar"
