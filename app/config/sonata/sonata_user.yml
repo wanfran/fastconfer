@@ -11,3 +11,11 @@ sonata_user:
             class: AppBundle\Admin\UserAdmin
         group:
             class: AppBundle\Admin\GroupAdmin
+
+    profile:  # Authentication Form
+        form:
+            type:               fastconfer_user_profile
+            handler:            fastconfer.profile.form.handler
+            name:               fastconfer_user_profile_form
+            validation_groups:  [Authentication] # Please note : this is not the default value
+

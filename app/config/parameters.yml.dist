@@ -22,3 +22,5 @@ parameters:
     site_base:          ~
     sir_app_id:         ~
     sir_app_secret:     ~
+
+    administrator_email: ~

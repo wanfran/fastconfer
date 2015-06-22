@@ -32,6 +32,18 @@ services:
         tags:
           - { name: security.voter }
 
+    fastconfer.security.create_review.voter:
+        class: AppBundle\Security\Voter\CreateReview
+        public: false
+        tags:
+          - { name: security.voter }
+
+    fastconfer.security.see_comments_review.voter:
+        class: AppBundle\Security\Voter\SeeCommentsReview
+        public: false
+        tags:
+           - { name: security.voter }
+
     fastconfer.security.handler.voter:
         class: AppBundle\Security\Handler\VoterSecurityHandler
         arguments: [@security.authorization_checker, ['ROLE_SUPER_ADMIN']]
@@ -51,8 +63,8 @@ services:
             - { name: form.type, alias: fastconfer_user_profile }
 
     fastconfer.profile.form.handler:
-        class: AppBundle\Form\Type\ProfileFormHandler
-        arguments: [@fos_user.profile.form, @request, @fos_user.user_manager]
+        class: AppBundle\Form\Handler\ProfileFormHandler
+        arguments: [@sonata.user.profile.form, @request, @sonata.user.user_manager]
         scope: request
         public: false
 
@@ -137,7 +149,7 @@ services:
 
     fastconfer.listener.stateEndEvent:
         class: AppBundle\Main\EventListener\StateEndSubscriber
-        arguments: [ @mailer, @logger, @templating]
+        arguments: [ @mailer, @templating, @translator, %administrator_email%]
         tags:
             - { name: kernel.event_subscriber }
 

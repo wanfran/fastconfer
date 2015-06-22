@@ -9,10 +9,3 @@ fos_user:
 
     service:
         user_manager: sonata.user.orm.user_manager
-
-    profile:  # Authentication Form
-        form:
-            type:               fastconfer_user_profile
-            handler:            fastconfer.profile.form.handler
-            name:               fos_user_profile_form
-            validation_groups:  [Authentication] # Please note : this is not the default value
