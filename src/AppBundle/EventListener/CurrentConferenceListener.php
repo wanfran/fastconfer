@@ -14,6 +14,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/***
+ * Class CurrentConferenceListener
+ * @package AppBundle\EventListener
+ */
 class CurrentConferenceListener
 {
     /**

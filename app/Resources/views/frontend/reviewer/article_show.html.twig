@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    <section class="content-header">
+        <h1>
+            {{ 'Reviewer' | trans }}
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active"><a href="{{ path('review_article_list') }}"><i class="fa fa-dashboard"></i>{{ 'Home' | trans }} </a></li>
+        </ol>
+    </section>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="box box-default">
+                <div class="box-header">
+                    <h3 class="box-title">{{ 'List Comments Articles' | trans }}</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-condensed">
+                        <thead>
+                        <tr>
+                            <th class="col-md-1">{{ 'Version' | trans }}</th>
+                            <th class="col-md-5">{{ 'Comment to User' | trans }}</th>
+                            <th class="col-md-5">{{ 'Comment to Chairman' | trans }}</th>
+                            <th class="col-md-2">{{ 'State' | trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for comment in comments %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ comment.comment }}</td>
+                                <td>{{ comment.privateComment }}</td>
+                                <td> <span class="label label-{{ comment.state }}">{{ comment.state | trans }}</span></td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="3">
+                                    <div class="alert alert-danger text-center">
+                                        <strong>{{ 'There are not reviews' | trans }}</strong>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-footer">
+                    <a class="btn btn-default" href="{{ path("review_article_list") }}">{{ 'Return' | trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block tasks_menu %}{% endblock %}

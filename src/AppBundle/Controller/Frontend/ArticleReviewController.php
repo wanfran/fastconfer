@@ -10,19 +10,17 @@ namespace AppBundle\Controller\Frontend;
 
 
 use AppBundle\Controller\Controller;
-use AppBundle\Entity\Article;
 use AppBundle\Entity\ArticleReview;
 use AppBundle\Form\Type\InscriptionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @package AppBundle\Controller\Frontend
- * @Route("/article_review", condition="not (context.getHost() matches '/www/')")
+ * @Route("/article_review", host="{code}.%site_base%", condition="not (context.getHost() matches '/www/')")
  * @Security("has_role('ROLE_USER')")
  */
 class ArticleReviewController extends Controller

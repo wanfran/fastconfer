@@ -36,20 +36,39 @@ class ReviewerController extends Controller
     {
         $user = $this->getUser();
 
-        $reviewer = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findBy(array(
+        $assignations = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findBy(array(
             'user' => $user,
         ));
 
-        if (!$reviewer) {
+        if (!$assignations) {
             $this->addFlash('alert',$this->get('translator')->trans( 'You are not a review'));
 
             return $this->redirectToRoute('homepage');
         }
 
         return [
-            'review' => $reviewer,
+            'assignations' => $assignations,
         ];
     }
+
+
+    /**
+     * @Route ("/reviewer/article/{id}/show", name="article_review_show")
+     * @Template("frontend/reviewer/article_show.html.twig")
+     */
+    public function showReviewArticle(Article $article)
+    {
+
+
+        $reviewer = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(['user' => $this->getUser(), 'article' => $article]);
+
+        $this->denyAccessUnlessGranted('SHOW', $reviewer);
+
+        return [
+            'comments' => $reviewer->getReviewComments(),
+        ];
+    }
+
 
     /**
      * @Route ("/reviewer/article/{id}", name="article_review")
@@ -57,6 +76,8 @@ class ReviewerController extends Controller
      */
     public function reviewArticle(Article $article, Request $request)
     {
+        $this->denyAccessUnlessGranted('CREATE', $article);
+
         $user = $this->getUser();
 
         $findArticle = $this->getDoctrine()->getRepository('AppBundle:Reviewer')->findOneBy(array(

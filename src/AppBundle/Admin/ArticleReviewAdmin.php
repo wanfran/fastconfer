@@ -27,26 +27,12 @@ class ArticleReviewAdmin extends Admin
         ;
     }
 
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('state')
-            ->add('path')
-            ->add('createAt')
-        ;
-    }
-
     protected function configureListFields(ListMapper $list)
     {
         $list
             ->add('article')
             ->add('state')
             ->add('createAt')
-            ->add('_action', 'actions', array('label'=>'Actions',
-                'actions' => array(
-                    'show' => array(),
-                ),
-            ))
         ;
     }
 
