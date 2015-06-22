@@ -51,6 +51,7 @@ class DefaultController extends Controller
     /**
      * @Route("/myConferences", name="myConferences")
      * @Template("frontend/Conference/listConferences.html.twig")
+     * @Security("has_role('ROLE_USER')")
      */
     public function myConferencesAction()
     {
