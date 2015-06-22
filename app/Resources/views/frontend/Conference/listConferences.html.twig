@@ -32,7 +32,9 @@
                                         <td>
                                             <div class="button-group">
                                                 <a class="btn btn-default fa fa-eye" href="{{ path('conference_show', {'code': conference.code}) }}" role="button"></a>
+                                    {% if is_granted('EDIT_CONFERENCE_CHAIRMAN', app.user) %}
                                                 <a class="btn btn-default fa fa-edit" href=" {{ conference_admin_url(conference) }}" role="button"></a>
+                                    {% endif %}
                                             </div>
                                         </td>
                                     </tr>

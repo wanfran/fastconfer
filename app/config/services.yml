@@ -38,6 +38,12 @@ services:
         tags:
            - { name: security.voter }
 
+    fastconfer.security.edit_conference_chairman.voter:
+        class: AppBundle\Security\Voter\EditConferenceChairman
+        public: false
+        tags:
+           - { name: security.voter }
+
     fastconfer.security.handler.voter:
         class: AppBundle\Security\Handler\VoterSecurityHandler
         arguments: [@security.authorization_checker, ['ROLE_SUPER_ADMIN']]
