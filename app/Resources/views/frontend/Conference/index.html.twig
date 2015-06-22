@@ -1,5 +1,15 @@
 {% extends '::base.html.twig' %}
 
+
+{% block tasks_menu %}
+
+    {% if inscription %}
+        <li class="tasks-menu"><a href="{{ url('article_list') }}"><i class="fa fa-list"></i> {{ 'List Articles' | trans }}</a></li>
+        <li class="tasks-menu"><a href="{{ url('article_new') }}"><i class="fa fa-upload"></i> {{ 'New article' | trans }}</a></li>
+    {% endif %}
+
+{% endblock %}
+
 {% block header %}
 
     <section class="content-header conference-header">
