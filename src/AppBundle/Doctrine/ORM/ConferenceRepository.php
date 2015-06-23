@@ -5,8 +5,17 @@ namespace AppBundle\Doctrine\ORM;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Class ConferenceRepository
+ * @package AppBundle\Doctrine\ORM
+ */
 class ConferenceRepository extends EntityRepository
 {
+    /**
+     * @param $word
+     * @return array
+     * Función para encontrar una conferencia en la BD por el nombre
+     */
     public function findConference($word)
     {
         $em = $this->getEntityManager();
@@ -20,6 +29,11 @@ class ConferenceRepository extends EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * @param User $user
+     * @return array
+     * Función para encontrar un usuario en la BD por el nombre
+     */
     public function findUserConferences(User $user)
     {
         $qb = $this->createQueryBuilder('c');

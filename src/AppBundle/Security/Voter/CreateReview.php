@@ -15,6 +15,11 @@ use AppBundle\Entity\Reviewer;
 use Symfony\Component\Security\Core\Authorization\Voter\AbstractVoter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class CreateReview
+ * @package AppBundle\Security\Voter
+ * Clase para crear el Voter que permite crear una revisión
+ */
 class CreateReview extends AbstractVoter
 {
 

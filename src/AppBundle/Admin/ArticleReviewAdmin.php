@@ -13,6 +13,11 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+/**
+ * Class ArticleReviewAdmin
+ * @package AppBundle\Admin
+ * Clase para definir la vista de las versiones de un artículo en Sonata
+ */
 class ArticleReviewAdmin extends Admin
 {
     // Fields to be shown on create/edit forms

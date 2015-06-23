@@ -13,6 +13,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\DataTransformerInterface;
 
+/**
+ * Class TopicsToTextTransformer
+ * @package AppBundle\Form\DataTransformer
+ * Clase para añadir Topics al formulario mediante comas con "Transformer"
+ */
 class TopicsToTextTransformer implements DataTransformerInterface
 {
     /**

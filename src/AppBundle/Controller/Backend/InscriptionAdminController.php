@@ -10,6 +10,10 @@ namespace AppBundle\Controller\Backend;
 
 use Sonata\AdminBundle\Controller\CRUDController;
 
+/**
+ * Class InscriptionAdminController
+ * @package AppBundle\Controller\Backend
+ */
 class InscriptionAdminController extends CRUDController
 {
 }

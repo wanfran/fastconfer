@@ -15,8 +15,17 @@ use AppBundle\Main\Event\StateEndEvent;
 use AppBundle\Main\StateEndEvents;
 use Sonata\AdminBundle\Controller\CRUDController;
 
+/**
+ * Class ArticleReviewController
+ * @package AppBundle\Controller\Backend
+ * Funciones para los estados del artículo
+ */
 class ArticleReviewController extends CRUDController
 {
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * Función para cambiar el estado de un artículo a "Aceptado"
+     */
     public function acceptedAction()
     {
         /** @var ArticleReview $object */
@@ -39,6 +48,10 @@ class ArticleReviewController extends CRUDController
         ));
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * Función para cambiar el estado de un artículo a "Rechazado"
+     */
     public function rejectedAction()
     {
         $object = $this->admin->getSubject();
@@ -60,6 +73,11 @@ class ArticleReviewController extends CRUDController
             'id' => $object->getArticle()->getId()
         ));
     }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * Función para cambiar el estado de un artículo a "Aceptado con Sugerencias"
+     */
     public function acceptedWithSuggestionsAction()
     {
         $object = $this->admin->getSubject();

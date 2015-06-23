@@ -8,6 +8,10 @@
 
 namespace AppBundle\Main;
 
+/**
+ * Class StateEndEvents
+ * @package AppBundle\Main
+ */
 final class StateEndEvents
 {
     const SUBMITTED = 'Fastconfer.stateEnd.submitted';

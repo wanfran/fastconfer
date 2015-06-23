@@ -13,7 +13,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-
+/**
+ * Class AuthorType
+ * @package AppBundle\Form\Type
+ * Clase para crear el Formulario para enviar un nuevo autor
+ */
 class AuthorType extends AbstractType
 {
 

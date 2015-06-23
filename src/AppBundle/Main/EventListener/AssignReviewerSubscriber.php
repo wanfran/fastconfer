@@ -14,6 +14,11 @@ use AppBundle\Main\Event\AssignReviewerEvent;
 use AppBundle\Main\AssignReviewerEvents;
 use Symfony\Component\Templating\EngineInterface;
 
+/**
+ * Class AssignReviewerSubscriber
+ * @package AppBundle\Main\EventListener7
+ * Clase para definir el evento que envia un email a un revisor cuando se le asigna un artículo
+ */
 class AssignReviewerSubscriber implements EventSubscriberInterface
 {
     private $email;

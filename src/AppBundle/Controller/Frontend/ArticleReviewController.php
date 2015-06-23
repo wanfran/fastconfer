@@ -28,6 +28,7 @@ class ArticleReviewController extends Controller
     /**
      * @Route("/{id}", name="article_review_see")
      * @Template("frontend/ArticleReview/show.html.twig")
+     * Función para obtener los comentarios de los artículos
      */
     public function commentsAction(ArticleReview $articleReview)
     {
@@ -60,6 +61,7 @@ class ArticleReviewController extends Controller
 
     /**
      * @Route("/{id}/download", name="article_review_download")
+     * Función para descargar los artículos
      */
     public function downloadAction(ArticleReview $articleReview)
     {

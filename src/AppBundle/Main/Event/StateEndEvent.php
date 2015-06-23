@@ -11,6 +11,11 @@ namespace AppBundle\Main\Event;
 use AppBundle\Entity\ArticleReview;
 use Symfony\Component\EventDispatcher\Event;
 
+/**
+ * Class StateEndEvent
+ * @package AppBundle\Main\Event
+ * Definición del evento cuando se cambia un estado del artículo
+ */
 class StateEndEvent extends Event
 {
     private $articleReview;

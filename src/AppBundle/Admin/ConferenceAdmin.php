@@ -16,7 +16,11 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
-
+/**
+ * Class ConferenceAdmin
+ * @package AppBundle\Admin
+ * Clase para definir la vista de la conferencia en Sonata
+ */
 class ConferenceAdmin extends Admin
 {
     public function createQuery( $context = 'list' )

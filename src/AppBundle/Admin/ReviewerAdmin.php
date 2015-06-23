@@ -13,6 +13,11 @@ use AppBundle\Main\Event\AssignReviewerEvent;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
+/**
+ * Class ReviewerAdmin
+ * @package AppBundle\Admin
+ * Clase para definir la vista de revisores en Sonata
+ */
 class ReviewerAdmin extends Admin
 {
     // Fields to be shown on create/edit forms
@@ -25,6 +30,9 @@ class ReviewerAdmin extends Admin
         ;
     }
 
+    /**
+     * @param ListMapper $list
+     */
     protected function configureListFields(ListMapper $list)
     {
         $list
@@ -34,6 +42,9 @@ class ReviewerAdmin extends Admin
         ;
     }
 
+    /**
+     * @return string
+     */
     public function getParentAssociationMapping()
     {
         return 'article';

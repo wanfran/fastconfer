@@ -16,6 +16,11 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class StateEndSubscriber
+ * @package AppBundle\Main\EventListener
+ * Clase para definir el evento que envia un email a un investigador cuando cambia el estado de su artículo
+ */
 class StateEndSubscriber implements EventSubscriberInterface
 {
     /**

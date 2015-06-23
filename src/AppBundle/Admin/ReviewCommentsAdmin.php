@@ -10,6 +10,11 @@ namespace AppBundle\Admin;
 
 use Sonata\AdminBundle\Show\ShowMapper;
 
+/**
+ * Class ReviewCommentsAdmin
+ * @package AppBundle\Admin
+ * Clase para definir la vista de los comentarios de cada revisor en Sonata
+ */
 class ReviewCommentsAdmin extends Admin
 {
     protected function configureShowFields(ShowMapper $showMapper)

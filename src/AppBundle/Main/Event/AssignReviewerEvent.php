@@ -11,6 +11,11 @@ namespace AppBundle\Main\Event;
 use AppBundle\Entity\Reviewer;
 use Symfony\Component\EventDispatcher\Event;
 
+/**
+ * Class AssignReviewerEvent
+ * @package AppBundle\Main\Event
+ * Definición del evento cuando se asigna un revisor
+ */
 class AssignReviewerEvent extends Event
 {
     private $reviewer;

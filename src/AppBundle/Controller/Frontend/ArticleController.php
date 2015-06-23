@@ -32,6 +32,7 @@ class ArticleController extends Controller
     /**
      * @Route("/list", name="article_list")
      * @Template("frontend/Article/list.html.twig")
+     * Función para listar todos los artículos de un usuario
      */
     public function listAction()
     {
@@ -58,6 +59,7 @@ class ArticleController extends Controller
     /**
      * @Route("/new", name="article_new")
      * @Template("frontend/Article/new.html.twig")
+     * Función para enviar un nuevo artículo a una conferencia
      */
     public function newAction(Request $request)
     {
@@ -118,6 +120,7 @@ class ArticleController extends Controller
      *
      * @Route("/{id}/edit", name="article_edit")
      * @Template("frontend/Article/edit.html.twig")
+     * Función para editar un artículo enviado por el usuario
      */
     public function editAction(Article $article, Request $request)
     {
@@ -163,6 +166,7 @@ class ArticleController extends Controller
      * @Route("/{id}/review/new", name="article_new_review")
      * @Template("frontend/Article/new.html.twig")
      * @Security("is_granted('UPLOAD_NEW_ARTICLE_REVIEW', article)")
+     * Función para enviar una nueva versión de un artículo
      */
     public function newReviewAction(Article $article, Request $request)
     {

@@ -15,10 +15,10 @@ use Symfony\Component\Security\Core\Authorization\Voter\AbstractVoter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Check download article permissions
  *
  * Class ArticleReviewDownloadVoter
  * @package AppBundle\Security\Voter
+ * Clase para crear el Voter que permite descargar los artículos
  */
 class ArticleReviewDownloadVoter extends AbstractVoter
 {

@@ -10,6 +10,10 @@ namespace AppBundle\Admin;
 
 use Sonata\UserBundle\Admin\Entity\GroupAdmin as BaseGroupAdmin;
 
+/**
+ * Class GroupAdmin
+ * @package AppBundle\Admin
+ */
 class GroupAdmin extends BaseGroupAdmin
 {
 }

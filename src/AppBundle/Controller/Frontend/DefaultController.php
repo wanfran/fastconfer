@@ -27,6 +27,7 @@ class DefaultController extends Controller
      *
      * @Route("/", name="homepage")
      * @Template("frontend/Default/index.html.twig")
+     * Función para mostrar todas las conferencias ordenadas por el nombre
      */
     public function indexAction()
     {
@@ -52,6 +53,7 @@ class DefaultController extends Controller
      * @Route("/myConferences", name="myConferences")
      * @Template("frontend/Conference/listConferences.html.twig")
      * @Security("has_role('ROLE_USER')")
+     * Función para obtener el listado de las conferencia inscritas por un usuario
      */
     public function myConferencesAction()
     {
@@ -73,6 +75,7 @@ class DefaultController extends Controller
     /**
      * @Route("/find", name="find")
      * @Template("frontend/Default/index.html.twig")
+     * Función para buscar una conferencias por nombre
      */
     public function findConferenceAction(Request $request)
     {

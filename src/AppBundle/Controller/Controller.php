@@ -10,8 +10,16 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 
+/**
+ * Class Controller
+ * @package AppBundle\Controller
+ */
 class Controller extends BaseController
 {
+    /**
+     * @return \AppBundle\Entity\Conference
+     * Función para obtener todas las conferencias
+     */
     public function getConference()
     {
         return $this->get('fastconfer.security.conference_manager')->getConference();

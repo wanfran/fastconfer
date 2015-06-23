@@ -13,6 +13,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+
+/**
+ * Class EditArticleType
+ * @package AppBundle\Form\Type
+ * Clase para crear el Formulario para editar un artículo ya enviado
+ */
 class EditArticleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)

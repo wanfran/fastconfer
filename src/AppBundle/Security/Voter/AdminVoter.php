@@ -12,6 +12,11 @@ namespace AppBundle\Security\Voter;
 use Symfony\Component\Security\Core\Authorization\Voter\AbstractVoter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class AdminVoter
+ * @package AppBundle\Security\Voter
+ * Clase para crear el Voter para los permisos en Sonata
+ */
 class AdminVoter extends AbstractVoter
 {
 

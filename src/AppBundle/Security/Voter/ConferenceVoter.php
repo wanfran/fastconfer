@@ -14,6 +14,11 @@ use AppBundle\Security\Manager\ConferenceManager;
 use Symfony\Component\Security\Core\Authorization\Voter\AbstractVoter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class ConferenceVoter
+ * @package AppBundle\Security\Voter
+ * Clase para crear el Voter que da permisos al Super Usuario
+ */
 class ConferenceVoter extends AbstractVoter
 {
     /**

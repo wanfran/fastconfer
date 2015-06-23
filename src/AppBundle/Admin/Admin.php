@@ -10,6 +10,10 @@ namespace AppBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin as BaseAdmin;
 
+/**
+ * Class Admin
+ * @package AppBundle\Admin
+ */
 class Admin extends BaseAdmin
 {
     public function getService($service)

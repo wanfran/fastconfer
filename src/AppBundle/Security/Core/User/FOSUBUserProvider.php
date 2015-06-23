@@ -12,6 +12,10 @@ use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class FOSUBUserProvider
+ * @package AppBundle\Security\Core\User
+ */
 class FOSUBUserProvider extends BaseClass
 {
     /**

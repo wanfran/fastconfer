@@ -13,6 +13,11 @@ use AppBundle\Entity\User;
 use Symfony\Component\Security\Core\Authorization\Voter\AbstractVoter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class EditConferenceChairman
+ * @package AppBundle\Security\Voter
+ * Clase para crear el Voter que permite administrar una conferencia
+ */
 class EditConferenceChairman extends AbstractVoter{
 
     /**
@@ -62,6 +67,8 @@ class EditConferenceChairman extends AbstractVoter{
             return false;
 
         }
+
+        return true;
 
 
     }

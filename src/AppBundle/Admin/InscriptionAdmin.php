@@ -13,6 +13,11 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+/**
+ * Class InscriptionAdmin
+ * @package AppBundle\Admin
+ * Clase para definir la vista de las inscripciones en Sonata
+ */
 class InscriptionAdmin extends Admin
 {
     public function createQuery( $context = 'list' )

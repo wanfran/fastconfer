@@ -11,6 +11,10 @@ namespace AppBundle\Security\Manager;
 
 use AppBundle\Entity\Conference;
 
+/**
+ * Class ConferenceManager
+ * @package AppBundle\Security\Manager
+ */
 class ConferenceManager
 {
     /** @var Conference */

@@ -10,7 +10,11 @@ namespace AppBundle\Form\Type;
 use Sonata\UserBundle\Form\Type\ProfileType as BaseType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-
+/**
+ * Class ProfileType
+ * @package AppBundle\Form\Type
+ * Clase para crear el Formulario del Perfil
+ */
 class ProfileType extends BaseType
 {
     public function buildUserForm(FormBuilderInterface $builder, array $options)

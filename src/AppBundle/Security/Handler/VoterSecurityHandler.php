@@ -14,6 +14,10 @@ use Sonata\AdminBundle\Security\Handler\SecurityHandlerInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundException;
 
+/**
+ * Class VoterSecurityHandler
+ * @package AppBundle\Security\Handler
+ */
 class VoterSecurityHandler implements SecurityHandlerInterface
 {
     /**

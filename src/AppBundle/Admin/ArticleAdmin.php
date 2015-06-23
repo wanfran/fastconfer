@@ -13,6 +13,11 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+/**
+ * Class ArticleAdmin
+ * @package AppBundle\Admin
+ * Clase para definir la vista de los artículos en Sonata
+ */
 class ArticleAdmin extends Admin
 {
 

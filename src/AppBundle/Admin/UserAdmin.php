@@ -10,6 +10,10 @@ namespace AppBundle\Admin;
 
 use Sonata\UserBundle\Admin\Entity\UserAdmin as BaseUserAdmin;
 
+/**
+ * Class UserAdmin
+ * @package AppBundle\Admin
+ */
 class UserAdmin extends BaseUserAdmin
 {
     /**

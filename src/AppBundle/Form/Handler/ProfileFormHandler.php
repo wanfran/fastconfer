@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class ProfileFormHandler
  * @package AppBundle\Form\Handler
+ * Clase para editar el Perfil del usuario
  */
 class ProfileFormHandler extends BaseHandler
 {

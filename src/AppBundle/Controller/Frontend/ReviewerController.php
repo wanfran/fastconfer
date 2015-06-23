@@ -31,6 +31,7 @@ class ReviewerController extends Controller
     /**
      * @Route ("/reviewer/article", name="review_article_list")
      * @Template("frontend/reviewer/listArticle.html.twig")
+     * Función para listar los artículos asignados
      */
     public function listArticleAction()
     {
@@ -55,6 +56,7 @@ class ReviewerController extends Controller
     /**
      * @Route ("/reviewer/article/{id}/show", name="article_review_show")
      * @Template("frontend/reviewer/article_show.html.twig")
+     * Función para listar los comentarios realizados por el revisor
      */
     public function showReviewArticle(Article $article)
     {
@@ -73,6 +75,7 @@ class ReviewerController extends Controller
     /**
      * @Route ("/reviewer/article/{id}", name="article_review")
      * @Template("frontend/reviewer/Article.html.twig")
+     * Función para comentar un artículo asignado
      */
     public function reviewArticle(Article $article, Request $request)
     {

@@ -13,6 +13,11 @@ use Symfony\Component\Form\AbstractType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * Class TopicsTextType
+ * @package AppBundle\Form\Type
+ * Clase para crear el Formulario para los Topics
+ */
 class TopicsTextType extends AbstractType
 {
     /**

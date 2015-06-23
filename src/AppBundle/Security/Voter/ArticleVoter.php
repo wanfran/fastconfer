@@ -13,6 +13,11 @@ use AppBundle\Entity\Article;
 use Symfony\Component\Security\Core\Authorization\Voter\AbstractVoter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class ArticleVoter
+ * @package AppBundle\Security\Voter
+ * Clase para crear el Voter que permite editar un artículo
+ */
 class ArticleVoter extends AbstractVoter
 {
 

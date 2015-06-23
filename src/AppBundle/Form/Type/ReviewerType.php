@@ -13,6 +13,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class ReviewerType
+ * @package AppBundle\Form\Type
+ * Clase para crear el Formulario para revisar un artículo
+ */
 class ReviewerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)

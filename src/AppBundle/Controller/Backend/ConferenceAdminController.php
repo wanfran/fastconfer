@@ -10,6 +10,10 @@ namespace AppBundle\Controller\Backend;
 
 use Sonata\AdminBundle\Controller\CRUDController;
 
+/**
+ * Class ConferenceAdminController
+ * @package AppBundle\Controller\Backend
+ */
 class ConferenceAdminController extends CRUDController
 {
 }

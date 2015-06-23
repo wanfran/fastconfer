@@ -17,6 +17,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /***
  * Class CurrentConferenceListener
  * @package AppBundle\EventListener
+ * Clase para cambiar la baseHost de la URL por el código de la conferencia
  */
 class CurrentConferenceListener
 {

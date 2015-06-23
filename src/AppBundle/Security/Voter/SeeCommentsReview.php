@@ -13,7 +13,11 @@ use AppBundle\Entity\Reviewer;
 use Symfony\Component\Security\Core\Authorization\Voter\AbstractVoter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-
+/**
+ * Class SeeCommentsReview
+ * @package AppBundle\Security\Voter
+ * Clase para crear el Voter que permite ver los comentarios
+ */
 class SeeCommentsReview extends AbstractVoter
 {
     /**

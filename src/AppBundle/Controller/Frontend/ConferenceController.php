@@ -18,6 +18,7 @@ class ConferenceController extends Controller
     /**
      * @Route ("/", name="conference_show")
      * @Template("frontend/Conference/index.html.twig")
+     * Función para mostrar los detalles de una conferencia
      */
     public function showAction()
     {
@@ -38,6 +39,7 @@ class ConferenceController extends Controller
     /**
      * @Route("/inscription", name="inscription")
      * @Security("has_role('ROLE_USER')")
+     * Función para inscribirse en una conferencia
      */
     public function inscriptionAction()
     {

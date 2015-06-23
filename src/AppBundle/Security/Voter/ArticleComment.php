@@ -14,6 +14,11 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Security\Core\Authorization\Voter\AbstractVoter;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class ArticleComment
+ * @package AppBundle\Security\Voter
+ * Clase para crear el Voter que permite ver los comentarios de un artículo
+ */
 class ArticleComment extends AbstractVoter{
 
     /**

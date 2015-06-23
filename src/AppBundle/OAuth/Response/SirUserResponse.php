@@ -5,6 +5,10 @@ namespace AppBundle\OAuth\Response;
 
 use HWI\Bundle\OAuthBundle\OAuth\Response\PathUserResponse;
 
+/**
+ * Class SirUserResponse
+ * @package AppBundle\OAuth\Response
+ */
 class SirUserResponse extends PathUserResponse
 {
     /**
