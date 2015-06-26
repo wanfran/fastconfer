@@ -1,4 +1,4 @@
-@articles @sprint3
+@articles @sprint55
 
 Feature: status of article
   In order to see my article
@@ -16,57 +16,48 @@ Feature: status of article
       | topicB  |
       | topicC  |
       | topicD  |
+    And there are following users:
+      | username  | email     | plainPassword | enabled |
+      | user3     | c@uco.es  | secret3       | 1       |
     And there are following conferences:
-      | name                    | slug                  | description                                | registration_starts_at | registration_ends_at |dead_time   |topics |
-      | I Example Conference    | i-example-conference  | Description of the I Example Conference    | now -3 days            | now +3 days          |now +2 days |topicA |
+      | name                   | city    | description                               | code  | url       |dateStart  | dateEnd    | topics |deadTime   |dateNews   |chairmans|
+      | I Example Conference   | London2 | Description of the II Example Conference  | code2 | www.b.com |now -3 days| now +3 days| topicB |now +3 days|now +3 days|user3    |
+    And there are following articles:
+      |title  | keyword  | abstract             |  stateEnd |inscription|
+      |first  | example1 | 1tex example abstract|  sent     | user1     |
+#      |second | example2 | 2tex example abstract|  sent    |
+#      |third  | example3 | 3tex example abstract|  sent    |
     And there are following inscriptions:
-       |username| name                 |
-       |user1   | I Example Conference |
-    And I submitted the following articles to "I Example Conference":
-      |title | authors | keyword  | abstract             |  stateEnd                  |
-      |first | userA   | example1 | 1tex example abstract|  sent                      |
-      |second| userB   | example2 | 2tex example abstract|  accepted with suggestions |
-      |third | userC   | example3 | 3tex example abstract|  sent                      |
-    And there are following articleReviews:
-      | state                     |path         |article  | file |  mimeType      |
-      | sent                      |example1.pdf |  first  | null | application/pdf|
-      | accepted with suggestions |example2.pdf |  second | null | application/pdf|
-      | accepted                  |example3.pdf |  second | null | application/pdf|
-      | rejected                  |example4.pdf |  third  | null | application/pdf|
-    And there are following reviewComments:
-      |state                      |comments                 |articleReview |
-      |accepted with suggestions  |comments of the article1 |example2.pdf   |
-      |accepted                   |comments of the article2 |example3.pdf   |
-      |rejected                   |comments of the article3 |example4.pdf   |
-
+      |username| name                 |articles|
+      |user1   | I Example Conference |first   |
 
   Scenario: see article sent
-    Given I am on the inscription page for "I Example Conference"
+    Given I am on the list article page for "I Example Conference"
     Then I should see "first"
-    And I should see "sent"
+    And I should see "See Comment"
+#
+#  Scenario: see article accepted
+#    Given should be on list article page for "I Example Conference"
+#    Then I should see "second"
+#    And I should see "comments"
+#    When I follow "comments"
+#    Then I should be on page comments "second"
 
-  Scenario: see article accepted
-    Given I am on the inscription page for "I Example Conference"
-    Then I should see "second"
-    And I should see "comments"
-    When I follow "comments"
-    Then I should be on page comments "second"
-
-  Scenario: read comment article
-    Given I am on the comments page "second"
-    Then I should see "There is some comments"
-
-  Scenario: see article accepted with suggestions
-    Given I am on the inscription page for "I Example Conference"
-    Then I should see "second"
-    And I should see "accepted with suggestions"
-    And I should see "New Article"
-    When I follow "New Article"
-    Then I should be on the new page for "second"
-
-  Scenario: forward form
-    Given I am on the new page for "second"
-    Then I should see "Complete the form"
-
-
+#  Scenario: read comment article
+#    Given I am on the comments page "second"
+#    Then I should see "There is some comments"
+#
+#  Scenario: see article accepted with suggestions
+#    Given I am on the inscription page for "I Example Conference"
+#    Then I should see "second"
+#    And I should see "accepted with suggestions"
+#    And I should see "New Article"
+#    When I follow "New Article"
+#    Then I should be on the new page for "second"
+#
+#  Scenario: forward form
+#    Given I am on the new page for "second"
+#    Then I should see "Complete the form"
+#
+#
 

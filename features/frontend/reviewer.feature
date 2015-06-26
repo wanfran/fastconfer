@@ -1,4 +1,4 @@
-@reviewer @sprint4
+@reviewer @sprint4234
 
 Feature: review an article
   In order to comment some articles
@@ -9,13 +9,21 @@ Feature: review an article
     Given there are following users:
       | username    | email             | plainPassword | enabled  |
       | user1       | user1@uco.es      | secret1       | 1        |
-
+      | user3       | c@uco.es          | secret3       | 1        |
     And I am authenticated as "user1" with "secret1"
+    And there are following topics:
+      | name    |
+      | topicA  |
+      | topicB  |
+    And there are following conferences:
+      | name                   | city    | description                               | code  | url       |dateStart  | dateEnd    | topics |deadTime   |dateNews   |chairmans|
+      | I Example Conference   | London2 | Description of the II Example Conference  | code2 | www.b.com |now -3 days| now +3 days| topicB |now +3 days|now +3 days|user3    |
+    And there are following inscriptions:
+      |username| name                 |
+      |user1   | I Example Conference |
     And there are following articles:
-      |title  | authors | keyword  | abstract              |  stateEnd  |
-      |first  | userA   | example1 | 1tex example abstract |  sent      |
-      |first2 | userB   | example2 | 2tex example abstract |  sent      |
-      |first3 | userC   | example3 | 3tex example abstract |  sent      |
+      |title  | keyword  | abstract              |  stateEnd  |
+      |first  | example1 | 1tex example abstract |  sent      |
 
     And there are following reviewer:
       |username|title|
@@ -24,11 +32,11 @@ Feature: review an article
 
     Scenario: can see button as reviewer
       Given I am on the homepage
-      And I should see "Articles for Review"
+      And I should see "Assigned Reviews"
 
     Scenario: list articles
       Given I am on the homepage
-      When I follow "Articles for Review"
+      When I follow "Assigned Reviews"
       Then I should be on page articles reviewer
       And I should see 2 reviewer
 
@@ -54,9 +62,10 @@ Feature: review an article
       Given I am on the edit page "first"
       When I fill in the following:
         |Comment   |this article is very good |
+        |Comment private|this article has a seven point|
       And I press "Create"
       Then I should be on page articles reviewer
       And I should see " Your article has been successfully edited"
 
-
-
+#
+#

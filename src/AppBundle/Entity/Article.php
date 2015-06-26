@@ -40,8 +40,8 @@ class Article
 
     /**
      * @var string
-     *
      * @ORM\Column(name="keyword", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $keyword;
 
@@ -57,6 +57,7 @@ class Article
     /**
      * @var string
      * @ORM\Column(name="stateEnd", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $stateEnd;
 
@@ -64,16 +65,19 @@ class Article
      * @var \DateTime
      *
      *@ORM\Column(name="created_at", type="datetime")
+     * @Assert\NotBlank
      */
     private $createAt;
 
      /**
       * @ORM\ManyToMany(targetEntity="Topic", inversedBy="articles")
+      *
       */
      private $topics;
 
     /**
      * @ORM\OneToMany(targetEntity="Author", mappedBy="article", cascade={"persist"})
+     *
      */
     private $authors;
 

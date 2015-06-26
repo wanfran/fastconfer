@@ -88,4 +88,39 @@ class ConferenceContext extends CoreContext
         $this->assertSession()->addressEquals($this->generateUrl('article_new', array('code' => $conference->getCode()
         )));
     }
+
+    /**
+     * @Then I should be on list article page for :name
+     */
+
+    public function iShouldBeOnListArticle($name)
+    {
+        $conference = $this->getEntityManager()->getRepository('AppBundle:Conference')->findOneByName($name);
+        if (!$conference) {
+            throw new ElementNotFoundException('Conference doesn\'t exist');
+        }
+        $this->assertSession()->addressEquals($this->generateUrl('article_list', array('code' => $conference->getCode()
+        )));
+    }
+
+
+    /**
+     * @Given I am on the list article page for :name
+     */
+    public function iAmOnListArticle($name)
+    {
+        $conference = $this->getEntityManager()->getRepository('AppBundle:Conference')->findOneByName($name);
+        if (!$conference) {
+            throw new ElementNotFoundException('Conference doesn\'t exist');
+        }
+
+        $url = $this->generateUrl('article_list', array(), true);
+        $url = str_replace('www', $conference->getCode(), $url);
+
+        $this->getSession()->visit($url);
+
+//        $this->getSession()->visit($this->generateUrl('article_list', array('code' => $conference->getCode()),true));
+    }
+
+
 }

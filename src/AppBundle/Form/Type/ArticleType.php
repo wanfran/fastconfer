@@ -26,7 +26,6 @@ class ArticleType extends AbstractType
 
         $builder
             ->add('title')
-
             ->add('abstract', 'textarea', array(
                 'attr' => ['rows' => 12],
             ))
@@ -52,7 +51,6 @@ class ArticleType extends AbstractType
             )) //de esta forma pongo un atributo que no existe en esa clase
             ->add('save', 'submit', array(
                 'label' => 'Submit',
-                'validation_groups' => false,
             ));
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)

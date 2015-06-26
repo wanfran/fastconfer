@@ -9,6 +9,7 @@
 namespace AppBundle\Behat;
 
 use AppBundle\Entity\Article;
+
 use Behat\Gherkin\Node\TableNode;
 
 class ArticleContext extends CoreContext
@@ -24,10 +25,8 @@ class ArticleContext extends CoreContext
         foreach ($tableNode->getHash() as $articleHash) {
             $articles = new Article();
             $articles->setTitle($articleHash['title']);
-            $articles->setAuthor($articleHash['authors']);
             $articles->setKeyword($articleHash['keyword']);
             $articles->setAbstract($articleHash['abstract']);
-            $articles->setStateEnd($articleHash['stateEnd']);
             $em->persist($articles);
         }
         $em->flush();
@@ -42,7 +41,6 @@ class ArticleContext extends CoreContext
         foreach ($tableNode->getHash() as $articleHash) {
             $articles = new Article();
             $articles->setTitle($articleHash['title']);
-            $articles->setAuthor($articleHash['authors']);
             $articles->setKeyword($articleHash['keyword']);
             $articles->setAbstract($articleHash['abstract']);
             $articles->setStateEnd($articleHash['stateEnd']);
@@ -61,7 +59,10 @@ class ArticleContext extends CoreContext
         if (!$conference) {
             throw new ElementNotFoundException('Conference doesn\'t exist');
         }
-        
-        $this->getSession()->visit($this->generateUrl('article_new', array('code' => $conference->getCode()),true));
+
+        $url = $this->generateUrl('article_new', array(), true);
+        $url = str_replace('www', $conference->getCode(), $url);
+
+        $this->getSession()->visit($url);
     }
 }

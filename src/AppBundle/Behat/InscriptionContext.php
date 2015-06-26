@@ -10,6 +10,7 @@ namespace AppBundle\Behat;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\Inscription;
+use AppBundle\Entity\Article;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Exception\ElementNotFoundException;
 
@@ -32,7 +33,6 @@ class InscriptionContext extends CoreContext
 
             $inscription->setUser($user);
             $inscription->setConference($conference);
-
             $em->persist($inscription);
         }
         $em->flush();

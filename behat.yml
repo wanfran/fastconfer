@@ -75,6 +75,9 @@ default:
             contexts:
                 - Behat\MinkExtension\Context\MinkContext
                 - AppBundle\Behat\CoreContext
+                - AppBundle\Behat\ConferenceContext
+                - AppBundle\Behat\InscriptionContext
+                - AppBundle\Behat\TopicContext
                 - AppBundle\Behat\UserContext
                 - AppBundle\Behat\ArticleContext
                 - AppBundle\Behat\ReviewerContext
