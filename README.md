@@ -1,7 +1,3 @@
-# sf2-behat-skel
+# Resumen de la aplicación
 
-Proyecto plantilla que tiene configurada una pequeña prueba con Behat.
-
-Se puede usar como base para desarrollar otros proyectos basados en Behay y Symfony2.
-Por el momento se está preparando para que funcione con la futura versión 2.6 así que
-puede resultar inestable.
+FastConfer es una solución que surge por la necesidad de poder automatizar todo el proceso de recepción, asignación y aceptación de artículos, de forma sencilla para todos los actores participantes,con las debidas garantías de confidencialidad y calidad. Permitiendo su autenticación mediante instituciones federadas.
